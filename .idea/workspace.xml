@@ -2,239 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1474e9e3-ddee-49f6-ae61-a8295dd4fd93" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_73.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/AD.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/CV.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Cendentcon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Company.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Daily.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Job.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Jobcontain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Jobprocess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Level.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/PageBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/School.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Station.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/TKnowmenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Trade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/UserInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Workexpress.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/controller/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/mapper/AdminMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/service/AdminService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/person/service/impl/AdminServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/AdminMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/X-admin/images/2.02. 相关资料(Av49906463,P2).mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/X-admin/images/3.03. 特点介绍(Av49906463,P3).mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/X-admin/images/4.04. 移动端适配相关内容(Av49906463,P4).mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/X-admin/images/log.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/X-admin/images/ma.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/X-admin/images/入门介绍.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/X-admin/lib/layui/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Person.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/UserLogin.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/parameterManagement.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/params-add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/user-adds.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/user-show.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/person-project.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/PersonProjectApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/LayuiData.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Menu.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/PageBean.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Params.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/TKnowmenu.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/User.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/UserInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/controller/AdminController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/controller/HelloController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/controller/UserController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/controller/ZhiShiKuController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/mapper/AdminMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/mapper/KnowMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/mapper/UserMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/service/AdminService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/service/KnowService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/service/UserService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/service/impl/AdminServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/service/impl/KnowServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/log4j.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/AdminMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/KnowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mapper/UserMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mybatis/SqlMapConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/css/font.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/css/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/css/theme1.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/css/theme2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/css/theme3.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/css/theme4.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/css/theme5.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/css/xadmin.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/fonts/iconfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/fonts/iconfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/fonts/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/fonts/iconfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/images/1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/images/2.02. 相关资料(Av49906463,P2).mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/images/3.03. 特点介绍(Av49906463,P3).mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/images/4.04. 移动端适配相关内容(Av49906463,P4).mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/images/aiwrap.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/images/bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/images/log.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/images/ma.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/images/入门介绍.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/js/jquery-3.5.1.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/js/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/js/xadmin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/js/xcity.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/layui.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/layui.mobile.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/modules/code.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/modules/laydate/default/laydate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/modules/layer/default/icon-ext.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/modules/layer/default/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/modules/layer/default/layer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/modules/layer/default/loading-0.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/modules/layer/default/loading-1.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/modules/layer/default/loading-2.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/font/iconfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/font/iconfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/font/iconfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/font/iconfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/0.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/1.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/10.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/11.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/12.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/13.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/14.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/15.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/16.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/17.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/18.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/19.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/2.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/20.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/21.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/22.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/23.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/24.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/25.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/26.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/27.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/28.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/29.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/3.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/30.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/31.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/32.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/33.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/34.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/35.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/36.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/37.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/38.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/39.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/4.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/40.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/41.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/42.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/43.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/44.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/45.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/46.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/47.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/48.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/49.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/5.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/50.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/51.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/52.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/53.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/54.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/55.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/56.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/57.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/58.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/59.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/6.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/60.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/61.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/62.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/63.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/64.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/65.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/66.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/67.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/68.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/69.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/7.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/70.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/71.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/8.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/images/face/9.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/carousel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/code.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/colorpicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/element.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/flow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/form.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/laydate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/layedit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/layer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/laypage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/laytpl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/mobile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/rate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/slider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/table.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/tree.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/upload.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/lay/modules/util.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/layui.all.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/X-admin/lib/layui/layui.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/Person.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/Register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/UserLogin.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/ZhishiKu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/admin-edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/parameterManagement.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/params-add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/user-adds.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/user-show.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/com/person/PersonProjectApplicationTests.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/person-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/person-project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/PersonProjectApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/PersonProjectApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/bean/LayuiData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/LayuiData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/bean/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/bean/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/controller/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/controller/ZhiShiKuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/controller/ZhiShiKuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/ZhishiKu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/ZhishiKu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin-edit.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,7 +101,7 @@
       <workItem from="1599442427154" duration="26800000" />
       <workItem from="1599527118963" duration="12927000" />
       <workItem from="1599551811212" duration="1381000" />
-      <workItem from="1599553500478" duration="6188000" />
+      <workItem from="1599553500478" duration="7217000" />
     </task>
     <task id="LOCAL-00001" summary="1.0">
       <created>1599551937382</created>
@@ -342,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599551937382</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2.0">
+      <created>1599559795275</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1599559795275</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +125,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.0" />
+    <MESSAGE value="2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.0" />
   </component>
   <component name="WindowStateProjectService">
     <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1599559578537">
@@ -361,58 +137,62 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1599552698506" />
-    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1599551929310">
+    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1599560218922">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1599551929310" />
+    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1599560218922" />
     <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599556560029">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599556560029" />
-    <state width="1324" height="148" key="GridCell.Tab.0.bottom" timestamp="1599556926262">
+    <state width="1324" height="154" key="GridCell.Tab.0.bottom" timestamp="1599560153495">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="148" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599556926262" />
-    <state width="1324" height="148" key="GridCell.Tab.0.center" timestamp="1599556926262">
+    <state width="1324" height="154" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599560153495" />
+    <state width="1324" height="154" key="GridCell.Tab.0.center" timestamp="1599560153494">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="148" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599556926262" />
-    <state width="1324" height="148" key="GridCell.Tab.0.left" timestamp="1599556926262">
+    <state width="1324" height="154" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599560153494" />
+    <state width="1324" height="154" key="GridCell.Tab.0.left" timestamp="1599560153494">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="148" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599556926262" />
-    <state width="1324" height="148" key="GridCell.Tab.0.right" timestamp="1599556926262">
+    <state width="1324" height="154" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599560153494" />
+    <state width="1324" height="154" key="GridCell.Tab.0.right" timestamp="1599560153495">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="148" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599556926262" />
-    <state width="1324" height="148" key="GridCell.Tab.1.bottom" timestamp="1599556926262">
+    <state width="1324" height="154" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599560153495" />
+    <state width="1324" height="154" key="GridCell.Tab.1.bottom" timestamp="1599560153496">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="148" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599556926262" />
-    <state width="1324" height="148" key="GridCell.Tab.1.center" timestamp="1599556926262">
+    <state width="1324" height="154" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599560153496" />
+    <state width="1324" height="154" key="GridCell.Tab.1.center" timestamp="1599560153495">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="148" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1599556926262" />
-    <state width="1324" height="148" key="GridCell.Tab.1.left" timestamp="1599556926262">
+    <state width="1324" height="154" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1599560153495" />
+    <state width="1324" height="154" key="GridCell.Tab.1.left" timestamp="1599560153495">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="148" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1599556926262" />
-    <state width="1324" height="148" key="GridCell.Tab.1.right" timestamp="1599556926262">
+    <state width="1324" height="154" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1599560153495" />
+    <state width="1324" height="154" key="GridCell.Tab.1.right" timestamp="1599560153496">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="148" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1599556926262" />
+    <state width="1324" height="154" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1599560153496" />
     <state x="184" y="0" key="SettingsEditor" timestamp="1599553325718">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1599553325718" />
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1599559687297">
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1599560234566">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1599559687297" />
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1599560234566" />
     <state x="375" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1599527114681">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="375" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1599527114681" />
+    <state x="384" y="155" key="git4idea.merge.GitPullDialog" timestamp="1599560185503">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="384" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1599560185503" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
