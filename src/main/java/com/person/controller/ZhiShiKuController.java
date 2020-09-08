@@ -4,10 +4,10 @@ import com.google.gson.Gson;
 import com.person.bean.LayuiData;
 import com.person.bean.Menu;
 import com.person.bean.Params;
+import com.person.bean.User;
 import com.person.service.KnowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,7 +40,7 @@ public class ZhiShiKuController {
 
         List<Menu> list=knowService.getKnowMsg(page1,limit,title,scope);
         Integer count=knowService.findCount();
-        LayuiData layuiData = new LayuiData();
+        LayuiData<User> layuiData = new LayuiData<User>();
         layuiData.setMsg("");
         layuiData.setCode(0);
         layuiData.setCount(count);

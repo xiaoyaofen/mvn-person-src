@@ -30,4 +30,23 @@ public class HelloController {
         model.addAttribute("name", name);
         return "index";
     }
+
+    @GetMapping(value = "/userLogin")
+    public String userLogin() {
+
+        return "UserLogin";
+    }
+
+
+    @GetMapping(value = "/person")
+    public String person() {
+        return "Person";
+    }
+
+
+    @GetMapping(value = "/Register")
+    public String Register() {
+
+        return "Register";
+    }
 }

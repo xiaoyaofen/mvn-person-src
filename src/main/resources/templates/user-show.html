@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>欢迎页面-X-admin2.2</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+        <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+        <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+        <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+
+        <script type="text/javascript" th:src="@{/X-admin/js/xadmin.js}"></script>
+        <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+
+    </div>
+        <div class="layui-fluid">
+            <div class="layui-row layui-col-space15">
+                <div class="layui-col-md12">
+                    <div class="layui-card">
+                        <div class="layui-card-body ">
+                            <form class="layui-form layui-col-space5">
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="date" class="layui-input"  autocomplete="off" placeholder="开始日" name="beginDate" id="beginDate">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="date" class="layui-input"  autocomplete="off" placeholder="截止日" name="endDate" id="endDate">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" id="schoolName" name="schoolName"  placeholder="请输入学校" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" id="specialty" name="specialty"  placeholder="请输入专业" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <button id="select-btn" class="layui-btn" data-type="reload" type="button">
+                                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="layui-card-body">
+                            <div class="layui-inline layui-show-xs-block">
+                                <button id="upload-btn" class="layui-btn" data-type="reload" type="button">
+                                    批量导入
+                                </button>
+                            </div>
+                            <div class="layui-inline layui-show-xs-block">
+                                <button id="down-btn" class="layui-btn" data-type="reload" type="button">
+                                    批量导出
+                                </button>
+                            </div>
+                        </div>
+                        <div class="layui-card-body "><table class="layui-hide" id="demo" lay-filter="test"/></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    </script>
+    <script>
+      layui.use(['laydate','table','form','layer'], function(){
+
+        var laydate = layui.laydate;
+        var form = layui.form;
+        var table = layui.table;
+        var layer = layui.layer;
+
+          //执行一个 table 实例
+          table.render({
+              elem: '#demo'
+              ,height: 420
+              ,url: '/admin/getUser' //数据接口
+              ,title: '用户表'
+              ,page:{
+                  layout: [ 'prev', 'page', 'next', 'count','limit', 'refresh', 'skip']//自定义布局顺序
+                  ,limit:5	//初始  每页几条数据
+                  ,limits:[5,10,15]	//可以选择的 每页几条数据
+                  ,groups:10 	//最多几个跳页按钮
+                  ,first: false //不显示首页
+                  ,last: false //不显示尾页
+              }
+              ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+              ,defaultToolbar: ['filter', 'exports']
+              ,totalRow: true //开启合计行
+              ,cols: [
+                  [ //表头
+                      {type: 'checkbox', fixed: 'left'}
+                      ,{field: 'id', title: '序号', width:80, sort: true, fixed: 'left', totalRowText: '合计：'}
+                      ,{field: 'account', title: '账号', width:80}
+                      ,{field: 'name', title: '姓名', width: 90, sort: true}
+                      ,{field: 'sex', title: '当前学习', width:80, sort: true}
+                      ,{field: 'specialty', title: '专业', width: 80, sort: true, totalRow: true}
+                      ,{field: 'jobstate', title: '就业状况', width:150}
+                      ,{field: 'age', title: '年龄', width:80,hide :true}
+                      ,{field: 'sex', title: '性别', width:80,hide: true}
+                      ,{fixed: 'right' , title: '操作', width: 165, align:'center', toolbar: '#barDemo'}
+                  ]
+              ]
+          });
+
+          //监听头工具栏事件
+          table.on('toolbar(test)', function(obj){
+              var checkStatus = table.checkStatus(obj.config.id)
+                  ,data = checkStatus.data; //获取选中的数据
+              switch(obj.event){
+                  case 'add':
+                      layer.msg('添加');
+                      break;
+                  case 'update':
+                      if(data.length === 0){
+                          layer.msg('请选择一行');
+                      } else if(data.length > 1){
+                          layer.msg('只能同时编辑一个');
+                      } else {
+                          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+                      }
+                      break;
+                  case 'delete':
+                      if(data.length === 0){
+                          layer.msg('请选择一行');
+                      } else {
+                          layer.msg('删除');
+                      }
+                      break;
+              };
+          });
+
+          //监听行工具事件
+          table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+              var data = obj.data //获得当前行数据
+                  ,layEvent = obj.event; //获得 lay-event 对应的值
+              if(layEvent === 'detail'){
+                  layer.msg('查看操作');
+              } else if(layEvent === 'del'){
+                  layer.confirm('真的删除行么', function(index){
+                      obj.del(); //删除对应行（tr）的DOM结构
+                      layer.close(index);
+                      //向服务端发送删除指令
+                  });
+              } else if(layEvent === 'edit'){
+                  layer.msg('编辑操作');
+              }
+          });
+
+
+          $('#select-btn').click(function () {
+              var beginDate = $("#beginDate").val();
+              var endDate = $("#endDate").val();
+              var schoolName = $("#schoolName").val();
+              var specialty = $("#specialty").val();
+              //执行重载
+              table.reload('demo', {
+                  page: {
+                      curr: 1 //重新从第 1 页开始
+                  }
+                  , where: {
+                      beginDate: beginDate//作为参数传递给后端php
+                      ,endDate: endDate
+                      ,specialty: specialty
+                      ,schoolName: schoolName
+                  }
+              });
+          })
+
+          //=================== 查询
+          $('#select-btn').on('click', function () {
+              var type = $(this).data('type');//自定义type属性，这里即为reload
+              active[type] ? active[type].call(this) : ''; //如果存在active[type]，则调用改函数
+          });
+
+            // ===================上传
+          $('#upload-btn').on('click', function () {
+              layer.open({
+                  type: 2 //Page层类型
+                  , area: ['600px', '500px']
+                  , title: '修改用户信息'
+                  , shade: 0.6 //遮罩透明度
+                  , maxmin: true //允许全屏最小化
+                  , anim: 1 //0-6的动画形式，-1不开启
+                  , content: "/admin/uploadFrame"
+                  ,btn: ['确定', '返回']
+                  ,success: function (layero, index) {
+
+                      var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦
+                      //为子窗口元素赋值
+                      body.contents().find("#gradeName").val(data.gradeName);//通过class名进行获取数据
+                      body.contents().find("#gradeUp").val(data.gradeUp);
+                      body.contents().find("#gradeDown").val(data.gradeDown);
+                      body.contents().find("#gradeId").val(data.gradeId);
+                      layui.form.render();
+                  }
+                  ,yes: function (index, layero) {         //按了弹出层的确定按钮时，这是将在父窗口中获取子窗口form标签里的所有值，并根据name名和值形成键值对json对象
+
+                      var body = layer.getChildFrame("body", index);
+                      var data = {};
+                      body.find("#changeGradeform").serializeArray().forEach(function (item) {    //获取弹出层写下的数据，input，下拉框啊，之类的表单元素（即changefileform下的所有数据）
+                          data[item.name] = item.value;   //根据表单元素的name属性来获取数据
+                      });
+                      $.ajax({
+                          url:path+"/grade/gradeUpdate",
+                          async: false,
+                          type:"POST",
+                          // dataType: "text",
+                          data:data,
+                          success: function(res){
+                              if(res>0){
+                                  alert("修改成功");
+                              }else{
+                                  alert("修改失败");
+                              }
+                          }
+                      })
+                      layer.close(index);
+                  }
+                  //返回按键
+                  ,btn2: function(index, layero){
+                      if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+                          layer.close(index);
+                      }
+                      return false ;//开启该代码可禁止点击该按钮关闭
+                  }
+                  //右上角关闭按键
+                  ,cancel: function(index, layero){
+                      if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+                          layer.close(index)
+                      }
+                      return false;
+                  }
+              });
+          });
+
+          // ===================下载
+          $('#down-btn').on('click', function () {
+
+          });
+      });
+    </script>
+</html>
