@@ -16,4 +16,12 @@ public interface AdminService {
     public LayuiData getParamList(Integer page,Integer pageSize,String name,String type);
 
     public List<String> paramsTypeList();
+
+    public Boolean addParams(String name,String type,String value);
+
+    public Boolean delParams(String state,int id);
+
+    public Boolean editParams(String name, int id );
+
+    public LayuiData roleList();
 }
