@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>角色权限角色管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script type="text/javascript" th:src="@{/X-admin/js/jquery.min.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/X-admin/js/xadmin.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<table class="layui-table" id="test" lay-filter="test"></table>
+</body>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+</script>
+<script th:inline="none">
+    layui.use(['layer', 'table'], function () {
+        var table = layui.table;
+        var layer = layui.layer;
+        table.render({
+            elem: '#test'  //绑定table id
+            , url:'/admin/roleList'  //数据请求路径
+            , height: 400
+            , title: "角色管理"
+            , id: 'testReload'
+            , cols: [[
+                {field: 'id', width: 80, title: 'ID'}
+                , {field: 'name', width: 200, title: '角色名'}
+                , {field: 'type', width: 200, title: '类型'}
+                , {field: 'value', title: '角色id',hide:true }
+                , {fixed: 'right', title: '操作', width: 250, align: 'center', toolbar: '#barDemo'}//一个工具栏  具体请查看layui官网
+            ]]
+        });
+
+
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            var checkState = data.state;
+            var id = data.id;
+            var score = data.score;
+            var uploadTime = data.uploadTime;
+            if (layEvent === 'edit') {
+                layer.open({
+                    type: 2,
+                    content: "rightsManagement.jsp?roleId="+data.value,
+                    area: ['50%', '80%'],
+                    skin: "layui-layer-molv",
+                    success: function (layero, index) {    //成功获得加载changefile.html时，预先加载，将值从父窗口传到 子窗口
+                        let body = layer.getChildFrame('body', index)
+                        body.find("#roleName").val(data.name);   //通过class名进行获取数据
+                        body.find("#roleName").prop("disabled", "false");
+                        // body.find("#value").val(data.value);//意思是将rowselect[0].path这个值传递到子窗口的class="filepath"这个的文本框中，（预先加载）
+                        // body.find("#value").prop("disabled", "false");
+                        layui.form.render();
+                    }
+                });
+            }
+    })
+
+</script>
+
+</html>

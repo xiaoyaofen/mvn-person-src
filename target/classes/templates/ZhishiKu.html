@@ -37,7 +37,7 @@
             <div class="layui-card">
                 <div class="layui-card-body ">
 <!--                    <div class="demoTable">-->
-                    <form class="layui-form layui-col-space5">
+                    <form class="layui-form layui-col-space5" style="width: 600px">
                         <div class="layui-inline layui-show-xs-block">
                             名称：
                         </div>
@@ -52,10 +52,12 @@
 
                             </select>
                         </div>
-
                         <button class="layui-btn" lay-submit="" lay-filter="sreach" id="searchBtn"><i class="layui-icon">&#xe615;</i></button>
-                        </br>
                     </form>
+
+                </div>
+                <div class="layui-card-header">
+                    <button class="layui-btn" lay-submit="" lay-filter="sreach" id="addBtn">新增知识库</button>
                 </div>
                 <div class="layui-card-body layui-table-body layui-table-main">
                      <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -65,59 +67,19 @@
 </div>
 </div>
 
-<div class="layui-row" id="popSearchRoleTest" style="display:none;">
-    <div class="layui-col-md11">
-        <form class="layui-form">
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp用户名：
-            <div class="layui-input-inline">
-                <input type="text" id="account" name="account" required lay-verify="required" placeholder="用户名"
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-            <br><br>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp密码：
-            <div class="layui-input-inline">
-                <input type="password" name="password" id="password" required lay-verify="pass" placeholder="密码"
-                       autocomplete="off"
-                       class="layui-input">
-            </div>
-            <br><br>
-            <div class="layui-form-item">
-                <label class="layui-form-label">选择等级：</label>
-                <div class="layui-input-inline">
-                    <select name="juese" lay-filter="juese" id="juese" lay-verify="required|confirmPass">
-                        <option value="-1"></option>
-                        <option value="2">普通管理员</option>
-                        <option value="3">超级管理员</option>
-                    </select>
-                </div>
-            </div>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <div class="layui-input-inline login-btn">
-                <button lay-submit lay-filter="register" class="layui-btn">注册</button>
-            </div>
-            <hr/>
-        </form>
-    </div>
-</div>
-
 
 </body>
 
 <script>
-    $("#btnRole").on("click", function () {
+    $("#addBtn").on("click", function () {
         layer.open({
             //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
             type: 1,
             title: "新增管理员",
             area: ['50%', '50%'],
-            content: $("#popSearchRoleTest")
+            content: $("#addZhishi")
         });
     });
-
-
-
-
 </script>
 
 
@@ -221,15 +183,32 @@
                     //向服务端发送删除指令
                 });
             } else if (layEvent === 'edit') { //编辑
-
-                // $("#hidename").html(data.account);
-                // layer.open({
-                //     //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-                //     type: 1,
-                //     title: "管理员信息修改",
-                //     area: ['420px', '330px'],
-                //     content: $("#popUpdateTest"),//引用的弹出层的页面层的方式加载修改界面表单
-                // });
+                $("#hideid").html(data.id);
+                $("#lingyu1").val(data.scope);
+                $("#newname1").val(data.menuname);
+                $.ajax({
+                    url: '/person/addselect',
+                    // data: data,
+                    dataType: 'json',
+                    type: 'get',
+                    success: function (data) {
+                        $("#scope1").append("<opyion value=''></opyion>")
+                        $(data).each(function (i,n) {
+                            $("#scope1").append("<option value='"+n.name+"'>"+n.name+"</option>")
+                        })
+                        form.render('select')
+                    }
+                })
+                layer.open({
+                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type: 1,
+                    title: "子级知识点添加",
+                    area: ['420px', '330px'],
+                    content: $("#fixKnow"),//引用的弹出层的页面层的方式加载修改界面表单
+                    success: function (layero, index) {
+                        layui.form.render();
+                    }
+                });
 
 
             } else if (layEvent === 'LAYTABLE_TIPS') {
@@ -242,34 +221,50 @@
         // 操作对象
         var form = layui.form;
         var $ = layui.jquery;
-        var pass = $("#password").val();
-        form.verify({
-            pass: [
-                /^[\S]{6,12}$/
-                , '密码必须6到12位，且不能出现空格'
-            ],
-            confirmPass: function (value) {
-                if ($('#juese').val() == -1)
-                    return '等级不可为空！';
-            },
-        });
-        form.on('submit(register)', function (data) {
-            // console.log(data.field);
-            // $.ajax({
-            //     async: false,
-            //     url: '${pageContext.request.contextPath}/admin/addAdmin',
-            //     data: data.field,
-            //     dataType: 'text',
-            //     type: 'post',
-            //     success: function (data) {
-            //         layer.msg(data);
-            //         if (data == '注册成功') {
-            //             location.href = "${pageContext.request.contextPath}/jsp/MangerList.jsp";
-            //         }
-            //     }
-            // })
+
+        form.on('submit(demo13)', function (data) {
+            var newname = $("#newname2").val();
+            var scope=$("#scope2").val();
+            var detial=$("#detial").val();
+                $.ajax({
+                    url: '/person/addZhishi',
+                    data:  {"newname": newname, "scope": scope, "detial": detial},
+                    dataType: 'text',
+                    type: 'get',
+                    success: function (data) {
+                        layer.msg(data);
+                        // if (data == '修改成功') {
+                        //     location.href="http://localhost:8080/person/getZhishi";
+                        // }
+                    }
+                })
             return false;
+
         })
+
+        form.on('submit(demo12)', function (data) {
+            var hideid = $("#hideid").html();
+            var lingyu=$("#scope1").val();
+            var newname=$("#newname1").val();
+            var flag=confirm("确定修改课程吗？");
+            if (flag){
+                $.ajax({
+                    url: '/person/fixKnow',
+                    data:  {"newname": newname, "lingyu": lingyu, "hideid": hideid},
+                    dataType: 'text',
+                    type: 'get',
+                    success: function (data) {
+                        layer.msg(data);
+                        if (data == '修改成功') {
+                            location.href="http://localhost:8080/person/getZhishi";
+                        }
+                    }
+                })
+            }
+            return false;
+
+        })
+
 
         form.on('submit(demo11)', function (data) {
             var hidename = $("#hidename").html();
@@ -300,17 +295,26 @@
 
 <script type="text/jsp" id="barDemo">
     <div class="layui-btn-container">
+        {{#  if(d.state ==0){  }}
         <a class="layui-btn layui-btn-xs" lay-event="detail">增加</a>
+        {{# }else{  }}
+        <button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">增加</button>
+        {{# }  }}
+
+        {{#  if(d.state ==0){  }}
         <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+        {{# }else{  }}
+        <button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">修改</button>
+        {{# }  }}
+
         {{#  if(d.state ==0){  }}
         <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         {{# }else{  }}
         <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="recover">已删除</a>
         {{# }  }}
-<!--        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
     </div>
 </script>
-
+<!--新增章节界面-->
 <div class="layui-row" id="popUpdateTest" style="display:none;">
     <div class="layui-col-md10">
         <form class="layui-form layui-from-pane" action="" style="margin-top:20px">
@@ -332,6 +336,71 @@
             <div class="layui-form-item" style="margin-top:40px">
                 <div class="layui-input-block">
                     <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo11" id="surefix">确认添加
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--修改界面-->
+<div class="layui-row" id="fixKnow" style="display:none;">
+    <div class="layui-col-md10">
+        <form class="layui-form layui-from-pane" action="" style="margin-top:20px">
+            <div class="layui-form-item">
+                <label class="layui-form-label">领域</label>
+                <div class="layui-inline layui-show-xs-block">
+                    <select name="scope1" id="scope1" lay-verify="select">
+
+                    </select>
+                </div>
+                <span id="hideid" hidden></span>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="newname" required lay-verify="required" autocomplete="off"
+                           class="layui-input" id="newname1">
+                </div>
+            </div>
+
+            <div class="layui-form-item" style="margin-top:40px">
+                <div class="layui-input-block">
+                    <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo12" id="surefix1">确认修改
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--新增知识库界面-->
+<div class="layui-row" id="addZhishi" style="display:none;">
+    <div class="layui-col-md10">
+        <form class="layui-form layui-from-pane" action="" style="margin-top:20px">
+            <div class="layui-form-item">
+                <label class="layui-form-label">领域：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="scope2" autocomplete="off" placeholder="请输入领域" class="layui-input" id="scope2" required lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">名称：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="newname2" required lay-verify="required" autocomplete="off"
+                           class="layui-input" id="newname2" placeholder="请输入名称">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">描述：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="detial" required lay-verify="required" autocomplete="off"
+                           class="layui-input" id="detial" placeholder="请输入简短的描述">
+                </div>
+            </div>
+            <div class="layui-form-item" style="margin-top:40px">
+                <div class="layui-input-block">
+                    <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo13" id="surefix2">确认新增
                     </button>
                 </div>
             </div>
