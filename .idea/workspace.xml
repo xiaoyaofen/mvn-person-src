@@ -2,26 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1474e9e3-ddee-49f6-ae61-a8295dd4fd93" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/AD.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/CV.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Cendentcon.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Company.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Daily.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Job.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Jobcontain.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Jobprocess.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Level.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Role.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/School.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Station.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Trade.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Workexpress.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/person-project.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/bean/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/controller/ZhiShiKuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/controller/ZhiShiKuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/mapper/KnowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/mapper/KnowMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/service/KnowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/service/KnowService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/service/impl/KnowServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/service/impl/KnowServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/KnowMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/KnowMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/ZhishiKu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/ZhishiKu.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/PageBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/PageBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/TKnowmenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/TKnowmenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/UserInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/controller/ZhiShiKuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/controller/ZhiShiKuController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/mapper/KnowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/mapper/KnowMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/service/KnowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/service/KnowService.class" afterDir="false" />
@@ -70,7 +59,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/X-admin/lib/layui/css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -127,7 +116,7 @@
       <workItem from="1599527118963" duration="12927000" />
       <workItem from="1599551811212" duration="1381000" />
       <workItem from="1599553500478" duration="18117000" />
-      <workItem from="1599612995875" duration="551000" />
+      <workItem from="1599612995875" duration="18431000" />
     </task>
     <task id="LOCAL-00001" summary="1.0">
       <created>1599551937382</created>
@@ -157,7 +146,21 @@
       <option name="project" value="LOCAL" />
       <updated>1599613488548</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="2020-09-09 09:04">
+      <created>1599613607085</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1599613607086</updated>
+    </task>
+    <task id="LOCAL-00006" summary="2020-09-09 09:04">
+      <created>1599613730134</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1599613730134</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,93 +176,73 @@
     <option name="LAST_COMMIT_MESSAGE" value="2020-09-09 09:04" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1599580355609">
+    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1599640651718">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1599580355609" />
+    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1599640651718" />
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599552698506">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1599552698506" />
-    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1599613601907">
+    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1599613726884">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1599613601907" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599556560029">
+    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1599613726884" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599614850525">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599556560029" />
-    <state width="1324" height="221" key="GridCell.Tab.0.bottom" timestamp="1599582323095">
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599614850525" />
+    <state width="1324" height="171" key="GridCell.Tab.0.bottom" timestamp="1599640865053">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="221" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.0.center" timestamp="1599582323095">
+    <state width="1324" height="171" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599640865053" />
+    <state width="1324" height="171" key="GridCell.Tab.0.center" timestamp="1599640865035">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="221" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.0.left" timestamp="1599582323095">
+    <state width="1324" height="171" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599640865035" />
+    <state width="1324" height="171" key="GridCell.Tab.0.left" timestamp="1599640865032">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="221" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.0.right" timestamp="1599582323095">
+    <state width="1324" height="171" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599640865032" />
+    <state width="1324" height="171" key="GridCell.Tab.0.right" timestamp="1599640865037">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="221" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.1.bottom" timestamp="1599582323095">
+    <state width="1324" height="171" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599640865037" />
+    <state width="1324" height="171" key="GridCell.Tab.1.bottom" timestamp="1599640865055">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="221" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.1.center" timestamp="1599582323095">
+    <state width="1324" height="171" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599640865055" />
+    <state width="1324" height="171" key="GridCell.Tab.1.center" timestamp="1599640865055">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="221" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.1.left" timestamp="1599582323095">
+    <state width="1324" height="171" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1599640865055" />
+    <state width="1324" height="171" key="GridCell.Tab.1.left" timestamp="1599640865053">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="221" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.1.right" timestamp="1599582323095">
+    <state width="1324" height="171" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1599640865053" />
+    <state width="1324" height="171" key="GridCell.Tab.1.right" timestamp="1599640865055">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1324" height="221" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
+    <state width="1324" height="171" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1599640865055" />
     <state x="184" y="0" key="SettingsEditor" timestamp="1599553325718">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1599553325718" />
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1599613633111">
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1599613737429">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1599613633111" />
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1599613737429" />
     <state x="375" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1599612996335">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="375" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1599612996335" />
-    <state x="384" y="155" key="git4idea.merge.GitPullDialog" timestamp="1599613558083">
+    <state x="384" y="155" key="git4idea.merge.GitPullDialog" timestamp="1599645380874">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="384" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1599613558083" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1599580743508">
+    <state x="384" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1599645380874" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1599636200280">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1599580743508" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/main/java/com/person/bean/Menu.java</url>
-          <line>4</line>
-          <properties field="menuname" class="com.person.bean.Menu" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/person/bean/Menu.java</url>
-          <line>12</line>
-          <properties class="com.person.bean.Menu" method="&lt;init&gt;">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1599636200280" />
   </component>
 </project>

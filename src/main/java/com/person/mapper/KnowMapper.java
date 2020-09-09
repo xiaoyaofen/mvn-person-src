@@ -13,13 +13,23 @@ import java.util.List;
 public interface KnowMapper {
      public List<Menu> getKnowMsg(@Param("page") Integer page, @Param("limit") Integer limit,@Param("title") String title,@Param("scope") String scope);
 
-     public Integer findCount();
+     public Integer findCount(@Param("title")String title,@Param("scope")String scope);
 
      public List<Params> addselect();
 
      public Integer delKnow(@Param("id") String id);
 
-     public Integer findScope(@Param("scope")String scope);
+     public String findScope(@Param("scope")String scope);
 
      public Integer addKnow(@Param("pid")String pid,@Param("menuname")String menuname,@Param("scope")String scope);
+
+     public Integer fixKnow(@Param("id")String id,@Param("scope")String scope,@Param("menuname")String menuname);
+
+     public Menu findCourse(@Param("scope")String scopeId,@Param("menuname")String menuname);
+
+     public Params findScopeParmas(@Param("scope")String scope);
+
+     public void addScopeParams(@Param("scope")String scope);
+
+     public String findMaxValue();
 }

@@ -9,11 +9,12 @@ public class Menu {
     private Integer mid;
     private Integer roleid;
     private Integer state;
+    private String detial;
 
     public Menu() {
     }
 
-    public Menu(Integer id, String scope, String menuname, String upmenu, String url, Integer pid, Integer mid, Integer roleid, Integer state) {
+    public Menu(Integer id, String scope, String menuname, String upmenu, String url, Integer pid, Integer mid, Integer roleid, Integer state, String detial) {
         this.id = id;
         this.scope = scope;
         this.menuname = menuname;
@@ -23,6 +24,7 @@ public class Menu {
         this.mid = mid;
         this.roleid = roleid;
         this.state = state;
+        this.detial = detial;
     }
 
     public Integer getId() {
@@ -95,5 +97,13 @@ public class Menu {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public String getDetial() {
+        return detial;
+    }
+
+    public void setDetial(String detial) {
+        this.detial = detial;
     }
 }
