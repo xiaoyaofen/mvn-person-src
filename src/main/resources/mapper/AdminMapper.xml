@@ -56,4 +56,26 @@
     <select id="paramsTypeList" resultType="java.lang.String">
         select distinct  type from t_param
     </select>
+
+    <insert id="addParams">
+        insert into t_param (value,type,name) values (#{value},#{type},#{name})
+    </insert>
+    <update id="delParams">
+        update t_param set state=#{state} where id=#{id}
+    </update>
+
+    <update id="editParams">
+        update  t_param set name=#{name} where id=#{id}
+    </update>
+
+
+    <select id="roleList" resultType="com.person.bean.Role">
+        select id,name,type,value from t_role
+    </select>
+
+    <select id="roleListCount" resultType="int">
+        select count(*) from t_role;
+    </select>
+
+
 </mapper>

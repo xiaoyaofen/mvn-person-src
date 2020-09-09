@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>增加参数</title>
+    <title>Title</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -16,33 +16,41 @@
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 <body>
+
 <div class="layui-fluid">
     <div class="layui-row">
         <form class="layui-form">
+            <input type="text" name="id" id="id" hidden>
             <div class="layui-form-item">
                 <label for="paramsName" class="layui-form-label">参数名</label>
                 <div class="layui-inline layui-show-xs-block">
                     <input type="text" name="paramsName" id="paramsName" placeholder="请输入参数名" autocomplete="off"
                            class="layui-input" lay-verify="paramsName">
+                    <span class="x-red">*</span>可修改
                 </div>
+
             </div>
             <div class="layui-form-item">
-                <label for="paramsType" class="layui-form-label">参数类型</label>
-                <div class="layui-inline layui-show-xs-block">
-                    <select name="paramsType" id="paramsType" lay-verify="paramsType">
-                        <option value="">请选择类别</option>
-                    </select>
-                </div>
+
+                    <label for="paramsType" class="layui-form-label">参数类型</label>
+                    <div class="layui-inline layui-show-xs-block">
+                        <input type="text" name="paramsType" id="paramsType" placeholder="请输入参数名" autocomplete="off"
+                               class="layui-input" lay-verify="paramsType">
+                        <span class="x-red">*</span>不可修改
+                    </div>
             </div>
             <div class="layui-form-item">
                 <label for="paramsValue" class="layui-form-label">参数值</label>
                 <div class="layui-inline layui-show-xs-block">
                     <input type="text" name="paramsValue" id="paramsValue" placeholder="请输入参数值" autocomplete="off"
                            class="layui-input" lay-verify="paramsValue">
+                    <span class="x-red">*</span>不可修改
                 </div>
+
+
+
             </div>
 
             <div class="layui-form-item">
@@ -60,25 +68,7 @@
         $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
-        var regexs=/^[1-9]\d*$/;
-        $.ajax({
-            url:'/admin/paramsType',
-            dataType: 'json',
-            type: 'post',
-            success:function(data){
-                if(data!=null){
-                    $("#paramsType").empty();
-                    $("#paramsType").append(new Option("请选择类别", ""));
-                    $.each(data, function(index, item) {
-                        $('#paramsType').append(new Option(item,item));
-                    });
-                }else{
-                    $("#paramsType").append(new Option("暂无数据", ""));
-                }
-                layui.form.render("select");
-            }
-        });
-
+        // var regexs=/^[1-9]\d*$/;
         //自定义验证规则
         form.verify({
             paramsName: function(value) {
@@ -86,21 +76,9 @@
                     return '参数名不能为空';
                 }
             },
-            paramsType: function(value) {
-                if (value.length < 1) {
-                    return '请先选择参数类型';
-                }
-            },
 
-            paramsValue: function(value) {
-                if (!(value.match(regexs))) {
-                    return '参数值为正整数';
-                }
-            },
 
         });
-
-
 
         //监听提交
         form.on('submit(add)',
@@ -108,12 +86,12 @@
                 console.log(data);
                 //发异步，把数据提交给php
                 $.ajax({
-                    url: "/admin/addParams",
+                    url: "/admin/editParams",
                     type: 'post',
                     data: data.field,
                     success: function (res) {
                         if (res === "success") {
-                            layer.alert("参数添加成功", {
+                            layer.alert("参数修改成功", {
                                     icon: 6
                                 },
                                 function() {
@@ -123,12 +101,11 @@
                                     xadmin.father_reload();
                                 });
                         }else{
-                            layer.msg("参数添加失败");
+                            layer.msg("参数修改失败");
                         }
                     }
+                });
 
-
-                })
             });
     })
 

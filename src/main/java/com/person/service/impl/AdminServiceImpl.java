@@ -2,6 +2,7 @@ package com.person.service.impl;
 
 import com.person.bean.LayuiData;
 import com.person.bean.Params;
+import com.person.bean.Role;
 import com.person.bean.UserInfo;
 import com.person.mapper.AdminMapper;
 import com.person.service.AdminService;
@@ -27,11 +28,11 @@ public class AdminServiceImpl implements AdminService {
 
 
     @Override
-    public LayuiData<UserInfo> getUserByAdmin(HashMap<String , Object> condition, Integer limit, Integer page) {
+    public LayuiData<UserInfo> getUserByAdmin(HashMap<String, Object> condition, Integer limit, Integer page) {
         LayuiData<UserInfo> pageBean = new LayuiData<>();
         Integer conut = adminMapper.getUserByAdminOfNum(condition);
-        Integer curPage = limit * (page -1);
-        List<UserInfo> list = adminMapper.getUserByAdmin( condition, limit, curPage);
+        Integer curPage = limit * (page - 1);
+        List<UserInfo> list = adminMapper.getUserByAdmin(condition, limit, curPage);
         pageBean.setData(list);
         pageBean.setMsg("");
         pageBean.setCode(0);
@@ -98,17 +99,16 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public LayuiData getParamList(Integer page, Integer pageSize, String name, String type) {
-        LayuiData layuiData=new LayuiData();
-        Integer start=(page-1)*pageSize;
-        List<Params> list=adminMapper.getParamList(start,pageSize,name,type);
-        int count=adminMapper.getParamListCount(name,type);
-        if(list.size()>0){
+        LayuiData layuiData = new LayuiData();
+        Integer start = (page - 1) * pageSize;
+        List<Params> list = adminMapper.getParamList(start, pageSize, name, type);
+        int count = adminMapper.getParamListCount(name, type);
+        if (list.size() > 0) {
             layuiData.setCode(0);
             layuiData.setMsg("");
             layuiData.setCount(count);
             layuiData.setData(list);
-        }
-        else {
+        } else {
             layuiData.setCode(1);
             layuiData.setMsg("查询失败");
         }
@@ -117,7 +117,57 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<String> paramsTypeList() {
-        List<String>list =adminMapper.paramsTypeList();
+        List<String> list = adminMapper.paramsTypeList();
         return list;
     }
+
+    @Override
+    public Boolean addParams(String name, String type, String value) {
+        Boolean flag = false;
+        int num = adminMapper.addParams(name, type, value);
+        if (num > 0) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean delParams(String state, int id) {
+        Boolean flag = false;
+        int num = adminMapper.delParams(state, id);
+        if (num > 0) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean editParams(String name, int id) {
+        Boolean flag = false;
+        int num = adminMapper.editParams(name, id);
+        if (num > 0) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    @Override
+    public LayuiData roleList() {
+
+        LayuiData layuiData = new LayuiData();
+        List<Role> roleList = adminMapper.roleList();
+        int count = adminMapper.roleListCount();
+        if (roleList.size() > 0) {
+            layuiData.setCode(0);
+            layuiData.setMsg("");
+            layuiData.setCount(count);
+            layuiData.setData(roleList);
+        } else {
+            layuiData.setCode(1);
+            layuiData.setMsg("查询失败");
+        }
+        return layuiData;
+    }
+
+
 }

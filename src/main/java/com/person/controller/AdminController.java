@@ -174,11 +174,62 @@ public class AdminController {
         String name = request.getParameter("paramsName");//页码
         String type = request.getParameter("paramsType");//页码
         String value = request.getParameter("paramsValue");//页码
-        System.out.println(name);
-        System.out.println(type);
-        System.out.println(value);
 
-        return "";
+        Boolean flag=adminService.addParams(name,type,value);
+        if(flag){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
+    @RequestMapping(value = "/delParams", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String delParams(String id,String state){
+        Boolean flag=adminService.delParams(state,Integer.parseInt(id));
+        if(flag){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
+    @RequestMapping(value = "/editParamsView", produces = "text/plain;charset=utf-8")
+    public String editParamsView(){
+        return "params-edit";
+    }
+
+    @RequestMapping(value = "/editParams", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String editParams(HttpServletRequest request, HttpServletResponse response){
+        String id=request.getParameter("id");
+        String name=request.getParameter("paramsName");
+        System.out.println(name+"name");
+        System.out.println(id+"id");
+        Boolean flag=adminService.editParams(name,Integer.parseInt(id));
+        if(flag){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
+
+    @RequestMapping(value = "/rightManagerView", produces = "text/plain;charset=utf-8")
+    public String rightManagerView(){
+        return "rightManager";
+    }
+
+
+    @RequestMapping(value = "/roleList", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String roleList(HttpServletRequest request, HttpServletResponse response){
+
+        LayuiData layuiData =adminService.roleList();
+
+        return JSON.toJSONString(layuiData);
 
     }
+
+
 }

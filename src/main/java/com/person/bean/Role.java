@@ -4,12 +4,12 @@ public class Role {
     private Integer id;
     private String name;
     private String type;
-    private String value;
+    private Integer value;
 
     public Role() {
     }
 
-    public Role(Integer id, String name, String type, String value) {
+    public Role(Integer id, String name, String type, Integer value) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -40,11 +40,21 @@ public class Role {
         this.type = type;
     }
 
-    public String getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Integer value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", value=" + value +
+                '}';
     }
 }
