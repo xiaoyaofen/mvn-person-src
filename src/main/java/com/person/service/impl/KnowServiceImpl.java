@@ -22,8 +22,8 @@ public class KnowServiceImpl implements KnowService {
     }
 
     @Override
-    public Integer findCount() {
-        Integer count=knowMapper.findCount();
+    public Integer findCount(String title,String scope) {
+        Integer count=knowMapper.findCount(title,scope);
         return count;
     }
 
@@ -46,8 +46,39 @@ public class KnowServiceImpl implements KnowService {
     }
 
     @Override
-    public Integer findScope(String scope) {
-        Integer scopeId=knowMapper.findScope(scope);
+    public String findScope(String scope) {
+        String scopeId=knowMapper.findScope(scope);
         return scopeId;
     }
+
+    @Override
+    public Integer fixKnow(String id, String scope, String menuname) {
+        Integer num=knowMapper.fixKnow(id,scope,menuname);
+        return num;
+    }
+
+    @Override
+    public Menu findCourse(String scopeId, String menuname) {
+        Menu menu=knowMapper.findCourse(scopeId,menuname);
+        return menu;
+    }
+
+    @Override
+    public Params findScopeParmas(String scope) {
+        Params params=knowMapper.findScopeParmas(scope);
+        return params;
+    }
+
+    @Override
+    public void addScopeParams(String scope) {
+
+    }
+
+    @Override
+    public String findMaxValue() {
+        String maxValue=knowMapper.findMaxValue();
+        return maxValue;
+    }
+
+
 }

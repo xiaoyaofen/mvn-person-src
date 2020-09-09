@@ -39,7 +39,7 @@ public class ZhiShiKuController {
         String scope=request.getParameter("scope");
 
         List<Menu> list=knowService.getKnowMsg(page1,limit,title,scope);
-        Integer count=knowService.findCount();
+        Integer count=knowService.findCount(title,scope);
         LayuiData<User> layuiData = new LayuiData<User>();
         layuiData.setMsg("");
         layuiData.setCode(0);
@@ -73,12 +73,48 @@ public class ZhiShiKuController {
         String id=request.getParameter("hidename");
         String scope=request.getParameter("lingyu");
         String menuname=request.getParameter("newname");
-        String scopeId=String.valueOf(knowService.findScope(scope));
+        String scopeId=knowService.findScope(scope);
         Integer num=knowService.addKnow(id,menuname,scopeId);
         if (num!=0){
             return "新增成功";
         }else {
             return "新增失败，请重试";
         }
+    }
+
+    @GetMapping(value = "/fixKnow")
+    @ResponseBody
+    public Object fixKnow(HttpServletRequest request, HttpServletResponse response){
+        String id=request.getParameter("hideid");
+        String scope=request.getParameter("lingyu");
+        String menuname=request.getParameter("newname");
+        String scopeId=String.valueOf(knowService.findScope(scope));
+        Integer num=knowService.fixKnow(id,scopeId,menuname);
+        if (num!=0){
+            return "修改成功";
+        }else {
+            return "修改失败，请重试";
+        }
+    }
+
+    @GetMapping(value = "/addZhishi")
+    @ResponseBody
+    public Object addZhishi(HttpServletRequest request, HttpServletResponse response){
+        String menuname=request.getParameter("newname");
+        String scope=request.getParameter("scope");
+        String detial=request.getParameter("detial");
+        String scopeId=String.valueOf(knowService.findScope(scope));
+        Menu menu=knowService.findCourse(scopeId,menuname);
+        if (menu!=null){
+            return "该领域此知识库已经存在！";
+        }else {
+            Params params=knowService.findScopeParmas(scope);
+            if (params==null){
+                 String maxValue=knowService.findMaxValue();
+                 Integer maxValue1=Integer.parseInt(maxValue)+1;
+
+            }
+        }
+        return null;
     }
 }
