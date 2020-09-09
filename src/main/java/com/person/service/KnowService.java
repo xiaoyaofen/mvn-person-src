@@ -11,4 +11,10 @@ public interface KnowService {
     public Integer findCount();
 
     public List<Params> addselect();
+
+    public Integer delKnow(String id);
+
+    public Integer addKnow(String pid,String menuname,String scope);
+
+    public Integer findScope(String scope);
 }

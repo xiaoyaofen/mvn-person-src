@@ -54,4 +54,31 @@ public class ZhiShiKuController {
         List<Params> list=knowService.addselect();
         return new Gson().toJson(list);
     }
+
+    @GetMapping(value = "/delKnow")
+    @ResponseBody
+    public Object delKnow(HttpServletRequest request, HttpServletResponse response){
+        String id=request.getParameter("id");
+        Integer num=knowService.delKnow(id);
+        if (num!=0){
+            return "删除成功";
+        }else {
+            return "删除失败";
+        }
+    }
+
+    @GetMapping(value = "/addKnow")
+    @ResponseBody
+    public Object addKnow(HttpServletRequest request, HttpServletResponse response){
+        String id=request.getParameter("hidename");
+        String scope=request.getParameter("lingyu");
+        String menuname=request.getParameter("newname");
+        String scopeId=String.valueOf(knowService.findScope(scope));
+        Integer num=knowService.addKnow(id,menuname,scopeId);
+        if (num!=0){
+            return "新增成功";
+        }else {
+            return "新增失败，请重试";
+        }
+    }
 }

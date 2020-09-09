@@ -16,4 +16,10 @@ public interface KnowMapper {
      public Integer findCount();
 
      public List<Params> addselect();
+
+     public Integer delKnow(@Param("id") String id);
+
+     public Integer findScope(@Param("scope")String scope);
+
+     public Integer addKnow(@Param("pid")String pid,@Param("menuname")String menuname,@Param("scope")String scope);
 }

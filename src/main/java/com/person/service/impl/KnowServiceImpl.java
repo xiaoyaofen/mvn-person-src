@@ -32,4 +32,22 @@ public class KnowServiceImpl implements KnowService {
         List<Params> list=knowMapper.addselect();
         return list;
     }
+
+    @Override
+    public Integer delKnow(String id) {
+        Integer num=knowMapper.delKnow(id);
+        return num;
+    }
+
+    @Override
+    public Integer addKnow(String pid, String menuname, String scope) {
+        Integer num=knowMapper.addKnow(pid,menuname,scope);
+        return num;
+    }
+
+    @Override
+    public Integer findScope(String scope) {
+        Integer scopeId=knowMapper.findScope(scope);
+        return scopeId;
+    }
 }
