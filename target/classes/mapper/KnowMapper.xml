@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.person.mapper.KnowMapper">
     <select id="getKnowMsg" resultType="com.person.bean.Menu">
-        select m1.id,p.name as scope,m1.menuname,(case when m2.menuname is null then '无' else m2.menuname
+        select m1.state,m1.id,p.name as scope,m1.menuname,(case when m2.menuname is null then '无' else m2.menuname
         end) as upmenu from t_knowmenu m1 left join t_knowmenu m2
         on m1.pid=m2.id left join t_param p on p.id=m1.scope where 1=1
          <if test="title!=null and title!=''">
@@ -30,4 +30,13 @@
     <select id="addselect" resultType="com.person.bean.Params">
         select name from t_param where type='领域'
     </select>
+    <update id="delKnow">
+        update t_knowmenu set state=1 where id=#{id}
+    </update>
+    <select id="findScope" resultType="java.lang.Integer">
+        select id from t_param where type='领域' and name=#{scope}
+    </select>
+    <insert id="addKnow">
+        insert into t_knowmenu (menuname,url,pid,scope,state) values (#{menuname},"0",#{pid},#{scope},0)
+    </insert>
 </mapper>

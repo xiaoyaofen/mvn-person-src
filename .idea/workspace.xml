@@ -2,17 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1474e9e3-ddee-49f6-ae61-a8295dd4fd93" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/bean/PageBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/PageBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/bean/TKnowmenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/TKnowmenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/bean/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/bean/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/bean/UserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/controller/ZhiShiKuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/controller/ZhiShiKuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/mapper/KnowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/mapper/KnowMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/service/KnowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/service/KnowService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/person/service/impl/KnowServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/person/service/impl/KnowServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/KnowMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/KnowMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/ZhishiKu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/ZhishiKu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/AD.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/CV.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Cendentcon.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Company.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Daily.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Job.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Jobcontain.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Jobprocess.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Level.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Role.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/School.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Station.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Trade.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Workexpress.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/META-INF/person-project.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Menu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/PageBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/PageBean.class" afterDir="false" />
@@ -124,7 +127,7 @@
       <workItem from="1599527118963" duration="12927000" />
       <workItem from="1599551811212" duration="1381000" />
       <workItem from="1599553500478" duration="18117000" />
-      <workItem from="1599612995875" duration="196000" />
+      <workItem from="1599612995875" duration="551000" />
     </task>
     <task id="LOCAL-00001" summary="1.0">
       <created>1599551937382</created>
@@ -147,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599569930309</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="2020-09-09 09:04">
+      <created>1599613488548</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1599613488548</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,7 +169,8 @@
     <MESSAGE value="1.0" />
     <MESSAGE value="2.0" />
     <MESSAGE value="2.0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.0.1" />
+    <MESSAGE value="2020-09-09 09:04" />
+    <option name="LAST_COMMIT_MESSAGE" value="2020-09-09 09:04" />
   </component>
   <component name="WindowStateProjectService">
     <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1599580355609">
@@ -170,10 +181,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1599552698506" />
-    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1599569928537">
+    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1599613484751">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1599569928537" />
+    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1599613484751" />
     <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599556560029">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -214,18 +225,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1599553325718" />
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1599569934936">
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1599613505107">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1599569934936" />
+    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1599613505107" />
     <state x="375" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1599612996335">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="375" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1599612996335" />
-    <state x="384" y="155" key="git4idea.merge.GitPullDialog" timestamp="1599560185503">
+    <state x="384" y="155" key="git4idea.merge.GitPullDialog" timestamp="1599613558083">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="384" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1599560185503" />
+    <state x="384" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1599613558083" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1599580743508">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
