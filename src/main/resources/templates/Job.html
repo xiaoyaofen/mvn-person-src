@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #focusArr li{
+        box-shadow: 0px 0px 8px #fff;
+        border: 1px solid #e0e0e0;
+        background: #000;
+        overflow: hidden;
+        filter: alpha(opacity=50);
+        -moz-opacity: 0.50;
+        opacity: 0.50;
+    }
+    #focusArr li.cu{
+        background: #00f6ff!important;
+        filter: alpha(opacity=100)!important;
+        -moz-opacity: 1!important;
+        opacity: 1!important;
+    }
+    .btns{margin: 40px 0 0 0;}
+
+    .drop_btns_icon{font-size:14px;line-height: 15px;}
+    .drop_btns_icon.n{display: inline;}
+    .drop_btns_icon.c{display: none;}
+    .top-wx:hover .drop_btns_icon.n,.wxImg:hover .drop_btns_icon.n{display: none;}
+    .top-wx:hover .drop_btns_icon.c,.wxImg:hover .drop_btns_icon.c{display: inline;}
+    .top .line{padding:0 6px;}
+
+    a.free_publish{color:red!important;line-height: 40px;}
+
+    .jobR_btns{position: relative;margin-left:4px;}
+    .jobR_reg,.jobR_pub{display:block;text-align: center;padding:10px 0;}
+    .jobR_pub{padding-top:0;}
+
+    .im_btn{cursor: pointer;}
+    .tip_new{width: 30px;padding-left:6px;padding-right: 10px;position: relative;top: 5px;}
+    .downComCode_wraper{position: relative;margin-right:10px;}
+    .downComCode_hover{display: none;position: absolute;left: -30px;top: 40px;width: 150px;box-shadow:0 0 43px black}
+    .downComCode_hover img	{width: 100%;}
+
+    .im_btn_icon{width: 16px;margin-right:1px;vertical-align: middle;}
+    /*吸顶效果*/
+    .fiexdHeader{
+        position: fixed;
+        top:0;
+        background: #E8352E;
+        z-index: 99999;
+        width: 100%;
+        height: 50px;
+        padding-top:0;
+    }
+    .fiexdHeader .head{
+        height: 50px!important;
+    }
+    .fiexdHeader .logo{
+        margin-top: 8px;
+    }
+    .fiexdHeader .logo a{
+        display: block;
+        width: 134px;
+        height: 35px;
+        /*background: url(//cdn.597.cs/img/common/xiding_logo.png) no-repeat left top;*/
+        background-image: url(//cdn.597.com/img/common/xiding_logo.png);
+        background-position: left top;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    .fiexdHeader .logo a img{
+        display: none;
+    }
+    .fiexdHeader .changeCity{
+        margin-top:8px;
+        color:#fff;
+        font-size:16px;
+    }
+    .fiexdHeader .changeCity a{
+        color:#fff!important;
+        font-size:12px!important;
+    }
+    .fiexdHeader .searchBox{
+        margin-top:8px;
+        width: 570px;
+    }
+    .fiexdHeader .tSch {
+        width: 570px;
+
+        display: inline;
+        margin: 0;
+        background: #fff;
+        border: none;
+    }
+    .fiexdHeader .hotWords{display: none;}
+    .fiexdHeader .tSchText{
+        width: 489px!important;
+    }
+    .fiexdHeader .tSchBtn{
+        width: 70px;
+        color:#E8352E!important;
+        padding:0!important;
+        text-align: center;
+        background: #fff!important;
+        border-left:1px solid #E8352E;
+    }
+    .fiexdHeader .word_help{
+        left: -1px;
+        z-index: 9999;
+        width: 100% ;
+        border: 1px solid #E8352E;
+        background: #fff;
+    }
+    .fiexdHeader .head .btns{
+        margin-top:8px;
+        border:none;
+        background: #fff;
+
+    }
+    .fiexdHeader .head .btns a {
+
+        background: #fff;
+        color: #E8352E;
+        padding: 0 20px;
+    }
+    .fiexdHeader .head .com_tel_txt{
+        display: none;
+    }
+    .fiexdHeader #currentCity{
+        display: block;
+        max-width: 160px;white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;}
+    .fiexdHeader  .changeCity a{position:absolute;top:22px;}
+
+    .contact-tel {
+        position: fixed;
+        right: 50px;
+        *right: 55px;
+        bottom: 256px;
+        z-index: 9999;
+        display: block;
+        font-size: 12px;
+        line-height: 20px;
+        text-align: center;
+        height: 45px;
+        padding-top: 5px;
+        _display: none;
+        width: 50px;
+        color: #fff;
+        background: #aaa;
+    }
+    .contact-tel:hover{
+        color: #fff;
+    }
+    .contact-tel .num{
+        position: absolute;
+        top: 0;
+        left: -150px;
+        padding: 10px;
+        height: 30px;
+        line-height: 30px;
+        width: 130px;
+        color: #fff;
+        background-color: #aaa;
+        font-size: 14px;
+        display: none;
+    }
+    .contact-tel:hover .num{
+        display: block;
+    }
+    .contact-tel img{
+        width: 20px;
+    }
+    .copyright a img{vertical-align: bottom;}
+    #appInfo{
+        position: relative;
+        z-index: 1020;
+    }
+    .hotWords a:hover{cursor: pointer;}
+
+
+    .top{margin-bottom: 0;/*春节过后可去掉*/}
+    .head_wrap{position:relative;background: url("//cdn.597.com/img/festivals/spring/serbg.png") repeat-x left top;}
+    .ghxc{position: absolute;right: 0;top:78px;text-align: right;}
+    .ghxc img{margin-left:17px;}
+    /*.rw{position: absolute;right: 200px;top:6px;}*/
+    .g{animation: rot linear 8s 1s infinite normal;}
+    .h{animation: rot linear 8s  2s infinite normal;}
+    .x{animation: rot linear 8s  3s infinite normal;}
+    .c{margin-right: 0;animation: rot linear 8s 4s infinite normal;}
+    @keyframes rot {
+        0%{transform:rotateY(0deg);}
+        10%{transform:rotateY(360deg);}
+        90%{transform:rotateY(360deg);}
+        100%{transform:rotateY(0deg);}
+    }
+
+    .dl1{position: absolute;left: -122px;top:auto;overflow: hidden;margin-top: 150px;width: 122px;height: 496px;/* background: url(//cdn.597.com/img/festivals/spring/dl1.png) no-repeat center; */}
+    .dl2{position: absolute;right: -122px;top:auto;overflow: hidden;margin-top: 150px;width: 122px;height: 496px;/* background: url(//cdn.597.com/img/festivals/spring/dl2.png) no-repeat center; */}
+    .dl1 .dl-left, .dl2 .dl-right{margin-top: -5px;}
+    .fire{animation: fir linear .15s infinite alternate;display: block;margin: 30px auto 0;}
+    .bz{display: block;margin: -30px auto 0; animation: bza linear .8s infinite alternate;}
+    .btnClose{position: absolute;right: 2px;top:6px;cursor: pointer;}
+
+    @keyframes fir {
+        0%{width: 122px;}
+        25%{width: 12px}
+        50%{width: 122px}
+        100%{width: 2px;}
+    }
+    @keyframes bza{
+        0%{opacity: 1}
+        100%{opacity: 0}
+    }
+
+    .quick-login{ line-height: 26px; height: 26px; font-size: 0px; cursor: pointer; color: #91959A; }
+    .quick-login img{height: 14px;}
+    .quick-login .text{ font-size: 14px; vertical-align: middle; }
+    .quick-login .pic{ cursor: pointer; margin-right: 10px; height: 26px; line-height: 26px; vertical-align: middle; }
+    .quick-login-modal{ width: auto; background: none; }
+    .quick-login-modal:focus{ outline: 0; }
+    .quick-login-modal .app{ padding-bottom: 30px; }
+    .quick-login-modal h3{ font-size: 16px; padding: 16px 0; line-height: 24px;}
+    .quick-login-modal .modal-content{ position: relative; margin: 0 auto; display: table; }
+    .quick-login-modal .modal-head{ position: absolute; top: 15px; right: 23px; }
+    .quick-login-modal .modal-head img{ height: 28px; cursor: pointer; }
+    .quick-login-modal .box-item{ float: left; }
+    .quick-login-modal .box-item .box-bd{ padding: 20px; width: 320px; height: 480px; text-align: center; border-radius: 10px; background: #fff; }
+    .quick-login-modal .box-bd .wapp h3{ padding: 16px 0 10px;}
+    .quick-login-modal .help-box .box-bd{margin-left: 20px;}
+    .quick-login-modal .help-box .box-bd h3{ padding: 8px 0 0;}
+    .help-hover{ cursor: pointer; }
+    .help-tooltip{ cursor: pointer; }
+    .help-tooltip img{ height: 20px; vertical-align: text-top; }
+    .help-box{ position: absolute; top: auto; left: 100%; width: 0px; overflow: hidden; }
+    .help-box .example{ max-width: 300px; max-height: 450px; }
+    .help-box .bdicon-left{ position: absolute; top: 30px; left: 12px; border-width: 10px 10px 10px 0; border-color: transparent #fff transparent transparent; border-style: solid solid dashed dashed; line-height: 0; }
+    .qrcode-box{ position: relative; width: 180px; margin: auto; }
+    .expire-mask { display: none; width: 180px; height: 0; overflow: hidden; padding: 46.2% 0; position: absolute; top: 0; left: 0; background: rgba(255, 255, 255, .8); *background: none; _background: none; filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr="#ccffffff",EndColorStr="#ccffffff"); }
+    .expire-mask.expire {display: block; }
+    .expire-mask .btn{ display: inline-block; height: 28px; line-height: 28px; padding: 0px 10px; margin-top: -14px; border-radius: 2px; cursor: pointer; *display: inline; zoom: 1; color: #fff; background: #678cb7; }
+    .expire-mask .btn:hover{ background: #3f73af; }
+
+    #qrcode{text-align: center;}
+    #qrcode table {margin: auto;}
+    .loginBox .loginType{padding: 5px 10px; text-align: left; font-size: 0;}
+    .loginBox .loginType span,.loginBox .loginType a {font-size: 14px;}
+
+    .im-unread{height: 40px; line-height: 40px; /*line-height: 1\9; padding-top: 14px\9;*/ box-sizing: border-box;}
+    /* @media screen and(-ms-high-contrast:active),(-ms-high-contrast:none){ .im-unread{ line-height: 1;padding-top: 14px; } } */
+    .im-unread .lnk{font-size: 12px!important;}
+    @keyframes flicker { 0% { opacity: 1; -moz-opacity:1; -khtml-opacity:1; } 49% { opacity: 1; -moz-opacity:1; -khtml-opacity:1; } 50% {opacity: 0; -moz-opacity: 0; -khtml-opacity:0;} 100% {opacity: 0; -moz-opacity:0; -khtml-opacity:0;} }
+    @-webkit-keyframes flicker { 0% { opacity: 1; } 49% { opacity: 1; }50% { opacity: 0; } 100% { opacity: 0; } }
+    @-moz-keyframes flicker { 0% { -moz-opacity:1; } 49% { -moz-opacity: 1; } 50% { -moz-opacity:0; } 100% { -moz-opacity:0; } }
+    @-ms-keyframes flicker { 0% { opacity: 1;filter:alpha(opacity=100); } 49% { opacity: 1;filter:alpha(opacity=100); } 50% {opacity: 0;filter:alpha(opacity=0);} 100% {opacity: 0;filter:alpha(opacity=0);} }
+    .unread-label{ position: relative; top: 1px; left: auto; cursor: pointer;
+        animation:flicker infinite alternate linear .5s; -webkit-animation:flicker infinite alternate linear .5s; -moz-animation:flicker infinite alternate linear .5s;-ms-animation:flicker infinite alternate linear .5s;-o-animation:flicker infinite alternate linear .5s;
+        animation-play-state:paused; -webkit-animation-play-state: paused;	-moz-animation-play-state:paused; -ms-animation-play-state: paused;-o-animation-play-state: paused;
+    }
+    .unread-label.flicker{animation-play-state:running; -webkit-animation-play-state: running;	-moz-animation-play-state:running; -ms-animation-play-state: running;-o-animation-play-state: running;}
+    .unread-label .triangle{ vertical-align: text-top; display: none; margin: 0 0 -3px;  border: 7px solid transparent; _border-color:white; _filter:chroma(color=white); border-left: 0; border-right: 6px solid #f43a49; }
+    .unread-label .num{ vertical-align: text-top; display: none; min-width: 12px; padding: 0px 5px 0px 2px; margin: 0 4px 0 0; height: 14px; line-height: 14px; text-align: center; background: #f43a49; color: #fff; }
+    .unread-label.has-new, .unread-label.has-new .triangle, .unread-label.has-new .num{ font-weight: normal; display: inline-block; *display: inline;_display: inline; *zoom: 1;_zoom: 1;}
+
+    .com_tel{position:absolute;right: 0;top:10px;padding: 2px 4px;}
+    .com_tel_tit{
+        color: #3f74c2;
+        font-size: 14px;
+        font-family: Arial,"宋体";
+    }
+    .com_tel_txt{
+        color: red;
+        font-size: 16px;
+        font-weight: bold;
+        font-family: Tahoma;
+    }
+</style>
+<body>
+<div class="nav">
+    <div class="navCon">
+        <div class="navBox" id="navMain">
+            <h3>
+                <a href="javascript:void(0);" id="navMenu"> <b>全部职位分类</b>
+                    <i class="jpFntWes"></i>
+                </a>
+            </h3>
+            <div class="pos" id="boxNav" >
+                <div class="lst" id="navLst">
+                    <ul><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon"></i>
+                            <p class="lnk">销售、客服、市场、公关</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>销售</dt>
+                                    <dd><a href="/zhaopin/xiaoshoudaibiao/" target="_blank">销售代表</a><a href="/zhaopin/dianhuaxiaoshou/" target="_blank">电话销售</a><a href="/zhaopin/xiaoshoujingli/" target="_blank">销售经理</a><a href="/zhaopin/xiaoshouzongjian/" target="_blank">销售总监</a><a href="/zhaopin/qichexiaoshou/" target="_blank">汽车销售</a><a href="/zhaopin/yiyaoxiaoshou/" target="_blank">医药销售</a><a href="/zhaopin/qixiexiaoshou/" target="_blank">器械销售</a><a href="/zhaopin/wangluoxiaoshou/" target="_blank">网络销售</a><a href="/zhaopin/quyuxiaoshou/" target="_blank">区域销售</a><a href="/zhaopin/kehujingli/" target="_blank">客户经理</a><a href="/zhaopin/xiaoshouguwen/" target="_blank">销售顾问</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>客服</dt>
+                                    <dd><a href="/zhaopin/kefuzhuanyuan/" target="_blank">客服专员</a><a href="/zhaopin/dianhuakefu/" target="_blank">电话客服</a><a href="/zhaopin/kefujingli/" target="_blank">客服经理</a><a href="/zhaopin/shouhoufuwu/" target="_blank">售后服务</a><a href="/zhaopin/kehuguanxi/" target="_blank">客户关系</a><a href="/zhaopin/kefuzongjian/" target="_blank">客服总监</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>市场/公关</dt>
+                                    <dd><a href="/zhaopin/shichangzhuanyuan/" target="_blank">市场专员</a><a href="/zhaopin/shichangjingli/" target="_blank">市场经理</a><a href="/zhaopin/gongguan/" target="_blank">公关</a><a href="/zhaopin/shichangtuozhan/" target="_blank">市场拓展</a><a href="/zhaopin/shichangdiaoyan/" target="_blank">市场调研</a><a href="/zhaopin/shichangcehua/" target="_blank">市场策划</a><a href="/zhaopin/gongguanjingli/" target="_blank">公关经理</a><a href="/zhaopin/meijiezhuanyuan/" target="_blank">媒介专员</a><a href="/zhaopin/meijiejingli/" target="_blank">媒介经理</a><a href="/zhaopin/cehuajingli/" target="_blank">策划经理</a><a href="/zhaopin/huizhanzhuanyuan/" target="_blank">会展专员</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon"></i>
+                            <p class="lnk">人力、行政、财务、管理</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>人事/行政</dt>
+                                    <dd><a href="/zhaopin/wenyuan/" target="_blank">文员</a><a href="/zhaopin/qiantai/" target="_blank">前台</a><a href="/zhaopin/mishu/" target="_blank">秘书</a><a href="/zhaopin/renshizhuanyuan/" target="_blank">人事专员</a><a href="/zhaopin/renshijingli/" target="_blank">人事经理</a><a href="/zhaopin/xingzhengzhuli/" target="_blank">行政助理</a><a href="/zhaopin/xingzhengzhuguan/" target="_blank">行政主管</a><a href="/zhaopin/zhaopinzhuanyuan/" target="_blank">招聘专员</a><a href="/zhaopin/zhaopinjingli/" target="_blank">招聘经理</a><a href="/zhaopin/lietouguwen/" target="_blank">猎头顾问</a><a href="/zhaopin/peixunzhuanyuan/" target="_blank">培训专员</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>财务/审计</dt>
+                                    <dd><a href="/zhaopin/caiwujingli/" target="_blank">财务经理</a><a href="/zhaopin/kuaiji/" target="_blank">会计</a><a href="/zhaopin/chuna/" target="_blank">出纳</a><a href="/zhaopin/shenji/" target="_blank">审计</a><a href="/zhaopin/shuiwuzhuanyuan/" target="_blank">税务专员</a><a href="/zhaopin/caiwufenxi/" target="_blank">财务分析</a><a href="/zhaopin/chengbenguanli/" target="_blank">成本管理</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>司机</dt>
+                                    <dd><a href="/zhaopin/shangwusiji/" target="_blank">商务司机</a><a href="/zhaopin/kechesiji/" target="_blank">客车司机</a><a href="/zhaopin/huochesiji/" target="_blank">货车司机</a><a href="/zhaopin/chuzuchesiji/" target="_blank">出租车司机</a><a href="/zhaopin/banchesiji/" target="_blank">班车司机</a><a href="/zhaopin/jiaxiaosiji/" target="_blank">驾校教练</a><a href="/zhaopin/daichesiji/" target="_blank">带车司机</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>高级管理</dt>
+                                    <dd><a href="/zhaopin/zongjian/" target="_blank">总监</a><a href="/zhaopin/zongcaizhuli/" target="_blank">总裁助理</a><a href="/zhaopin/fuzongcai/" target="_blank">副总裁</a><a href="/zhaopin/ceo/" target="_blank">CEO</a><a href="/zhaopin/zongjingli/" target="_blank">总经理</a><a href="/zhaopin/zongjinglizhuli/" target="_blank">总经理助理</a><a href="/zhaopin/hehuoren/" target="_blank">合伙人</a><a href="/zhaopin/changzhang1/" target="_blank">厂长</a><a href="/zhaopin/fuchangzhang/" target="_blank">副厂长</a><a href="/zhaopin/shouxijishuguan/" target="_blank">首席技术官</a><a href="/zhaopin/shouxiyunyingguan/" target="_blank">首席运营官</a><a href="/zhaopin/shouxicaiwuguan/" target="_blank">首席财务官</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon"></i>
+                            <p class="lnk">生产、制造、质控</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>技工/工人</dt>
+                                    <dd><a href="/zhaopin/pugong/" target="_blank">普工</a><a href="/zhaopin/diangong/" target="_blank">电工</a><a href="/zhaopin/mugong/" target="_blank">木工</a><a href="/zhaopin/qiangong/" target="_blank">钳工</a><a href="/zhaopin/hangong/" target="_blank">焊工</a><a href="/zhaopin/banjingong/" target="_blank">钣金工</a><a href="/zhaopin/guolugong/" target="_blank">锅炉工</a><a href="/zhaopin/youqigong/" target="_blank">油漆工</a><a href="/zhaopin/fengrengong/" target="_blank">缝纫工</a><a href="/zhaopin/weixiugong/" target="_blank">维修工</a><a href="/zhaopin/shuinuangong/" target="_blank">水暖工</a><a href="/zhaopin/chegong/" target="_blank">车工</a><a href="/zhaopin/chachegong/" target="_blank">叉车工</a><a href="/zhaopin/shoujiweixiu/" target="_blank">手机维修</a><a href="/zhaopin/diantigong/" target="_blank">电梯工</a><a href="/zhaopin/caozuogong/" target="_blank">操作工</a><a href="/zhaopin/baozhuanggong/" target="_blank">包装工</a><a href="/zhaopin/shuinigong/" target="_blank">水泥工</a><a href="/zhaopin/gangjinggong/" target="_blank">钢筋工</a><a href="/zhaopin/fangzhigong/" target="_blank">纺织工</a><a href="/zhaopin/guandaogong/" target="_blank">管道工</a><a href="/zhaopin/yangyigong/" target="_blank">样衣工</a><a href="/zhaopin/zhuangxiegong/" target="_blank">装卸工</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>生产/研发</dt>
+                                    <dd><a href="/zhaopin/zhiliangguanli/" target="_blank">质量管理</a><a href="/zhaopin/shengchanzuzhang/" target="_blank">生产组长</a><a href="/zhaopin/chejianzhuren/" target="_blank">车间主任</a><a href="/zhaopin/gongyisheji/" target="_blank">工艺设计</a><a href="/zhaopin/gaojigongchengshi/" target="_blank">高级工程师</a><a href="/zhaopin/shengchanzongjian/" target="_blank">生产总监</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon2"></i>
+                            <p class="lnk">互联网、游戏、软件</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>后端开发</dt>
+                                    <dd><a href="/zhaopin/php/" target="_blank">PHP</a><a href="/zhaopin/java/" target="_blank">Java</a><a href="/zhaopin/net/" target="_blank">.net</a><a href="/zhaopin/c/" target="_blank">C</a><a href="/zhaopin/c++/" target="_blank">C++</a><a href="/zhaopin/c#/" target="_blank">C#</a><a href="/zhaopin/python/" target="_blank">python</a><a href="/zhaopin/jiagoushi/" target="_blank">架构师</a><a href="/zhaopin/houduankaifa/" target="_blank">后端开发</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>移动开发</dt>
+                                    <dd><a href="/zhaopin/ios/" target="_blank">IOS</a><a href="/zhaopin/android/" target="_blank">android</a><a href="/zhaopin/html5/" target="_blank">html5</a><a href="/zhaopin/yidongkaifa/" target="_blank">移动开发</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>前端开发</dt>
+                                    <dd><a href="/zhaopin/wangyeqianduan/" target="_blank">网页前端</a><a href="/zhaopin/html5(qianduan)/" target="_blank">html5(前端)</a><a href="/zhaopin/javascript/" target="_blank">JavaScript</a><a href="/zhaopin/flash/" target="_blank">Flash</a><a href="/zhaopin/cocos2dx/" target="_blank">COCOS2D-X</a><a href="/zhaopin/u3d/" target="_blank">U3D</a><a href="/zhaopin/qianduankaifa/" target="_blank">前端开发</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>运维</dt>
+                                    <dd><a href="/zhaopin/yunweigongchengshi/" target="_blank">运维工程师</a><a href="/zhaopin/wangluoanquan/" target="_blank">网络安全</a><a href="/zhaopin/yunweijingli/" target="_blank">运维经理</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>数据库</dt>
+                                    <dd><a href="/zhaopin/mysql/" target="_blank">mysql</a><a href="/zhaopin/sql server/" target="_blank">SQL Server</a><a href="/zhaopin/oracle/" target="_blank">Oracle</a><a href="/zhaopin/hadoop/" target="_blank">hadoop</a><a href="/zhaopin/dba/" target="_blank">DBA</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>技术管理</dt>
+                                    <dd><a href="/zhaopin/xiangmujingli/" target="_blank">项目经理</a><a href="/zhaopin/zhuli/" target="_blank">助理</a><a href="/zhaopin/jishujingli/" target="_blank">技术经理</a><a href="/zhaopin/cto/" target="_blank">CTO</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>其他技术</dt>
+                                    <dd><a href="/zhaopin/ruanjianshishi/" target="_blank">软件实施</a><a href="/zhaopin/xitongjicheng/" target="_blank">系统集成</a><a href="/zhaopin/xitongfenxiyuan/" target="_blank">系统分析员</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>测试</dt>
+                                    <dd><a href="/zhaopin/ruanjianceshi/" target="_blank">软件测试</a><a href="/zhaopin/yidongduanceshi/" target="_blank">移动端测试</a><a href="/zhaopin/youxiceshi/" target="_blank">游戏测试</a><a href="/zhaopin/ceshigongchengshi/" target="_blank">测试工程师</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>产品</dt>
+                                    <dd><a href="/zhaopin/wangyechanpinjingli/" target="_blank">网页产品经理</a><a href="/zhaopin/yidongchanpinjingli/" target="_blank">移动产品经理</a><a href="/zhaopin/dianshangchanpinjingli/" target="_blank">电商产品经理</a><a href="/zhaopin/ruanjianchanpinjingli/" target="_blank">软件产品经理</a><a href="/zhaopin/youxicehua/" target="_blank">游戏策划</a><a href="/zhaopin/chanpinjingli/" target="_blank">产品经理</a><a href="/zhaopin/chanpinzhuanyuan/" target="_blank">产品专员</a><a href="/zhaopin/zhuli/" target="_blank">助理</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>设计</dt>
+                                    <dd><a href="/zhaopin/uisheji/" target="_blank">UI设计</a><a href="/zhaopin/pinmiansheji/" target="_blank">平面设计</a><a href="/zhaopin/wangyesheji/" target="_blank">网页设计</a><a href="/zhaopin/meigong/" target="_blank">美工</a><a href="/zhaopin/youxisheji/" target="_blank">游戏设计</a><a href="/zhaopin/yuanhuasheji/" target="_blank">原画设计</a><a href="/zhaopin/jiaohusheji/" target="_blank">交互设计</a><a href="/zhaopin/shejishi/" target="_blank">设计师</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>运营/市场</dt>
+                                    <dd><a href="/zhaopin/wangdianyunying/" target="_blank">网店运营</a><a href="/zhaopin/seo/" target="_blank">SEO</a><a href="/zhaopin/sem/" target="_blank">SEM</a><a href="/zhaopin/wangluotuiguang/" target="_blank">网络推广</a><a href="/zhaopin/wenancehua/" target="_blank">文案策划</a><a href="/zhaopin/bianji/" target="_blank">编辑</a><a href="/zhaopin/neirongyunying/" target="_blank">内容运营</a><a href="/zhaopin/xinmeitiyunying/" target="_blank">新媒体运营</a><a href="/zhaopin/shichangcehua/" target="_blank">市场策划</a><a href="/zhaopin/shichangzhuanyuan/" target="_blank">市场专员</a><a href="/zhaopin/shichangjingli/" target="_blank">市场经理</a><a href="/zhaopin/yunying/" target="_blank">运营</a><a href="/zhaopin/shichangzongjian/" target="_blank">市场总监</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon3"></i>
+                            <p class="lnk">通信、硬件、电子电器</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>电子/电气</dt>
+                                    <dd><a href="/zhaopin/wuxiandian/" target="_blank">无线电</a><a href="/zhaopin/dianlugongcheng/" target="_blank">电路工程</a><a href="/zhaopin/zidonghua/" target="_blank">自动化</a><a href="/zhaopin/dianziweixiu/" target="_blank">电子维修</a><a href="/zhaopin/chanpingongyi/" target="_blank">产品工艺</a><a href="/zhaopin/wangluogongchengshi/" target="_blank">网络工程师</a><a href="/zhaopin/anzhuangjishuyuan/" target="_blank">安装技术员</a><a href="/zhaopin/gongyigongchengshi/" target="_blank">工艺工程师</a><a href="/zhaopin/zidonghuagongchengshi/" target="_blank">自动化工程师</a><a href="/zhaopin/yibiaoyuan/" target="_blank">仪表工</a><a href="/zhaopin/jiliangyuan/" target="_blank">计量员</a><a href="/zhaopin/dianzigongchengshi/" target="_blank">电子工程师</a><a href="/zhaopin/jiadianweixiu/" target="_blank">家电维修</a><a href="/zhaopin/jiadianweixiuxuetu/" target="_blank">家电维修学徒</a><a href="/zhaopin/dianqiweixiu/" target="_blank">电器维修</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon4"></i>
+                            <p class="lnk">汽车、机械</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>汽车</dt>
+                                    <dd><a href="/zhaopin/qichexiaoshou/" target="_blank">汽车销售</a><a href="/zhaopin/jingpinxiaoshou/" target="_blank">精品销售</a><a href="/zhaopin/qichemeirong/" target="_blank">汽车美容</a><a href="/zhaopin/xichegong/" target="_blank">洗车工</a><a href="/zhaopin/jidianweixiu/" target="_blank">机电维修</a><a href="/zhaopin/jixiushifu/" target="_blank">机修师傅</a><a href="/zhaopin/zhonggong/" target="_blank">中工</a><a href="/zhaopin/xubaozhuanyuan/" target="_blank">续保专员</a><a href="/zhaopin/xiuligong/" target="_blank">修理工</a><a href="/zhaopin/penqi/" target="_blank">喷漆</a><a href="/zhaopin/jixiu/" target="_blank">机修</a><a href="/zhaopin/ceshi/" target="_blank">测试</a><a href="/zhaopin/banji/" target="_blank">板金</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>机械/仪表</dt>
+                                    <dd><a href="/zhaopin/jixiegongcheng/" target="_blank">机械工程</a><a href="/zhaopin/yiqiyibiao/" target="_blank">仪器仪表</a><a href="/zhaopin/jidian/" target="_blank">机电</a><a href="/zhaopin/mojushejishi/" target="_blank">模具设计师</a><a href="/zhaopin/jixiegongchengshi/" target="_blank">机械工程师</a><a href="/zhaopin/jidiangongchengshi/" target="_blank">机电工程师</a><a href="/zhaopin/jiegougongchengshi/" target="_blank">结构工程师</a><a href="/zhaopin/gongyigongchengshi/" target="_blank">工艺工程师</a><a href="/zhaopin/huituyuan/" target="_blank">绘图员</a><a href="/zhaopin/shebeiguanli/" target="_blank">设备管理</a><a href="/zhaopin/shebeiweixiu/" target="_blank">设备维修</a><a href="/zhaopin/bantusheji/" target="_blank">版图设计</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon5"></i>
+                            <p class="lnk">房地产、建筑、物业、装饰</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>房地产</dt>
+                                    <dd><a href="/zhaopin/fangchanxiaoshou/" target="_blank">房产销售</a><a href="/zhaopin/zhiyeguwen/" target="_blank">置业顾问</a><a href="/zhaopin/fangchankefu/" target="_blank">房产客服</a><a href="/zhaopin/fangchancehua/" target="_blank">房产策划</a><a href="/zhaopin/fangchandianyuan/" target="_blank">房产店员</a><a href="/zhaopin/fangchanneiqin/" target="_blank">房产内勤</a><a href="/zhaopin/fangchanpinggushi/" target="_blank">房产评估师</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>建筑/装修</dt>
+                                    <dd><a href="/zhaopin/tumugongcheng/" target="_blank">土木工程</a><a href="/zhaopin/gongchengjianli/" target="_blank">工程监理</a><a href="/zhaopin/zaojiashi/" target="_blank">造价师</a><a href="/zhaopin/anquanzhuanyuan/" target="_blank">安全专员</a><a href="/zhaopin/xiangmuguanli/" target="_blank">项目管理</a><a href="/zhaopin/yuanlinsheji/" target="_blank">园林设计</a><a href="/zhaopin/cehuiyuan/" target="_blank">测绘员</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>物业管理</dt>
+                                    <dd><a href="/zhaopin/wuyeweixiu/" target="_blank">物业维修</a><a href="/zhaopin/wuyeguanli/" target="_blank">物业管理</a><a href="/zhaopin/wuyejingli/" target="_blank">物业经理</a><a href="/zhaopin/wuyezhaoshang/" target="_blank">物业招商</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon6"></i>
+                            <p class="lnk">金融、银行、保险</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>金融/证券</dt>
+                                    <dd><a href="/zhaopin/licaiguwen/" target="_blank">理财顾问</a><a href="/zhaopin/zhengquanfenxi/" target="_blank">证券分析</a><a href="/zhaopin/guiyuan/" target="_blank">柜员</a><a href="/zhaopin/paimaishi/" target="_blank">拍卖师</a><a href="/zhaopin/caopanshou/" target="_blank">操盘手</a><a href="/zhaopin/yinhangjingli/" target="_blank">银行经理</a><a href="/zhaopin/xinyongkaxiaoshou/" target="_blank">信用卡销售</a><a href="/zhaopin/xindaiguanli/" target="_blank">信贷管理</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>保险/理赔</dt>
+                                    <dd><a href="/zhaopin/baoxian/" target="_blank">保险</a><a href="/zhaopin/baoxianguwen/" target="_blank">保险顾问</a><a href="/zhaopin/hebaolipei/" target="_blank">核保理赔</a><a href="/zhaopin/baoxianjingjiren/" target="_blank">保险经纪人</a><a href="/zhaopin/baoxianjignsuanshi/" target="_blank">保险精算师</a><a href="/zhaopin/qiyueguanli/" target="_blank">契约管理</a><a href="/zhaopin/baoxianneiqin/" target="_blank">保险内勤</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon7"></i>
+                            <p class="lnk">广告、设计、传媒</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>广告/咨询</dt>
+                                    <dd><a href="/zhaopin/wenan/" target="_blank">文案</a><a href="/zhaopin/guanggaozhizuo/" target="_blank">广告制作</a><a href="/zhaopin/zixunguwen/" target="_blank">咨询顾问</a><a href="/zhaopin/chuangyizongjian/" target="_blank">创意总监</a><a href="/zhaopin/guangaocehua/" target="_blank">广告策划</a><a href="/zhaopin/huizhancehua/" target="_blank">会展策划</a><a href="/zhaopin/hunlicehua/" target="_blank">婚礼策划</a><a href="/zhaopin/meijiecehua/" target="_blank">媒介策划</a><a href="/zhaopin/zixunjingli/" target="_blank">咨询经理</a><a href="/zhaopin/kehuzhuguan/" target="_blank">客户主管</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>美术/设计</dt>
+                                    <dd><a href="/zhaopin/fuzhuangsheji/" target="_blank">服装设计</a><a href="/zhaopin/pinmiansheji/" target="_blank">平面设计</a><a href="/zhaopin/meibian/" target="_blank">美编</a><a href="/zhaopin/jiajusheji/" target="_blank">家居设计</a><a href="/zhaopin/meishulaoshi/" target="_blank">美术老师</a><a href="/zhaopin/shineisheji/" target="_blank">室内设计</a><a href="/zhaopin/baozhuangsheji/" target="_blank">包装设计</a><a href="/zhaopin/donghuasheji/" target="_blank">动画设计</a><a href="/zhaopin/zhubaosheji/" target="_blank">珠宝设计</a><a href="/zhaopin/dianmiansheji/" target="_blank">店面设计</a><a href="/zhaopin/uisheji/" target="_blank">UI设计</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>娱乐/影视</dt>
+                                    <dd><a href="/zhaopin/liyi/" target="_blank">礼仪</a><a href="/zhaopin/tiaojiushi/" target="_blank">调酒师</a><a href="/zhaopin/sheyingshi/" target="_blank">摄影师</a><a href="/zhaopin/zhuchiren/" target="_blank">主持人</a><a href="/zhaopin/peiyinshi/" target="_blank">配音员</a><a href="/zhaopin/houqizhizuo/" target="_blank">后期制作</a><a href="/zhaopin/changwu/" target="_blank">场务</a><a href="/zhaopin/qunzhongyanyuan/" target="_blank">群众演员</a><a href="/zhaopin/yinxiaoshi/" target="_blank">音效师</a><a href="/zhaopin/dengguangshi/" target="_blank">灯光师</a><a href="/zhaopin/bianju/" target="_blank">编剧</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>编辑/出版</dt>
+                                    <dd><a href="/zhaopin/bianji/" target="_blank">编辑</a><a href="/zhaopin/meishubianji/" target="_blank">美术编辑</a><a href="/zhaopin/jizhe/" target="_blank">记者</a><a href="/zhaopin/xiaodui/" target="_blank">校对</a><a href="/zhaopin/luru/" target="_blank">录入</a><a href="/zhaopin/paibansheji/" target="_blank">排版设计</a><a href="/zhaopin/zhiban/" target="_blank">制版</a><a href="/zhaopin/faxing/" target="_blank">发行</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon8"></i>
+                            <p class="lnk">餐饮、百货、生活服务</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>餐饮类</dt>
+                                    <dd><a href="/zhaopin/chushi/" target="_blank">厨师</a><a href="/zhaopin/fuwuyuan/" target="_blank">服务员</a><a href="/zhaopin/chuancaiyuan/" target="_blank">传菜员</a><a href="/zhaopin/miandianshi/" target="_blank">面点师</a><a href="/zhaopin/xiwangong/" target="_blank">洗碗工</a><a href="/zhaopin/houchu/" target="_blank">后厨</a><a href="/zhaopin/zagong/" target="_blank">杂工</a><a href="/zhaopin/xuetu/" target="_blank">学徒</a><a href="/zhaopin/kafeishi/" target="_blank">咖啡师</a><a href="/zhaopin/chayishi/" target="_blank">茶艺师</a><a href="/zhaopin/yingbin/" target="_blank">迎宾</a><a href="/zhaopin/tiaojiushi/" target="_blank">调酒师</a><a href="/zhaopin/bataiyuan/" target="_blank">吧台员</a><a href="/zhaopin/chayishi/" target="_blank">茶艺师</a><a href="/zhaopin/shouyinyuan/" target="_blank">收银员</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>酒店/旅游</dt>
+                                    <dd><a href="/zhaopin/jiudianqiantai/" target="_blank">酒店前台</a><a href="/zhaopin/jiudianfuwuyuan/" target="_blank">酒店服务员</a><a href="/zhaopin/xingliyuan/" target="_blank">行李员</a><a href="/zhaopin/datangjingli/" target="_blank">大堂经理</a><a href="/zhaopin/jiudianguanli/" target="_blank">酒店管理</a><a href="/zhaopin/jiudianguanjia/" target="_blank">酒店管家</a><a href="/zhaopin/shishuishi/" target="_blank">试睡师</a><a href="/zhaopin/daoyou/" target="_blank">导游</a><a href="/zhaopin/baoan/" target="_blank">保安</a><a href="/zhaopin/lvyouguwen/" target="_blank">旅游顾问</a><a href="/zhaopin/qianzhengzhuanyuan/" target="_blank">签证专员</a><a href="/zhaopin/lvyoujidiao/" target="_blank">旅游计调</a><a href="/zhaopin/dingpiaoyuan/" target="_blank">订票员</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>美容/健身/运动</dt>
+                                    <dd><a href="/zhaopin/faxingshi/" target="_blank">发型师</a><a href="/zhaopin/meirongshi/" target="_blank">美容师</a><a href="/zhaopin/huazhuangshi/" target="_blank">化妆师</a><a href="/zhaopin/meijiashi/" target="_blank">美甲师</a><a href="/zhaopin/meifazhuli/" target="_blank">美发助理</a><a href="/zhaopin/xitougong/" target="_blank">洗头工</a><a href="/zhaopin/meitishi/" target="_blank">美体师</a><a href="/zhaopin/meirongguwen/" target="_blank">美容顾问</a><a href="/zhaopin/meirongzhuli/" target="_blank">美容助理</a><a href="/zhaopin/meirongdianzhang/" target="_blank">美容店长</a><a href="/zhaopin/tiyuyundongjiaolian/" target="_blank">体育运动教练</a><a href="/zhaopin/yujialaoshi/" target="_blank">瑜伽老师</a><a href="/zhaopin/chongwumeirong/" target="_blank">宠物美容</a><a href="/zhaopin/anmoshi/" target="_blank">按摩师</a><a href="/zhaopin/zhijiutuina/" target="_blank">针灸推拿</a><a href="/zhaopin/zuliaoshi/" target="_blank">足疗师</a><a href="/zhaopin/cuozaogong/" target="_blank">搓澡工</a><a href="/zhaopin/mangrenanmo/" target="_blank">盲人按摩</a><a href="/zhaopin/jianshenjiaolian/" target="_blank">健身教练</a><a href="/zhaopin/yujiajiaolian/" target="_blank">瑜伽教练</a><a href="/zhaopin/wudaolaoshi/" target="_blank">舞蹈老师</a><a href="/zhaopin/youyongjiaolian/" target="_blank">游泳教练</a><a href="/zhaopin/taiqiujiaolian/" target="_blank">台球教练</a><a href="/zhaopin/gaoerfuzhuli/" target="_blank">高尔夫助理</a><a href="/zhaopin/tiyujieshuoyuan/" target="_blank">体育解说员</a><a href="/zhaopin/yiyujizhe/" target="_blank">体育记者</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>家政/安保</dt>
+                                    <dd><a href="/zhaopin/baojie/" target="_blank">保洁</a><a href="/zhaopin/baomu/" target="_blank">保姆</a><a href="/zhaopin/baoan/" target="_blank">保安</a><a href="/zhaopin/yuesao/" target="_blank">月嫂</a><a href="/zhaopin/zhongdiangong/" target="_blank">钟点工</a><a href="/zhaopin/xiyigong/" target="_blank">洗衣工</a><a href="/zhaopin/hugong/" target="_blank">护工</a><a href="/zhaopin/yuyingshi/" target="_blank">育婴师</a><a href="/zhaopin/songshuigong/" target="_blank">送水工</a><a href="/zhaopin/jiatingguanjia/" target="_blank">家庭管家</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>超市/淘宝/网店</dt>
+                                    <dd><a href="/zhaopin/cuxiaodaogou/" target="_blank">促销导购</a><a href="/zhaopin/yingyeyuan/" target="_blank">营业员</a><a href="/zhaopin/shouyinyuan/" target="_blank">收银员</a><a href="/zhaopin/lihuoyuan/" target="_blank">理货员</a><a href="/zhaopin/shipinjiagong/" target="_blank">食品加工</a><a href="/zhaopin/pinleiguanli/" target="_blank">品类管理</a><a href="/zhaopin/dianzhang/" target="_blank">店长</a><a href="/zhaopin/taobaokefu/" target="_blank">淘宝客服</a><a href="/zhaopin/taobaomeigong/" target="_blank">淘宝美工</a><a href="/zhaopin/taobaodianzhang/" target="_blank">淘宝店长</a><a href="/zhaopin/dianpubianji/" target="_blank">店铺编辑</a><a href="/zhaopin/taobaotuiguang/" target="_blank">淘宝推广</a><a href="/zhaopin/taobaozhuangxiu/" target="_blank">淘宝装修</a><a href="/zhaopin/taobaocehua/" target="_blank">淘宝策划</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon9"></i>
+                            <p class="lnk">医疗、医药</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>医药</dt>
+                                    <dd><a href="/zhaopin/yiyaoyanfa/" target="_blank">医药研发</a><a href="/zhaopin/shengwugongcheng/" target="_blank">生物工程</a><a href="/zhaopin/shengwuzhiyao/" target="_blank">生物制药</a><a href="/zhaopin/huaxuefenxiyuan/" target="_blank">化学分析员</a><a href="/zhaopin/yaopinlinchuangshiyan/" target="_blank">药品临床实验</a><a href="/zhaopin/yaopinshengchan/" target="_blank">药品生产</a><a href="/zhaopin/yaopinzhiliangguanli/" target="_blank">药品质量管理</a><a href="/zhaopin/yiyaozhaoshang/" target="_blank">医药招商</a><a href="/zhaopin/yiyaoshichangtuiguang/" target="_blank">药品市场推广</a><a href="/zhaopin/yiyaodaibiao/" target="_blank">医药代表</a><a href="/zhaopin/yiyaoxiaoshoujingli/" target="_blank">医药销售经理</a><a href="/zhaopin/yandiandianzhang/" target="_blank">药店店长</a><a href="/zhaopin/yaodianyingyeyuan/" target="_blank">药店营业员</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>医生/技师</dt>
+                                    <dd><a href="/zhaopin/neikeyisheng/" target="_blank">内科医生</a><a href="/zhaopin/waikeyisheng/" target="_blank">外科医生</a><a href="/zhaopin/mazuiyisheng/" target="_blank">麻醉医生</a><a href="/zhaopin/fuchankeyisheng/" target="_blank">妇产科医生</a><a href="/zhaopin/wuguankeyisheng/" target="_blank">五官科医生</a><a href="/zhaopin/erkeyisheng/" target="_blank">儿科医生</a><a href="/zhaopin/zhongyiyisheng/" target="_blank">中医医生</a><a href="/zhaopin/fangshekeyisheng/" target="_blank">放射科医生</a><a href="/zhaopin/bchaoyisheng/" target="_blank">B超医生</a><a href="/zhaopin/zhengxing/" target="_blank">整形</a><a href="/zhaopin/meirong/" target="_blank">美容</a><a href="/zhaopin/zhuankeyisheng/" target="_blank">专科医生</a><a href="/zhaopin/zonghemenzhen/" target="_blank">综合门诊</a><a href="/zhaopin/quankeyisheng/" target="_blank">全科医生</a><a href="/zhaopin/zhenjiu/" target="_blank">针灸</a><a href="/zhaopin/tuina/" target="_blank">推拿</a><a href="/zhaopin/liliaoshi/" target="_blank">理疗师</a><a href="/zhaopin/jianyan/" target="_blank">检验</a><a href="/zhaopin/huayan/" target="_blank">化验</a><a href="/zhaopin/yaojishi/" target="_blank">药剂师</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>医院管理/护理</dt>
+                                    <dd><a href="/zhaopin/yiyuanguanlirenyuan/" target="_blank">医院管理人员</a><a href="/zhaopin/hushizhang/" target="_blank">护士长</a><a href="/zhaopin/hushi/" target="_blank">护士</a><a href="/zhaopin/yizhu/" target="_blank">医助</a><a href="/zhaopin/daoyi/" target="_blank">导医</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon10"></i>
+                            <p class="lnk">教育、培训、专业服务</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>教育/培训</dt>
+                                    <dd><a href="/zhaopin/jiaoshi/" target="_blank">教师</a><a href="/zhaopin/jiajiao/" target="_blank">家教</a><a href="/zhaopin/youjiao/" target="_blank">幼教</a><a href="/zhaopin/jiaoxueguanli/" target="_blank">教学管理</a><a href="/zhaopin/xueshuyanjiu/" target="_blank">学术研究</a><a href="/zhaopin/peixuncehua/" target="_blank">培训策划</a><a href="/zhaopin/kechengguwen/" target="_blank">课程顾问</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>翻译/语言</dt>
+                                    <dd><a href="/zhaopin/yingyufanyi/" target="_blank">英语翻译</a><a href="/zhaopin/riyufanyi/" target="_blank">日语翻译</a><a href="/zhaopin/eyufanyi/" target="_blank">俄语翻译</a><a href="/zhaopin/hanyufanyi/" target="_blank">韩语翻译</a><a href="/zhaopin/fayufanyi/" target="_blank">法语翻译</a><a href="/zhaopin/deyufanyi/" target="_blank">德语翻译</a><a href="/zhaopin/xiaoyuzhong/" target="_blank">小语种</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>律师/法务</dt>
+                                    <dd><a href="/zhaopin/lvshizhuli/" target="_blank">律师助理</a><a href="/zhaopin/fawuzhuanyuan/" target="_blank">法务专员</a><a href="/zhaopin/lvshi/" target="_blank">律师</a><a href="/zhaopin/zhuanliguwen/" target="_blank">专利顾问</a><a href="/zhaopin/hetongguanli/" target="_blank">合同管理</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon11"></i>
+                            <p class="lnk">能源、化工、服装、环保</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>能源/电力/矿产</dt>
+                                    <dd><a href="/zhaopin/dianli/" target="_blank">电力</a><a href="/zhaopin/dianqigongchengshi/" target="_blank">电气工程师</a><a href="/zhaopin/dianqiweixiujishuyuan/" target="_blank">电气维修技术员</a><a href="/zhaopin/shuili/" target="_blank">水利</a><a href="/zhaopin/shuidiangongchengshi/" target="_blank">水电工程师</a><a href="/zhaopin/zhileng/" target="_blank">制冷</a><a href="/zhaopin/natonggongchengshi/" target="_blank">暖通工程师</a><a href="/zhaopin/shiyou/" target="_blank">石油</a><a href="/zhaopin/tianranqi/" target="_blank">天然气</a><a href="/zhaopin/meitanjishurenyuan/" target="_blank">煤炭技术人员</a><a href="/zhaopin/xinnengyuangongchengshi/" target="_blank">新能源工程师</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>化工</dt>
+                                    <dd><a href="/zhaopin/huagonggongchengshi/" target="_blank">化工工程师</a><a href="/zhaopin/huagongshiyanshiyanjiuyuan/" target="_blank">化工实验室研究员</a><a href="/zhaopin/tuliaoyanfagongchengshi/" target="_blank">涂料研发工程师</a><a href="/zhaopin/shipin/" target="_blank">食品</a><a href="/zhaopin/yinliaoyanfa/" target="_blank">饮料研发</a><a href="/zhaopin/anquangongshengshi/" target="_blank">安全工程师</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>服装/纺织</dt>
+                                    <dd><a href="/zhaopin/fushuangshejishi/" target="_blank">服装设计师</a><a href="/zhaopin/gongyishi/" target="_blank">工艺师</a><a href="/zhaopin/dayang/" target="_blank">打样</a><a href="/zhaopin/zhiban/" target="_blank">制版</a><a href="/zhaopin/diannaofangmayuan/" target="_blank">电脑放码员</a><a href="/zhaopin/zhiliangguanli/" target="_blank">质量管理</a><a href="/zhaopin/caichuang/" target="_blank">裁床</a><a href="/zhaopin/fengrengong/" target="_blank">缝纫工</a><a href="/zhaopin/fangzhi/" target="_blank">纺织</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>环保</dt>
+                                    <dd><a href="/zhaopin/huanbaogongchengshi/" target="_blank">环保工程师</a><a href="/zhaopin/wushuichuligongchengshi/" target="_blank">污水处理工程师</a><a href="/zhaopin/huanpinggongchengshi/" target="_blank">环评工程师</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon12"></i>
+                            <p class="lnk">进出口、采购、物流、司机</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>进出口</dt>
+                                    <dd><a href="/zhaopin/waimaojingli/" target="_blank">外贸经理</a><a href="/zhaopin/waimaoyewuyuan/" target="_blank">外贸业务员</a><a href="/zhaopin/gendanyuan/" target="_blank">跟单员</a><a href="/zhaopin/danzhengyuan/" target="_blank">单证员</a><a href="/zhaopin/baoguan/" target="_blank">报关</a><a href="/zhaopin/baojianyuan/" target="_blank">报检员</a><a href="/zhaopin/jinchukou/" target="_blank">进出口</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>采购</dt>
+                                    <dd><a href="/zhaopin/caigoujingli/" target="_blank">采购经理</a><a href="/zhaopin/caigouyuan/" target="_blank">采购员</a><a href="/zhaopin/maishou/" target="_blank">买手</a><a href="/zhaopin/gongyingshangkaifa/" target="_blank">供应商开发</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>物流/仓储</dt>
+                                    <dd><a href="/zhaopin/wuliujingli/" target="_blank">物流经理</a><a href="/zhaopin/wuliuzhuanyuan/" target="_blank">物流专员</a><a href="/zhaopin/kuaidiyuan/" target="_blank">快递员</a><a href="/zhaopin/peihuoyuan/" target="_blank">配货员</a><a href="/zhaopin/fenjianyuan/" target="_blank">分拣员</a><a href="/zhaopin/gongyinglianguanli/" target="_blank">供应链管理</a><a href="/zhaopin/diaoduyuan/" target="_blank">调度员</a><a href="/zhaopin/huoyundailiyewu/" target="_blank">货运代理业务</a><a href="/zhaopin/cangkuzhuguan/" target="_blank">仓库主管</a><a href="/zhaopin/jingli/" target="_blank">经理</a><a href="/zhaopin/cangkuguanliyuan/" target="_blank">仓库管理员</a><a href="/zhaopin/banyungong/" target="_blank">搬运工</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>司机</dt>
+                                    <dd><a href="/zhaopin/shangwusiji/" target="_blank">商务司机</a><a href="/zhaopin/keyunsiji/" target="_blank">客运司机</a><a href="/zhaopin/huoyunsiji/" target="_blank">货运司机</a><a href="/zhaopin/chuzuchesiji/" target="_blank">出租车司机</a><a href="/zhaopin/tezhongchesiji/" target="_blank">特种车司机</a><a href="/zhaopin/jiaxiaojiaolian/" target="_blank">驾校教练</a><a href="/zhaopin/peilian/" target="_blank">陪练</a><a href="/zhaopin/daijia/" target="_blank">代驾</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li><li >
+                        <a class="lstLnk" href="javascript:void(0)"> <i class="newIcon newIcon13"></i>
+                            <p class="lnk">农林牧渔、其他</p> <b class="jpFntWes arr"></b>
+                        </a>
+                        <div class="posBox" style="top: 2px; display: none;">
+                            <div class="posJobSort">
+                                <div class="l"><dl>
+                                    <dt>农林牧渔</dt>
+                                    <dd><a href="/zhaopin/changzhang/" target="_blank">场长</a><a href="/zhaopin/nongyishi/" target="_blank">农艺师</a><a href="/zhaopin/siyangyuan/" target="_blank">饲养员</a><a href="/zhaopin/shouyi/" target="_blank">兽医</a></dd>
+                                    <div class="clear"></div>
+                                </dl><dl>
+                                    <dt>其他</dt>
+                                    <dd><a href="/zhaopin/keyanrenyuan/" target="_blank">科研人员</a><a href="/zhaopin/chubeiganbu/" target="_blank">储备干部</a><a href="/zhaopin/jianzhi/" target="_blank">兼职</a><a href="/zhaopin/shixisheng/" target="_blank">实习生</a></dd>
+                                    <div class="clear"></div>
+                                </dl></div>
+                            </div>
+                        </div>
+                    </li></ul>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>

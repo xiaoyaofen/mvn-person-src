@@ -71,7 +71,9 @@
         <hr/>
         <div>
             <button lay-submit lay-filter="login" class="layui-btn" style="margin-left: 98px">注册</button>
-            <button lay-submit lay-filter="login" class="layui-btn">返回</button>
+            <button  class="layui-btn" ><a href="/hello/userLogin">返回</a></button>
+
+
         </div>
 
 
@@ -124,7 +126,6 @@
 
 
         form.on('submit(login)', function (data) {
-            alert(data.field)
             $.ajax({
                 url: '/user/register',
                 data: data.field,
@@ -135,7 +136,7 @@
                     if (data == '注册成功') {
                         var flag = confirm("要跳转登录界面吗？");
                         if (flag) {
-                            location.href = "../hello/userLogin";
+                            location.href = "/hello/userLogin";
                         }
                     }
                 }
@@ -143,7 +144,16 @@
             return false;
         })
 
+        // form.on('submit(return)', function (data) {
+        //     location.href = "/hello/userLogin";
+        //     return false;
+        // })
+
+
+
     });
+
+
 </script>
 </body>
 </html>
