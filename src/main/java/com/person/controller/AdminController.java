@@ -6,6 +6,7 @@ import com.google.gson.reflect.TypeToken;
 import com.person.bean.LayuiData;
 import com.person.bean.Station;
 import com.person.bean.User;
+import com.person.bean.TreeNode;
 import com.person.bean.UserInfo;
 import com.person.service.AdminService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -16,6 +17,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,7 +38,7 @@ public class AdminController {
     AdminService adminService;
 
     @RequestMapping("getUserFrame")
-    public String adminRole(){
+    public String adminRole() {
         return "user-show";
     };
 
@@ -75,7 +78,7 @@ public class AdminController {
     //批量添加学生============================
     @RequestMapping( "upload")
     @ResponseBody
-    public String uploadExcel(HttpServletRequest request,MultipartFile file) throws Exception {
+    public String uploadExcel(HttpServletRequest request, MultipartFile file) throws Exception {
         if (file.isEmpty()) {
             return "文件不能为空";
         }
@@ -314,4 +317,29 @@ public class AdminController {
 //        Integer res = adminService.userSelectSure(list,jobid);
         return list.toString();
     }
+    @RequestMapping(value = "/editRightShow/{roleId}", produces = "text/plain;charset=utf-8")
+    public String editRightShow(@PathVariable(value = "roleId") String roleId,Model model) {
+
+        model.addAttribute("roleId",roleId);
+        return "right-edit";
+    }
+
+    @RequestMapping(value = "/findRight/{roleId}", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String findRight(@PathVariable(value = "roleId") String roleId) {
+
+        TreeNode treeNode = adminService.findRight(Integer.parseInt(roleId));
+        return JSON.toJSONString(treeNode);
+    }
+
+    @RequestMapping(value = "/editRight", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String editRight(String permList,String roleId){
+
+        Gson gson = new Gson();
+        List<String> idList = gson.fromJson(permList, new TypeToken<ArrayList<String>>() {}.getType());
+        System.out.println(idList);
+        return roleId;
+    }
+
 }

@@ -45,13 +45,13 @@
                         </div>
                     </form>
                 </div>
-
-                <div class="layui-card-body ">
-
+                <div class="layui-card-header">
                     <button class="layui-btn" onclick="xadmin.open('添加参数','/admin/paramsAddView',800,600)">
                         <i class="layui-icon"></i>添加
                     </button>
-                    <table class="layui-table" id="test" lay-filter="test"></table>
+                </div>
+                <div class="layui-card-body layui-table-body layui-table-main">
+                    <table class="layui-table layui-form" id="test" lay-filter="test"></table>
                 </div>
             </div>
         </div>
@@ -77,8 +77,9 @@
             , title: "管理员信息"
             , id: 'testReload'
             , cols: [[
-                {field: 'id', width: 200, title: '序号', sort: true}
-                , {field: 'name', width: 200, title: '参数名', edit: true}
+                {field: 'pm', width: 200, title: '序号', sort: true}
+                , {field: 'id', title: '参数名', hide:true}
+                , {field: 'name', width: 200, title: '参数名', }
                 , {field: 'type', width: 150, title: '参数类型',}
                 , {field: 'value', width: 150, title: '参数值'}
                 , {fixed: 'right', title: '操作', width: 250, align: 'center', toolbar: '#barDemo'}//一个工具栏  具体请查看layui官网
@@ -118,6 +119,7 @@
             }else if (layEvent === 'edit'){
                 layer.open({
                     type: 2,
+                    title:'参数修改',
                     content: "/admin/editParamsView",
                     area: ['60%', '80%'],
                     skin: "layui-layer-molv",

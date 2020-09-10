@@ -66,9 +66,13 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Boolean addParams(String name, String type, String value) {
         Boolean flag = false;
-        int num = adminMapper.addParams(name, type, value);
-        if (num > 0) {
-            flag = true;
+
+        Params params=adminMapper.checkParams(name,type);
+        if(params==null){
+            int num = adminMapper.addParams(name, type, value);
+            if (num > 0) {
+                flag = true;
+            }
         }
         return flag;
     }
@@ -152,6 +156,51 @@ public class AdminServiceImpl implements AdminService {
     public Integer userSelectSure(List<Integer> list, Integer jobid) {
         Integer res = adminMapper.userSelectSure(list,jobid);
         return res;
+    }
+
+    @Override
+    public TreeNode findRight(int roleId) {
+        TreeNode treeRootNode=new TreeNode();
+        List<TreeNode>rootNode=new ArrayList<>();
+        treeRootNode.setId(0);
+        treeRootNode.setTitle("系统权限");
+        treeRootNode.setSpread(true);
+        treeRootNode.setChildren(rootNode);
+        List<Menu> allPrimaryMenu=adminMapper.permission(0);
+        List<Menu> primaryMenuByRoleId=adminMapper.rightByRoleId(0,roleId);
+        for (int i=0;i<allPrimaryMenu.size();i++){
+            TreeNode treeNode=new TreeNode();
+            treeNode.setTitle(allPrimaryMenu.get(i).getMenuname());
+            treeNode.setSpread(true);
+            treeNode.setId(allPrimaryMenu.get(i).getId());
+            List<TreeNode> childrenNode=new ArrayList<>();
+            treeNode.setChildren(childrenNode);
+            List<Menu> allSecondaryMenu=adminMapper.permission(allPrimaryMenu.get(i).getId());
+            for(int j=0;j<allSecondaryMenu.size();j++){
+                TreeNode twoTreeNode=new TreeNode();
+                twoTreeNode.setTitle(allSecondaryMenu.get(j).getMenuname());
+                twoTreeNode.setId(allSecondaryMenu.get(j).getId());
+                for(int k=0;k<primaryMenuByRoleId.size();k++){
+                    List<Menu> secondaryMenuByRoleId=adminMapper.rightByRoleId(primaryMenuByRoleId.get(k).getId(),roleId);
+                    for(int m=0;m<secondaryMenuByRoleId.size();m++){
+                        System.out.println(secondaryMenuByRoleId.get(m).getMenuname()+"=="+allSecondaryMenu.get(j).getMenuname());
+                        if(secondaryMenuByRoleId.get(m).getMenuname().equals(allSecondaryMenu.get(j).getMenuname())){
+                            twoTreeNode.setChecked(true);
+                        }
+                    }
+
+                }
+
+                childrenNode.add(twoTreeNode);
+            }
+            rootNode.add(treeNode);
+        }
+        return treeRootNode;
+    }
+
+    @Override
+    public Boolean editRight(int roleId, List<String> list) {
+        return null;
     }
 
 

@@ -5,15 +5,16 @@ public class Role {
     private String name;
     private String type;
     private Integer value;
-
+    private Integer pm;
     public Role() {
     }
 
-    public Role(Integer id, String name, String type, Integer value) {
+    public Role(Integer id, String name, String type, Integer value, Integer pm) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.value = value;
+        this.pm = pm;
     }
 
     public Integer getId() {
@@ -48,6 +49,14 @@ public class Role {
         this.value = value;
     }
 
+    public Integer getPm() {
+        return pm;
+    }
+
+    public void setPm(Integer pm) {
+        this.pm = pm;
+    }
+
     @Override
     public String toString() {
         return "Role{" +
@@ -55,6 +64,7 @@ public class Role {
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", value=" + value +
+                ", pm=" + pm +
                 '}';
     }
 }

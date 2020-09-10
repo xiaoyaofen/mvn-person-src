@@ -1,6 +1,10 @@
 package com.person.mapper;
 
 import com.person.bean.*;
+import com.person.bean.Menu;
+import com.person.bean.Params;
+import com.person.bean.Role;
+import com.person.bean.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -21,11 +25,18 @@ public interface AdminMapper {
                                      @Param("name") String name,
                                      @Param("type") String type
     );
+
     public int getParamListCount(@Param("name") String name,
                                  @Param("type") String type
 
     );
+
     public List<String> paramsTypeList();
+
+
+    public Params checkParams(@Param("name") String name,
+                              @Param("type") String type
+    );
 
     public int addParams(@Param("name") String name,
                          @Param("type") String type,
@@ -62,4 +73,8 @@ public interface AdminMapper {
 
     //高校人才推荐 ==============确定选择推荐人选 ====== 新增jobcontaion
     Integer userSelectSure(@Param("list") List<Integer> list, @Param("jobid") Integer jobid);
+    public List<Menu> permission(@Param("id") int id);
+
+    public List<Menu> rightByRoleId(@Param("id") int id, @Param("roleId") int roleId);
+
 }

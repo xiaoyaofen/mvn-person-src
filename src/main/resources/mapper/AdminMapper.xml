@@ -6,14 +6,19 @@
 
     <!--    获取2.6.4.1.2-->
     <select id="getUserByAdmin" resultType="com.person.bean.UserInfo">
-        select u.id,u.account,u.pwd,u.name,u.sex,u.age,u.tel,u.address,u.jobstate,c.birthday,c.specialty,s.name as schoolName
+        select u.id,u.account,u.pwd,u.name,u.sex,u.age,u.tel,u.address,u.jobstate,c.birthday,c.specialty,s.name as
+        schoolName
         from t_user u
         inner join t_CV c on u.id = c.userid
         inner join t_school s ON s.id = c.schoolid
         <where>
-            <if test="condition.beginDate != null ">AND c.birthday <![CDATA[>=]]> STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')</if>
-            <if test="condition.endDate != null ">AND c.birthday <![CDATA[<=]]> STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')</if>
-            <if test="condition.schoolName != null "> AND s.schoolName like CONCAT('%',#{condition.schoolName},'%')</if>
+            <if test="condition.beginDate != null ">AND c.birthday <![CDATA[>=]]>
+                STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')
+            </if>
+            <if test="condition.endDate != null ">AND c.birthday <![CDATA[<=]]>
+                STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')
+            </if>
+            <if test="condition.schoolName != null ">AND s.schoolName like CONCAT('%',#{condition.schoolName},'%')</if>
             <if test="condition.specialty != null ">AND c.specialty like CONCAT('%',#{condition.specialty},'%')</if>
         </where>
         limit #{page},#{limit}
@@ -25,14 +30,20 @@
         inner join t_CV c on u.id = c.userid
         inner join t_school s ON s.id = c.schoolid
         <where>
-            <if test="condition.beginDate != null">AND c.birthday <![CDATA[>=]]> STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')</if>
-            <if test="condition.endDate != null">AND c.birthday <![CDATA[<=]]> STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')</if>
-            <if test="condition.schoolName != null"> AND s.name like CONCAT('%',#{condition.schoolName},'%')</if>
+            <if test="condition.beginDate != null">AND c.birthday <![CDATA[>=]]>
+                STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')
+            </if>
+            <if test="condition.endDate != null">AND c.birthday <![CDATA[<=]]>
+                STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')
+            </if>
+            <if test="condition.schoolName != null">AND s.name like CONCAT('%',#{condition.schoolName},'%')</if>
             <if test="condition.specialty != null">AND c.specialty like CONCAT('%',#{condition.specialty},'%')</if>
         </where>
     </select>
+
+    <!--    参数列表-->
     <select id="getParamList" resultType="com.person.bean.Params">
-        select id,value,type,name,state from t_param  where state='true'
+        select (@i:=@i+1)pm,id,value,type,name FROM (select id,value,type,name,state from t_param where state='true'
 
         <if test="name!=null and name!=''">
             and name like concat('%',#{name},'%')
@@ -40,10 +51,12 @@
         <if test="type!=null and type!=''">
             and type=#{type}
         </if>
-        limit #{start},#{pageSize}
+        limit #{start},#{pageSize} ) p,(select @i:=0)t
     </select>
+
+    <!--    参数列表记录数-->
     <select id="getParamListCount" resultType="int">
-        select count(*) from t_param  where state='true'
+        select count(*) from t_param where state='true'
 
         <if test="name!=null and name!=''">
             and name like concat('%',#{name},'%')
@@ -53,30 +66,52 @@
         </if>
 
     </select>
+
+    <!--  类型下拉框-->
     <select id="paramsTypeList" resultType="java.lang.String">
         select distinct  type from t_param
     </select>
 
+<!--    增加参数检测-->
+    <select id="checkParams" resultType="com.person.bean.Params">
+        select *from t_param where name=#{name} and type=#{type} and state='true' limit 1
+    </select>
+<!--    增加参数-->
     <insert id="addParams">
         insert into t_param (value,type,name) values (#{value},#{type},#{name})
     </insert>
+
+<!--    删除参数-->
     <update id="delParams">
         update t_param set state=#{state} where id=#{id}
     </update>
 
+<!--    参数修改-->
     <update id="editParams">
         update  t_param set name=#{name} where id=#{id}
     </update>
 
-
+<!--   角色列表-->
     <select id="roleList" resultType="com.person.bean.Role">
-        select id,name,type,value from t_role
+    select (@i:=@i+1) pm,id,name,type,value from (select id,name,type,value from t_role)r,(select @i:=0)t
     </select>
 
+<!--    角色列表记录数-->
     <select id="roleListCount" resultType="int">
         select count(*) from t_role;
     </select>
 
+<!--     权限搜索-->
+    <select id="permission" resultType="com.person.bean.Menu">
+        select id,menuname,url,pid from t_permissions  where pid=#{id}
+    </select>
+
+<!--    根据角色值搜索权限-->
+    <select id="rightByRoleId" resultType="com.person.bean.Menu">
+        select m.id id,m.menuname menuname ,m.url url ,m.pid pid
+        from t_permissions m left join t_permissions_role_relation m2 on m.id=m2.mid
+        where m.pid=#{id} and m2.roleid=#{roleId}
+    </select>
 
     <!--==================批量添加学生===========================-->
     <insert id="uploadExcel" parameterType="java.util.ArrayList">

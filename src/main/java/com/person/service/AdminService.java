@@ -3,6 +3,7 @@ package com.person.service;
 import com.person.bean.LayuiData;
 import com.person.bean.Station;
 import com.person.bean.User;
+import com.person.bean.TreeNode;
 import com.person.bean.UserInfo;
 
 import java.io.InputStream;
@@ -38,4 +39,8 @@ public interface AdminService {
 
     //高校人才推荐 ==============确定选择推荐人选
     Integer userSelectSure(List<Integer> list, Integer jobid);
+
+    public TreeNode findRight(int roleId);
+
+    public Boolean editRight(int roleId,List<String> list);
 }
