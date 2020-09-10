@@ -1,7 +1,6 @@
 package com.person.service.impl;
 
-import com.person.bean.Menu;
-import com.person.bean.Params;
+import com.person.bean.*;
 import com.person.mapper.KnowMapper;
 import com.person.service.KnowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,14 +69,55 @@ public class KnowServiceImpl implements KnowService {
     }
 
     @Override
-    public void addScopeParams(String scope) {
-
+    public Integer addScopeParam(String scope, String maxValue) {
+        Integer num=knowMapper.addScopeParam(scope,maxValue);
+        return num;
     }
 
     @Override
     public String findMaxValue() {
         String maxValue=knowMapper.findMaxValue();
         return maxValue;
+    }
+
+    @Override
+    public Integer addKnowmenu(String menuname, String detial, String value) {
+        Integer num=knowMapper.addKnowmenu(menuname,detial,value);
+        return num;
+    }
+
+    @Override
+    public LayuiData findCharpter(Integer page, Integer limit, String title, String scope) {
+        List<Character> list=knowMapper.findCharpter(page,limit,title,scope);
+        Integer count=knowMapper.findCharpterCount(title,scope);
+        LayuiData layuiData = new LayuiData();
+        layuiData.setMsg("");
+        layuiData.setCode(0);
+        layuiData.setCount(count);
+        layuiData.setData(list);
+        return layuiData;
+    }
+
+    @Override
+    public Integer findCharpterCount(String title, String scope) {
+        Integer count=knowMapper.findCharpterCount(title,scope);
+        return count;
+    }
+
+    @Override
+    public String delCharpter(String id) {
+        Integer num=knowMapper.delCharpter(id);
+        if (num!=0){
+            return "删除成功";
+        }else {
+            return "删除失败，请重试";
+        }
+    }
+
+    @Override
+    public Charpter seeCharpter(String id) {
+        Charpter charpter=knowMapper.seeCharpter(id);
+        return charpter;
     }
 
 

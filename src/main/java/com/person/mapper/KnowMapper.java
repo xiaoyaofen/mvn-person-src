@@ -1,5 +1,6 @@
 package com.person.mapper;
 
+import com.person.bean.Charpter;
 import com.person.bean.Menu;
 import com.person.bean.Params;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,7 +30,17 @@ public interface KnowMapper {
 
      public Params findScopeParmas(@Param("scope")String scope);
 
-     public void addScopeParams(@Param("scope")String scope);
+     public Integer addScopeParam(@Param("scope")String scope,@Param("maxValue")String maxValue);
 
      public String findMaxValue();
+
+     public Integer addKnowmenu(@Param("menuname")String menuname,@Param("detial")String detial,@Param("value")String value);
+
+     public List<Character> findCharpter(@Param("page") Integer page, @Param("limit") Integer limit,@Param("title") String title,@Param("scope") String scope);
+
+     public Integer findCharpterCount(@Param("title")String title, @Param("scope")String scope);
+
+     public Integer delCharpter(@Param("id")String id);
+
+     public Charpter seeCharpter(@Param("id")String id);
 }

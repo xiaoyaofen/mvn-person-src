@@ -1,5 +1,7 @@
 package com.person.service;
 
+import com.person.bean.Charpter;
+import com.person.bean.LayuiData;
 import com.person.bean.Menu;
 import com.person.bean.Params;
 
@@ -24,7 +26,17 @@ public interface KnowService {
 
     public Params findScopeParmas(String scope);
 
-    public void addScopeParams(String scope);
+    public Integer addScopeParam(String scope,String maxValue);
 
     public String findMaxValue();
+
+    public Integer addKnowmenu(String menuname,String detial,String value);
+
+    public LayuiData findCharpter(Integer page, Integer limit, String title, String scope);
+
+    public Integer findCharpterCount(String title,String scope);
+
+    public String delCharpter(String id);
+
+    public Charpter seeCharpter(String id);
 }

@@ -52,4 +52,39 @@
     <select id="findMaxValue" resultType="java.lang.String">
         select max(value) from t_param where type='领域'
     </select>
+    <insert id="addScopeParam">
+        insert into t_param (type,name,value) values ('领域',#{scope},#{maxValue})
+    </insert>
+    <insert id="addKnowmenu">
+        insert into t_knowmenu (menuname,url,pid,state,detial,scope) values (#{menuname},'0','0','0',#{detial},#{value})
+    </insert>
+    <select id="findCharpter" resultType="com.person.bean.Charpter">
+        select (@i:=@i+1)pm,c.id,c.state,p.name as scope,m1.menuname,c.name,m2.menuname as menuname1 from t_knowmenu m1 left join t_knowmenu m2 on m1.pid=m2.id
+        left join t_param p on p.value=m1.scope and p.type='领域' left join t_charpters c
+        on m1.id=c.menuname,(select @i:=0)t  where m1.pid!=0 and c.name!='' and m1.state!=1
+        <if test="title!=null and title!=''">
+            and c.name like concat('%',#{title},'%')
+        </if>
+        <if test="scope!=null and scope!=''">
+            and p.name=#{scope}
+        </if>
+        limit #{page},#{limit}
+    </select>
+    <select id="findCharpterCount" resultType="java.lang.Integer">
+        select count(*)  from t_knowmenu m1 left join t_knowmenu m2 on m1.pid=m2.id
+        left join t_param p on p.value=m1.scope and p.type='领域' left join t_charpters c
+        on m1.id=c.menuname,(select @i:=0)t  where m1.pid!=0 and c.name!='' and m1.state!=1
+        <if test="title!=null and title!=''">
+            and c.name like concat('%',#{title},'%')
+        </if>
+        <if test="scope!=null and scope!=''">
+            and p.name=#{scope}
+        </if>
+    </select>
+    <update id="delCharpter">
+        update t_charpters set state='1' where id=#{id}
+    </update>
+    <select id="seeCharpter" resultType="com.person.bean.Charpter">
+        select id,menuname,name,classtime,detial,url,state from t_charpters where id=#{id}
+    </select>
 </mapper>
