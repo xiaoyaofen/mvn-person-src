@@ -1,9 +1,6 @@
 package com.person.service.impl;
 
-import com.person.bean.LayuiData;
-import com.person.bean.Params;
-import com.person.bean.Role;
-import com.person.bean.UserInfo;
+import com.person.bean.*;
 import com.person.mapper.AdminMapper;
 import com.person.service.AdminService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -40,62 +37,62 @@ public class AdminServiceImpl implements AdminService {
         return pageBean;
     }
 
-    @Override
-    public List getBankListByExcel(InputStream in, String fileName) throws Exception {
-        List list = new ArrayList<>();
-        //创建Excel工作薄
-        Workbook work = this.getWorkbook(in, fileName);
-        if (null == work) {
-            throw new Exception("创建Excel工作薄为空！");
-        }
-        Sheet sheet = null;
-        Row row = null;
-        Cell cell = null;
+//    @Override
+//    public List getBankListByExcel(InputStream in, String fileName) throws Exception {
+//        List list = new ArrayList<>();
+//        //创建Excel工作薄
+//        Workbook work = this.getWorkbook(in, fileName);
+//        if (null == work) {
+//            throw new Exception("创建Excel工作薄为空！");
+//        }
+//        Sheet sheet = null;
+//        Row row = null;
+//        Cell cell = null;
+//
+//        for (int i = 0; i < work.getNumberOfSheets(); i++) {
+//            sheet = work.getSheetAt(i);
+//            if (sheet == null) {
+//                continue;
+//            }
+//
+//            for (int j = sheet.getFirstRowNum(); j <= sheet.getLastRowNum(); j++) {
+//                row = sheet.getRow(j);
+//                if (row == null || row.getFirstCellNum() == j) {
+//                    continue;
+//                }
+//
+//                List<Object> li = new ArrayList<>();
+//                for (int y = row.getFirstCellNum(); y < row.getLastCellNum(); y++) {
+//                    cell = row.getCell(y);
+//                    li.add(cell);
+//                }
+//                list.add(li);
+//            }
+//        }
+//        work.close();
+//        return list;
+//    }
 
-        for (int i = 0; i < work.getNumberOfSheets(); i++) {
-            sheet = work.getSheetAt(i);
-            if (sheet == null) {
-                continue;
-            }
-
-            for (int j = sheet.getFirstRowNum(); j <= sheet.getLastRowNum(); j++) {
-                row = sheet.getRow(j);
-                if (row == null || row.getFirstCellNum() == j) {
-                    continue;
-                }
-
-                List<Object> li = new ArrayList<>();
-                for (int y = row.getFirstCellNum(); y < row.getLastCellNum(); y++) {
-                    cell = row.getCell(y);
-                    li.add(cell);
-                }
-                list.add(li);
-            }
-        }
-        work.close();
-        return list;
-    }
-
-    /**
-     * 判断文件格式
-     *
-     * @param inStr
-     * @param fileName
-     * @return
-     * @throws Exception
-     */
-    public Workbook getWorkbook(InputStream inStr, String fileName) throws Exception {
-        Workbook workbook = null;
-        String fileType = fileName.substring(fileName.lastIndexOf("."));
-        if (".xls".equals(fileType)) {
-            workbook = new HSSFWorkbook(inStr);
-        } else if (".xlsx".equals(fileType)) {
-            workbook = new XSSFWorkbook(inStr);
-        } else {
-            throw new Exception("请上传excel文件！");
-        }
-        return workbook;
-    }
+//    /**
+//     * 判断文件格式
+//     *
+//     * @param inStr
+//     * @param fileName
+//     * @return
+//     * @throws Exception
+//     */
+//    public Workbook getWorkbook(InputStream inStr, String fileName) throws Exception {
+//        Workbook workbook = null;
+//        String fileType = fileName.substring(fileName.lastIndexOf("."));
+//        if (".xls".equals(fileType)) {
+//            workbook = new HSSFWorkbook(inStr);
+//        } else if (".xlsx".equals(fileType)) {
+//            workbook = new XSSFWorkbook(inStr);
+//        } else {
+//            throw new Exception("请上传excel文件！");
+//        }
+//        return workbook;
+//    }
 
     @Override
     public LayuiData getParamList(Integer page, Integer pageSize, String name, String type) {
@@ -167,6 +164,12 @@ public class AdminServiceImpl implements AdminService {
             layuiData.setMsg("查询失败");
         }
         return layuiData;
+    }
+
+    //批量导入学生信息===============================================
+    @Override
+    public Integer uploadExcel(List<User> userInfoList) {
+        return adminMapper.uploadExcel(userInfoList);
     }
 
 

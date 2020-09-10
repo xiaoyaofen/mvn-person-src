@@ -2,6 +2,7 @@ package com.person.mapper;
 
 import com.person.bean.Params;
 import com.person.bean.Role;
+import com.person.bean.User;
 import com.person.bean.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -48,6 +49,9 @@ public interface AdminMapper {
     public List<Role> roleList();
 
     public int roleListCount();
+
+    //批量导入学生信息========================================================
+    public Integer uploadExcel(@Param("list") List<User> userInfoList);
 
     
 }

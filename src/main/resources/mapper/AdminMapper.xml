@@ -78,4 +78,13 @@
     </select>
 
 
+    <!--==================批量添加学生===========================-->
+    <insert id="uploadExcel" parameterType="java.util.ArrayList">
+        insert  into t_user(account,age,sex,tel,address,pwd) values
+        <foreach collection="list" item="user" index="index" separator=",">
+            (#{user.account},#{user.age},#{user.sex},#{user.tel},#{user.address},'123456')
+        </foreach>
+    </insert>
+
+
 </mapper>

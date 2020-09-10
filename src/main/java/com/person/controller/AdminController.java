@@ -3,6 +3,7 @@ package com.person.controller;
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.person.bean.LayuiData;
+import com.person.bean.User;
 import com.person.bean.UserInfo;
 import com.person.service.AdminService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -69,9 +70,10 @@ public class AdminController {
         return "user-adds";
     }
 
+    //批量添加学生============================
     @RequestMapping( "upload")
     @ResponseBody
-    public String uploadExcel(HttpServletRequest request, MultipartFile file) throws Exception {
+    public String uploadExcel(HttpServletRequest request,MultipartFile file) throws Exception {
         if (file.isEmpty()) {
             return "文件不能为空";
         }
@@ -89,10 +91,13 @@ public class AdminController {
         if (null == workbook) {
             throw new Exception("创建Excel工作薄为空！");
         }
+
+        List<List<Object>> list = new ArrayList<>();
+        List<User> userInfoList = new ArrayList<>();
         Sheet sheet = null;
         Row row = null;
         Cell cell = null;
-        List<UserInfo> list = new ArrayList<>();
+
         for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
             sheet = workbook.getSheetAt(i);
             if (sheet == null) {
@@ -105,31 +110,29 @@ public class AdminController {
                     continue;
                 }
 
-                List<Object> li = new ArrayList<>();
-//                for (int y = row.getFirstCellNum(); y < row.getLastCellNum(); y++) {
-//                    System.out.println(y);
-//                    cell = row.getCell(y);
-//                    li.add(cell);
-//                }
-                UserInfo userInfo = new UserInfo();
+                User userInfo = new User();
+                row.getCell(0).setCellType(Cell.CELL_TYPE_STRING);
                 userInfo.setAccount(row.getCell(0).getStringCellValue());
-                userInfo.setPwd("123456");
-                
-                list.add(userInfo);
+                row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setSex(Integer.parseInt(row.getCell(1).getStringCellValue()));
+                row.getCell(2).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setAge(Integer.parseInt(row.getCell(2).getStringCellValue()));
+                row.getCell(3).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setTel(row.getCell(3).getStringCellValue());
+                row.getCell(4).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setAddress(row.getCell(4).getStringCellValue());
+                userInfoList.add(userInfo);
             }
         }
         workbook.close();
-//        List<List<Object>> list = adminService.getBankListByExcel(inputStream, file.getOriginalFilename());
         inputStream.close();
-
-        for (int i = 0; i < list.size(); i++) {
-            UserInfo lo = list.get(i);
-            //TODO 随意发挥
-            System.out.println(lo);
-
-        }
-        return "上传成功";
+        Integer res = adminService.uploadExcel(userInfoList);
+        LayuiData layuiData = new LayuiData();
+        layuiData.setCode(0);
+        layuiData.setMsg("success");
+        return JSON.toJSONString(layuiData);
     }
+
 
     @RequestMapping(value = "/paramsView", produces = "text/plain;charset=utf-8")
     public String paramsView(String name,String type){
