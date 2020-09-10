@@ -86,5 +86,59 @@
         </foreach>
     </insert>
 
+    <!-- //高校人才推荐 ==============工作信息数据获取 ==-=zongshu  -->
+    <select id="userRecommendNum" resultType="java.lang.Integer">
+        select count(*) from t_station
+        <where>
+            <if test="condition.station !=null">and j.name like concat('%',#{condition.station},'%')</if>
+            <if test="condition.industry !=null">and j.trade like concat('%',#{condition.industry},'%')</if>
+        </where>
+    </select>
+    <!-- //高校人才推荐 ==============工作信息数据获取 ==-=数据     -->
+    <select id="userRecommend" resultType="com.person.bean.Station">
+        select (@i:=@i+1)pm,ta.id,ta.company,ta.jobName,ta.trade,ta.adminName,ta.time from (
+        select s.id,s.company,j.name jobName,j.trade trade ,a.account adminName,s.time
+        from t_station s
+        inner join t_job j on s.jobid = j.id
+        inner join t_admin a on a.id = s.adminid
+        <where>
+            <if test="condition.station !=null">and j.name like concat('%',#{condition.station},'%')</if>
+            <if test="condition.industry !=null">and j.trade like concat('%',#{condition.industry},'%')</if>
+        </where>
+        order by s.time desc limit #{page},#{limit} ) ta,(select @i:=0)t
+    </select>
+
+    <!--    //高校人才推荐 ==============选择人才数据显示  ===== 总数-->
+    <select id="userSelectNum" resultType="java.lang.Integer">
+        select count(*) from t_user
+        <where>
+            <if test="condition.beginDate != null">AND brith <![CDATA[>=]]> STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')</if>
+            <if test="condition.endDate != null">AND brith <![CDATA[<=]]> STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')</if>
+            <if test="condition.schoolName != null"> AND school like CONCAT('%',#{condition.schoolName},'%')</if>
+            <if test="condition.specialty != null">AND major like CONCAT('%',#{condition.specialty},'%')</if>
+        </where>
+    </select>
+    <!--    //高校人才推荐 ==============选择人才数据显示  ===== 数据-->
+    <select id="userSelect" resultType="com.person.bean.User">
+        select * from t_user
+        <where>
+            <if test="condition.beginDate != null">AND brith <![CDATA[>=]]> STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')</if>
+            <if test="condition.endDate != null">AND brith <![CDATA[<=]]> STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')</if>
+            <if test="condition.schoolName != null"> AND school like CONCAT('%',#{condition.schoolName},'%')</if>
+            <if test="condition.specialty != null">AND major like CONCAT('%',#{condition.specialty},'%')</if>
+        </where>
+        limit #{page},#{limit}
+
+    </select>
+    <!--//高校人才推荐 ==============确定选择推荐人选 ====== 新增jobprocess-->
+    <insert id="userSelectSure" parameterType="java.lang.Integer">
+        isert into t_jobcontain(userid,stateid)
+        values
+        <foreach collection="list" item="userid" index="index" separator=",">
+            (#{userid},#{jobid})
+        </foreach>
+    </insert>
+
+
 
 </mapper>

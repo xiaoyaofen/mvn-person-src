@@ -37,62 +37,7 @@ public class AdminServiceImpl implements AdminService {
         return pageBean;
     }
 
-//    @Override
-//    public List getBankListByExcel(InputStream in, String fileName) throws Exception {
-//        List list = new ArrayList<>();
-//        //创建Excel工作薄
-//        Workbook work = this.getWorkbook(in, fileName);
-//        if (null == work) {
-//            throw new Exception("创建Excel工作薄为空！");
-//        }
-//        Sheet sheet = null;
-//        Row row = null;
-//        Cell cell = null;
-//
-//        for (int i = 0; i < work.getNumberOfSheets(); i++) {
-//            sheet = work.getSheetAt(i);
-//            if (sheet == null) {
-//                continue;
-//            }
-//
-//            for (int j = sheet.getFirstRowNum(); j <= sheet.getLastRowNum(); j++) {
-//                row = sheet.getRow(j);
-//                if (row == null || row.getFirstCellNum() == j) {
-//                    continue;
-//                }
-//
-//                List<Object> li = new ArrayList<>();
-//                for (int y = row.getFirstCellNum(); y < row.getLastCellNum(); y++) {
-//                    cell = row.getCell(y);
-//                    li.add(cell);
-//                }
-//                list.add(li);
-//            }
-//        }
-//        work.close();
-//        return list;
-//    }
 
-//    /**
-//     * 判断文件格式
-//     *
-//     * @param inStr
-//     * @param fileName
-//     * @return
-//     * @throws Exception
-//     */
-//    public Workbook getWorkbook(InputStream inStr, String fileName) throws Exception {
-//        Workbook workbook = null;
-//        String fileType = fileName.substring(fileName.lastIndexOf("."));
-//        if (".xls".equals(fileType)) {
-//            workbook = new HSSFWorkbook(inStr);
-//        } else if (".xlsx".equals(fileType)) {
-//            workbook = new XSSFWorkbook(inStr);
-//        } else {
-//            throw new Exception("请上传excel文件！");
-//        }
-//        return workbook;
-//    }
 
     @Override
     public LayuiData getParamList(Integer page, Integer pageSize, String name, String type) {
@@ -170,6 +115,43 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Integer uploadExcel(List<User> userInfoList) {
         return adminMapper.uploadExcel(userInfoList);
+    }
+
+
+    //高校人才推荐数据获取
+    @Override
+    public LayuiData<Station> userRecommend(HashMap<String, Object> condition, Integer limit, Integer page) {
+        LayuiData<Station> pageBean = new LayuiData<>();
+        Integer conut = adminMapper.userRecommendNum(condition);
+        Integer curPage = limit * (page - 1);
+        List<Station> list = adminMapper.userRecommend(condition,limit,curPage);
+        pageBean.setData(list);
+        pageBean.setMsg("");
+        pageBean.setCode(0);
+        pageBean.setCount(conut);
+        return pageBean;
+    }
+
+
+    //高校人才推荐 ==============选择人才数据显示
+    @Override
+    public LayuiData<User> userSelect(HashMap<String, Object> condition, Integer limit, Integer page) {
+        LayuiData<User> pageBean = new LayuiData<>();
+        Integer conut = adminMapper.userSelectNum(condition);
+        Integer curPage = limit * (page - 1);
+        List<Station> list = adminMapper.userSelect(condition,limit,curPage);
+        pageBean.setData(list);
+        pageBean.setMsg("");
+        pageBean.setCode(0);
+        pageBean.setCount(conut);
+        return pageBean;
+    }
+
+    //高校人才推荐 ==============确定选择推荐人选
+    @Override
+    public Integer userSelectSure(List<Integer> list, Integer jobid) {
+        Integer res = adminMapper.userSelectSure(list,jobid);
+        return res;
     }
 
 

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>选择人才</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+
+    <script type="text/javascript" th:src="@{/X-admin/js/xadmin.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5">
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="date" class="layui-input"  autocomplete="off" placeholder="开始日" name="beginDate" id="beginDate">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="date" class="layui-input"  autocomplete="off" placeholder="截止日" name="endDate" id="endDate">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" id="schoolName" name="schoolName"  placeholder="请输入学校" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" id="specialty" name="specialty"  placeholder="请输入专业" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <button id="select-btn" class="layui-btn" data-type="reload" type="button">
+                                <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-inline layui-show-xs-block">
+                    <button id="upload-btn" class="layui-btn" data-type="reload" type="button">
+                        人才推荐
+                    </button>
+                </div>
+
+                <div class="layui-card-body">
+                    <div class="layui-card-body "><table class="layui-hide" id="demo" lay-filter="test"/></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    layui.use(['laydate','table','form','layer'], function(){
+
+        var laydate = layui.laydate;
+        var form = layui.form;
+        var table = layui.table;
+        var layer = layui.layer;
+
+        //执行一个 table 实例
+        table.render({
+            id:'idTest'
+            ,elem: '#demo'
+            ,height: 420
+            ,url: '/admin/userSelect' //数据接口
+            ,title: '用户表'
+            ,page:{
+                layout: [ 'prev', 'page', 'next', 'count','limit', 'refresh', 'skip']//自定义布局顺序
+                ,limit:5	//初始  每页几条数据
+                ,limits:[5,10,15]	//可以选择的 每页几条数据
+                ,groups:10 	//最多几个跳页按钮
+                ,first: false //不显示首页
+                ,last: false //不显示尾页
+            }
+            ,cols: [
+                [ //表头
+                    {type: 'checkbox', fixed: 'left'}
+                    ,{field: 'id', title: '序号', width:80, sort: true, fixed: 'left'}
+                    ,{field: 'account', title: '账号', width:150}
+                    ,{field: 'name', title: '姓名', width: 150}
+                    ,{field: 'school', title: '学校名称', width:330}
+                    ,{field: 'major', title: '专业', width: 350}
+                    ,{field: 'jobstate', title: '就业状况', width:150}
+                ]
+            ]
+        });
+
+        //表格复选框监听
+        table.on('checkbox(demo)', function(obj){
+            console.log(obj)
+        });
+
+        $('#select-btn').click(function () {
+            var beginDate = $("#beginDate").val();
+            var endDate = $("#endDate").val();
+            var schoolName = $("#schoolName").val();
+            var specialty = $("#specialty").val();
+            //执行重载
+            table.reload('demo', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                , where: {
+                    beginDate: beginDate//作为参数传递给后端php
+                    ,endDate: endDate
+                    ,specialty: specialty
+                    ,schoolName: schoolName
+                }
+            });
+        })
+
+        //=================== 查询
+        $('#select-btn').on('click', function () {
+            var type = $(this).data('type');//自定义type属性，这里即为reload
+            active[type] ? active[type].call(this) : ''; //如果存在active[type]，则调用改函数
+        });
+
+        // ===================选择人才推荐
+        $('#upload-btn').on('click', function () {
+            var checkStatus = table.checkStatus('idTest')
+                ,data = checkStatus.data;
+            $.ajax({
+                url:"/admin/userSelectSure",
+                data:{'list':JSON.stringify(data)},
+                success: function (res) {
+
+                }
+            })
+        });
+
+    });
+</script>
+</html>

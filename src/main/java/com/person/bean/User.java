@@ -18,6 +18,14 @@ public class User{
     private Date date;
     private String jobstate;
 
+    private Integer resume; //简历模板
+    private Date brith;//出生年月
+    private Integer education;//最高学历
+    private Integer exprience;//工作经验
+    private String major;//专业
+    private String school;//学校
+    private String outlook;//社会面貌
+
     public User() {
     }
 
@@ -130,6 +138,62 @@ public class User{
 
     public void setJobstate(String jobstate) {
         this.jobstate = jobstate;
+    }
+
+    public Integer getResume() {
+        return resume;
+    }
+
+    public void setResume(Integer resume) {
+        this.resume = resume;
+    }
+
+    public Date getBrith() {
+        return brith;
+    }
+
+    public void setBrith(Date brith) {
+        this.brith = brith;
+    }
+
+    public Integer getEducation() {
+        return education;
+    }
+
+    public void setEducation(Integer education) {
+        this.education = education;
+    }
+
+    public Integer getExprience() {
+        return exprience;
+    }
+
+    public void setExprience(Integer exprience) {
+        this.exprience = exprience;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getOutlook() {
+        return outlook;
+    }
+
+    public void setOutlook(String outlook) {
+        this.outlook = outlook;
     }
 }
 

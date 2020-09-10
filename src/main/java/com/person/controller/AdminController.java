@@ -2,7 +2,9 @@ package com.person.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.person.bean.LayuiData;
+import com.person.bean.Station;
 import com.person.bean.User;
 import com.person.bean.UserInfo;
 import com.person.service.AdminService;
@@ -133,7 +135,6 @@ public class AdminController {
         return JSON.toJSONString(layuiData);
     }
 
-
     @RequestMapping(value = "/paramsView", produces = "text/plain;charset=utf-8")
     public String paramsView(String name,String type){
         return "parameterManagement";
@@ -168,7 +169,6 @@ public class AdminController {
 
         return "params-add";
     }
-
 
 
     @RequestMapping(value = "/addParams", produces = "text/plain;charset=utf-8")
@@ -235,4 +235,83 @@ public class AdminController {
     }
 
 
+    //高校人才推荐 ==============工作信息界面绘制
+    @RequestMapping(value = "recommendFrame", produces = "text/plain;charset=utf-8")
+    public String userRecommendFrame(){
+        return "user-recommend";
+    }
+
+    //高校人才推荐 ==============工作信息数据获取
+    @RequestMapping(value = "recommend", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String userRecommend(String station,String industry,Integer limit,Integer page){
+        HashMap<String,Object> condition = new HashMap<>();
+        System.out.println(station);
+        System.out.println(industry);
+        if(station!= null && !"".equalsIgnoreCase(station)){
+            condition.put("station",station);
+        }
+        if(industry!= null && !"".equalsIgnoreCase(industry)){
+            condition.put("industry",industry);
+        }
+        LayuiData<Station> layuiData =  adminService.userRecommend(condition,limit,page);
+        return JSON.toJSONString(layuiData);
+    }
+
+    //高校人才推荐 ==============选择人才表格显示
+    @RequestMapping(value = "userSelectFrame", produces = "text/plain;charset=utf-8")
+    public String userSelectFrame(){
+        return "user-select";
+    }
+
+    //高校人才推荐 ==============选择人才数据显示
+    @RequestMapping(value = "userSelect", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String userSelect(String beginDate, String endDate, String schoolName , String specialty, Integer limit, Integer page){
+
+        HashMap<String,Object> condition = new HashMap<>();
+        System.out.println(beginDate);
+        System.out.println(endDate);
+        if(beginDate!=null && !"".equalsIgnoreCase(beginDate)){
+            condition.put("beginDate",beginDate);
+        }
+        if(endDate!=null && !"".equalsIgnoreCase(endDate)){
+            condition.put("endDate",endDate);
+        }
+        if(schoolName!=null && !"".equalsIgnoreCase(schoolName)){
+            condition.put("schoolName",schoolName);
+        }
+        if(specialty!=null && !"".equalsIgnoreCase(specialty)){
+            condition.put("specialty",specialty);
+        }
+        if(limit == null){
+            limit = 5;
+        }
+        if(page == null){
+            page = 1;
+        }
+        LayuiData<User> layuiData = adminService.userSelect(condition,limit,page);
+
+        return JSON.toJSONString(layuiData);
+    }
+
+    //高校人才推荐 ==============确定选择推荐人选
+    @RequestMapping(value = "userSelectSure", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String userSelectSure(HttpServletRequest request,String list){
+        Integer jobid  = (Integer)request.getSession().getAttribute("idOfJob");
+        Gson gson = new Gson();
+        List<User> idList = gson.fromJson(list, new TypeToken<ArrayList<User>>() {}.getType());
+
+        for(User u : idList){
+            System.out.println(u.getId());
+        }
+        System.out.println(list);
+//        List<Integer> list = new ArrayList<>();
+//        if(list.size()!=0){
+//            System.out.println(JSON.toJSONString(list));
+//        }
+//        Integer res = adminService.userSelectSure(list,jobid);
+        return list.toString();
+    }
 }
