@@ -86,6 +86,55 @@
 
 
         });
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data //获得当前行数据
+                , layEvent = obj.event; //获得 lay-event 对应的值
+            var id=data.id;
+
+            if (layEvent === 'del'){
+                layer.confirm('真的删除该数据么？', function (index) {
+                    var state="false";
+                    $.ajax({
+                        url: "/admin/delParams",
+                        method: 'post',
+                        data: "id="+id+"&state="+state,
+                        dataType: 'text',
+                        success: function (data) {
+                            if (data === "success") {
+                                layer.alert("参数删除成功", {
+                                    icon: 1
+                                },)
+                                obj.del(); //删除对应行（tr）的DOM结构
+                                layer.close(index);
+                            } else{
+                                layer.alert("参数删除失败", {
+                                    icon: 2
+                                })
+                            }
+                        },
+                    });
+
+                });
+            }else if (layEvent === 'edit'){
+                layer.open({
+                    type: 2,
+                    content: "/admin/editParamsView",
+                    area: ['60%', '80%'],
+                    skin: "layui-layer-molv",
+                    success: function (layero, index) {    //成功获得加载changefile.html时，预先加载，将值从父窗口传到 子窗口
+                        let body = layer.getChildFrame('body', index)
+                        body.find("#id").val(data.id);   //通过class名进行获取数据
+                        body.find("#paramsName").val(data.name);//意思是将rowselect[0].path这个值传递到子窗口的class="filepath"这个的文本框中，（预先加载）
+                        body.find("#paramsType").val(data.type);
+                        body.find("#paramsType").prop("disabled", "false");
+                        body.find("#paramsValue").val(data.value);
+                        body.find("#paramsValue").prop("disabled", "false");
+                        layui.form.render();
+
+                    }
+                });
+            }
+        });
 
         $('.layui-btn').click(function () {
             var paramsName = $("#paramsName").val();

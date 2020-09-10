@@ -1,6 +1,6 @@
 package com.person.bean;
 
-public class Station {
+public class Station extends User {
     private Integer id;
     private Integer jobid;
     private String request;
@@ -11,6 +11,21 @@ public class Station {
     private String company;
     private String welfare;
     private String address;
+
+    private String trade;//行业
+    private String jobName;//职位
+    private String adminName;//发布者
+    private Integer pm;//序号
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
+    }
+
+
 
     public Station() {
     }
@@ -106,5 +121,29 @@ public class Station {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getTrade() {
+        return trade;
+    }
+
+    public void setTrade(String trade) {
+        this.trade = trade;
+    }
+
+    public String getJobName() {
+        return jobName;
+    }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
+    }
+
+    public Integer getPm() {
+        return pm;
+    }
+
+    public void setPm(Integer pm) {
+        this.pm = pm;
     }
 }

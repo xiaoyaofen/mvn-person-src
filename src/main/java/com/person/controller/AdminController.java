@@ -2,7 +2,10 @@ package com.person.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.person.bean.LayuiData;
+import com.person.bean.Station;
+import com.person.bean.User;
 import com.person.bean.UserInfo;
 import com.person.service.AdminService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -69,9 +72,10 @@ public class AdminController {
         return "user-adds";
     }
 
+    //批量添加学生============================
     @RequestMapping( "upload")
     @ResponseBody
-    public String uploadExcel(HttpServletRequest request, MultipartFile file) throws Exception {
+    public String uploadExcel(HttpServletRequest request,MultipartFile file) throws Exception {
         if (file.isEmpty()) {
             return "文件不能为空";
         }
@@ -89,10 +93,13 @@ public class AdminController {
         if (null == workbook) {
             throw new Exception("创建Excel工作薄为空！");
         }
+
+        List<List<Object>> list = new ArrayList<>();
+        List<User> userInfoList = new ArrayList<>();
         Sheet sheet = null;
         Row row = null;
         Cell cell = null;
-        List<UserInfo> list = new ArrayList<>();
+
         for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
             sheet = workbook.getSheetAt(i);
             if (sheet == null) {
@@ -105,30 +112,27 @@ public class AdminController {
                     continue;
                 }
 
-                List<Object> li = new ArrayList<>();
-//                for (int y = row.getFirstCellNum(); y < row.getLastCellNum(); y++) {
-//                    System.out.println(y);
-//                    cell = row.getCell(y);
-//                    li.add(cell);
-//                }
-                UserInfo userInfo = new UserInfo();
+                User userInfo = new User();
+                row.getCell(0).setCellType(Cell.CELL_TYPE_STRING);
                 userInfo.setAccount(row.getCell(0).getStringCellValue());
-                userInfo.setPwd("123456");
-                
-                list.add(userInfo);
+                row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setSex(Integer.parseInt(row.getCell(1).getStringCellValue()));
+                row.getCell(2).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setAge(Integer.parseInt(row.getCell(2).getStringCellValue()));
+                row.getCell(3).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setTel(row.getCell(3).getStringCellValue());
+                row.getCell(4).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setAddress(row.getCell(4).getStringCellValue());
+                userInfoList.add(userInfo);
             }
         }
         workbook.close();
-//        List<List<Object>> list = adminService.getBankListByExcel(inputStream, file.getOriginalFilename());
         inputStream.close();
-
-        for (int i = 0; i < list.size(); i++) {
-            UserInfo lo = list.get(i);
-            //TODO 随意发挥
-            System.out.println(lo);
-
-        }
-        return "上传成功";
+        Integer res = adminService.uploadExcel(userInfoList);
+        LayuiData layuiData = new LayuiData();
+        layuiData.setCode(0);
+        layuiData.setMsg("success");
+        return JSON.toJSONString(layuiData);
     }
 
     @RequestMapping(value = "/paramsView", produces = "text/plain;charset=utf-8")
@@ -167,18 +171,147 @@ public class AdminController {
     }
 
 
-
     @RequestMapping(value = "/addParams", produces = "text/plain;charset=utf-8")
     @ResponseBody
     public String addParams(HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("paramsName");//页码
         String type = request.getParameter("paramsType");//页码
         String value = request.getParameter("paramsValue");//页码
-        System.out.println(name);
-        System.out.println(type);
-        System.out.println(value);
 
-        return "";
+        Boolean flag=adminService.addParams(name,type,value);
+        if(flag){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
 
+    @RequestMapping(value = "/delParams", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String delParams(String id,String state){
+        Boolean flag=adminService.delParams(state,Integer.parseInt(id));
+        if(flag){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
+    @RequestMapping(value = "/editParamsView", produces = "text/plain;charset=utf-8")
+    public String editParamsView(){
+        return "params-edit";
+    }
+
+    @RequestMapping(value = "/editParams", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String editParams(HttpServletRequest request, HttpServletResponse response){
+        String id=request.getParameter("id");
+        String name=request.getParameter("paramsName");
+        System.out.println(name+"name");
+        System.out.println(id+"id");
+        Boolean flag=adminService.editParams(name,Integer.parseInt(id));
+        if(flag){
+            return "success";
+        }else{
+            return "fail";
+        }
+    }
+
+
+    @RequestMapping(value = "/rightManagerView", produces = "text/plain;charset=utf-8")
+    public String rightManagerView(){
+        return "rightManager";
+    }
+
+
+    @RequestMapping(value = "/roleList", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String roleList(HttpServletRequest request, HttpServletResponse response){
+
+        LayuiData layuiData =adminService.roleList();
+
+        return JSON.toJSONString(layuiData);
+
+    }
+
+
+    //高校人才推荐 ==============工作信息界面绘制
+    @RequestMapping(value = "recommendFrame", produces = "text/plain;charset=utf-8")
+    public String userRecommendFrame(){
+        return "user-recommend";
+    }
+
+    //高校人才推荐 ==============工作信息数据获取
+    @RequestMapping(value = "recommend", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String userRecommend(String station,String industry,Integer limit,Integer page){
+        HashMap<String,Object> condition = new HashMap<>();
+        System.out.println(station);
+        System.out.println(industry);
+        if(station!= null && !"".equalsIgnoreCase(station)){
+            condition.put("station",station);
+        }
+        if(industry!= null && !"".equalsIgnoreCase(industry)){
+            condition.put("industry",industry);
+        }
+        LayuiData<Station> layuiData =  adminService.userRecommend(condition,limit,page);
+        return JSON.toJSONString(layuiData);
+    }
+
+    //高校人才推荐 ==============选择人才表格显示
+    @RequestMapping(value = "userSelectFrame", produces = "text/plain;charset=utf-8")
+    public String userSelectFrame(){
+        return "user-select";
+    }
+
+    //高校人才推荐 ==============选择人才数据显示
+    @RequestMapping(value = "userSelect", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String userSelect(String beginDate, String endDate, String schoolName , String specialty, Integer limit, Integer page){
+
+        HashMap<String,Object> condition = new HashMap<>();
+        System.out.println(beginDate);
+        System.out.println(endDate);
+        if(beginDate!=null && !"".equalsIgnoreCase(beginDate)){
+            condition.put("beginDate",beginDate);
+        }
+        if(endDate!=null && !"".equalsIgnoreCase(endDate)){
+            condition.put("endDate",endDate);
+        }
+        if(schoolName!=null && !"".equalsIgnoreCase(schoolName)){
+            condition.put("schoolName",schoolName);
+        }
+        if(specialty!=null && !"".equalsIgnoreCase(specialty)){
+            condition.put("specialty",specialty);
+        }
+        if(limit == null){
+            limit = 5;
+        }
+        if(page == null){
+            page = 1;
+        }
+        LayuiData<User> layuiData = adminService.userSelect(condition,limit,page);
+
+        return JSON.toJSONString(layuiData);
+    }
+
+    //高校人才推荐 ==============确定选择推荐人选
+    @RequestMapping(value = "userSelectSure", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String userSelectSure(HttpServletRequest request,String list){
+        Integer jobid  = (Integer)request.getSession().getAttribute("idOfJob");
+        Gson gson = new Gson();
+        List<User> idList = gson.fromJson(list, new TypeToken<ArrayList<User>>() {}.getType());
+
+        for(User u : idList){
+            System.out.println(u.getId());
+        }
+        System.out.println(list);
+//        List<Integer> list = new ArrayList<>();
+//        if(list.size()!=0){
+//            System.out.println(JSON.toJSONString(list));
+//        }
+//        Integer res = adminService.userSelectSure(list,jobid);
+        return list.toString();
     }
 }

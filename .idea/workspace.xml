@@ -2,94 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1474e9e3-ddee-49f6-ae61-a8295dd4fd93" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/AD.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/CV.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Cendentcon.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Company.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Daily.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Job.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Jobcontain.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Jobprocess.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Level.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Role.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/School.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Station.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Trade.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Workexpress.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/person-project.kotlin_module" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/params-edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/rightManager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/person-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/person-project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/PageBean.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/PageBean.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/TKnowmenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/TKnowmenu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/UserInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/person/bean/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/bean/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/person/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/controller/AdminController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/controller/ZhiShiKuController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/controller/ZhiShiKuController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/person/mapper/AdminMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/mapper/AdminMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/mapper/KnowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/mapper/KnowMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/person/service/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/service/AdminService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/service/KnowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/service/KnowService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/person/service/impl/AdminServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/service/impl/AdminServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/person/service/impl/KnowServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/person/service/impl/KnowServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/AdminMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mapper/KnowMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/KnowMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/ZhishiKu.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/ZhishiKu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin-edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin-edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/parameterManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parameterManagement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/params-add.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/params-add.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="F:/maven/apache-maven-3.6.3-bin/apache-maven-3.6.3" />
-        <option name="userSettingsFile" value="F:\maven\apache-maven-3.6.3-bin\apache-maven-3.6.3\conf\settings.xml" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="1hA8E6sjDAnPOIalV4OkC81n6vn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/X-admin/lib/layui/css" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.idea" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.person.service.impl" />
-      <recent name="com.person.service" />
-      <recent name="com.person.mapper" />
-      <recent name="com.person.controller" />
-      <recent name="com.person.bean" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Users\Administrator\person-project\src\main\resources\static\X-admin\lib\layui\css" />
-      <recent name="F:\Users\Administrator\person-project\src\main\resources\static\X-admin\images" />
-      <recent name="F:\Users\Administrator\person-project\src\main\resources\templates" />
-      <recent name="F:\Users\Administrator\person-project\src\main\resources\mapper" />
-      <recent name="F:\Users\Administrator\person-project\src\main\java\com\person\controller" />
+      <recent name="F:\Users\Administrator\person-project\.idea" />
     </key>
   </component>
   <component name="RunManager">
@@ -117,149 +62,6 @@
     <configuration />
   </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="1474e9e3-ddee-49f6-ae61-a8295dd4fd93" name="Default Changelist" comment="" />
-      <created>1599442421084</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1599442421084</updated>
-      <workItem from="1599442427154" duration="26800000" />
-      <workItem from="1599527118963" duration="12927000" />
-      <workItem from="1599551811212" duration="1381000" />
-      <workItem from="1599553500478" duration="18117000" />
-      <workItem from="1599612995875" duration="551000" />
-    </task>
-    <task id="LOCAL-00001" summary="1.0">
-      <created>1599551937382</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1599551937382</updated>
-    </task>
-    <task id="LOCAL-00002" summary="2.0">
-      <created>1599559795275</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1599559795275</updated>
-    </task>
-    <task id="LOCAL-00003" summary="2.0.1">
-      <created>1599569930309</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1599569930309</updated>
-    </task>
-    <task id="LOCAL-00004" summary="2020-09-09 09:04">
-      <created>1599613488548</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1599613488548</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="1.0" />
-    <MESSAGE value="2.0" />
-    <MESSAGE value="2.0.1" />
-    <MESSAGE value="2020-09-09 09:04" />
-    <option name="LAST_COMMIT_MESSAGE" value="2020-09-09 09:04" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser" timestamp="1599580355609">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="488" y="79" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1599580355609" />
-    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599552698506">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1599552698506" />
-    <state x="192" y="0" key="CommitChangelistDialog2" timestamp="1599613601907">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="192" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1599613601907" />
-    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1599556560029">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1599556560029" />
-    <state width="1324" height="221" key="GridCell.Tab.0.bottom" timestamp="1599582323095">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1324" height="221" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.0.center" timestamp="1599582323095">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1324" height="221" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.0.left" timestamp="1599582323095">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1324" height="221" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.0.right" timestamp="1599582323095">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1324" height="221" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.1.bottom" timestamp="1599582323095">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1324" height="221" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.1.center" timestamp="1599582323095">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1324" height="221" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.1.left" timestamp="1599582323095">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1324" height="221" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state width="1324" height="221" key="GridCell.Tab.1.right" timestamp="1599582323095">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1324" height="221" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1599582323095" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1599553325718">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1599553325718" />
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2" timestamp="1599613633111">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="275" y="84" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1599613633111" />
-    <state x="375" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1599612996335">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="375" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1599612996335" />
-    <state x="384" y="155" key="git4idea.merge.GitPullDialog" timestamp="1599613558083">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="384" y="155" key="git4idea.merge.GitPullDialog/0.0.1366.728@0.0.1366.728" timestamp="1599613558083" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1599580743508">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1599580743508" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/main/java/com/person/bean/Menu.java</url>
-          <line>4</line>
-          <properties field="menuname" class="com.person.bean.Menu" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/com/person/bean/Menu.java</url>
-          <line>12</line>
-          <properties class="com.person.bean.Menu" method="&lt;init&gt;">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
