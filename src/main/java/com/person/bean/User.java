@@ -26,6 +26,8 @@ public class User{
     private String school;//学校
     private String outlook;//社会面貌
 
+    private Integer num;  //序号
+
     public User() {
     }
 
@@ -194,6 +196,14 @@ public class User{
 
     public void setOutlook(String outlook) {
         this.outlook = outlook;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
     }
 }
 

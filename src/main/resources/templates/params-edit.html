@@ -72,8 +72,22 @@
         //自定义验证规则
         form.verify({
             paramsName: function(value) {
+                var paramsType=$('#paramsType').val();
+                console.log(paramsType)
                 if (value.length < 1) {
                     return '参数名不能为空';
+                }else{
+                    $.ajax({
+                        url: "/system/checkParams",
+                        type: 'post',
+                        data: "paramsName="+value+"&paramsType="+paramsType,
+                        dataType:'text',
+                        success: function (res) {
+                            if (res === "1") {
+                                return '该参数名已存在';
+                            }
+                        }
+                    });
                 }
             },
 
@@ -86,7 +100,7 @@
                 console.log(data);
                 //发异步，把数据提交给php
                 $.ajax({
-                    url: "/admin/editParams",
+                    url: "/system/editParams",
                     type: 'post',
                     data: data.field,
                     success: function (res) {
@@ -101,7 +115,9 @@
                                     xadmin.father_reload();
                                 });
                         }else{
-                            layer.msg("参数修改失败");
+                            layer.alert("参数修改失败", {
+                                    icon: 6
+                                })
                         }
                     }
                 });

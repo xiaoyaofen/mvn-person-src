@@ -16,18 +16,6 @@ public interface AdminService {
 
 //    List<List<Object>> getBankListByExcel(InputStream inputStream, String originalFilename) throws Exception;
 
-    public LayuiData getParamList(Integer page,Integer pageSize,String name,String type);
-
-    public List<String> paramsTypeList();
-
-    public Boolean addParams(String name,String type,String value);
-
-    public Boolean delParams(String state,int id);
-
-    public Boolean editParams(String name, int id );
-
-    public LayuiData roleList();
-
     //批量导入学生信息====================================================
     Integer uploadExcel(List<User> userInfoList);
 
@@ -40,7 +28,4 @@ public interface AdminService {
     //高校人才推荐 ==============确定选择推荐人选
     Integer userSelectSure(List<Integer> list, Integer jobid);
 
-    public TreeNode findRight(int roleId);
-
-    public Boolean editRight(int roleId,List<String> list);
 }
