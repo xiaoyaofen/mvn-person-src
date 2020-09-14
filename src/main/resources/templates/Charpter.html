@@ -56,36 +56,19 @@
                     </form>
 
                 </div>
-                <div class="layui-card-header">
-                    <button class="layui-btn" lay-submit="" lay-filter="sreach" id="addBtn">新增知识库</button>
-                </div>
                 <div class="layui-card-body layui-table-body layui-table-main">
                      <table class="layui-hide" id="test" lay-filter="test"></table>
                 </div>
+
+
     </div>
 </div>
 </div>
 </div>
-
-
 </body>
 
-<script>
-    $("#addBtn").on("click", function () {
-        layer.open({
-            //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-            type: 1,
-            title: "新增管理员",
-            area: ['50%', '50%'],
-            content: $("#addZhishi")
-        });
-    });
-</script>
-
 
 <script>
-
-
     layui.use(['form','table'], function () {
         var table = layui.table;
         var form = layui.form;
@@ -157,17 +140,32 @@
             var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
 
             if (layEvent === 'detail') { //增加
-                    $("#shuyu").html("所属知识点："+data.menuname)
-                    $("#charpter1").html(data.name)
-                    layer.open({
-                        //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-                        type: 1,
-                        title: "完善章节细节",
-                        area: ['420px', '330px'],
-                        content: $("#addCharpter"),//引用的弹出层的页面层的方式加载修改界面表单
-                    });
-            }else if(layEvent === 'view') { //增加
+                    $("#shuyu1").html("所属知识点："+data.menuname)
+                    $("#hideid1").html(data.id)
+                    $("#charpter1").val(data.name)
+                $.ajax({
+                    url: '/person/seeCharpter',
+                    data: data,
+                    dataType: 'text',
+                    type: 'get',
+                    success: function (data) {
+                        if (data != '本章节未匹配内容，请先新增！') {
+                            layer.msg("本章节已有视频，如需修改请选择修改");
+                        }else {
+                            layer.open({
+                                //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                                type: 1,
+                                title: "完善章节细节",
+                                area: ['420px', '450px'],
+                                content: $("#addCharpter"),//引用的弹出层的页面层的方式加载修改界面表单
+                            });
+                        }
+                    }
+                })
+
+            }else if(layEvent === 'view') { //查看
                 $("#shuyu").html("所属知识点："+data.menuname)
+                $("#hidename").html(data.id)
                 $.ajax({
                     url: '/person/seeCharpter',
                     data: data,
@@ -210,33 +208,29 @@
                     //向服务端发送删除指令
                 });
             } else if (layEvent === 'edit') { //编辑
-                $("#hideid").html(data.id);
-                $("#lingyu1").val(data.scope);
-                $("#newname1").val(data.menuname);
-                $.ajax({
-                    url: '/person/addselect',
-                    // data: data,
-                    dataType: 'json',
-                    type: 'get',
-                    success: function (data) {
-                        $("#scope1").append("<opyion value=''></opyion>")
-                        $(data).each(function (i,n) {
-                            $("#scope1").append("<option value='"+n.name+"'>"+n.name+"</option>")
-                        })
-                        form.render('select')
-                    }
-                })
-                layer.open({
-                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-                    type: 1,
-                    title: "子级知识点添加",
-                    area: ['420px', '330px'],
-                    content: $("#fixKnow"),//引用的弹出层的页面层的方式加载修改界面表单
-                    success: function (layero, index) {
-                        layui.form.render();
-                    }
-                });
-
+                $("#hideid2").html(data.id)
+                    $.ajax({
+                        url: '/person/seeCharpter',
+                        data: data,
+                        dataType: 'text',
+                        type: 'get',
+                        success: function (data) {
+                            if (data == '本章节未匹配内容，请先新增！') {
+                                layer.msg(data);
+                            } else {
+                                var json = JSON.parse(data)
+                                $("#charpter2").val(json.name)
+                                $("#introduce2").val(json.detial)
+                                layer.open({
+                                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                                    type: 1,
+                                    title: "章节信息查看",
+                                    area: ['420px', '450px'],
+                                    content: $("#fixCharpter"),//引用的弹出层的页面层的方式加载修改界面表单
+                                });
+                            }
+                        }
+                    })
 
             } else if (layEvent === 'LAYTABLE_TIPS') {
                 layer.alert('Hi，头部工具栏扩展的右侧图标。');
@@ -244,30 +238,9 @@
         });
     });
     layui.use(['form', 'layer', 'jquery'], function () {
-
         // 操作对象
         var form = layui.form;
         var $ = layui.jquery;
-
-        form.on('submit(demo13)', function (data) {
-            var newname = $("#newname2").val();
-            var scope=$("#scope2").val();
-            var detial=$("#detial").val();
-                $.ajax({
-                    url: '/person/addZhishi',
-                    data:  {"newname": newname, "scope": scope, "detial": detial},
-                    dataType: 'text',
-                    type: 'get',
-                    success: function (data) {
-                        layer.msg(data);
-                        if (data == '新增知识库成功') {
-                            location.href="http://localhost:8080/person/getZhishi";
-                        }
-                    }
-                })
-            return false;
-
-        })
 
         form.on('submit(demo12)', function (data) {
             var hideid = $("#hideid").html();
@@ -313,11 +286,8 @@
                 })
             }
                 return false;
-
         })
-
     });
-
 </script>
 
 <script type="text/jsp" id="barDemo">
@@ -347,120 +317,290 @@
         {{# }  }}
     </div>
 </script>
-<!--新增章节界面-->
-<div class="layui-row" id="popUpdateTest" style="display:none;">
-    <div class="layui-col-md10">
-        <form class="layui-form layui-from-pane" action="" style="margin-top:20px">
-            <div class="layui-form-item">
-                <label class="layui-form-label" id="shuyu" style="width: 200px"></label>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">课程章节：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="charpter" autocomplete="off" disabled="disabled" class="layui-input" id="charpter">
-                    <span id="hidename" hidden></span>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">课时：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="time" disabled="disabled" autocomplete="off" class="layui-input" id="time">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">课程简介：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="introduce" disabled="disabled" autocomplete="off" class="layui-input" id="introduce">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">课程路径：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="url" disabled="disabled" autocomplete="off" class="layui-input" id="url">
-                </div>
-            </div>
-        </form>
-            <div class="layui-form-item" style="margin-top:40px">
-                <div class="layui-input-block">
-                    <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo12" id="startVido">播放视频
-                    </button>
-                </div>
-            </div>
+
+<div class="login-main" style="margin-top:50px;display:none;" id="popUpdateTest">
+    <div class="layui-form-item">
+        <label class="layui-form-label" id="shuyu" style="width: 200px"></label>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label">课程章节：</label>
+        <input class="layui-input"  disabled="disabled" id="charpter" style="width: 200px">
+        <span id="hidename" hidden></span>
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">课程时长：</label>
+        <input class="layui-input"  disabled="disabled" id="time" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">课程简述：</label>
+        <input class="layui-input"  disabled="disabled" id="introduce" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">视频路径：</label>
+        <input class="layui-input"  disabled="disabled" id="url" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-upload" style="margin-left: 20px">
+        <button type="button" class="layui-btn layui-btn-normal" id="startVido" style="margin-left: 80px">播放视频</button>
     </div>
 </div>
-
 <!--修改界面-->
-<div class="layui-row" id="fixKnow" style="display:none;">
-    <div class="layui-col-md10">
-        <form class="layui-form layui-from-pane" action="" style="margin-top:20px">
-            <div class="layui-form-item">
-                <label class="layui-form-label">领域</label>
-                <div class="layui-inline layui-show-xs-block">
-                    <select name="scope1" id="scope1" lay-verify="select">
 
-                    </select>
-                </div>
-                <span id="hideid" hidden></span>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">名称</label>
-                <div class="layui-input-block">
-                    <input type="text" name="newname" required lay-verify="required" autocomplete="off"
-                           class="layui-input" id="newname1">
-                </div>
-            </div>
-            <div class="layui-form-item" style="margin-top:40px">
-                <div class="layui-input-block">
-                    <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo12" id="surefix1">确认修改
-                    </button>
-                </div>
-            </div>
-        </form>
+<div class="login-main" style="margin-top:50px;display:none;" id="addCharpter">
+    <fieldset class="layui-elem-field layui-field-title" >
+        <legend>选完文件后不自动上传</legend>
+    </fieldset>
+    <div class="layui-inline">
+        <label class="layui-form-label">课程章节：</label>
+        <input class="layui-input"  disabled="disabled" id="charpter1" style="width: 200px">
+        <span id="hideid1" hidden></span>
+        <span id="videoTime" hidden></span>
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">课程简述：</label>
+        <input class="layui-input"  required lay-verify="required" id="introduce1" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-upload" style="margin-left: 20px">
+        <button type="button" class="layui-btn layui-btn-normal" id="test8">选择文件</button>
+        <button type="button" class="layui-btn" id="titsubmit">提交</button>
+        <button type="button" class="layui-btn" id="test9" style="height: 0">开始上传</button>
+        <video id="videoattr" width="250" height="100" ></video>
     </div>
 </div>
 
-<!--新增知识库界面-->
-<div class="layui-row" id="addCharpter" style="display:none;">
-    <div class="layui-col-md10">
-        <form class="layui-form layui-from-pane" action="" style="margin-top:20px">
-            <div class="layui-form-item">
-                <label class="layui-form-label" id="shuyu1" style="width: 200px"></label>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">课程章节：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="charpter1" autocomplete="off" required lay-verify="required" class="layui-input" id="charpter1">
-                    <span id="hidename1" hidden></span>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">课时：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="time1" required lay-verify="required" autocomplete="off" class="layui-input" id="time1">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">课程简介：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="introduce1" required lay-verify="required" autocomplete="off" class="layui-input" id="introduce1">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">课程路径：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="url" required lay-verify="required" autocomplete="off" class="layui-input" id="url1">
-                </div>
-            </div>
-        </form>
-        <div class="layui-form-item" style="margin-top:40px">
-            <div class="layui-input-block">
-                <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo12" id="startVido">播放视频
-                </button>
-            </div>
-        </div>
+<div class="login-main" style="margin-top:50px;display:none;" id="fixCharpter">
+    <fieldset class="layui-elem-field layui-field-title" >
+        <legend>选完文件后不自动上传</legend>
+    </fieldset>
+    <div class="layui-inline">
+        <label class="layui-form-label">课程章节：</label>
+        <input class="layui-input"  disabled="disabled" id="charpter2" style="width: 200px">
+        <span id="hideid2" hidden></span>
+        <span id="videoTime2" hidden></span>
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">课程简述：</label>
+        <input class="layui-input"  required lay-verify="required" id="introduce2" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-upload" style="margin-left: 20px">
+        <button type="button" class="layui-btn layui-btn-normal" id="test10">选择文件</button>
+        <button type="button" class="layui-btn" id="titsubmit1">重新上传</button>
+        <button type="button" class="layui-btn" id="test11" style="height: 0">开始上传</button>
+        <video id="videoattr2" width="250" height="100" ></video>
     </div>
 </div>
+<script th:inline="javascript">
+    $("#titsubmit").on("click", function () {
+        var introduce1 = $("#introduce1").val()
+        var id=$("#hideid1").html();
+        if (introduce1 == null || introduce1 == "") {
+            layer.msg('简述不可为空');
+        } else {
+            $("#test9").click();
+        }
+    })
+    layui.use('upload', function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
 
+        //选完文件后不自动上传
+        upload.render({
+            accept: "file",
+            acceptMime:'video/mp4',
+            elem: '#test8'
+            , url: '/person/upload' //改成您自己的上传接口
+            , auto: false,
+                choose:function(obj){
+                    //预读本地文件示例，不支持ie8
+                    layer.load(2);
+                    obj.preview(function(index, file, result){
+                        var url = URL.createObjectURL(file);//把file转成URL
+                        $('#videoattr').attr('src', url); //视频链接
+                        var timer = setTimeout(function(){
+                            layer.close(layer.index);
+                            var video_time = document.getElementById("videoattr").duration;//视频时长
+                            console.log(video_time);
+                            var theTime = parseInt(video_time);// 秒
+                            var middle= 0;// 分
+                            var hour= 0;// 小时
 
+                            if(theTime > 60) {
+                                middle= parseInt(theTime/60);
+                                theTime = parseInt(theTime%60);
+                                if(middle> 60) {
+                                    hour= parseInt(middle/60);
+                                    middle= parseInt(middle%60);
+                                }
+                            }
+                            var result = ""+parseInt(theTime)+"秒";
+                            if(middle > 0) {
+                                result = ""+parseInt(middle)+"分"+result;
+                            }
+                            if(hour> 0) {
+                                result = ""+parseInt(hour)+"小时"+result;
+                            }
+                            $("#videoTime").html(result)
+                            console.log(result)
+                            clearTimeout(timer);
+                        },1000);
+                    });
+                }
+            , data: {
+            introduce1: function () {
+                return $("#introduce1").val();
+            },
+            id: function () {
+                return $("#hideid1").html();
+            },
+                videoTime: function () {
+                    return $("#videoTime").html();
+                },
+        }
+            //,multiple: true
+            , bindAction: '#test9'
+            , before: function () {
+                layer.msg('上传中...', {
+                    icon: 16,
+                    shade: 0.01,
+                    time: 0
+                })
+                layer.tips('接口地址：' + this.url, this.item, {tips: 1});
+            }
+            , done: function (res) {
+                layer.msg('上传成功');
+                location.href="http://localhost:8080/person/Charpter";
+            }
+            , error: function () {
+                layer.msg('上传失败');
+            }
+        });
+    });
+    $("#startVido").on('click',function(){
+        var id=$("#hidename").html()
 
+        $.ajax({
+            url: '/person/findUrl',
+            data:  {"id": id},
+            dataType: 'text',
+            type: 'get',
+            success: function (data) {
+                // layer.msg(data);
+                // if (data == '新增成功') {
+                //     location.href="http://localhost:8080/person/getZhishi";
+                // }
+                $("#oneVideo").attr("src","/X-admin"+data)
+                layer.open({
+                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type: 1,
+                    title: "视频观看",
+                    area: ['800px', '550px'],
+                    content: $("#watchvideo"),//引用的弹出层的页面层的方式加载修改界面表单
+                    cancel: function(){
+                        $("#oneVideo").trigger("pause");
+                    }
+                });
+            }
+        })
+    })
+
+    $("#titsubmit1").on("click", function () {
+        var introduce1 = $("#introduce2").val()
+        var id=$("#hideid2").html();
+        if (introduce1 == null || introduce1 == "") {
+            layer.msg('简述不可为空');
+        } else {
+            $("#test11").click();
+        }
+    })
+    layui.use('upload', function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+        //选完文件后不自动上传
+        upload.render({
+            accept: "file",
+            acceptMime:'video/mp4',
+            elem: '#test10'
+            , url: '/person/upload' //改成您自己的上传接口
+            , auto: false,
+            choose:function(obj){
+                //预读本地文件示例，不支持ie8
+                layer.load(2);
+                obj.preview(function(index, file, result){
+                    var url = URL.createObjectURL(file);//把file转成URL
+                    $('#videoattr2').attr('src', url); //视频链接
+                    var timer = setTimeout(function(){
+                        layer.close(layer.index);
+                        var video_time = document.getElementById("videoattr2").duration;//视频时长
+                        console.log(video_time);
+                        var theTime = parseInt(video_time);// 秒
+                        var middle= 0;// 分
+                        var hour= 0;// 小时
+
+                        if(theTime > 60) {
+                            middle= parseInt(theTime/60);
+                            theTime = parseInt(theTime%60);
+                            if(middle> 60) {
+                                hour= parseInt(middle/60);
+                                middle= parseInt(middle%60);
+                            }
+                        }
+                        var result = ""+parseInt(theTime)+"秒";
+                        if(middle > 0) {
+                            result = ""+parseInt(middle)+"分"+result;
+                        }
+                        if(hour> 0) {
+                            result = ""+parseInt(hour)+"小时"+result;
+                        }
+                        $("#videoTime2").html(result)
+                        console.log(result)
+                        clearTimeout(timer);
+                    },1000);
+                });
+            }
+            , data: {
+                introduce1: function () {
+                    return $("#introduce2").val();
+                },
+                id: function () {
+                    return $("#hideid2").html();
+                },
+                videoTime: function () {
+                    return $("#videoTime2").html();
+                },
+            }
+            //,multiple: true
+            , bindAction: '#test11'
+            , before: function () {
+                layer.msg('上传中...', {
+                    icon: 16,
+                    shade: 0.01,
+                    time: 0
+                })
+                layer.tips('接口地址：' + this.url, this.item, {tips: 1});
+            }
+            , done: function (res) {
+                layer.msg('上传成功');
+                location.href="http://localhost:8080/person/Charpter";
+            }
+            , error: function () {
+                layer.msg('上传失败');
+            }
+        });
+    });
+</script>
+
+<div class="login-main" style="margin-top:20px;display:none;" id="watchvideo">
+      <div>
+          <video  width="600" height="450" controls="controls" style="margin-left: 100px" id="oneVideo">
+          </video>
+      </div>
+</div>
 </html>

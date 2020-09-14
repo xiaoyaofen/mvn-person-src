@@ -25,11 +25,11 @@ public class AdminServiceImpl implements AdminService {
 
 
     @Override
-    public LayuiData<UserInfo> getUserByAdmin(HashMap<String, Object> condition, Integer limit, Integer page) {
-        LayuiData<UserInfo> pageBean = new LayuiData<>();
+    public LayuiData<User> getUserByAdmin(HashMap<String, Object> condition, Integer limit, Integer page) {
+        LayuiData<User> pageBean = new LayuiData<>();
         Integer conut = adminMapper.getUserByAdminOfNum(condition);
         Integer curPage = limit * (page - 1);
-        List<UserInfo> list = adminMapper.getUserByAdmin(condition, limit, curPage);
+        List<User> list = adminMapper.getUserByAdmin(condition, limit, curPage);
         pageBean.setData(list);
         pageBean.setMsg("");
         pageBean.setCode(0);

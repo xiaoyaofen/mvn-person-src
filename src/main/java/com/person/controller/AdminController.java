@@ -7,7 +7,6 @@ import com.person.bean.LayuiData;
 import com.person.bean.Station;
 import com.person.bean.User;
 import com.person.bean.TreeNode;
-import com.person.bean.UserInfo;
 import com.person.service.AdminService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -66,7 +65,7 @@ public class AdminController {
         if(page == null){
             page = 1;
         }
-        LayuiData<UserInfo> pageBean = adminService.getUserByAdmin(condition,limit,page);
+        LayuiData<User> pageBean = adminService.getUserByAdmin(condition,limit,page);
         return new Gson().toJson(pageBean);
     }
 

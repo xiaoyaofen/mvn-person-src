@@ -5,7 +5,7 @@
 <mapper namespace="com.person.mapper.AdminMapper">
 
     <!--    获取2.6.4.1.2-->
-    <select id="getUserByAdmin" resultType="com.person.bean.UserInfo">
+    <select id="getUserByAdmin" resultType="com.person.bean.User">
         select u.id,u.account,u.pwd,u.name,u.sex,u.age,u.tel,u.address,u.jobstate,c.birthday,c.specialty,s.name as
         schoolName
         from t_user u
