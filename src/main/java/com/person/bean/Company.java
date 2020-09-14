@@ -8,7 +8,7 @@ public class Company {
     private String address;
     private String name;
     private String introduce;
-    private Integer tel;
+    private String tel;
     private String href;
     private String business;
 
@@ -23,7 +23,6 @@ public class Company {
         this.address = address;
         this.name = name;
         this.introduce = introduce;
-        this.tel = tel;
         this.href = href;
         this.business = business;
     }
@@ -84,14 +83,6 @@ public class Company {
         this.introduce = introduce;
     }
 
-    public Integer getTel() {
-        return tel;
-    }
-
-    public void setTel(Integer tel) {
-        this.tel = tel;
-    }
-
     public String getHref() {
         return href;
     }
@@ -106,5 +97,13 @@ public class Company {
 
     public void setBusiness(String business) {
         this.business = business;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 }

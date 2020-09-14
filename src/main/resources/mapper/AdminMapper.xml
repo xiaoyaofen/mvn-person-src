@@ -5,84 +5,38 @@
 <mapper namespace="com.person.mapper.AdminMapper">
 
     <!--    获取2.6.4.1.2-->
-    <select id="getUserByAdmin" resultType="com.person.bean.UserInfo">
-        select u.id,u.account,u.pwd,u.name,u.sex,u.age,u.tel,u.address,u.jobstate,c.birthday,c.specialty,s.name as schoolName
-        from t_user u
-        inner join t_CV c on u.id = c.userid
-        inner join t_school s ON s.id = c.schoolid
+    <select id="getUserByAdmin" resultType="com.person.bean.User">
+        select u.* ,(@i:=@i+1)pm from(
+        select * from t_user
         <where>
-            <if test="condition.beginDate != null ">AND c.birthday <![CDATA[>=]]> STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')</if>
-            <if test="condition.endDate != null ">AND c.birthday <![CDATA[<=]]> STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')</if>
-            <if test="condition.schoolName != null "> AND s.schoolName like CONCAT('%',#{condition.schoolName},'%')</if>
-            <if test="condition.specialty != null ">AND c.specialty like CONCAT('%',#{condition.specialty},'%')</if>
+            <if test="condition.beginDate != null ">AND brith <![CDATA[>=]]> STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')</if>
+            <if test="condition.endDate != null ">AND brith <![CDATA[<=]]> STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')</if>
+            <if test="condition.schoolName != null "> AND school like CONCAT('%',#{condition.schoolName},'%')</if>
+            <if test="condition.specialty != null ">AND major like CONCAT('%',#{condition.specialty},'%')</if>
         </where>
-        limit #{page},#{limit}
+        order by brith DESC limit #{page},#{limit}) u,(select @i:=0)t
+
+
     </select>
     <!--    获取2.6.4.1.2-->
     <select id="getUserByAdminOfNum" resultType="java.lang.Integer">
-        select count(u.id)
-        from t_user u
-        inner join t_CV c on u.id = c.userid
-        inner join t_school s ON s.id = c.schoolid
+        select count(id) from t_user
         <where>
-            <if test="condition.beginDate != null">AND c.birthday <![CDATA[>=]]> STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')</if>
-            <if test="condition.endDate != null">AND c.birthday <![CDATA[<=]]> STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')</if>
-            <if test="condition.schoolName != null"> AND s.name like CONCAT('%',#{condition.schoolName},'%')</if>
-            <if test="condition.specialty != null">AND c.specialty like CONCAT('%',#{condition.specialty},'%')</if>
+            <if test="condition.beginDate != null">AND brith <![CDATA[>=]]> STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')</if>
+            <if test="condition.endDate != null">AND brith <![CDATA[<=]]> STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')</if>
+            <if test="condition.schoolName != null"> AND school like CONCAT('%',#{condition.schoolName},'%')</if>
+            <if test="condition.specialty != null">AND major like CONCAT('%',#{condition.specialty},'%')</if>
         </where>
     </select>
-    <select id="getParamList" resultType="com.person.bean.Params">
-        select id,value,type,name,state from t_param  where state='true'
 
-        <if test="name!=null and name!=''">
-            and name like concat('%',#{name},'%')
-        </if>
-        <if test="type!=null and type!=''">
-            and type=#{type}
-        </if>
-        limit #{start},#{pageSize}
-    </select>
-    <select id="getParamListCount" resultType="int">
-        select count(*) from t_param  where state='true'
-
-        <if test="name!=null and name!=''">
-            and name like concat('%',#{name},'%')
-        </if>
-        <if test="type!=null and type!=''">
-            and type=#{type}
-        </if>
-
-    </select>
-    <select id="paramsTypeList" resultType="java.lang.String">
-        select distinct  type from t_param
-    </select>
-
-    <insert id="addParams">
-        insert into t_param (value,type,name) values (#{value},#{type},#{name})
-    </insert>
-    <update id="delParams">
-        update t_param set state=#{state} where id=#{id}
-    </update>
-
-    <update id="editParams">
-        update  t_param set name=#{name} where id=#{id}
-    </update>
-
-
-    <select id="roleList" resultType="com.person.bean.Role">
-        select id,name,type,value from t_role
-    </select>
-
-    <select id="roleListCount" resultType="int">
-        select count(*) from t_role;
-    </select>
-
-
-    <!--==================批量添加学生===========================-->
+    <!--//批量添加学生===========================-->
     <insert id="uploadExcel" parameterType="java.util.ArrayList">
-        insert  into t_user(account,age,sex,tel,address,pwd) values
+        insert  into t_user(account,age,sex,tel,address,pwd,resgisdate,school,major,name) values
         <foreach collection="list" item="user" index="index" separator=",">
-            (#{user.account},#{user.age},#{user.sex},#{user.tel},#{user.address},'123456')
+            (#{user.account},#{user.age},#{user.sex},#{user.tel},
+            #{user.address},'123456',now(),#{user.school},#{user.major},
+            #{user.name}
+            )
         </foreach>
     </insert>
 
@@ -94,7 +48,7 @@
             <if test="condition.industry !=null">and j.trade like concat('%',#{condition.industry},'%')</if>
         </where>
     </select>
-    <!-- //高校人才推荐 ==============工作信息数据获取 ==-=数据     -->
+    <!--//高校人才推荐 ==============工作信息数据获取 ==-=数据     -->
     <select id="userRecommend" resultType="com.person.bean.Station">
         select (@i:=@i+1)pm,ta.id,ta.company,ta.jobName,ta.trade,ta.adminName,ta.time from (
         select s.id,s.company,j.name jobName,j.trade trade ,a.account adminName,s.time
@@ -108,7 +62,7 @@
         order by s.time desc limit #{page},#{limit} ) ta,(select @i:=0)t
     </select>
 
-    <!--    //高校人才推荐 ==============选择人才数据显示  ===== 总数-->
+    <!--//高校人才推荐 ==============选择人才数据显示  =====总数-->
     <select id="userSelectNum" resultType="java.lang.Integer">
         select count(*) from t_user
         <where>
@@ -118,7 +72,7 @@
             <if test="condition.specialty != null">AND major like CONCAT('%',#{condition.specialty},'%')</if>
         </where>
     </select>
-    <!--    //高校人才推荐 ==============选择人才数据显示  ===== 数据-->
+    <!--//高校人才推荐 ==============选择人才数据显示  =====数据-->
     <select id="userSelect" resultType="com.person.bean.User">
         select * from t_user
         <where>
@@ -130,15 +84,118 @@
         limit #{page},#{limit}
 
     </select>
-    <!--//高校人才推荐 ==============确定选择推荐人选 ====== 新增jobprocess-->
+    <!--//高校人才推荐 ==============确定选择推荐人选 ======新增jobprocess-->
     <insert id="userSelectSure" parameterType="java.lang.Integer">
-        isert into t_jobcontain(userid,stateid)
+        insert into t_jobcontain(userid,stateid)
         values
         <foreach collection="list" item="userid" index="index" separator=",">
             (#{userid},#{jobid})
         </foreach>
     </insert>
 
+
+    <!-- //公司招聘管理=================管理界面数据获取=====总数量-->
+    <select id="adminRecruitNum" resultType="java.lang.Integer">
+        select count(*) from t_station where adminid in (select id from t_admin where company = (select company from t_admin where id = #{id}))
+        <if test="condition.title != null">and title like concat('%',#{condition.title},'%')</if>
+    </select>
+    <!-- //公司招聘管理=================管理界面数据获取=====-->
+    <select id="adminRecruit" resultType="com.person.bean.Station">
+        select ta.*,(@i:=@i+1)pm from (
+        select s.id, s.title, s.education, s.job, s.adminid, s.money, s.description, s.number, s.worktime,
+        s.date, s.welfare, p.name jobname, a.account adminname, p2.name trade
+        from t_station s
+        left join t_admin a on s.adminid = a.id and a.id =1
+        left join t_param p on s.job = p.value and p.type ='岗位'
+        left JOIN t_job_trade j on j.jobid = s.job
+        LEFT JOIN t_param p2 on j.tradeid = p2.value and p2.type='行业'
+        <if test="condition.title != null">and s.title like concat('%',#{condition.title},'%')</if>
+        order by date desc limit #{page},#{limit}) ta,(select @i:=0)t
+    </select>
+    <!--//公司招聘管理=================招聘新增-->
+    <insert id="recruitInsert">
+        insert into t_station(title,region,experience,money,worktime,description,welfare,number,adminid,sex,education,job,company)
+        values(
+        #{station.title},#{station.region},#{station.experience},#{station.money},
+        #{station.worktime},#{station.description},#{station.welfare},#{station.number},#{id},
+        #{station.sex},#{station.education},#{station.job},(select company from t_admin where id =#{id})
+        )
+    </insert>
+    <!--//公司招聘管理=================招聘修改-->
+    <update id="recruitUpdate">
+        update t_station
+        <set>
+            <if test="station.title != null">title = #{station.title},</if>
+            <if test="station.region != null">region = #{station.region},</if>
+            <if test="station.experience != null">experience = #{station.experience},</if>
+            <if test="station.money != null">money = #{station.money},</if>
+            <if test="station.worktime != null">worktime = #{station.worktime},</if>
+            <if test="station.description != null">description = #{station.description},</if>
+            <if test="station.welfare != null">welfare = #{station.welfare},</if>
+            <if test="station.number != null">number = #{station.number},</if>
+        </set>
+        where id = #{station.id}
+    </update>
+
+
+    <!--//求职管理====================界面显示=======总数-->
+    <select id="adminBioCheckNum" resultType="java.lang.Integer">
+        select count(*) from t_jobcontain j
+        left join t_user u on j.userid = u.id
+        LEFT JOIN t_station s on j.stateid = s.id
+        where s.company = (select company from t_admin where id = #{id})
+        <if test="condition.title !=null">and s.title like concat('%',#{condition.title},'%')</if>
+        <if test="condition.major !=null">and u.major = (select name from t_param where value =#{condition.major} and type='专业')</if>
+        <if test="condition.education !=null">and u.education=#{condition.education}</if>
+    </select>
+    <!-- //求职管理====================界面显示=======数据-->
+    <select id="adminBioCheck" resultType="com.person.bean.User">
+        select j.id jobstation,u.name,u.major,u.tel,u.school,s.title,u.id,
+        (select name from t_school where id =
+        (select company from t_admin where id =  j.adminid)) recommend
+        from t_jobcontain j
+        left join t_user u on j.userid = u.id
+        LEFT JOIN t_station s on j.stateid = s.id
+        where s.company = (select company from t_admin where id = #{id})
+        <if test="condition.title !=null"> and s.title like concat('%',#{condition.title},'%')</if>
+        <if test="condition.major !=null">and u.major = (select name from t_param where value =#{condition.major} and type='专业')</if>
+        <if test="condition.education !=null">and u.education=#{condition.education}</if>
+        limit #{page},#{limit}
+    </select>
+    <!--    获取下拉菜单的数据-->
+    <select id="getOptionData" resultType="com.person.bean.Params">
+        select * from t_param where type = #{type}
+    </select>
+
+    <!--获取本周简历注册数据总数-->
+    <select id="getThisWeek" resultType="java.lang.Integer">
+        select count(*) from t_user  WHERE YEARWEEK(date_format(resgisdate,'%Y-%m-%d'),1) = YEARWEEK(now(),1);
+    </select>
+    <!--获取本月简历注册数据总数-->
+    <select id="getThisMonth" resultType="java.lang.Integer">
+        SELECT count(*) FROM t_user WHERE date_format(resgisdate, '%Y-%m' ) = date_format( now( ), '%Y-%m' )
+    </select>
+    <!--获取本日简历注册数据总数-->
+    <select id="getThisDay" resultType="java.lang.Integer">
+        select count(*) from t_user where to_days(resgisdate) = to_days(now());
+    </select>
+
+    <select id="recruitSchedule" resultType="com.person.bean.Jobcontain">
+        select * from t_jobcontain where id = #{id}
+    </select>
+
+    <!-- 公司简介 修改-->
+    <update id="companyUpadate" parameterType="com.person.bean.Company">
+        update t_company
+        <set>
+            <if test="company.name != null">name = #{company.name},</if>
+            <if test="company.address != null">address = #{company.address},</if>
+            <if test="company.tel != null">tel = #{company.tel},</if>
+            <if test="company.introduce != null">introduce = #{company.introduce},</if>
+            <if test="company.business != null">business = #{company.business},</if>
+        </set>
+        <where><if test="company.id != null">id = #{company.id}</if> </where>
+    </update>
 
 
 </mapper>

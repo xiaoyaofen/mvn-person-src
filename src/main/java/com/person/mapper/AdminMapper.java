@@ -12,40 +12,9 @@ import java.util.List;
 @Component
 public interface AdminMapper {
 
-    List<UserInfo> getUserByAdmin(@Param("condition") HashMap<String, Object> condition, @Param("limit") Integer limit, @Param("page") Integer page);
+    List<User> getUserByAdmin(@Param("condition") HashMap<String, Object> condition, @Param("limit") Integer limit, @Param("page") Integer page);
 
     Integer getUserByAdminOfNum(@Param("condition") HashMap<String, Object> condition);
-
-    public List<Params> getParamList(@Param("start") Integer start,
-                                     @Param("pageSize") Integer pageSize,
-                                     @Param("name") String name,
-                                     @Param("type") String type
-    );
-    public int getParamListCount(@Param("name") String name,
-                                 @Param("type") String type
-
-    );
-    public List<String> paramsTypeList();
-
-    public int addParams(@Param("name") String name,
-                         @Param("type") String type,
-                         @Param("value") String value
-    );
-
-    public int delParams(@Param("state") String state,
-                         @Param("id") int id
-    );
-
-
-    public int editParams(@Param("name") String name,
-                          @Param("id") int id
-
-    );
-
-
-    public List<Role> roleList();
-
-    public int roleListCount();
 
     //批量导入学生信息========================================================
     public Integer uploadExcel(@Param("list") List<User> userInfoList);
@@ -62,4 +31,40 @@ public interface AdminMapper {
 
     //高校人才推荐 ==============确定选择推荐人选 ====== 新增jobcontaion
     Integer userSelectSure(@Param("list") List<Integer> list, @Param("jobid") Integer jobid);
+
+    //公司招聘管理=================招聘新增
+    Integer recruitInsert(@Param("station")Station station, @Param("id")Integer id);
+
+    //公司招聘管理=================招聘修改
+    Integer recruitUpdate(@Param("station")Station station,@Param("id") Integer id);
+
+    //公司招聘管理=================管理界面数据获取=====总数量
+    Integer adminRecruitNum(@Param("id") Integer adminId,@Param("condition")HashMap<String, Object> condition);
+
+    //公司招聘管理=================管理界面数据获取=====
+    List<Station> adminRecruit(@Param("id")Integer adminId,@Param("condition")HashMap<String, Object> condition, @Param("limit")Integer limit,@Param("page") Integer curPage);
+
+    // 工具======================获取下拉菜单的数据
+    List<Params> getOptionData(@Param("type") String type);
+
+    //求职管理====================界面显示=======总数
+    Integer adminBioCheckNum(@Param("id")Integer adminId, @Param("condition")HashMap<String, Object> condition);
+    //求职管理====================界面显示=======数据
+    List<Params> adminBioCheck(@Param("limit")Integer limit,@Param("page") Integer page,@Param("condition") HashMap<String, Object> condition,@Param("id") Integer adminId);
+
+    //获取本日新增简历总数
+    Integer getThisDay();
+    //获取本周新增简历总数
+    Integer getThisWeek();
+    //获取本月新增简历总数
+    Integer getThisMonth();
+
+    //获取招聘进度信息
+    Jobcontain recruitSchedule(@Param("id") Integer jobstation);
+
+    //公司简介 修改
+    Integer companyUpadate(@Param("company") Company company);
+
+    //获取公司信息学
+    Company getCompanyById(@Param("id") Integer id);
 }

@@ -3,10 +3,10 @@ package com.person.bean;
 //招聘关联表
 public class Jobcontain {
     private Integer id;
-    private Integer userid;
+    private Integer userid;//学生
     private Integer jobprocessid;
-    private Integer stateid;
-    private String one;
+    private Integer stateid;//招聘信息
+    private String one;//
     private String two;
     private String three;
     private String four;

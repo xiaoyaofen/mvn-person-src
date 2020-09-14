@@ -14,17 +14,21 @@ public class User{
     private String tel;
     private String address;
     private String state;
-    private String money;
-    private Date date;
-    private String jobstate;
-
+    private String money;//充值金额
+    private Date date;//注册时间
+    private String jobstate;//就业状况
+    private Date resgisdata;///简历注册时间
     private Integer resume; //简历模板
-    private Date brith;//出生年月
+    private Date brithday;//出生年月
     private Integer education;//最高学历
     private Integer exprience;//工作经验
     private String major;//专业
     private String school;//学校
     private String outlook;//社会面貌
+    private String recommend;//推荐者
+    private String title;//职位
+    private Integer jobstation;//关系表id
+    private Integer pm;//序号
 
     public User() {
     }
@@ -42,6 +46,30 @@ public class User{
         this.money = money;
         this.date = date;
         this.jobstate = jobstate;
+    }
+
+    public Integer getPm() {
+        return pm;
+    }
+
+    public void setPm(Integer pm) {
+        this.pm = pm;
+    }
+
+    public Integer getJobstation() {
+        return jobstation;
+    }
+
+    public void setJobstation(Integer jobstation) {
+        this.jobstation = jobstation;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Integer getId() {
@@ -148,12 +176,12 @@ public class User{
         this.resume = resume;
     }
 
-    public Date getBrith() {
-        return brith;
+    public Date getBrithday() {
+        return brithday;
     }
 
-    public void setBrith(Date brith) {
-        this.brith = brith;
+    public void setBrithday(Date brithday) {
+        this.brithday = brithday;
     }
 
     public Integer getEducation() {
@@ -194,6 +222,22 @@ public class User{
 
     public void setOutlook(String outlook) {
         this.outlook = outlook;
+    }
+
+    public String getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(String recommend) {
+        this.recommend = recommend;
+    }
+
+    public Date getResgisdata() {
+        return resgisdata;
+    }
+
+    public void setResgisdata(Date regisdata) {
+        this.resgisdata = regisdata;
     }
 }
 
