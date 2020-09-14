@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>个人中心</title>
+    <link rel="stylesheet" th:href="@{/X-admin/lib/layui/css/layui.css}">
+</head>
+<body >
+<div>
+
+    <img th:src="@{/X-admin/images/biaoti.png}" style="margin-right: 600px;">
+    <span style="margin-right: 20px;color: red;font-size: 20px" >请先登录</span>
+    <a  style="margin-right: 20px;font-size: 20px" th:href="@{/hello/userLogin}">用户登录</a>
+    <a  style="margin-right: 20px;font-size: 20px"  th:href="@{/hello/userLogin}">企业登录</a>
+</div>
+<div class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <span>人才生态圈</span>
+
+        <ul class="layui-nav" style="text-align: center">
+            <li class="layui-nav-item"  ><a href="/hello/person">首页</a></li>
+            <li class="layui-nav-item" ><a href="">人才生态圈</a></li>
+            <li class="layui-nav-item" ><a href="">找工作</a></li>
+            <li class="layui-nav-item" ><a href="">技术成长</a></li>
+            <li class="layui-nav-item" ><a href="/hello/menu">个人中心</a></li>
+        </ul>
+        <div class="layui-carousel" id="test10">
+            <div carousel-item=""  >
+                <div><img th:src="@{/X-admin/images/beijing.png}"></div>
+                <div><img th:src="@{/X-admin/images/beijing.png}"></div>
+                <div><img th:src="@{/X-admin/images/beijing.png}"></div>
+                <div><img th:src="@{/X-admin/images/beijing.png}"></div>
+
+            </div>
+        </div>
+    <div class="layui-side layui-bg-black" id="admin-side">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" id="menus" lay-filter="test"></ul>
+        </div>
+    </div>
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div id="tabzu" class="layui-tab layui-tab-card layui-tab-brief" lay-filter="tabDemo" lay-allowclose="true">
+            <ul class="layui-tab-title"></ul>
+            <div class="layui-tab-content" style="width: 100%;height: 100%"></div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+<script type="text/javascript" th:src="@{/X-admin/lib/layui/layui.js}"></script>
+
+<script>
+    layui.use(['element','layer'], function () {
+        var layer=layui.layer;
+        //动态菜单
+        layui.jquery.ajax({
+            url: "/menu/getMenu",
+            method: 'POST',
+            success: function (res) {
+                var data = JSON.parse(res);
+                var html = "";
+                for (var i = 0; i < data.length; i++) {
+                    var strli ="<li class='layui-nav-item lay-unselect' ><a href=\"javascript:;\" onclick=\"addTab('" + data[i].menuname  + "','" + data[i].url + "')\">" + data[i].menuname  + "</a>";
+                    html = html + strli;
+                }
+                layui.jquery("#menus").html(html);
+                layui.element.init(); //一定初始化一次
+            }
+        })
+
+
+    });
+
+    //添加选项卡
+    function addTab(name, url) {
+        if (layui.jquery(".layui-tab-title li[lay-id='" + name + "']").length > 0) {
+            //选项卡已经存在
+            layui.element.tabChange('tabDemo', name);
+            layer.msg('切换-' + name)
+        } else {
+            //动态控制iframe高度
+            var tabheight = layui.jquery(window).height() +300;
+            contentTxt = '<iframe src="' + url + '" scrolling="no" width="100%" height="' + (tabheight) + 'PX"></iframe>';
+            //新增一个Tab项
+            layui.element.tabAdd('tabDemo', {
+                title: name,
+                content: contentTxt,
+                id: name
+            })
+            //切换刷新
+            layui.element.tabChange('tabDemo', name);
+            layer.msg('新增-' + name)
+        }
+    }
+</script>
+</html>

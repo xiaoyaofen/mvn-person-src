@@ -18,8 +18,13 @@ public class User{
     private Date date;//注册时间
     private String jobstate;//就业状况
     private Date resgisdata;///简历注册时间
+    private Date birthday;//出生年份
+    private String specialty;//学历
+    private Integer schoolId; //学校id
+    private String schoolName;// 学校名
+
     private Integer resume; //简历模板
-    private Date brithday;//出生年月
+    private Date brith;//出生年月
     private Integer education;//最高学历
     private Integer exprience;//工作经验
     private String major;//专业
@@ -29,6 +34,7 @@ public class User{
     private String title;//职位
     private Integer jobstation;//关系表id
     private Integer pm;//序号
+    private Integer num;  //序号
 
     public User() {
     }
@@ -46,6 +52,17 @@ public class User{
         this.money = money;
         this.date = date;
         this.jobstate = jobstate;
+        this.birthday = birthday;
+        this.specialty = specialty;
+        this.schoolId = schoolId;
+        this.schoolName = schoolName;
+        this.resume = resume;
+        this.brith = brith;
+        this.education = education;
+        this.exprience = exprience;
+        this.major = major;
+        this.school = school;
+        this.outlook = outlook;
     }
 
     public Integer getPm() {
@@ -176,12 +193,12 @@ public class User{
         this.resume = resume;
     }
 
-    public Date getBrithday() {
-        return brithday;
+    public Date getBrith() {
+        return brith;
     }
 
-    public void setBrithday(Date brithday) {
-        this.brithday = brithday;
+    public void setBrith(Date brith) {
+        this.brith = brith;
     }
 
     public Integer getEducation() {
@@ -222,6 +239,46 @@ public class User{
 
     public void setOutlook(String outlook) {
         this.outlook = outlook;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public Integer getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Integer schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
     }
 
     public String getRecommend() {

@@ -7,14 +7,54 @@
     <select id="getUser" resultType="com.person.bean.User">
          select * from t_user where account=#{account} and pwd=#{pwd} limit 1
     </select>
-    <insert id="addUser">
-         insert into t_user (account,pwd,name,sex,age,tel,address) values (#{account},#{name},#{pwd},#{sex},#{age},#{tel},#{address});
+    <insert id="addUser"  >
+         insert into t_user (account,pwd,name,sex,age,tel,address) values (#{account},#{pwd},#{name},#{sex},#{age},#{tel},#{address});
     </insert>
-    <select id="checkAccount" resultType="com.person.bean.User" >
+    <select id="checkAccount" resultType="java.lang.String" >
           select account from t_user where account=#{account};
     </select>
-    <select id="checkSex" resultType="java.lang.Integer">
-         SELECT VALUE from t_param where name=#{name}
+    <select id="checkSex" resultType="java.lang.String">
+         SELECT VALUE from t_param where name=#{name};
+    </select>
+    <select id="getFeedback" resultType="com.person.bean.Feedback" parameterType="hashmap">
+        select * from t_feedback where userid=#{userid}
+        <if test="map.industry!=null and map.industry!=''">
+            and industry like concat ('%',#{map.industry},'%')
+        </if>
+        <if test="map.post!=null and map.post!=''">
+            and post like concat ('%',#{map.post},'%')
+        </if>
+        limit #{map.startL},#{map.endL};
+
+    </select>
+    <select id="findCount" resultType="java.lang.Integer">
+       select count(*) from t_feedback where userid=#{userid}
+        <if test="map.industry!=null and map.industry!=''">
+            and industry like concat ('%',#{map.industry},'%')
+        </if>
+        <if test="map.post!=null and map.post!=''">
+            and post like concat ('%',#{map.post},'%')
+        </if>
+    </select>
+    <select id="getCollect" resultType="com.person.bean.Collect" parameterType="hashmap">
+        select * from t_collect where userid=#{userid}
+        <if test="map.industry!=null and map.industry!=''">
+            and industry like concat ('%',#{map.industry},'%')
+        </if>
+        <if test="map.post!=null and map.post!=''">
+            and post like concat ('%',#{map.post},'%')
+        </if>
+        limit #{map.startL},#{map.endL};
+    </select>
+
+    <select id="findCount2" resultType="java.lang.Integer">
+        select count(*) from t_collect where userid=#{userid}
+        <if test="map.industry!=null and map.industry!=''">
+            and industry like concat ('%',#{map.industry},'%')
+        </if>
+        <if test="map.post!=null and map.post!=''">
+            and post like concat ('%',#{map.post},'%')
+        </if>
     </select>
 
 </mapper>

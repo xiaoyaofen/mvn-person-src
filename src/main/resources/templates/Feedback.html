@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>求职反馈</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/X-admin/js/xadmin.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+</head>
+<body>
+<div class="demoTable">
+    行业：
+    <div class="layui-inline">
+        <input class="layui-input" type="text" name="industry" id="industry">
+    </div>
+    岗位：
+    <div class="layui-inline">
+        <input class="layui-input" type="text" name="post" id="post">
+    </div>
+
+    <button class="layui-btn" data-type="reload">搜索</button>
+</div>
+
+</div>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+
+</div>
+
+<script type="text/jsp" id="barDemo">
+    <div class="layui-btn-container">
+        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-xs" lay-event="edit" id="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </div>
+</script>
+
+<script>
+    layui.use(['laydate', 'form', 'table'], function () {
+        var laydate = layui.laydate;
+        var form = layui.form;
+        var table = layui.table;
+        var layer = layui.layer;
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+
+
+        //第一个实例
+        table.render({
+            elem: '#test'
+            , height: 312
+            , url: '/user/getFeedback' //数据接口
+            , cols: [
+                [ //表头
+                {field: 'id', title: '序号', width:80, sort: true, fixed: 'left'}
+                ,{field: 'industry', title: '行业', align: 'center', width: 160}
+                , {field: 'post', title: '岗位', width: 160, align: 'center', sort: true}
+                , {field: 'firm', title: '企业', align: 'center', width: 160}
+                , {field: 'tel', title: '联系方式', align: 'center', width: 160}
+                , {field: 'state', title: '状态', align: 'center', width: 160}
+                // , {title: '操作', width: 192, align: 'center', toolbar: '#barDemo'}
+            ]
+            ]
+            , page: {
+                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'],     // 自定义分页布局
+                curr: 1,      // 设置默认起始页1
+                groups: 5,   //只显示10个连续页码,就是说显示10个可见页其他的省略
+                first: false, // 不显示首页
+                last: false   // 不显示尾页
+            },
+            id: 'testReload',
+            limit: 5,
+            limits: [5, 10, 15, 20, 25]
+        });
+
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            console.log(obj)
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+
+            if (layEvent === 'detail') { //查看
+                //do somehing
+            } else if (layEvent === 'del') { //删除
+                console.log(data)
+                layer.confirm('真的删除行么', function (index) {
+                    obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                    layer.close(index);
+                    $.ajax({
+                        url: '/demo0811/LoginServlet?methodName=del',
+                        data: data,
+                        dataType: 'text',
+                        type: 'post',
+                        success: function (data) {
+
+                            layer.msg("删除成功");
+                        }
+                    })
+                    return false;
+                })
+                //向服务端发送删除指令
+                // });
+            } else if (layEvent === 'edit') { //编辑
+                var account=data.username;
+                var juese=data.name;
+                console.log(data)
+                alert(juese)
+                layer.open({
+                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type:1,
+                    title:"查找用户角色",
+                    area: ['50%','50%'],
+                    content:$("#popSearchRoleTest1"),
+                    btn:['提交','重置'],
+                    success:function () {
+                        $("#account1").val(account);
+                        $("#juese1").text(juese)
+                    }
+                    ,btn1:function (index,layero) {
+                        var account1=$("#account1").val();
+                        var juese1=$("#juese1").val();
+                        var username=data.username
+                        var admin={"username":username,"account1":account1,"juese1":juese1}
+                        $.ajax({
+                            url: '/demo0811/LoginServlet?methodName=update',
+                            data: admin,
+                            dataType: 'text',
+                            type: 'post',
+                            success: function (data) {
+                                layer.msg("修改成功");
+                                location.href = '/demo0811/jsp/MangerList.jsp';
+                                // layer.close();
+                            }
+                        })
+                        return false;
+                    }
+                });
+
+
+            } else if (layEvent === 'LAYTABLE_TIPS') {
+                layer.alert('Hi，头部工具栏扩展的右侧图标。');
+            }
+        });
+        var $ = layui.$, active = {
+            reload: function () {
+                var industry = $('#industry').val();
+                var post = $('#post').val();
+                //执行重载
+                table.reload('testReload', {
+                    url:'/user/getFeedback',
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {"industry": industry, "post": post}
+
+                }, 'data');
+            }
+        };
+
+        $('.demoTable .layui-btn').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+
+        form.on('submit(register)', function (data) {
+            layer.alert(JSON.stringify(data.field), {
+                title: '最终的提交信息'
+            })
+            console.log(data.field);
+
+            return false;
+        })
+    });
+
+    /*用户-停用*/
+    function member_stop(obj, id) {
+        layer.confirm('确认要停用吗？', function (index) {
+
+            if ($(obj).attr('title') == '启用') {
+                //发异步把用户状态进行更改
+                $(obj).attr('title', '停用')
+                $(obj).find('i').html('&#xe62f;');
+
+                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
+                layer.msg('已停用!', {icon: 5, time: 1000});
+
+            } else {
+                $(obj).attr('title', '启用')
+                $(obj).find('i').html('&#xe601;');
+
+                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+                layer.msg('已启用!', {icon: 5, time: 1000});
+            }
+
+        });
+    }
+
+    /*用户-删除*/
+    function member_del(obj, id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            //发异步删除数据
+            $(obj).parents("tr").remove();
+            layer.msg('已删除!', {icon: 1, time: 1000});
+        });
+    }
+
+    function delAll(argument) {
+        var data = tableCheck.getData();
+        layer.confirm('确认要删除吗？' + data, function (index) {
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+    }
+
+    $("#add").on("click", function () {
+        layer.open({
+            //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+            type: 1,
+            title: "新增管理员",
+            area: ['50%', '50%'],
+            content: $("#popSearchRoleTest")
+        });
+    });
+    function selectRole(){
+        layer.open({
+            //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+            type:1,
+            title:"查找用户角色",
+            area: ['50%','50%'],
+            content:$("#popSearchRoleTest1").html()
+        });
+    }
+</script>
+
+</body>
+</html>

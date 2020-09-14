@@ -49,4 +49,34 @@ public class HelloController {
 
         return "Register";
     }
+
+    @GetMapping(value = "/Job")
+    public String Job() {
+
+        return "Job";
+    }
+
+    @GetMapping(value = "/menu")
+    public String menu() {
+        return "PersonMenu";
+    }
+
+    @GetMapping(value = "/feedback")
+    public String feedback() {
+        return "Feedback";
+    }
+
+    @GetMapping(value = "/resume")
+    public String resume() {
+        return "resume";
+    }
+
+
+    @GetMapping(value = "/collect")
+    public String Collect() {
+        return "Collect";
+    }
+
+
+
 }

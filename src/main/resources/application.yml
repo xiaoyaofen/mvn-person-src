@@ -7,6 +7,10 @@ spring:
     username: root
     password: abc123
     driver-class-name: com.mysql.jdbc.Driver
+  servlet:
+    multipart:
+      maxFileSize: -1
+      maxRequestSize: -1
 #  application:
 #    name: server-provider
 
