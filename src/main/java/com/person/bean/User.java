@@ -17,6 +17,10 @@ public class User{
     private String money;
     private Date date;
     private String jobstate;
+    private Date birthday;//出生年份
+    private String specialty;//学历
+    private Integer schoolId; //学校id
+    private String schoolName;// 学校名
 
     private Integer resume; //简历模板
     private Date brith;//出生年月
@@ -31,7 +35,7 @@ public class User{
     public User() {
     }
 
-    public User(Integer id, String account, String pwd, String name, Integer sex, Integer age, String tel, String address, String state, String money, Date date, String jobstate) {
+    public User(Integer id, String account, String pwd, String name, Integer sex, Integer age, String tel, String address, String state, String money, Date date, String jobstate, Date birthday, String specialty, Integer schoolId, String schoolName, Integer resume, Date brith, Integer education, Integer exprience, String major, String school, String outlook) {
         this.id = id;
         this.account = account;
         this.pwd = pwd;
@@ -44,6 +48,17 @@ public class User{
         this.money = money;
         this.date = date;
         this.jobstate = jobstate;
+        this.birthday = birthday;
+        this.specialty = specialty;
+        this.schoolId = schoolId;
+        this.schoolName = schoolName;
+        this.resume = resume;
+        this.brith = brith;
+        this.education = education;
+        this.exprience = exprience;
+        this.major = major;
+        this.school = school;
+        this.outlook = outlook;
     }
 
     public Integer getId() {
@@ -204,6 +219,38 @@ public class User{
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
+    }
+
+    public Integer getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Integer schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
     }
 }
 

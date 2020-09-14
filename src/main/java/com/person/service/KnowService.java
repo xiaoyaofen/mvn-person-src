@@ -39,4 +39,18 @@ public interface KnowService {
     public String delCharpter(String id);
 
     public Charpter seeCharpter(String id);
+
+    public void setCharpter(String id,String introduce,String classTime,String url);
+
+    public String findUrl(String id);
+
+    public LayuiData findProduct(Integer page,Integer limit,String scope,String state);
+
+    public Integer findProductCount(String scope,String state);
+
+    public String changeState(String id,String state);
+
+    public List<Params> teacherSel();
+
+    public Integer setProduct(String id,String product,String scope,String teacher,String detial,String start,String over);
 }

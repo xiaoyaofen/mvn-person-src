@@ -4,7 +4,6 @@ import com.person.bean.*;
 import com.person.bean.Menu;
 import com.person.bean.Params;
 import com.person.bean.Role;
-import com.person.bean.UserInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -16,7 +15,7 @@ import java.util.List;
 @Component
 public interface AdminMapper {
 
-    List<UserInfo> getUserByAdmin(@Param("condition") HashMap<String, Object> condition, @Param("limit") Integer limit, @Param("page") Integer page);
+    List<User> getUserByAdmin(@Param("condition") HashMap<String, Object> condition, @Param("limit") Integer limit, @Param("page") Integer page);
 
     Integer getUserByAdminOfNum(@Param("condition") HashMap<String, Object> condition);
 

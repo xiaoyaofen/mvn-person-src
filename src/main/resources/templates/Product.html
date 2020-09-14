@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+<!--    <link rel="stylesheet" href="../X-admin/layui/css/layui.css"  media="all">-->
+    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/X-admin/js/xadmin.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="x-nav">
+          <span class="layui-breadcrumb">
+            <a href="">首页</a>
+            <a href="">演示</a>
+            <a>
+              <cite>导航元素</cite></a>
+          </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       onclick="location.reload()" title="刷新">
+        <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+<!--                    <div class="demoTable">-->
+                    <form class="layui-form layui-col-space5" style="width: 600px">
+                        <div class="layui-inline layui-show-xs-block">
+                            领域：
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <select name="scope" id="scope" lay-verify="select">
+
+                            </select>
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            状态：
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <select name="state" id="state" lay-verify="select1">
+
+                            </select>
+                        </div>
+                        <button class="layui-btn" lay-submit="" lay-filter="sreach" id="searchBtn"><i class="layui-icon">&#xe615;</i></button>
+                    </form>
+
+                </div>
+                <div class="layui-card-header">
+                    <button class="layui-btn" lay-submit="" lay-filter="sreach" id="addBtn">新增知识库</button>
+                </div>
+                <div class="layui-card-body layui-table-body layui-table-main">
+                     <table class="layui-hide" id="test" lay-filter="test"></table>
+                </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+</body>
+
+<script>
+    $("#addBtn").on("click", function () {
+        layer.open({
+            //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+            type: 1,
+            title: "新增知识库",
+            area: ['50%', '50%'],
+            content: $("#addZhishi")
+        });
+    });
+</script>
+
+
+<script th:inline="javascript">
+    layui.use(['form','table'], function () {
+        var table = layui.table;
+        var form = layui.form;
+
+        $("#searchBtn").on('click',function () {
+             var scope=$("#scope").val();
+            var state=$("#state").val();
+            table.reload('testReload',{
+                url:'/person/getProduct',
+                where:{
+                    state:state,
+                    scope:scope
+                },
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            })
+            return false;
+        })
+
+        $.ajax({
+            url: '/person/addselect',
+            // data: data,
+            dataType: 'json',
+            type: 'get',
+            success: function (data) {
+                $("#scope").append("<opyion value=''></opyion>")
+                $(data).each(function (i,n) {
+                   $("#scope").append("<option value='"+n.name+"'>"+n.name+"</option>")
+                })
+                $("#state").append("<opyion value=''></opyion>")
+                $("#state").append("<option value='启用'>启用</option>")
+                $("#state").append("<option value='禁用'>禁用</option>")
+                form.render('select')
+            }
+        })
+
+        //第一个实例
+        table.render({
+            elem: '#test'
+            , height: 450
+            // ,url: '/demo/table/user/' //数据接口
+            , url: '/person/getProduct' //数据接口
+            , cols: [
+                [ //表头
+                    {field: 'pm', title: '序列', width: 160, align: 'center', sort: true}
+                ,{field: 'id', title: '序号', align: 'center', width: 160,hide:true}
+                    ,{field: 'product', title: '产品名', align: 'center', width: 160}
+                    ,{field: 'scope', title: '领域', align: 'center', width: 160,hide:true}
+                , {field: 'start', title: '发布时间', width: 160, align: 'center', sort: true}
+                , {field: 'over', title: '结束时间', align: 'center', width: 160}
+                , {field: 'publisher', title: '发布者', align: 'center', width: 160}
+                    ,{field: 'teacher', title: '讲师',align: 'center', width: 160}
+                    ,{field: 'state', title: '状态',align: 'center', width: 160,hide:true}
+                    ,{field: 'picture', title: '图片',align: 'center', width: 160,hide:true}
+                    ,{field: 'detial', title: '详情',align: 'center', width: 160,hide:true}
+                    , {title: '操作', width: 210, align: 'center', toolbar: '#barDemo'}
+            ]
+            ]
+            , page: {
+                layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'],     // 自定义分页布局
+                curr: 1,      // 设置默认起始页1
+                groups: 5,   //只显示10个连续页码,就是说显示10个可见页其他的省略
+                first: false, // 不显示首页
+                last: false   // 不显示尾页
+            },
+            // limit: 3,
+            limits: [5, 10, 15, 20, 25]
+            , id: "testReload"
+        });
+
+
+        table.on('tool(test)', function (obj) { //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+
+            if (layEvent === 'detail') { //查看
+                    $("#product").val(data.product)
+                    $("#start").val(data.start)
+                    $("#over").val(data.over)
+                    $("#lingyu").val(data.scope)
+                    $("#teacher").val(data.teacher)
+                    $("#xijie").val(data.detial)
+                    $("#picture").attr("src",data.picture)
+                    layer.open({
+                        //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                        type: 1,
+                        title: "查看产品详情",
+                        area: ['500px', '600px'],
+                        content: $("#watchProduct"),//引用的弹出层的页面层的方式加载修改界面表单
+                    });
+            } else if (layEvent === 'del') { //删除
+                $("#product1").val(data.product)
+                $.ajax({
+                    url: '/person/addselect',
+                    // data: data,
+                    dataType: 'json',
+                    type: 'get',
+                    success: function (data) {
+                        $("#lingyu1").append("<opyion value=''></opyion>")
+                        $(data).each(function (i,n) {
+                            $("#lingyu1").append("<option value='"+n.name+"'>"+n.name+"</option>")
+                        })
+                        form.render('select')
+                    }
+                })
+                // $("#teacher1").val(data.teacher)
+                $.ajax({
+                    url: '/person/teacherSel',
+                    // data: data,
+                    dataType: 'json',
+                    type: 'get',
+                    success: function (data) {
+                        $("#teacher1").append("<opyion value=''></opyion>")
+                        $(data).each(function (i,n) {
+                            $("#teacher1").append("<option value='"+n.name+"'>"+n.name+"</option>")
+                        })
+                        form.render('select')
+                    }
+                })
+                $("#xijie1").val(data.detial)
+                $("#picture1").attr("src",data.picture)
+                $("#hideid").html(data.id)
+                layer.open({
+                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type: 1,
+                    title: "修改产品信息",
+                    area: ['500px', '600px'],
+                    content: $("#fixProduct"),//引用的弹出层的页面层的方式加载修改界面表单
+                    success: function(layero, index){
+                        $("#lingyu1").val(data.scope)
+                        $("#teacher1").val(data.teacher)
+                        layui.form.render();
+                    }
+                });
+
+            } else if (layEvent === 'edit') { //编辑
+                $("#hideid").html(data.id);
+                $("#lingyu1").val(data.scope);
+                $("#newname1").val(data.menuname);
+                $.ajax({
+                    url: '/person/addselect',
+                    // data: data,
+                    dataType: 'json',
+                    type: 'get',
+                    success: function (data) {
+                        $("#scope1").append("<opyion value=''></opyion>")
+                        $(data).each(function (i,n) {
+                            $("#scope1").append("<option value='"+n.name+"'>"+n.name+"</option>")
+                        })
+                        form.render('select')
+                    }
+                })
+                layer.open({
+                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type: 1,
+                    title: "子级知识点添加",
+                    area: ['420px', '330px'],
+                    content: $("#fixKnow"),//引用的弹出层的页面层的方式加载修改界面表单
+                    success: function (layero, index) {
+                        layui.form.render();
+                    }
+                });
+
+
+            } else if (layEvent === 'use') {
+                var zt;
+                if (data.state =='启用'){
+                    zt='禁用'
+                }else {
+                    zt='启用'
+                }
+                $.ajax({
+                    url: '/person/changeState',
+                    data: {"id":data.id,"state":zt},
+                    dataType: 'text',
+                    type: 'get',
+                    success: function (data) {
+                        layer.msg(data);
+                        if (data == '状态修改成功') {
+                            location.href="http://localhost:8080/person/Product";
+                        }
+                    }
+                })
+            }
+        });
+    });
+    layui.use(['form', 'layer', 'jquery'], function () {
+
+        // 操作对象
+        var form = layui.form;
+        var $ = layui.jquery;
+
+        form.on('submit(demo13)', function (data) {
+            var newname = $("#newname2").val();
+            var scope=$("#scope2").val();
+            var detial=$("#detial").val();
+                $.ajax({
+                    url: '/person/addZhishi',
+                    data:  {"newname": newname, "scope": scope, "detial": detial},
+                    dataType: 'text',
+                    type: 'get',
+                    success: function (data) {
+                        layer.msg(data);
+                        if (data == '新增知识库成功') {
+                            location.href="http://localhost:8080/person/getZhishi";
+                        }
+                    }
+                })
+            return false;
+
+        })
+
+        form.on('submit(demo12)', function (data) {
+            var hideid = $("#hideid").html();
+            var lingyu=$("#scope1").val();
+            var newname=$("#newname1").val();
+            var flag=confirm("确定修改课程吗？");
+            if (flag){
+                $.ajax({
+                    url: '/person/fixKnow',
+                    data:  {"newname": newname, "lingyu": lingyu, "hideid": hideid},
+                    dataType: 'text',
+                    type: 'get',
+                    success: function (data) {
+                        layer.msg(data);
+                        if (data == '修改成功') {
+                            location.href="http://localhost:8080/person/getZhishi";
+                        }
+                    }
+                })
+            }
+            return false;
+
+        })
+
+
+        form.on('submit(demo11)', function (data) {
+            var hidename = $("#hidename").html();
+            var lingyu=$("#lingyu").val();
+            var newname=$("#newname").val();
+            var flag=confirm("确定增加子级课程吗？");
+            if (flag){
+                $.ajax({
+                    url: '/person/addKnow',
+                    data:  {"newname": newname, "lingyu": lingyu, "hidename": hidename},
+                    dataType: 'text',
+                    type: 'get',
+                    success: function (data) {
+                        layer.msg(data);
+                        if (data == '新增成功') {
+                            location.href="http://localhost:8080/person/getZhishi";
+                        }
+                    }
+                })
+            }
+                return false;
+
+        })
+
+    });
+
+</script>
+
+<script type="text/jsp" id="barDemo">
+    <div class="layui-btn-container">
+        {{#  if(d.state =='启用'){  }}
+        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
+        {{# }else{  }}
+        <button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">查看</button>
+        {{# }  }}
+
+        {{#  if(d.state =='启用'){  }}
+        <a class="layui-btn layui-btn-xs" lay-event="del">修改</a>
+        {{# }else{  }}
+        <button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">修改</button>
+        {{# }  }}
+
+        {{#  if(d.state =='启用'){  }}
+        <a class="layui-btn layui-btn-xs" lay-event="edit">配置</a>
+        {{# }else{  }}
+        <button type="button" class="layui-btn layui-btn-xs layui-btn-disabled">配置</button>
+        {{# }  }}
+
+        {{#  if(d.state =='启用'){  }}
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="use">停用</a>
+        {{# }else{  }}
+        <a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="use">恢复</a>
+        {{# }  }}
+    </div>
+</script>
+<!--新增章节界面-->
+<div class="login-main" style="margin-top:50px;display:none;" id="watchProduct">
+    <div class="layui-inline">
+        <label class="layui-form-label">产品名称：</label>
+        <input class="layui-input"  disabled="disabled" id="product" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">发布日期：</label>
+        <input class="layui-input"  disabled="disabled" id="start" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">截止日期：</label>
+        <input class="layui-input"  disabled="disabled" id="over" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">所属领域：</label>
+        <input class="layui-input"  disabled="disabled" id="lingyu" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">讲师：</label>
+        <input class="layui-input"  disabled="disabled" id="teacher" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">产品图片：</label>
+        <img id="picture" style="width: 250px;height: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">详情：</label>
+        <input class="layui-input"  disabled="disabled" id="xijie" style="width: 200px">
+    </div>
+    <br><br>
+</div>
+
+<!--新增章节界面-->
+<div class="login-main" style="margin-top:50px;display:none;" id="fixProduct">
+    <div class="layui-inline">
+        <label class="layui-form-label">产品名称：</label>
+        <input class="layui-input"  required lay-verify="required" id="product1" style="width: 200px">
+        <span id="hideid" hidden></span>
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">开始时间：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="start_time" class="layui-input" id="start_time" placeholder="开始时间(修改时间)">
+        </div>
+    </div>
+    <br><br>
+    <label class="layui-form-label">结束时间：</label>
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <input type="text" name="end_time" class="layui-input" id="end_time"  placeholder="结束时间(修改时间)">
+        </div>
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <div class="layui-form layui-col-space5">
+            <label class="layui-form-label">所属领域：</label>
+            <div class="layui-inline layui-show-xs-block">
+        <select name="lingyu1" id="lingyu1" lay-verify="select">
+
+        </select>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <div class="layui-form layui-col-space5">
+            <label class="layui-form-label">教师：</label>
+            <div class="layui-inline layui-show-xs-block">
+                <select name="teacher" id="teacher1" lay-verify="select">
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">详情：</label>
+        <input class="layui-input"  required lay-verify="required" id="xijie1" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">产品图片：</label>
+        <img id="picture1" style="width: 250px;height: 200px">
+    </div>
+    <br><br>
+    <div class="layui-upload" style="margin-left: 20px">
+        <button type="button" class="layui-btn layui-btn-normal" id="test8">重新选择图片</button>
+        <button type="button" class="layui-btn" id="titsubmit">提交</button>
+        <button type="button" class="layui-btn" id="test9" style="height: 0">开始上传</button>
+        <video id="videoattr" width="250" height="100" ></video>
+    </div>
+</div>
+
+<script type="text/javascript">
+    layui.use([ 'laydate'], function(){
+        var $ = layui.$;
+        var laydate = layui.laydate;
+        var nowTime = new Date().valueOf();
+        var max = null;
+
+        var start = laydate.render({
+            elem: '#start_time',
+            type: 'datetime',
+            format:'yyyy-MM-dd',
+            max: nowTime,
+            btns: ['clear', 'confirm'],
+            done: function(value, date){
+                endMax = end.config.max;
+                end.config.min = date; //最大时间为结束时间的开始值
+                end.config.min.month = date.month -1;
+            }
+        });
+
+        var end = laydate.render({
+            elem: '#end_time',
+            type: 'datetime',
+            max:  4073558400000,
+            format:'yyyy-MM-dd',
+            min:nowTime,
+            done: function(value, date){
+                if($.trim(value) == ''){
+                    var curDate = new Date();
+                    date = {'date': curDate.getDate(), 'month': curDate.getMonth()+1, 'year': curDate.getFullYear()};
+                }
+                start.config.max = date;//最小时间为开始时间的最大值
+                start.config.max.month = date.month -1;
+            }
+        })
+    })
+
+    $("#titsubmit").on("click", function () {
+        var product = $("#product1").val()
+        var start=$("#start_time").val()
+        var over=$("#end_time").val()
+        var lingyu=$("#lingyu1").val()
+        var teacher=$("#teacher1").val()
+        var detial=$("#xijie1").val()
+        if (product == null || product == ""||start == null || start == "" || over == null || over == "" ||
+            lingyu ==null || lingyu == "" || teacher == null || teacher == "" || detial == null || detial == "") {
+            layer.msg('必填项不可为空');
+        } else {
+            $("#test9").click();
+        }
+    })
+    layui.use('upload', function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+        //选完文件后不自动上传
+        upload.render({
+            accept: "file",
+            acceptMime:'image/*',
+            elem: '#test8'
+            , url: '/person/fixProduct' //改成您自己的上传接口
+            , auto: false
+            , data: {
+                id: function () {
+                    return $("#hideid").html();
+                },
+                product: function () {
+                    return $("#product1").val();
+                },
+                start: function () {
+                    return $("#start_time").val();
+                },
+                over: function () {
+                    return $("#end_time").val();
+                },
+                lingyu: function () {
+                    return $("#lingyu1").val();
+                },
+                teacher: function () {
+                    return $("#teacher1").val();
+                },
+                detial: function () {
+                    return $("#xijie1").val();
+                },
+            }
+            //,multiple: true
+            , bindAction: '#test9'
+            , before: function () {
+                layer.msg('上传中...', {
+                    icon: 16,
+                    shade: 0.01,
+                    time: 0
+                })
+                layer.tips('接口地址：' + this.url, this.item, {tips: 1});
+            }
+            , done: function (res) {
+                layer.msg('上传成功');
+                location.href="http://localhost:8080/person/Product";
+            }
+            , error: function () {
+                layer.msg('上传失败');
+            }
+        });
+    });
+</script>
+
+<!--新增知识库界面-->
+<div class="layui-row" id="addZhishi" style="display:none;">
+    <div class="layui-col-md10">
+        <form class="layui-form layui-from-pane" action="" style="margin-top:20px">
+            <div class="layui-form-item">
+                <label class="layui-form-label">领域：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="scope2" autocomplete="off" placeholder="请输入领域" class="layui-input" id="scope2" required lay-verify="required">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">名称：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="newname2" required lay-verify="required" autocomplete="off"
+                           class="layui-input" id="newname2" placeholder="请输入名称">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">描述：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="detial" required lay-verify="required" autocomplete="off"
+                           class="layui-input" id="detial" placeholder="请输入简短的描述">
+                </div>
+            </div>
+            <div class="layui-form-item" style="margin-top:40px">
+                <div class="layui-input-block">
+                    <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo13" id="surefix2">确认新增
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</html>
