@@ -7,7 +7,7 @@ import java.util.List;
  * layui表格的实体类
  */
 
-public class LayuiData<U extends User> {
+public class LayuiData<T extends Object> {
     //返回码 0成功
     private int code;
     //返回提示信息 可以省略

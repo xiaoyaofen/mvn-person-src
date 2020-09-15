@@ -59,7 +59,7 @@
 
                 </div>
                 <div class="layui-card-header">
-                    <button class="layui-btn" lay-submit="" lay-filter="sreach" id="addBtn">新增知识库</button>
+                    <button class="layui-btn" lay-submit="" lay-filter="sreach" id="addBtn">新增产品包</button>
                 </div>
                 <div class="layui-card-body layui-table-body layui-table-main">
                      <table class="layui-hide" id="test" lay-filter="test"></table>
@@ -73,15 +73,7 @@
 </body>
 
 <script>
-    $("#addBtn").on("click", function () {
-        layer.open({
-            //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-            type: 1,
-            title: "新增知识库",
-            area: ['50%', '50%'],
-            content: $("#addZhishi")
-        });
-    });
+
 </script>
 
 
@@ -89,6 +81,32 @@
     layui.use(['form','table'], function () {
         var table = layui.table;
         var form = layui.form;
+
+        $("#addBtn").on("click", function () {
+            $.ajax({
+                url: '/person/addselect',
+                // data: data,
+                dataType: 'json',
+                type: 'get',
+                success: function (data) {
+                    $("#lingyu2").append("<opyion value=''></opyion>")
+                    $(data).each(function (i,n) {
+                        $("#lingyu2").append("<option value='"+n.name+"'>"+n.name+"</option>")
+                    })
+                    form.render('select')
+                }
+            })
+            layer.open({
+                //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                type: 1,
+                title: "新增知识库",
+                area: ['50%', '80%'],
+                content: $("#addProduct"),
+                success: function(layero, index){
+                    layui.form.render();
+                }
+            });
+        });
 
         $("#searchBtn").on('click',function () {
              var scope=$("#scope").val();
@@ -193,7 +211,6 @@
                         form.render('select')
                     }
                 })
-                // $("#teacher1").val(data.teacher)
                 $.ajax({
                     url: '/person/teacherSel',
                     // data: data,
@@ -208,7 +225,7 @@
                     }
                 })
                 $("#xijie1").val(data.detial)
-                $("#picture1").attr("src",data.picture)
+                $("#picture1").attr('src',data.picture)
                 $("#hideid").html(data.id)
                 layer.open({
                     //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
@@ -224,31 +241,13 @@
                 });
 
             } else if (layEvent === 'edit') { //编辑
-                $("#hideid").html(data.id);
-                $("#lingyu1").val(data.scope);
-                $("#newname1").val(data.menuname);
-                $.ajax({
-                    url: '/person/addselect',
-                    // data: data,
-                    dataType: 'json',
-                    type: 'get',
-                    success: function (data) {
-                        $("#scope1").append("<opyion value=''></opyion>")
-                        $(data).each(function (i,n) {
-                            $("#scope1").append("<option value='"+n.name+"'>"+n.name+"</option>")
-                        })
-                        form.render('select')
-                    }
-                })
+                var id=data.id;
                 layer.open({
                     //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-                    type: 1,
-                    title: "子级知识点添加",
-                    area: ['420px', '330px'],
-                    content: $("#fixKnow"),//引用的弹出层的页面层的方式加载修改界面表单
-                    success: function (layero, index) {
-                        layui.form.render();
-                    }
+                    type: 2,
+                    title: "章节配置",
+                    area: ['800px', '500px'],
+                    content: '/person/ProductMenu/'+id,//引用的弹出层的页面层的方式加载修改界面表单
                 });
 
 
@@ -417,7 +416,7 @@
     <br><br>
 </div>
 
-<!--新增章节界面-->
+<!--修改章节界面-->
 <div class="login-main" style="margin-top:50px;display:none;" id="fixProduct">
     <div class="layui-inline">
         <label class="layui-form-label">产品名称：</label>
@@ -479,6 +478,54 @@
     </div>
 </div>
 
+
+<div class="login-main" style="margin-top:50px;display:none;" id="addProduct">
+    <div class="layui-inline">
+        <label class="layui-form-label">产品名称：</label>
+        <input class="layui-input"  required lay-verify="required" id="product2" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">开始时间：</label>
+        <div class="layui-input-inline">
+            <input type="text" name="start_time" class="layui-input" id="start_time2" placeholder="开始时间(修改时间)">
+        </div>
+    </div>
+    <br><br>
+    <label class="layui-form-label">结束时间：</label>
+    <div class="layui-inline">
+        <div class="layui-input-inline">
+            <input type="text" name="end_time" class="layui-input" id="end_time2"  placeholder="结束时间(修改时间)">
+        </div>
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <div class="layui-form layui-col-space5">
+            <label class="layui-form-label">所属领域：</label>
+            <div class="layui-inline layui-show-xs-block">
+                <select name="lingyu2" id="lingyu2" lay-verify="select">
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">教师：</label>
+        <input class="layui-input"  required lay-verify="required" id="teacher2" style="width: 200px">
+    </div>
+    <br><br>
+    <div class="layui-inline">
+        <label class="layui-form-label">详情：</label>
+        <input class="layui-input"  required lay-verify="required" id="xijie2" style="width: 200px">
+    </div>
+    <div class="layui-upload" style="margin-left: 20px">
+        <button type="button" class="layui-btn layui-btn-normal" id="test10">请选择图片</button>
+        <button type="button" class="layui-btn" id="titsubmit2">提交</button>
+        <button type="button" class="layui-btn" id="test11" style="height: 0">开始上传</button>
+        <video id="videoattr2" width="250" height="100" ></video>
+    </div>
+</div>
 <script type="text/javascript">
     layui.use([ 'laydate'], function(){
         var $ = layui.$;
@@ -583,40 +630,107 @@
             }
         });
     });
-</script>
 
-<!--新增知识库界面-->
-<div class="layui-row" id="addZhishi" style="display:none;">
-    <div class="layui-col-md10">
-        <form class="layui-form layui-from-pane" action="" style="margin-top:20px">
-            <div class="layui-form-item">
-                <label class="layui-form-label">领域：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="scope2" autocomplete="off" placeholder="请输入领域" class="layui-input" id="scope2" required lay-verify="required">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">名称：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="newname2" required lay-verify="required" autocomplete="off"
-                           class="layui-input" id="newname2" placeholder="请输入名称">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">描述：</label>
-                <div class="layui-input-block">
-                    <input type="text" name="detial" required lay-verify="required" autocomplete="off"
-                           class="layui-input" id="detial" placeholder="请输入简短的描述">
-                </div>
-            </div>
-            <div class="layui-form-item" style="margin-top:40px">
-                <div class="layui-input-block">
-                    <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo13" id="surefix2">确认新增
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+    layui.use([ 'laydate'], function(){
+        var $ = layui.$;
+        var laydate = layui.laydate;
+        var nowTime = new Date().valueOf();
+        var max = null;
+
+        var start = laydate.render({
+            elem: '#start_time2',
+            type: 'datetime',
+            format:'yyyy-MM-dd',
+            max: nowTime,
+            btns: ['clear', 'confirm'],
+            done: function(value, date){
+                endMax = end.config.max;
+                end.config.min = date; //最大时间为结束时间的开始值
+                end.config.min.month = date.month -1;
+            }
+        });
+
+        var end = laydate.render({
+            elem: '#end_time2',
+            type: 'datetime',
+            max:  4073558400000,
+            format:'yyyy-MM-dd',
+            min:nowTime,
+            done: function(value, date){
+                if($.trim(value) == ''){
+                    var curDate = new Date();
+                    date = {'date': curDate.getDate(), 'month': curDate.getMonth()+1, 'year': curDate.getFullYear()};
+                }
+                start.config.max = date;//最小时间为开始时间的最大值
+                start.config.max.month = date.month -1;
+            }
+        })
+    })
+
+    $("#titsubmit2").on("click", function () {
+        var product = $("#product2").val()
+        var start=$("#start_time2").val()
+        var over=$("#end_time2").val()
+        var lingyu=$("#lingyu2").val()
+        var teacher=$("#teacher2").val()
+        var detial=$("#xijie2").val()
+        if (product == null || product == ""||start == null || start == "" || over == null || over == "" ||
+            lingyu ==null || lingyu == "" || teacher == null || teacher == "" || detial == null || detial == "") {
+            layer.msg('必填项不可为空');
+        } else {
+            $("#test11").click();
+        }
+    })
+    layui.use('upload', function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
+
+        //选完文件后不自动上传
+        upload.render({
+            accept: "file",
+            acceptMime:'image/*',
+            elem: '#test10'
+            , url: '/person/addProduct' //改成您自己的上传接口
+            , auto: false
+            , data: {
+                product: function () {
+                    return $("#product2").val();
+                },
+                start: function () {
+                    return $("#start_time2").val();
+                },
+                over: function () {
+                    return $("#end_time2").val();
+                },
+                lingyu: function () {
+                    return $("#lingyu2").val();
+                },
+                teacher: function () {
+                    return $("#teacher2").val();
+                },
+                detial: function () {
+                    return $("#xijie2").val();
+                },
+            }
+            //,multiple: true
+            , bindAction: '#test11'
+            , before: function () {
+                layer.msg('上传中...', {
+                    icon: 16,
+                    shade: 0.01,
+                    time: 0
+                })
+                layer.tips('接口地址：' + this.url, this.item, {tips: 1});
+            }
+            , done: function (res) {
+                layer.msg('上传成功');
+                location.href="http://localhost:8080/person/Product";
+            }
+            , error: function () {
+                layer.msg('上传失败');
+            }
+        });
+    });
+</script>
 
 </html>

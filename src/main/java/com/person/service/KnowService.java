@@ -1,11 +1,9 @@
 package com.person.service;
 
-import com.person.bean.Charpter;
-import com.person.bean.LayuiData;
-import com.person.bean.Menu;
-import com.person.bean.Params;
+import com.person.bean.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface KnowService {
     public List<Menu> getKnowMsg(Integer page,Integer limit,String title,String scope);
@@ -28,7 +26,7 @@ public interface KnowService {
 
     public Integer addScopeParam(String scope,String maxValue);
 
-    public String findMaxValue();
+    public String findMaxValue(String scope);
 
     public Integer addKnowmenu(String menuname,String detial,String value);
 
@@ -52,5 +50,26 @@ public interface KnowService {
 
     public List<Params> teacherSel();
 
-    public Integer setProduct(String id,String product,String scope,String teacher,String detial,String start,String over);
+    public void setProduct(String id,String product,String scope,String teacher,String detial,String start,String picture,String over);
+
+    public String findTeacherParam(String teacher);
+
+    public Map<String, List<Menu>> findknowMenu();
+
+    public LayuiData getTwoCharpter(String id);
+
+    public Integer getTwoCharpterCount(String id);
+
+    public TreeNode findAllMenu(String id,String productID);
+
+    public List<Menu> findOneMenu(String productID);
+
+    public Integer delAllMenu(String productID);
+
+    public void addMenu(String productID,String charpterID);
+
+    public void addTeacher(String teacher,String value);
+
+    public void addProduct(String product,String scope,String teacher,String detial,String start,String picture,String over,String publisher);
+
 }
