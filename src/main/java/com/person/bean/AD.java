@@ -7,6 +7,7 @@ public class AD {
     private String name;
 
     public AD() {
+
     }
 
     public AD(Integer id, String url, String ip, String name) {

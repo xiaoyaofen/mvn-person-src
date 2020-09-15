@@ -29,7 +29,7 @@
         var layer = layui.layer;
         table.render({
             elem: '#test'  //绑定table id
-            , url: '/admin/roleList'  //数据请求路径
+            , url: '/system/roleList'  //数据请求路径
             , height: 400
             , title: "角色管理"
             , id: 'testReload'
@@ -53,7 +53,7 @@
                 layer.open({
                     type: 2,
                     title:'权限修改',
-                    content: "/admin/editRightShow/"+roleId,
+                    content: "/system/editRightShow/"+roleId,
                     area: ['20%', '80%'],
                     skin: "layui-layer-molv",
                     success: function (layero, index) {    //成功获得加载changefile.html时，预先加载，将值从父窗口传到 子窗口

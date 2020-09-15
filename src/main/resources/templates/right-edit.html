@@ -10,7 +10,7 @@
     <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
     <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
     <script type="text/javascript" th:src="@{/X-admin/js/jquery.min.js}"></script>
-    <script th:src="@{/X-admin/layui/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/X-admin/layui/layui.all.js}" charset="utf-8"></script>
     <script type="text/javascript" th:src="@{/X-admin/js/xadmin.js}"></script>
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -40,7 +40,7 @@
 
         $.ajax({
             async: false,
-            url: '/admin/findRight/' + roleId, //数据请求路径
+            url: '/system/findRight/' + roleId, //数据请求路径
             method: 'post',
             date: "",
             dataType: 'JSON',
@@ -83,12 +83,20 @@
                 }
 
                 $.ajax({
-                    url:'/admin/editRight',
+                    url:'/system/editRight',
                     data:"permList="+permList+"&roleId="+roleId,
                     dataType: 'text',
                     type:'post',
                     success:function (data) {
                       layer.msg(data)
+                        if(data==="success"){
+                            layer.confirm('权限修改成功是否退出重新登入？', function (index) {
+                                // parent.parent.location.href="${pageContext.request.contextPath}/admin/mangerMenu"-
+                            })
+                        }
+                    },
+                    error:function () {
+                        layer.msg("网络繁忙")
                     }
                 })
 

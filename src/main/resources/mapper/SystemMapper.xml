@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.mapper.SystemMapper">
+
+    <!--    参数列表-->
+    <select id="getParamList" resultType="com.person.bean.Params">
+        select (@i:=@i+1)pm,id,value,type,name FROM (select id,value,type,name,state from t_param where state='true'
+
+        <if test="name!=null and name!=''">
+            and name like concat('%',#{name},'%')
+        </if>
+        <if test="type!=null and type!=''">
+            and type=#{type}
+        </if>
+        limit #{start},#{pageSize} ) p,(select @i:=0)t
+    </select>
+    <!--    参数列表记录数-->
+    <select id="getParamListCount" resultType="int">
+        select count(*) from t_param where state='true'
+
+        <if test="name!=null and name!=''">
+            and name like concat('%',#{name},'%')
+        </if>
+        <if test="type!=null and type!=''">
+            and type=#{type}
+        </if>
+
+    </select>
+
+    <!--  类型下拉框-->
+    <select id="paramsTypeList" resultType="java.lang.String">
+        select distinct  type from t_param
+    </select>
+
+    <!--    增加参数检测-->
+    <select id="checkParams" resultType="com.person.bean.Params">
+        select *from t_param where name=#{name} and type=#{type} and state='true' limit 1
+    </select>
+    <!--    增加参数-->
+    <insert id="addParams">
+        insert into t_param (value,type,name) values (#{value},#{type},#{name})
+    </insert>
+
+    <!--    删除参数-->
+    <update id="delParams">
+        update t_param set state=#{state} where id=#{id}
+    </update>
+
+    <!--    参数修改-->
+    <update id="editParams">
+        update  t_param set name=#{name} where id=#{id}
+    </update>
+
+    <!--   角色列表-->
+    <select id="roleList" resultType="com.person.bean.Role">
+    select (@i:=@i+1) pm,id,name,type,value from (select id,name,type,value from t_role)r,(select @i:=0)t
+    </select>
+
+    <!--    角色列表记录数-->
+    <select id="roleListCount" resultType="int">
+        select count(*) from t_role;
+    </select>
+
+    <!--     权限搜索-->
+    <select id="permission" resultType="com.person.bean.Menu">
+        select id,menuname,url,pid from t_permissions  where pid=#{id}
+    </select>
+
+    <!--    根据角色值搜索权限-->
+    <select id="rightByRoleId" resultType="com.person.bean.Menu">
+        select m.id id,m.menuname menuname ,m.url url ,m.pid pid
+        from t_permissions m left join t_permissions_role_relation m2 on m.id=m2.mid
+        where m.pid=#{id} and m2.roleid=#{roleId}
+    </select>
+
+    <!--删除某角色权限-->
+    <delete id="delRight">
+        delete from t_permissions_role_relation where roleid=#{roleId}
+    </delete>
+    <!--   修改权限-->
+    <insert id="updateRight">
+     insert into t_permissions_role_relation (mid,roleid) values(#{id},#{roleId})
+   </insert>
+
+    <!--    管理员操作日志-->
+    <select id="adminLog" resultType="com.person.bean.Daily">
+        select (@i:=@i+1) num,t.account operation,DATE_FORMAT(t.time,'%Y-%m-%d') time,t.event event from
+        ((select a.account,d.*from t_daily d left join t_admin a on d.worker= a.id where d.role='admin'
+
+        <if test="startDate!=null and startDate!=''">
+            AND d.time <![CDATA[>=]]> STR_TO_DATE(#{startDate},'%Y-%m-%d')
+        </if>
+        <if test="endDate!=null and endDate!=''">
+            AND d.time <![CDATA[<=]]> STR_TO_DATE(#{endDate},'%Y-%m-%d')
+        </if>
+        order by d.time desc ) LIMIT #{start},#{pageSize}) t,(select @i:=0)p
+    </select>
+
+    <select id="adminLogCount" resultType="int">
+        select count(*) from t_daily d left join t_admin a on d.worker= a.id where d.role='admin'
+        <if test="startDate!=null and startDate!=''">
+            AND d.time <![CDATA[>=]]> STR_TO_DATE(#{endDate},'%Y-%m-%d')
+        </if>
+        <if test="endDate!=null and endDate!=''">
+            AND d.time <![CDATA[<=]]> STR_TO_DATE(#{endDate},'%Y-%m-%d')
+        </if>
+        order by d.time desc
+    </select>
+    <!--用户操作日志-->
+    <select id="userLog" resultType="com.person.bean.Daily">
+        select (@i:=@i+1) num,t.name operation,DATE_FORMAT(t.time,'%Y-%m-%d') time,t.event event from
+        ((select u.`name`,d.*from t_daily d left join t_user u on d.worker= u.id where d.role='user'
+        <if test="startDate!=null and startDate!=''">
+            AND d.time <![CDATA[>=]]> STR_TO_DATE(#{startDate},'%Y-%m-%d')
+        </if>
+        <if test="endDate!=null and endDate!=''">
+            AND d.time <![CDATA[<=]]> STR_TO_DATE(#{endDate},'%Y-%m-%d')
+        </if>
+        order by d.time desc ) LIMIT #{start},#{pageSize}) t,(select @i:=0)p
+    </select>
+
+    <select id="userLogCount" resultType="int">
+        select count(*) from t_daily d left join t_user u on d.worker= u.id where d.role='user'
+        <if test="startDate!=null and startDate!=''">
+            AND d.time <![CDATA[>=]]> STR_TO_DATE(#{endDate},'%Y-%m-%d')
+        </if>
+        <if test="endDate!=null and endDate!=''">
+            AND d.time <![CDATA[<=]]> STR_TO_DATE(#{endDate},'%Y-%m-%d')
+        </if>
+        order by d.time desc
+    </select>
+
+    <select id="userList" resultType="com.person.bean.User">
+        select (@i:=@i+1) num ,t.id id,t.name name,t.tel tel,t.school school,
+        DATE_FORMAT(t.date,'%Y-%m-%d') date,t.state state FROM(select id,name,tel,school,date,state from t_user
+
+        <where>
+            <if test="school!=null and school!=''">
+                school like concat('%',#{school},'%')
+            </if>
+            <if test="state!=null and state !=''">
+                and state=#{state}
+            </if>
+        </where>
+        order by date DESC limit  #{start},#{pageSize})t,(select @i:=0)p
+    </select>
+
+    <select id="userLitCount" resultType="int">
+        select count(*) from t_user
+        <where>
+            <if test="school!=null and school!=''">
+                school like concat('%',#{school},'%')
+            </if>
+            <if test="state!=null and state !=''">
+                and state=#{state}
+            </if>
+        </where>
+        order by date DESC
+    </select>
+
+<!--    用户管理-->
+    <update id="userManager">
+        update t_user set state=#{state} where id=#{id}
+    </update>
+
+</mapper>

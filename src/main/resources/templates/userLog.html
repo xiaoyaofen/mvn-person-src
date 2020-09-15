@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户操作日志</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script type="text/javascript" th:src="@{/X-admin/js/jquery.min.js}"></script>
+    <script th:src="@{/X-admin/layui/layui.all.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/X-admin/js/xadmin.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5">
+
+                        <div class="layui-inline layui-show-xs-block">
+                            <label for="date1" class="layui-form-label">开始时间</label>
+                            <div class="layui-inline layui-show-xs-block">
+                                <input class="layui-input search-input" type="text" id="date1" name="date1"
+                                       placeholder="开始时间"/>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline layui-show-xs-block">
+                            <label for="date2" class="layui-form-label">结束时间</label>
+                            <div class="layui-inline layui-show-xs-block">
+                                <input class="layui-input search-input" type="text" id="date2" placeholder="结束时间"/>
+                            </div>
+                        </div>
+
+                        <div class="layui-inline layui-show-xs-block">
+                            <button class="layui-btn" data-type="reload" type="button">
+                                <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-card-body layui-table-body layui-table-main">
+                    <table class="layui-table layui-form" id="test" lay-filter="test"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script th:inline="none">
+    layui.use(['form', 'laydate', 'table'], function () {
+            var table = layui.table;
+            var laydate = layui.laydate;
+            var $ = layui.$;
+            //日期范围
+            laydate.render({
+                elem: '#date1',
+                format: 'yyyy-MM-dd',
+                done: function (value, date, endDate) {
+                    var startDate = new Date(value).getTime();
+                    var endTime = new Date($('#date2').val()).getTime();
+                    if (endTime < startDate) {
+                        layer.msg('结束时间不能小于开始时间');
+                        $('#date1').val('');
+                    }
+                }
+            })
+
+            laydate.render({ //结束时间
+                elem: '#date2',
+                format: 'yyyy-MM-dd',
+                done: function (value, date, endDate) {
+                    var startDate = new Date($('#date1').val()).getTime();
+                    var endTime = new Date(value).getTime();
+                    if (endTime < startDate) {
+                        layer.msg('结束时间不能小于开始时间');
+                        $('#date2').val('');
+                    }
+                }
+
+            });
+            table.render({
+                elem: '#test'  //绑定table id
+                , url: '/system/userLogList'  //数据请求路径
+                , height: 480
+                , page: true   //开启分页
+                , limit: 10  //默认十条数据一页
+                , limits: [ 10, 20, 50]  //数据分页条
+                , title: "管理员信息"
+                , id: 'testReload'
+                , cols: [[
+                    {field: 'num', title: '序号', sort: true}
+                    , {field: 'operation',  title: '操作者', }
+                    , {field: 'event',  title: '操作事项'}
+                    , {field: 'time', title: '操作时间',}
+
+                ]]
+
+
+            });
+
+            $('.layui-btn').click(function (){
+                var startTime=$('#date1').val();
+                var endTime=$('#date2').val();
+                console.log(startTime);
+                console.log(endTime);
+                table.reload('testReload', {
+                        url: '/system/userLogList'
+                        ,page: {
+                            curr: 1 //重新从第 1 页开始
+                        }
+                        , where: {
+                            key: {
+                                startTime: startTime,
+                                endTime: endTime,
+                            }
+                        }
+                    }
+                )
+
+            })
+        }
+    );
+
+</script>

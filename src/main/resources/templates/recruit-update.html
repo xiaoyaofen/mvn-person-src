@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改招聘</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+
+    <script type="text/javascript" th:src="@{/X-admin/js/xadmin.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<input id="id" type="hidden" value="3">
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">岗位名称</label>
+        <div class="layui-input-block">
+            <input type="text" id="title"  name="title" lay-verify="title" autocomplete="off" placeholder="请输入岗位名称" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">工作经验</label>
+        <div class="layui-input-block">
+            <input type="text" id="experience"  name="experience" lay-verify="experience" autocomplete="off" placeholder="请输入工作经验" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">招聘人数</label>
+        <div class="layui-input-block">
+            <input type="text" id="number" name="number" lay-verify="number" autocomplete="off" placeholder="请输入招聘人数" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">薪资</label>
+        <div class="layui-input-block">
+            <input type="text" id="money" name="money" lay-verify="money" autocomplete="off" placeholder="请输入薪资" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">福利</label>
+        <div class="layui-input-block">
+            <input type="text" id="welfare" name="welfare" lay-verify="welfare" autocomplete="off" placeholder="请输入福利" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">地区</label>
+        <div class="layui-input-block">
+            <input type="text" id="region" name="region" lay-verify="region" autocomplete="off" placeholder="请输入地址" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">工作时间</label>
+        <div class="layui-input-block">
+            <input type="text" id="worktime" name="worktime" lay-verify="worktime" autocomplete="off" placeholder="请输入限制地区" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">职位描述</label>
+        <div class="layui-input-block">
+            <input type="text" id="description" name="description" lay-verify="description" autocomplete="off" placeholder="请输入职位描述" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">普通文本域</label>
+        <div class="layui-input-block">
+            <textarea id="jindji" placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="button" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button id="return-button" type="button" class="layui-btn layui-btn-primary">返回</button>
+        </div>
+    </div>
+
+</form>
+<script>
+    layui.use(['form','layer'], function() {
+        var form = layui.form;
+        var layer = layui.layer;
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            var title= $('#title').val();
+            var experience= $('#experience').val();
+            var number= $('#number').val();
+            var money= $('#money').val();
+            var welfare= $('#welfare').val();
+            var region= $('#region').val();
+            var worktime= $('#worktime').val();
+            var description= $('#description').val();
+            var id= $('#id').val();
+
+            $.ajax({
+                url: "/admin/recruitUpdate",
+                data:"id="+id+ "&title="+title+"&experience="+experience+"&number="+number+"&money="+money+"&welfare="+welfare+"&region="+region+"&worktime="+worktime+"&description="+description,
+                success: function (res) {
+                    if(res>0){
+                        alert("招聘信息修改成功");
+                    }else{
+                        alert("招聘信息修改失败");
+                    }
+                }
+            })
+            return false;
+        });
+
+
+        //按键返回
+        $('#return-button').on('click', function () {
+            location.href="adminRecruitFrame";
+        })
+
+
+    });
+</script>
+
+</body>
+</html>

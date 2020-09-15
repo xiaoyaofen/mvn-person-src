@@ -2,7 +2,7 @@
 <html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>欢迎页面-X-admin2.2</title>
+        <title>欢迎页面</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -94,15 +94,18 @@
               ,cols: [
                   [ //表头
                       {type: 'checkbox', fixed: 'left'}
-                      ,{field: 'id', title: '序号', width:80, sort: true, fixed: 'left', totalRowText: '合计：'}
-                      ,{field: 'account', title: '账号', width:80}
-                      ,{field: 'name', title: '姓名', width: 90, sort: true}
-                      ,{field: 'sex', title: '当前学习', width:80, sort: true}
-                      ,{field: 'specialty', title: '专业', width: 80, sort: true, totalRow: true}
-                      ,{field: 'jobstate', title: '就业状况', width:150}
+                      ,{field: 'pm', title: '序号', width:80, fixed: 'left'}
+                      ,{field: 'account', title: '账号', width:250}
+                      ,{field: 'name', title: '姓名', width: 200}
+                      ,{field: 'sex', title: '当前学习', width:300}
+                      ,{field: 'major', title: '专业', width: 250}
+                      ,{field: 'school', title: '学校', width:200}
+                      ,{field: 'jobstate', title: '就业状况', width:120}
+                      ,{fixed: 'right' , fixed: 'right', title: '操作', width: 150, align:'center', toolbar: '#barDemo'}
+                      ,{field: 'id', title: '编号', width:80,hide :true }
                       ,{field: 'age', title: '年龄', width:80,hide :true}
                       ,{field: 'sex', title: '性别', width:80,hide: true}
-                      ,{fixed: 'right' , title: '操作', width: 165, align:'center', toolbar: '#barDemo'}
+
                   ]
               ]
           });
@@ -209,7 +212,6 @@
                           url:path+"/grade/gradeUpdate",
                           async: false,
                           type:"POST",
-                          // dataType: "text",
                           data:data,
                           success: function(res){
                               if(res>0){

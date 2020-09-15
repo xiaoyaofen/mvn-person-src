@@ -62,7 +62,7 @@
         var form = layui.form;
         var regexs=/^[1-9]\d*$/;
         $.ajax({
-            url:'/admin/paramsType',
+            url:'/system/paramsType',
             dataType: 'json',
             type: 'post',
             success:function(data){
@@ -108,7 +108,7 @@
                 console.log(data);
                 //发异步，把数据提交给php
                 $.ajax({
-                    url: "/admin/addParams",
+                    url: "/system/addParams",
                     type: 'post',
                     data: data.field,
                     success: function (res) {
@@ -123,7 +123,7 @@
                                     xadmin.father_reload();
                                 });
                         }else{
-                            layer.msg("参数添加失败,要添加的参数可能");
+                            layer.msg("参数添加失败,要添加的参数可能已存在");
                         }
                     }
 
