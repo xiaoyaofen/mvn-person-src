@@ -29,6 +29,7 @@ public class User{
     private String major;//专业
     private String school;//学校
     private String outlook;//社会面貌
+    private String img; //用户头像
 
     public User() {
     }
@@ -57,6 +58,41 @@ public class User{
         this.major = major;
         this.school = school;
         this.outlook = outlook;
+    }
+
+    public User(Integer id, String account, String pwd, String name, Integer sex, Integer age, String tel, String address, String state, String money, Date date, String jobstate, Date birthday, String specialty, Integer schoolId, String schoolName, Integer resume, Date brith, Integer education, Integer exprience, String major, String school, String outlook, String img) {
+        this.id = id;
+        this.account = account;
+        this.pwd = pwd;
+        this.name = name;
+        this.sex = sex;
+        this.age = age;
+        this.tel = tel;
+        this.address = address;
+        this.state = state;
+        this.money = money;
+        this.date = date;
+        this.jobstate = jobstate;
+        this.birthday = birthday;
+        this.specialty = specialty;
+        this.schoolId = schoolId;
+        this.schoolName = schoolName;
+        this.resume = resume;
+        this.brith = brith;
+        this.education = education;
+        this.exprience = exprience;
+        this.major = major;
+        this.school = school;
+        this.outlook = outlook;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public Integer getId() {

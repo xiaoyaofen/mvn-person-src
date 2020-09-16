@@ -3,6 +3,7 @@ package com.person.service.impl;
 import com.person.bean.Collect;
 import com.person.bean.Feedback;
 import com.person.bean.User;
+import com.person.bean.mixture;
 import com.person.mapper.UserMapper;
 import com.person.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,4 +62,36 @@ public class UserServiceImpl implements UserService {
     public Integer findCount2(String userid, HashMap<String, Object> condition) {
         return userMapper.findCount2(userid,condition);
     }
+
+    @Override
+    public void down(String img,String id) {
+        userMapper.down(img,id);
+    }
+
+    @Override
+    public User getimg(String id) {
+       return userMapper.getimg(id);
+    }
+
+    @Override
+    public void Infor( String account, String name, Integer sex, String tel, String address,String id) {
+        userMapper.Infor(account,name,sex,tel,address,id);
+    }
+
+    @Override
+    public Integer getsex(String name) {
+        return userMapper.getsex(name);
+    }
+
+    @Override
+    public User findInfor(String id) {
+        return userMapper.findInfor(id);
+    }
+
+    @Override
+    public mixture introduce(String name, String pname) {
+        return userMapper.introduce(name,pname);
+    }
+
+
 }

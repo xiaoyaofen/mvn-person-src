@@ -7,6 +7,22 @@
     <select id="getMenu" resultType="com.person.bean.Menu">
         select * from t_menu where pid=0
     </select>
+<!--    //查找企业和高校的菜单-->
+    <select id="getMenuListByRoleId" parameterType="java.lang.Integer" resultMap="menuMap">
+      select m.id id,m.menuname menuname ,m.url url ,m.pid pid
+    from t_permissions m left join t_permissions_role_relation m2 on m.id=m2.mid
+    where m.pid=0 and m2.roleid=#{roleid}
+</select>
+    <resultMap id="menuMap" type="com.person.bean.Menu">
+        <id column="id" property="id"></id>
+        <id column="menuname" property="menuname"></id>
+        <id column="url" property="url"></id>
+        <collection property="menuList" ofType="com.person.bean.Menu" javaType="java.util.ArrayList"
+                    column="id" select="selectMenu">
+        </collection>
+    </resultMap>
+    <select id="selectMenu" parameterType="java.lang.Integer" resultType="com.person.bean.Menu">
+select id,menuname,url,pid from t_permissions  where pid=#{id}
 
-
+    </select>
 </mapper>
