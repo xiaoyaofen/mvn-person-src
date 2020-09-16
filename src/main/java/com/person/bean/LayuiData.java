@@ -15,7 +15,7 @@ public class LayuiData<T extends Object> {
     //数据总数
     private int count;
     //当前页数据
-    private List<?> data;
+    private List<T> data;
 
     public int getCode() {
         return code;
@@ -45,7 +45,7 @@ public class LayuiData<T extends Object> {
         return data;
     }
 
-    public void setData(List<?> data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 

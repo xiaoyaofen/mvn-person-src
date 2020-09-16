@@ -42,7 +42,7 @@ public class ZhiShiKuController {
 
         List<Menu> list=knowService.getKnowMsg(page1,limit,title,scope);
         Integer count=knowService.findCount(title,scope);
-        LayuiData<User> layuiData = new LayuiData<User>();
+        LayuiData layuiData = new LayuiData();
         layuiData.setMsg("");
         layuiData.setCode(0);
         layuiData.setCount(count);

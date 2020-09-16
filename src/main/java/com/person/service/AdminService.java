@@ -49,4 +49,27 @@ public interface AdminService {
 
     //获取公司的信息
     Company getCompanyById(Integer id);
+
+    //简历查看
+    User showRecruit(Integer id);
+
+    //招聘进度=====界面展示
+    Jobcontain hiringScheduleFrame(Integer jobstation);
+
+    //招聘进度=====审核
+    Integer checkResume(String id, String value,Integer i);
+
+    //求职管理=====删除求职简历
+    Integer deleteAminRecruit(Integer id);
+
+    /**
+     * 发送短信的接口
+     * @param phoneNum 手机号
+     * @param message     消息
+     * @return
+     */
+    public boolean sendSms(String phoneNum, String message);
+
+    //excel导出
+    List<BusClick> exportExcel(Integer adminid);
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>个人简历</title>
@@ -16,12 +16,12 @@
     </tr>
     <tr>
         <td width="100" align="center">姓名</td>
-        <td width="100" align="center"></td>
+        <td width="100" align="center" th:text="${user.name}"></td>
         <td width="100" align="center">性别</td>
-        <td width="100" align="center"></td>
+        <td width="100" align="center" th:text=${user.sexStr}></td>
         <td width="100" align="center">出生年月</td>
-        <td width="100" align="center"></td>
-<!--        <td width="100" rowspan="4" align="center"><img src="../image/1.jpg"width="100"></td>-->
+        <td width="100" align="center" th:text=${#dates.format(user.brith,'yyyy-MM')}></td>
+        <td width="100" rowspan="4" align="center"><img th:src="@{'/images'+${user.img}}" width="100"></td>
     </tr>
     <tr>
         <td width="100" align="center">民族</td>
@@ -29,25 +29,25 @@
         <td width="100" align="center">婚否</td>
         <td width="100" align="center"></td>
         <td width="100" align="center">政治面貌</td>
-        <td width="100" align="center"></td>
+        <td width="100" align="center" th:text=${user.outlook}></td>
     </tr>
     <tr>
         <td width="100" align="center">籍贯</td>
         <td width="100" align="center"></td>
         <td width="100" align="center">学历</td>
-        <td width="100" align="center"></td>
+        <td width="100" align="center" ></td>
         <td width="100" align="center">现所在地</td>
-        <td width="100" align="center"></td>
+        <td width="100" align="center" th:text=${user.address}></td>
     </tr>
     <tr>
         <td width="100" align="center">毕业院校</td>
-        <td width="100" colspan="2" align="center"></td>
+        <td width="100" colspan="2" align="center" th:text=${user.school}></td>
         <td width="100" align="center">所学专业</td>
-        <td width="100" colspan="2" align="center"></td>
+        <td width="100" colspan="2" align="center" th:text=${user.major}></td>
     </tr>
     <tr>
         <td width="100" align="center">手机号码</td>
-        <td width="100" colspan="2" align="center"></td>
+        <td width="100" colspan="2" align="center" th:text=${user.tel}></td>
         <td width="100" align="center">电子邮箱</td>
         <td width="100" colspan="3" align="center"></td>
     </tr>

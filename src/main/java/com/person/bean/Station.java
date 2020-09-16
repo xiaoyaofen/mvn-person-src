@@ -41,6 +41,38 @@ public class Station {
 
     public Station() { }
 
+    public Station(Integer id, String title, Integer sex, String sexStr, Integer education, String educationStr, String region, Integer experience, String experienceStr, String money, Date date, Integer adminid, String adminname, Integer jobid, String jobname, String worktime, String description, String welfare, String other, String number, String job, Integer company, String companyname, Integer pm, String trade, String request, String jobexpress, String people, String time, String address) {
+        this.id = id;
+        this.title = title;
+        this.sex = sex;
+        this.sexStr = sexStr;
+        this.education = education;
+        this.educationStr = educationStr;
+        this.region = region;
+        this.experience = experience;
+        this.experienceStr = experienceStr;
+        this.money = money;
+        this.date = date;
+        this.adminid = adminid;
+        this.adminname = adminname;
+        this.jobid = jobid;
+        this.jobname = jobname;
+        this.worktime = worktime;
+        this.description = description;
+        this.welfare = welfare;
+        this.other = other;
+        this.number = number;
+        this.job = job;
+        this.company = company;
+        this.companyname = companyname;
+        this.pm = pm;
+        this.trade = trade;
+        this.request = request;
+        this.jobexpress = jobexpress;
+        this.people = people;
+        this.time = time;
+        this.address = address;
+    }
 
     public Integer getId() {
         return id;

@@ -27,7 +27,7 @@ public interface AdminMapper {
     //高校人才推荐 ==============选择人才数据显示 ====== 总数
     Integer userSelectNum(@Param("condition")HashMap<String, Object> condition);
     //高校人才推荐 ==============选择人才数据显示 ======= 数据
-    List<Station> userSelect(@Param("condition")HashMap<String, Object> condition,@Param("limit") Integer limit,@Param("page") Integer page);
+    List<User> userSelect(@Param("condition")HashMap<String, Object> condition,@Param("limit") Integer limit,@Param("page") Integer page);
 
     //高校人才推荐 ==============确定选择推荐人选 ====== 新增jobcontaion
     Integer userSelectSure(@Param("list") List<Integer> list, @Param("jobid") Integer jobid);
@@ -50,7 +50,7 @@ public interface AdminMapper {
     //求职管理====================界面显示=======总数
     Integer adminBioCheckNum(@Param("id")Integer adminId, @Param("condition")HashMap<String, Object> condition);
     //求职管理====================界面显示=======数据
-    List<Params> adminBioCheck(@Param("limit")Integer limit,@Param("page") Integer page,@Param("condition") HashMap<String, Object> condition,@Param("id") Integer adminId);
+    List<User> adminBioCheck(@Param("limit")Integer limit,@Param("page") Integer page,@Param("condition") HashMap<String, Object> condition,@Param("id") Integer adminId);
 
     //获取本日新增简历总数
     Integer getThisDay();
@@ -67,4 +67,25 @@ public interface AdminMapper {
 
     //获取公司信息学
     Company getCompanyById(@Param("id") Integer id);
+
+    //简历展示
+    User showRecruit(@Param("id") Integer id);
+
+    //招聘进度=====界面展示
+    Jobcontain hiringScheduleFrame(@Param("id") Integer jobstation);
+
+    //招聘进度======审核
+    Integer checkResume(@Param("type") String id,@Param("value") String value,@Param("id") Integer id2);
+
+    //求职管理=====删除求职简历
+    Integer deleteAminRecruit(@Param("id") Integer id);
+
+
+    /**
+     * 文件导出Excel
+     *
+     * @param adminid 用户序号
+     * @return
+     */
+    List<BusClick> exportExcel(@Param("id") Integer adminid);
 }

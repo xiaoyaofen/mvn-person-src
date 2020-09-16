@@ -197,5 +197,36 @@
         <where><if test="company.id != null">id = #{company.id}</if> </where>
     </update>
 
+    <!--hu获取公司信息-->
+    <select id="getCompanyById" resultType="com.person.bean.Company">
+        select * from t_company where id = #{id}
+    </select>
 
+    <select id="showRecruit" resultType="com.person.bean.User">
+        select *,(select name from t_param where value = sex and type = '性别') sexStr from t_user where id = #{id}
+    </select>
+
+
+    <select id="hiringScheduleFrame" resultType="com.person.bean.Jobcontain">
+        select * from t_jobcontain where id = #{id}
+    </select>
+
+    <!-- //更改求职进度表信息-->
+    <update id="checkResume">
+        update t_jobcontain
+        <set>
+            <if test="type =='one'">one = #{value}</if>
+            <if test="type =='two'">two = #{value}</if>
+            <if test="type =='three'">three = #{value}</if>
+            <if test="type =='four'">four = #{value}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--//求职管理=====删除求职简历-->
+    <delete id="deleteAminRecruit" parameterType="java.lang.Integer">delete from t_jobcontain where id = #{id}</delete>
+
+    <select id="exportExcel" resultType="com.person.bean.BusClick">
+        select * from t_user
+    </select>
 </mapper>

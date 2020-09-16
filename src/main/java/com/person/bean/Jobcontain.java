@@ -14,10 +14,15 @@ public class Jobcontain {
     public Jobcontain() {
     }
 
-    public Jobcontain(Integer id, Integer userid, Integer jobprocessid) {
+    public Jobcontain(Integer id, Integer userid, Integer jobprocessid, Integer stateid, String one, String two, String three, String four) {
         this.id = id;
         this.userid = userid;
         this.jobprocessid = jobprocessid;
+        this.stateid = stateid;
+        this.one = one;
+        this.two = two;
+        this.three = three;
+        this.four = four;
     }
 
     public Integer getId() {

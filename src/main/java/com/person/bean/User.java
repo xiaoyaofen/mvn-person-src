@@ -10,6 +10,7 @@ public class User{
     private String pwd;
     private String name;
     private Integer sex;
+    private String sexStr;
     private Integer age;
     private String tel;
     private String address;
@@ -35,6 +36,7 @@ public class User{
     private Integer jobstation;//关系表id
     private Integer pm;//序号
     private Integer num;  //序号
+    private String img;//图片路径
 
     public User() {
     }
@@ -295,6 +297,22 @@ public class User{
 
     public void setResgisdata(Date regisdata) {
         this.resgisdata = regisdata;
+    }
+
+    public String getSexStr() {
+        return sexStr;
+    }
+
+    public void setSexStr(String sexStr) {
+        this.sexStr = sexStr;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
 

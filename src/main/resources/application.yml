@@ -23,3 +23,11 @@ mybatis:
       prefix: classpath:/templates/
       cache: false
 
+
+#aliyun:
+#  accessKeyID: LTAI4GATztwWQJWd6NGWvEBJ   #你的accessKeyID
+#  accessKeySecret: v7iRG7K07X7b6lq3BOIB4w1bUzmsA7                #你的accessKeySecret
+#  domain: dysmsapi.aliyuncs.com       #固定不变
+#  regionId: cn-hangzhou               #固定不变
+#  templateCode: SMS_201721401                  #你的模板code
+#  signName: 人才生态圈
