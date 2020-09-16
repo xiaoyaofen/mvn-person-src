@@ -44,7 +44,15 @@
                         </div>
                     </form>
                 </div>
+<<<<<<< Updated upstream:src/main/resources/templates/userManager.html
 
+=======
+                <div class="layui-card-header">
+                    <button class="layui-btn" onclick="xadmin.open('添加参数','/admin/paramsAddView',800,600)">
+                        <i class="layui-icon"></i>添加
+                    </button>
+                </div>
+>>>>>>> Stashed changes:target/classes/templates/parameterManagement.html
                 <div class="layui-card-body layui-table-body layui-table-main">
                     <table class="layui-table layui-form" id="test" lay-filter="test"></table>
                 </div>
@@ -76,6 +84,7 @@
             , title: "用户管理"
             , id: 'testReload'
             , cols: [[
+<<<<<<< Updated upstream:src/main/resources/templates/userManager.html
                 {field: 'num', width: 200, title: '序号', sort: true}
                 , {field: 'id', title: 'id', hide:true}
                 , {field: 'name', width: 200, title: '姓名', }
@@ -83,6 +92,13 @@
                 , {field: 'school', width: 150, title: '学校名称'}
                 , {field: 'date', width: 150, title: '注册时间'}
                 , {field: 'state', title: 'id', hide:true}
+=======
+                {field: 'pm', width: 200, title: '序号', sort: true}
+                , {field: 'id', title: '参数名', hide:true}
+                , {field: 'name', width: 200, title: '参数名', }
+                , {field: 'type', width: 150, title: '参数类型',}
+                , {field: 'value', width: 150, title: '参数值'}
+>>>>>>> Stashed changes:target/classes/templates/parameterManagement.html
                 , {fixed: 'right', title: '操作', width: 250, align: 'center', toolbar: '#barDemo'}//一个工具栏  具体请查看layui官网
             ]]
 
@@ -115,6 +131,7 @@
                     });
 
                 });
+<<<<<<< Updated upstream:src/main/resources/templates/userManager.html
             }else if (layEvent === 'failed'){
                 layer.confirm('要禁用该账号吗？', function (index) {
                     var state="禁用";
@@ -136,6 +153,24 @@
                             }
                         },
                     });
+=======
+            }else if (layEvent === 'edit'){
+                layer.open({
+                    type: 2,
+                    title:'参数修改',
+                    content: "/admin/editParamsView",
+                    area: ['60%', '80%'],
+                    skin: "layui-layer-molv",
+                    success: function (layero, index) {    //成功获得加载changefile.html时，预先加载，将值从父窗口传到 子窗口
+                        let body = layer.getChildFrame('body', index)
+                        body.find("#id").val(data.id);   //通过class名进行获取数据
+                        body.find("#paramsName").val(data.name);//意思是将rowselect[0].path这个值传递到子窗口的class="filepath"这个的文本框中，（预先加载）
+                        body.find("#paramsType").val(data.type);
+                        body.find("#paramsType").prop("disabled", "false");
+                        body.find("#paramsValue").val(data.value);
+                        body.find("#paramsValue").prop("disabled", "false");
+                        layui.form.render();
+>>>>>>> Stashed changes:target/classes/templates/parameterManagement.html
 
                 });
             }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.mapper.VideoMapper">
+    <select id="findVideo" resultType="com.person.bean.Menu">
+        select id,name as menuname,url from t_charpters where menuname in(select id from t_knowmenu
+        where pid in(select id from t_knowmenu where pid=#{id}))
+    </select>
+</mapper>
