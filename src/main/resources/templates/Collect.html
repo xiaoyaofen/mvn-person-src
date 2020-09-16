@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>用户收藏</title>
+    <title>求职反馈</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -26,7 +26,7 @@
     </div>
     岗位：
     <div class="layui-inline">
-        <input class="layui-input" type="text" name="post" id="post">
+        <input class="layui-input" type="text" name="post1" id="post1">
     </div>
 
     <button class="layui-btn" data-type="reload">搜索</button>
@@ -40,7 +40,6 @@
 <script type="text/jsp" id="barDemo">
     <div class="layui-btn-container">
         <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>
-
     </div>
 </script>
 
@@ -93,9 +92,39 @@
             var data = obj.data; //获得当前行数据
             var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
             var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+            var name=data.promulgator;
+            var pname=data.post;
+            alert(name);
+            alert(pname);
+            var company={"name":name,"pname":pname}
 
             if (layEvent === 'detail') { //查看
-                //do somehing
+                $.ajax({
+                    url: '/user/introduce',
+                    data: company,
+                    dataType: 'text',
+                    type: 'post',
+                    success: function (data) {
+                        var json=JSON.parse(data)
+                        $("#company").val(json.name);
+                        $("#introduce").val(json.introduce);
+                        $("#post").val(json.pname);
+                        $("#newname").val(json.welfare);
+                        $("#money").val(json.money);
+                        $("#education").val(json.request);
+                    }
+                })
+                layer.open({
+                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type: 1,
+                    title: "查找用户角色",
+                    area: ['50%', '50%'],
+                    content: $("#popUpdateTest"),
+                    // btn:['提交','重置'],
+                    success: function (data) {
+                        // $("#juese1").text(juese)
+                    }
+                })
             } else if (layEvent === 'del') { //删除
                 console.log(data)
                 layer.confirm('真的删除行么', function (index) {
@@ -160,10 +189,9 @@
             reload: function () {
                 var industry = $('#industry').val();
                 var post = $('#post').val();
-
                 //执行重载
                 table.reload('testReload', {
-                    url:'/user/getCollect',
+                    url:'/user/getFeedback',
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
@@ -213,42 +241,99 @@
     }
 
     /*用户-删除*/
-    function member_del(obj, id) {
-        layer.confirm('确认要删除吗？', function (index) {
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', {icon: 1, time: 1000});
-        });
-    }
+    // function member_del(obj, id) {
+    //     layer.confirm('确认要删除吗？', function (index) {
+    //         //发异步删除数据
+    //         $(obj).parents("tr").remove();
+    //         layer.msg('已删除!', {icon: 1, time: 1000});
+    //     });
+    // }
 
-    function delAll(argument) {
-        var data = tableCheck.getData();
-        layer.confirm('确认要删除吗？' + data, function (index) {
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
-    }
+    // function delAll(argument) {
+    //     var data = tableCheck.getData();
+    //     layer.confirm('确认要删除吗？' + data, function (index) {
+    //         //捉到所有被选中的，发异步进行删除
+    //         layer.msg('删除成功', {icon: 1});
+    //         $(".layui-form-checked").not('.header').parents('tr').remove();
+    //     });
+    // }
 
-    $("#add").on("click", function () {
-        layer.open({
-            //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-            type: 1,
-            title: "新增管理员",
-            area: ['50%', '50%'],
-            content: $("#popSearchRoleTest")
-        });
-    });
-    function selectRole(){
-        layer.open({
-            //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-            type:1,
-            title:"查找用户角色",
-            area: ['50%','50%'],
-            content:$("#popSearchRoleTest1").html()
-        });
-    }
+    // $("#add").on("click", function () {
+    //     layer.open({
+    //         //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+    //         type: 1,
+    //         title: "新增管理员",
+    //         area: ['50%', '50%'],
+    //         content: $("#popSearchRoleTest")
+    //     });
+    // });
+    // function selectRole(){
+    //     layer.open({
+    //         //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+    //         type:1,
+    //         title:"查找用户角色",
+    //         area: ['50%','50%'],
+    //         content:$("#popSearchRoleTest1").html()
+    //     });
+    // }
 </script>
+
+
+
+
+
+
+<!--//查看-->
+<div class="layui-row" id="popUpdateTest" style="display:none">
+    <div class="layui-col-md10">
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司名称</label>
+            <div class="layui-input-block">
+                <input type="text"  name="scope" autocomplete="off"  class="layui-input" id="company" >
+                <span id="hidename" hidden></span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公司介绍</label>
+            <div class="layui-input-block">
+                <input type="text" name="newname" required lay-verify="required" autocomplete="off"
+                       class="layui-input" id="introduce">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">招聘职位</label>
+            <div class="layui-input-block">
+                <input type="text" name="newname" required lay-verify="required" autocomplete="off"
+                       class="layui-input" id="post">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">职位福利</label>
+            <div class="layui-input-block">
+                <input type="text" name="newname" required lay-verify="required" autocomplete="off"
+                       class="layui-input" id="newname">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">学历要求</label>
+            <div class="layui-input-block">
+                <input type="text" name="newname" required lay-verify="required" autocomplete="off"
+                       class="layui-input" id="education">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">薪资</label>
+            <div class="layui-input-block">
+                <input type="text" name="newname" required lay-verify="required" autocomplete="off"
+                       class="layui-input" id="money">
+            </div>
+        </div>
+        <div style="margin-top:17px">
+            <a href="/hello/collect" style="margin-left: 270px"><button>关闭</button></a>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>

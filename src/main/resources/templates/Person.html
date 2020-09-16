@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" th:href="@{/X-admin/lib/layui/css/layui.css}"  media="all">
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+
 </head>
 <body>
 <div>
@@ -18,14 +19,15 @@
     <a  style="margin-right: 20px;font-size: 20px"  th:href="@{/hello/userLogin}">企业登录</a>
 </div>
 
-
+<form action="" method="post" class="layui-form">
 <ul class="layui-nav" style="text-align: center">
     <li class="layui-nav-item"><a href="">首页</a></li>
     <li class="layui-nav-item"><a href="">人才生态圈</a></li>
     <li class="layui-nav-item"><a href="">找工作</a></li>
     <li class="layui-nav-item"><a href="">技术成长</a></li>
-    <li class="layui-nav-item"><a href="/hello/menu">个人中心</a></li>
+    <li class="layui-nav-item"><a lay-submit lay-filter="center" >个人中心</a></li>
 </ul>
+    </form>
 <div class="layui-carousel" id="test10">
     <div carousel-item=""  >
         <div><img th:src="@{/X-admin/images/beijing.png}"></div>
@@ -158,6 +160,27 @@
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
+
+
+        form.on('submit(center)', function () {
+            $.ajax({
+                url: '/menu/centerMenu',
+                // data: data,
+                dataType: 'text',
+                type: 'post',
+                success: function (data) {
+                    var json=JSON.parse(data)
+                    if(json==null){
+                        layer.msg("请先登录");
+                    }else{
+                        location.href = "/hello/menu";
+                    }
+
+                }
+            })
+            return false;
+        })
+
     });
 </script>
 <script>

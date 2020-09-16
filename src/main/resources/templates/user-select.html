@@ -134,7 +134,12 @@
                 url:"/admin/userSelectSure",
                 data:{'list':JSON.stringify(data)},
                 success: function (res) {
-
+                    if(res > 0){
+                        alert("推荐成功");
+                        location.href="/admin/recommendFrame"
+                    }else{
+                        alert("推荐失败");
+                    }
                 }
             })
         });

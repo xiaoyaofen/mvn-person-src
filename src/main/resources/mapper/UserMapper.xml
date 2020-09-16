@@ -56,5 +56,29 @@
             and post like concat ('%',#{map.post},'%')
         </if>
     </select>
+    <update id="down">
+        update t_user set img=#{img} where id=#{id};
+    </update>
+    <select id="getimg" resultType="com.person.bean.User">
+       select * from t_user where id=#{id};
+    </select>
+<!--//修改个人信息-->
+    <update id="Infor">
+        update t_user set account=#{account},name=#{name},sex=#{sex},tel=#{tel},address=#{address} where id=#{id};
+    </update>
+<!--    //获得性别-->
+    <select id="getsex" resultType="java.lang.Integer">
+        SELECT value from t_param WHERE name=#{name}
+    </select>
+<!--//查找用户信息-->
+    <select id="findInfor" resultType="com.person.bean.User">
+        select  * from t_user where id=#{id}
+    </select>
 
+<!--    //查看公司介绍和岗位介绍-->
+    <select id="introduce" resultType="com.person.bean.mixture">
+select c.name,c.introduce,p.name,s.request,s.worktime,s.money,s.welfare  from t_company c
+left join t_station s on c.id=s.company left join t_param p ON p.value=s.job
+where p.type='岗位' and c.name=#{name} and p.name=#{pname}
+    </select>
 </mapper>

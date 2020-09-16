@@ -1,20 +1,24 @@
 package com.person.controller;
 
 import com.google.gson.Gson;
-import com.person.bean.Collect;
-import com.person.bean.Feedback;
-import com.person.bean.LayuiData;
-import com.person.bean.User;
+import com.person.bean.*;
 import com.person.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/user")
@@ -116,8 +120,8 @@ public class UserController {
     @RequestMapping("/getCollect")
     @ResponseBody
     public String getCollect(HttpServletRequest request, HttpServletResponse response) {
-        User user= (User) request.getSession().getAttribute("user");
-        Integer userid= user.getId();
+//        User user= (User) request.getSession().getAttribute("user");
+//        Integer userid= user.getId();
         String page=request.getParameter("page");
         String limit=request.getParameter("limit");
         String startTime = request.getParameter("startTime");
@@ -150,5 +154,120 @@ public class UserController {
         return new Gson().toJson(layuiData);
 
     }
+
+
+    @RequestMapping("/gethead")
+    @ResponseBody
+    public Object upload(HttpServletRequest request, HttpServletResponse response,
+                         MultipartFile file) {
+//        User user= (User) request.getSession().getAttribute("user");
+//        Integer userId=user.getId();
+        try {
+            //获取文件名,
+            String originalName = file.getOriginalFilename();
+            //扩展名
+            String prefix = originalName.substring(originalName.lastIndexOf(".") + 1);
+            Date date = new Date();
+            //使用UUID+后缀名保存文件名，防止中文乱码问题
+            String uuid = UUID.randomUUID() + "";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String dateStr = simpleDateFormat.format(date);
+            File file1 = new File("");
+            String filePath = file1.getCanonicalPath()+ File.separator +"src"+ File.separator +"main"+
+                    File.separator +"resources"+File.separator+"static"+File.separator+"upload"+File.separator;
+            //"/upload/"最后的的斜杠会被tomcat取消掉，需要把/放在projectPath
+//            String savePath = request.getSession().getServletContext().getRealPath("/upload");
+            //要保存的问题件路径和名称   /upload/2020-09-09/uuid.jpg
+//            System.out.println(savePath);
+            String projectPath = filePath + File.separator+ dateStr + File.separator + uuid + "." + prefix;
+//            System.out.println("projectPath==" + projectPath);
+            File files = new File(projectPath);
+            //打印查看上传路径
+            if (!files.getParentFile().exists()) {//判断目录是否存在
+//                System.out.println("files11111=" + files.getPath());
+//                System.out.println("files11111=" + files.getParentFile().getPath());
+                files.getParentFile().mkdirs();
+            }
+            file.transferTo(files); // 将接收的文件保存到指定文件中
+//            System.out.println("文件存储");
+//            System.out.println(projectPath);
+            LayuiData layuiData=new LayuiData();
+            layuiData.setCode(0);
+            layuiData.setMsg("上传成功");
+            String url="\\upload" + File.separator + dateStr + File.separator + uuid + "." + prefix;
+            userService.down(url,"1");
+//            System.out.println("文件信息："+tit+userId+introduce+projectPath);
+            return layuiData;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    @RequestMapping("/getimg")
+    @ResponseBody
+    public Object getimg(HttpServletRequest request, HttpServletResponse response) {
+//        User user= (User) request.getSession().getAttribute("user");
+//        Integer userId=user.getId();
+        User img= userService.getimg("1");
+        return new Gson().toJson(img);
+    }
+
+
+    @RequestMapping("/getInfor")
+    @ResponseBody
+    public Object getInfor(HttpServletRequest request, HttpServletResponse response) {
+//        User user= (User) request.getSession().getAttribute("user");
+//        Integer userId=user.getId();
+        String name = request.getParameter("name");
+        String account = request.getParameter("account");
+        String tel = request.getParameter("tel");
+        String sex = request.getParameter("sex");
+        String address = request.getParameter("address");
+        Integer sex1=userService.getsex(sex);
+        userService.Infor(account,name,sex1,tel,address,"1");
+        User img= userService.getimg("1");
+        return new Gson().toJson(img);
+    }
+
+//起初的信息
+    @RequestMapping("/Infor")
+    @ResponseBody
+    public Object Infor(HttpServletRequest request, HttpServletResponse response) {
+//        User user= (User) request.getSession().getAttribute("user");
+//        Integer userId=user.getId();
+        User img= userService.getimg("1");
+        return new Gson().toJson(img);
+    }
+
+//简历
+    @RequestMapping("/findInfor")
+    public  Object showRecruit(Model model){
+//        User user= (User) request.getSession().getAttribute("user");
+//        Integer userId=user.getId();
+        User user =  userService.findInfor("1");
+        model.addAttribute("user",user);
+        return "myresume";
+    }
+
+//查看
+    @RequestMapping("/find")
+    public  Object showFind(Model model){
+//        User user= (User) request.getSession().getAttribute("user");
+//        Integer userId=user.getId();
+        User user =  userService.findInfor("1");
+        model.addAttribute("user",user);
+        return "Collect";
+    }
+
+    @RequestMapping("/introduce")
+    @ResponseBody
+    public  Object introduce(HttpServletRequest request, HttpServletResponse response){
+        String name = request.getParameter("name");
+        String pname = request.getParameter("pname");
+        mixture obj =  userService.introduce(name,pname);
+        System.out.println(obj);
+        return new Gson().toJson(obj );
+    }
+
 
 }

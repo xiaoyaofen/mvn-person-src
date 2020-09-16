@@ -61,21 +61,55 @@ public class HelloController {
         return "PersonMenu";
     }
 
+
     @GetMapping(value = "/feedback")
     public String feedback() {
         return "Feedback";
     }
 
-    @GetMapping(value = "/resume")
+
+    @GetMapping(value = "/myresume")
     public String resume() {
-        return "resume";
+        return "myresume";
     }
+
 
 
     @GetMapping(value = "/collect")
     public String Collect() {
         return "Collect";
     }
+
+    @GetMapping(value = "/firmMenu")
+    public String firmMenu() {
+        return "firmMenu";
+    }
+
+    @GetMapping(value = "/first")
+    public String first() {
+        return "First";
+    }
+
+
+    @GetMapping(value = "/center")
+    public String center() {
+        return "personCenter";
+    }
+
+
+    @GetMapping(value = "/qo")
+    public String qo() {
+        return "test";
+    }
+
+
+    @GetMapping(value = "/jianli")
+    public String jianli() {
+        return "jianli";
+    }
+
+
+
 
 
 

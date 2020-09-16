@@ -8,7 +8,7 @@ public class Company {
     private String address;
     private String name;
     private String introduce;
-    private Integer tel;
+    private String tel;
     private String href;
     private String business;
     private String qualification;//资格证
@@ -25,7 +25,6 @@ public class Company {
         this.address = address;
         this.name = name;
         this.introduce = introduce;
-        this.tel = tel;
         this.href = href;
         this.business = business;
         this.qualification = qualification;
@@ -87,11 +86,11 @@ public class Company {
         this.introduce = introduce;
     }
 
-    public Integer getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(Integer tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 

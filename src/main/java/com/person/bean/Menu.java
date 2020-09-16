@@ -1,4 +1,7 @@
 package com.person.bean;
+
+import java.util.List;
+
 public class Menu {
     private Integer id;
     private String scope;
@@ -10,6 +13,7 @@ public class Menu {
     private Integer roleid;
     private Integer state;
     private String detial;
+    private List<Menu> menuList;
 
     public Menu() {
     }
@@ -25,6 +29,14 @@ public class Menu {
         this.roleid = roleid;
         this.state = state;
         this.detial = detial;
+    }
+
+    public List<Menu> getMenuList() {
+        return menuList;
+    }
+
+    public void setMenuList(List<Menu> menuList) {
+        this.menuList = menuList;
     }
 
     public Integer getId() {
