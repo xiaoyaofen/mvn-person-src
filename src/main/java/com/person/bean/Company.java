@@ -11,11 +11,12 @@ public class Company {
     private String tel;
     private String href;
     private String business;
+    private String qualification;//资格证
 
     public Company() {
     }
 
-    public Company(Integer id, String trade, String type, String people, String address, String name, String introduce, String tel, String href, String business) {
+    public Company(Integer id, String trade, String type, String people, String address, String name, String introduce, Integer tel, String href, String business) {
         this.id = id;
         this.trade = trade;
         this.type = type;
@@ -23,9 +24,9 @@ public class Company {
         this.address = address;
         this.name = name;
         this.introduce = introduce;
-        this.tel = tel;
         this.href = href;
         this.business = business;
+        this.qualification = qualification;
     }
 
     public Integer getId() {
@@ -84,14 +85,6 @@ public class Company {
         this.introduce = introduce;
     }
 
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
     public String getHref() {
         return href;
     }
@@ -106,5 +99,13 @@ public class Company {
 
     public void setBusiness(String business) {
         this.business = business;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 }

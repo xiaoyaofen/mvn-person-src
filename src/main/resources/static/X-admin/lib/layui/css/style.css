@@ -1,7 +1,8 @@
 @charset "utf-8";
-body{
-    background-color: rgb(242,252,252);
+body {
+    background-color: rgb(242, 252, 252);
 }
+
 .layui-header {
     background: none;
 }
@@ -584,12 +585,21 @@ html body .layui-nav .layui-nav-bar {
     }
 }
 
-body{margin: 10px;}
-.demo-carousel{height: 200px; line-height: 200px; text-align: center;}
+body {
+    margin: 10px;
+}
+
+.demo-carousel {
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+}
+
 .code {
     width: 400px;
     margin: 0 auto;
 }
+
 .input-val {
     width: 295px;
     background: #ffffff;
@@ -597,18 +607,20 @@ body{margin: 10px;}
     padding: 0 2%;
     border-radius: 5px;
     border: none;
-    border: 1px solid rgba(0,0,0,.2);
+    border: 1px solid rgba(0, 0, 0, .2);
     font-size: 1.0625rem;
 }
+
 #canvas {
     position: absolute;
     left: 250px;
-    top:-2px;
+    top: -2px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
 }
+
 * {
     margin: 0;
     padding: 0;

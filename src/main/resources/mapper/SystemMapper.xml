@@ -131,7 +131,7 @@
         </if>
         order by d.time desc
     </select>
-
+<!--    用户管理列表-->
     <select id="userList" resultType="com.person.bean.User">
         select (@i:=@i+1) num ,t.id id,t.name name,t.tel tel,t.school school,
         DATE_FORMAT(t.date,'%Y-%m-%d') date,t.state state FROM(select id,name,tel,school,date,state from t_user
@@ -160,9 +160,42 @@
         order by date DESC
     </select>
 
-<!--    用户管理-->
+<!--    用户管理禁用/启用-->
     <update id="userManager">
         update t_user set state=#{state} where id=#{id}
     </update>
+
+
+    <select id="adminLogIn" resultType="com.person.bean.Admin">
+    select *from t_admin where account=#{account} and pwd=#{pwd} limit 1
+    </select>
+
+    <select id="findRole" resultType="com.person.bean.Role">
+        select *from t_role where type='管理员'
+    </select>
+
+    <select id="checkAccount" resultType="com.person.bean.Admin">
+         select *from t_admin where account=#{account} limit 1
+    </select>
+
+    <select id="selectCompany" resultType="com.person.bean.Company">
+        select * from t_company where name=#{name}
+    </select>
+    <insert id="addCompany"  useGeneratedKeys="true" keyProperty="id">
+        insert into t_company (name,qualification) values (#{company.name},#{company.qualification})
+    </insert>
+
+
+    <select id="selectSchool" resultType="com.person.bean.School">
+        select * from t_school where name=#{name}
+    </select>
+    <insert id="addSchool"  useGeneratedKeys="true" keyProperty="id">
+        insert into t_school (name) values (#{school.name})
+    </insert>
+
+    <insert id="addAdmin">
+        insert into t_admin (account,pwd,name,tel,address,company,roleid)
+        values(#{account},#{pwd},#{name},#{tel},#{address},#{company},#{roleid})
+    </insert>
 
 </mapper>

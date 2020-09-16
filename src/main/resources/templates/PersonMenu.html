@@ -7,25 +7,25 @@
     <link rel="stylesheet" th:href="@{/X-admin/lib/layui/css/layui.css}">
 </head>
 <body >
-<div>
+<!--<div>-->
 
-    <img th:src="@{/X-admin/images/biaoti.png}" style="margin-right: 600px;">
-    <span style="margin-right: 20px;color: red;font-size: 20px" >请先登录</span>
-    <a  style="margin-right: 20px;font-size: 20px" th:href="@{/hello/userLogin}">用户登录</a>
-    <a  style="margin-right: 20px;font-size: 20px"  th:href="@{/hello/userLogin}">企业登录</a>
-</div>
-<div class="layui-layout-body">
-<div class="layui-layout layui-layout-admin">
-    <div class="layui-header">
-        <span>人才生态圈</span>
+<!--    <img th:src="@{/X-admin/images/biaoti.png}" style="margin-right: 600px;">-->
+<!--    <span style="margin-right: 20px;color: red;font-size: 20px" >请先登录</span>-->
+<!--    <a  style="margin-right: 20px;font-size: 20px" th:href="@{/hello/userLogin}">用户登录</a>-->
+<!--    <a  style="margin-right: 20px;font-size: 20px"  th:href="@{/hello/userLogin}">企业登录</a>-->
+<!--</div>-->
+<!--<div class="layui-layout-body">-->
+<!--<div class="layui-layout layui-layout-admin">-->
+<!--    <div class="layui-header">-->
+<!--        <span>人才生态圈</span>-->
 
-        <ul class="layui-nav" style="text-align: center">
-            <li class="layui-nav-item"  ><a href="/hello/person">首页</a></li>
-            <li class="layui-nav-item" ><a href="">人才生态圈</a></li>
-            <li class="layui-nav-item" ><a href="">找工作</a></li>
-            <li class="layui-nav-item" ><a href="">技术成长</a></li>
-            <li class="layui-nav-item" ><a href="/hello/menu">个人中心</a></li>
-        </ul>
+<!--        <ul class="layui-nav" style="text-align: center">-->
+<!--            <li class="layui-nav-item"  ><a href="/hello/person">首页</a></li>-->
+<!--            <li class="layui-nav-item" ><a href="">人才生态圈</a></li>-->
+<!--            <li class="layui-nav-item" ><a href="">找工作</a></li>-->
+<!--            <li class="layui-nav-item" ><a href="">技术成长</a></li>-->
+<!--            <li class="layui-nav-item" ><a href="/hello/menu">个人中心</a></li>-->
+<!--        </ul>-->
         <div class="layui-carousel" id="test10">
             <div carousel-item=""  >
                 <div><img th:src="@{/X-admin/images/beijing.png}"></div>
@@ -41,6 +41,7 @@
             <ul class="layui-nav layui-nav-tree" id="menus" lay-filter="test"></ul>
         </div>
     </div>
+
     <div class="layui-body">
         <!-- 内容主体区域 -->
         <div id="tabzu" class="layui-tab layui-tab-card layui-tab-brief" lay-filter="tabDemo" lay-allowclose="true">
@@ -48,6 +49,7 @@
             <div class="layui-tab-content" style="width: 100%;height: 100%"></div>
         </div>
     </div>
+
 </div>
 </div>
 </div>

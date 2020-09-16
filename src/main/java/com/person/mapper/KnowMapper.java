@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+
 @Mapper
 @Component
 public interface KnowMapper {
@@ -33,7 +35,7 @@ public interface KnowMapper {
 
      public Integer addScopeParam(@Param("scope")String scope,@Param("maxValue")String maxValue);
 
-     public String findMaxValue();
+     public String findMaxValue(@Param("scope")String scope);
 
      public Integer addKnowmenu(@Param("menuname")String menuname,@Param("detial")String detial,@Param("value")String value);
 
@@ -56,4 +58,31 @@ public interface KnowMapper {
      public Integer changeState(@Param("id") String id, @Param("state") String state);
 
      public List<Params> teacherSel();
+
+     public String findTeacherParam(String teacher);
+
+     public Integer setProduct(@Param("id")String id, @Param("product")String product, @Param("scope")String scope,
+                               @Param("teacher")String teacher, @Param("detial")String detial, @Param("startOne")String startOne,@Param("picture")String picture, @Param("overOne")String overOne);
+
+     public List<Menu> findknowMenu(@Param("pid")Integer pid);
+
+     public List<Menu> getTwoCharpter(@Param("id")String id);
+
+     public Integer getTwoCharpterCount(@Param("id")String id);
+
+     public String findKnowmenuName(@Param("id")String id);
+
+     public List<Menu> findMenunamebyid(@Param("id")String id);
+
+     public List<Menu> findOneMenu(@Param("id")String productID);
+
+     public Integer delAllMenu(@Param("id")String productID);
+
+     public void addMenu(@Param("productID")String productID, @Param("charpterID")String charpterID);
+
+     public void addTeacher(@Param("teacher")String teacher,@Param("value")String value);
+
+     public void addProduct( @Param("product")String product, @Param("scope")String scope, @Param("teacher")String teacher,
+                             @Param("detial")String detial, @Param("start")String start, @Param("picture")String picture, @Param("over")String over,@Param("publisher")String publisher);
+
 }
