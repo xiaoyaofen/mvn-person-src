@@ -108,4 +108,12 @@ public class Company {
     public void setTel(String tel) {
         this.tel = tel;
     }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
 }
