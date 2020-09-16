@@ -114,4 +114,32 @@ public interface SystemMapper {
                            @Param("state") String state
     );
 
+    public Admin adminLogIn(@Param("account") String account,
+                            @Param("pwd") String pwd
+
+    );
+
+    public List<Role> findRole();
+
+    public Admin checkAccount(@Param("account") String account);
+
+    public Company selectCompany(@Param("name") String name);
+
+    public Integer addCompany(@Param("company") Company company);
+
+
+    public School selectSchool(@Param("name") String name);
+
+    public Integer addSchool(@Param("School") School school);
+
+    public Integer addAdmin(@Param("account") String account,
+                            @Param("pwd") String pwd,
+                            @Param("name") String name,
+                            @Param("tel") String tel,
+                            @Param("address") String address,
+                            @Param("company") Integer company,
+                            @Param("roleid") Integer roleid
+    );
+
+
 }

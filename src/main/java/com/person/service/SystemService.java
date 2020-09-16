@@ -37,4 +37,12 @@ public interface SystemService {
     public LayuiData userList(Integer page,Integer pageSize,String school,String state);
 
     public Boolean userManager(Integer id,String state);
+
+    public Admin adminLogIn(String account ,String pwd);
+
+    public List<Role> findRole();
+
+    public Admin checkAccount(String account);
+
+    public Boolean adminRegister(String roleId , String account, String name , String password, String phone,String address, String unit,String qualification);
 }

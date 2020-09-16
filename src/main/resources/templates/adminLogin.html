@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>登录页</title>
+    <title>管理员登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" th:href="@{/X-admin/lib/layui/css/layui.css}">
     <link rel="stylesheet" th:href="@{/X-admin/lib/layui/css/style.css}">
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 </head>
 <body>
+<canvas id="c" style="position: absolute;z-index: -1;text-align: center;"></canvas>
 <div class="login-main">
+
     <header class="layui-elip">欢迎登录人才生态圈平台</header>
     <form class="layui-form">
         <div class="layui-input-inline">
@@ -31,12 +33,16 @@
             <button lay-submit lay-filter="login" class="layui-btn">登录</button>
         </div>
         <hr/>
-        <p><a th:href="@{/hello/Register}" class="fl">立即注册</a>&nbsp&nbsp<a href="../jsp/Register.jsp" class="fl">短信验证</a><a href="javascript:;" class="fr">忘记密码？</a></p>
+        <p><a th:href="@{/system/adminRegisterView}" class="fl" >立即注册</a>&nbsp&nbsp<a href="../jsp/Register.jsp" class="fl" style="margin-left: 28px">短信验证</a><a href="javascript:;" class="fr">忘记密码？</a></p>
     </form>
+
 </div>
 
-
+<script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
 <script th:src="@{/X-admin/lib/layui/layui.js}"></script>
+<script th:src="@{/X-admin/js/canvas.js}"></script>
+
+
 <script type="text/javascript">
     layui.use(['form', 'layer', 'jquery'], function () {
         // 操作对象
@@ -55,10 +61,11 @@
             var pwd = $("#password").val();
             var code = $("#code").val();
             $.ajax({
-                url: '../user/getUser',
+                url: '/system/adminLogIn',
                 data: "account=" + account + "&pwd=" + pwd + "&code=" + code + "&num=" + num,
                 dataType: 'text',
                 type: 'post',
+
                 success: function (data) {
                     if (data == '验证码错误') {
                         draw(show_num);
@@ -66,7 +73,7 @@
                         layer.msg('验证码错误');
                     } else if (data == '登录成功') {
                         layer.msg('登录成功');
-                        location.href = "../user/person";
+                        // location.href = "/hello/person";
                     } else {
                         layer.msg('账号或密码错误');
                         draw(show_num);
@@ -79,12 +86,14 @@
 
     });
     $(function () {
+
         var show_num = [];
         draw(show_num);
         $("#canvas").on('click',function(){
             draw(show_num);
             num = show_num.join("");
         })
+
     })
 
     function draw(show_num) {
@@ -140,6 +149,8 @@
         var b = Math.floor(Math.random() * 256);
         return "rgb(" + r + "," + g + "," + b + ")";
     }
+
+
 
 </script>
 </body>

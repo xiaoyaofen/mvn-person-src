@@ -11,8 +11,8 @@ public class Admin {
     private Integer roleid;  //职位
     private String state;     //状态
     private String money;     //余额
-
-    public Admin(Integer id, String account, String pwd, String tel, String address, Integer company, Integer role_id, String state, String money) {
+    private String name;
+    public Admin(Integer id, String account, String pwd, String tel, String address, Integer company, Integer roleid, String state, String money,String name) {
         this.id = id;
         this.account = account;
         this.pwd = pwd;
@@ -22,6 +22,7 @@ public class Admin {
         this.roleid = roleid;
         this.state = state;
         this.money = money;
+        this.name = name;
     }
 
     public Admin(){
@@ -98,5 +99,21 @@ public class Admin {
 
     public void setMoney(String money) {
         this.money = money;
+    }
+
+    public Integer getRoleid() {
+        return roleid;
+    }
+
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

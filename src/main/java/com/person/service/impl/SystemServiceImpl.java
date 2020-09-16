@@ -218,4 +218,67 @@ public class SystemServiceImpl implements SystemService {
         }
         return flag;
     }
+
+    @Override
+    public Admin adminLogIn(String account, String pwd) {
+
+        Admin admin=systemMapper.adminLogIn(account,pwd);
+        return  admin;
+    }
+
+    @Override
+    public List<Role> findRole() {
+
+        List<Role> list=systemMapper.findRole();
+        return list;
+    }
+
+    @Override
+    public Admin checkAccount(String account) {
+        Admin admin=systemMapper.checkAccount(account);
+
+        return admin;
+    }
+
+    //2企业
+    //3高校
+    @Override
+    public Boolean adminRegister(String roleId, String account, String name, String password, String phone, String address, String unit, String qualification) {
+         Boolean flag=false;
+        Integer unitId =null;
+        if(roleId.equals("2")){
+            Company company=new Company();
+            company.setName(unit);
+            company.setQualification(qualification);
+            Company company1=systemMapper.selectCompany(unit);
+            if(company1!=null){
+                unitId=company1.getId();
+            }else{
+                Integer num=systemMapper.addCompany(company);
+                if(num>0){
+                    unitId=company.getId();
+                    System.out.println(unitId);
+                }
+            }
+        }else if (roleId.equals("3")){
+             School school=new School();
+             school.setName(unit);
+           School school1=systemMapper.selectSchool(unit);
+           if(school1 !=null){
+               unitId=school1.getId();
+           }else{
+               Integer num1=systemMapper.addSchool(school);
+               if(num1>0){
+                   unitId=school.getId();
+                   System.out.println(unitId);
+               }
+           }
+        }
+        Integer count=systemMapper.addAdmin(account,password,name,phone,address,unitId,Integer.parseInt(roleId));
+        if(count>0){
+            flag=true;
+        }
+        return flag;
+    }
+
 }
