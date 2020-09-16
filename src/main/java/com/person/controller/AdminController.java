@@ -1,12 +1,10 @@
 package com.person.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.google.gson.Gson;
+import com.alibaba.fastjson.JSONArray;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
-import com.person.bean.LayuiData;
-import com.person.bean.Station;
-import com.person.bean.User;
-import com.person.bean.TreeNode;
+import com.person.bean.*;
 import com.person.service.AdminService;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -16,8 +14,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,9 +23,13 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import com.person.bean.Station;
+
 
 
 @Controller
@@ -37,7 +39,7 @@ public class AdminController {
     AdminService adminService;
 
     @RequestMapping("getUserFrame")
-    public String adminRole() {
+    public String adminRole(){
         return "user-show";
     };
 
@@ -45,8 +47,6 @@ public class AdminController {
     @ResponseBody
     public String getUserByAdmin(String beginDate, String endDate, String schoolName , String specialty, Integer limit, Integer page){
         HashMap<String,Object> condition = new HashMap<>();
-        System.out.println(beginDate);
-        System.out.println(endDate);
         if(beginDate!=null && !"".equalsIgnoreCase(beginDate)){
             condition.put("beginDate",beginDate);
         }
@@ -77,7 +77,7 @@ public class AdminController {
     //批量添加学生============================
     @RequestMapping( "upload")
     @ResponseBody
-    public String uploadExcel(HttpServletRequest request, MultipartFile file) throws Exception {
+    public String uploadExcel(HttpServletRequest request,MultipartFile file) throws Exception {
         if (file.isEmpty()) {
             return "文件不能为空";
         }
@@ -96,25 +96,28 @@ public class AdminController {
             throw new Exception("创建Excel工作薄为空！");
         }
 
-        List<List<Object>> list = new ArrayList<>();
         List<User> userInfoList = new ArrayList<>();
         Sheet sheet = null;
         Row row = null;
         Cell cell = null;
 
         for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
+            System.out.println("============"+workbook.getNumberOfSheets());
             sheet = workbook.getSheetAt(i);
             if (sheet == null) {
                 continue;
             }
 
             for (int j = sheet.getFirstRowNum(); j <= sheet.getLastRowNum(); j++) {
+                System.out.println("========================"+sheet.getLastRowNum());
                 row = sheet.getRow(j);
-                if (row == null || row.getFirstCellNum() == j) {
+
+                if ( row == null || row.getFirstCellNum() == j ||row.equals("")) {
                     continue;
                 }
 
                 User userInfo = new User();
+                System.out.println(row.getCell(0));
                 row.getCell(0).setCellType(Cell.CELL_TYPE_STRING);
                 userInfo.setAccount(row.getCell(0).getStringCellValue());
                 row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
@@ -125,7 +128,15 @@ public class AdminController {
                 userInfo.setTel(row.getCell(3).getStringCellValue());
                 row.getCell(4).setCellType(Cell.CELL_TYPE_STRING);
                 userInfo.setAddress(row.getCell(4).getStringCellValue());
+                row.getCell(5).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setSchool(row.getCell(5).getStringCellValue());
+                row.getCell(6).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setMajor(row.getCell(6).getStringCellValue());
+                row.getCell(7).setCellType(Cell.CELL_TYPE_STRING);
+                userInfo.setName(row.getCell(7).getStringCellValue());
+                System.out.println(userInfo);
                 userInfoList.add(userInfo);
+
             }
         }
         workbook.close();
@@ -137,111 +148,13 @@ public class AdminController {
         return JSON.toJSONString(layuiData);
     }
 
-    @RequestMapping(value = "/paramsView", produces = "text/plain;charset=utf-8")
-    public String paramsView(String name,String type){
-        return "parameterManagement";
-    }
-
-    @RequestMapping(value = "/paramsList", produces = "text/plain;charset=utf-8")
-    @ResponseBody
-    public String paramsList(HttpServletRequest request, HttpServletResponse response){
-        String pageStr = request.getParameter("page");//页码
-        String pageSizeStr = request.getParameter("limit");//每页记录数
-        String name=request.getParameter("key[paramsName]");
-        String type=request.getParameter("key[paramsType]");
-        Integer page=Integer.parseInt(pageStr);
-        Integer pageSize=Integer.parseInt(pageSizeStr);
-        LayuiData layuiData=adminService.getParamList(page,pageSize,name,type);
-        return JSON.toJSONString(layuiData);
-    }
-
-
-    @RequestMapping(value = "/paramsType", produces = "text/plain;charset=utf-8")
-    @ResponseBody
-    public String paramsType(){
-
-        List<String> list=adminService.paramsTypeList();
-
-        return JSON.toJSONString(list);
-
-    }
-
-    @RequestMapping(value = "/paramsAddView", produces = "text/plain;charset=utf-8")
-    public String paramsAddView(){
-
-        return "params-add";
-    }
-
-
-    @RequestMapping(value = "/addParams", produces = "text/plain;charset=utf-8")
-    @ResponseBody
-    public String addParams(HttpServletRequest request, HttpServletResponse response){
-        String name = request.getParameter("paramsName");//页码
-        String type = request.getParameter("paramsType");//页码
-        String value = request.getParameter("paramsValue");//页码
-
-        Boolean flag=adminService.addParams(name,type,value);
-        if(flag){
-            return "success";
-        }else{
-            return "fail";
-        }
-    }
-
-    @RequestMapping(value = "/delParams", produces = "text/plain;charset=utf-8")
-    @ResponseBody
-    public String delParams(String id,String state){
-        Boolean flag=adminService.delParams(state,Integer.parseInt(id));
-        if(flag){
-            return "success";
-        }else{
-            return "fail";
-        }
-    }
-
-    @RequestMapping(value = "/editParamsView", produces = "text/plain;charset=utf-8")
-    public String editParamsView(){
-        return "params-edit";
-    }
-
-    @RequestMapping(value = "/editParams", produces = "text/plain;charset=utf-8")
-    @ResponseBody
-    public String editParams(HttpServletRequest request, HttpServletResponse response){
-        String id=request.getParameter("id");
-        String name=request.getParameter("paramsName");
-        System.out.println(name+"name");
-        System.out.println(id+"id");
-        Boolean flag=adminService.editParams(name,Integer.parseInt(id));
-        if(flag){
-            return "success";
-        }else{
-            return "fail";
-        }
-    }
-
-
-    @RequestMapping(value = "/rightManagerView", produces = "text/plain;charset=utf-8")
-    public String rightManagerView(){
-        return "rightManager";
-    }
-
-
-    @RequestMapping(value = "/roleList", produces = "text/plain;charset=utf-8")
-    @ResponseBody
-    public String roleList(HttpServletRequest request, HttpServletResponse response){
-
-        LayuiData layuiData =adminService.roleList();
-
-        return JSON.toJSONString(layuiData);
-
-    }
-
 
     //高校人才推荐 ==============工作信息界面绘制
     @RequestMapping(value = "recommendFrame", produces = "text/plain;charset=utf-8")
     public String userRecommendFrame(){
         return "user-recommend";
     }
+
 
     //高校人才推荐 ==============工作信息数据获取
     @RequestMapping(value = "recommend", produces = "text/plain;charset=utf-8")
@@ -256,7 +169,7 @@ public class AdminController {
         if(industry!= null && !"".equalsIgnoreCase(industry)){
             condition.put("industry",industry);
         }
-        LayuiData<Station> layuiData =  adminService.userRecommend(condition,limit,page);
+        LayuiData<Station> layuiData = adminService.userRecommend(condition, limit, page);
         return JSON.toJSONString(layuiData);
     }
 
@@ -302,43 +215,196 @@ public class AdminController {
     @ResponseBody
     public String userSelectSure(HttpServletRequest request,String list){
         Integer jobid  = (Integer)request.getSession().getAttribute("idOfJob");
-        Gson gson = new Gson();
-        List<User> idList = gson.fromJson(list, new TypeToken<ArrayList<User>>() {}.getType());
-
-        for(User u : idList){
-            System.out.println(u.getId());
+        if(jobid==null){
+            jobid=1;
         }
-        System.out.println(list);
-//        List<Integer> list = new ArrayList<>();
-//        if(list.size()!=0){
-//            System.out.println(JSON.toJSONString(list));
-//        }
-//        Integer res = adminService.userSelectSure(list,jobid);
-        return list.toString();
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+            public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                return new Date(json.getAsJsonPrimitive().getAsLong());
+            }
+        });
+        Gson gson = builder.create();
+        List<User> list1 = gson.fromJson(list, new TypeToken<List<User>>() {}.getType());
+        List<Integer> l = new ArrayList<>();
+        if(list1.size()<=0){
+            return 0+"";
+        }
+        for(int i = 0; i < list1.size() ; i++) {
+            User p = list1.get(i);
+            l.add(p.getId());
+        }
+        Integer res = adminService.userSelectSure(l,jobid);
+        return ""+res;
     }
-    @RequestMapping(value = "/editRightShow/{roleId}", produces = "text/plain;charset=utf-8")
-    public String editRightShow(@PathVariable(value = "roleId") String roleId,Model model) {
 
-        model.addAttribute("roleId",roleId);
-        return "right-edit";
+    //公司招聘管理=================显示界面
+    @RequestMapping(value = "adminRecruitFrame", produces = "text/plain;charset=utf-8")
+    public String adminRecruitFrame(){
+        return "admin-recruit";
     }
 
-    @RequestMapping(value = "/findRight/{roleId}", produces = "text/plain;charset=utf-8")
+    //公司招聘管理=================管理界面数据获取
     @ResponseBody
-    public String findRight(@PathVariable(value = "roleId") String roleId) {
-
-        TreeNode treeNode = adminService.findRight(Integer.parseInt(roleId));
-        return JSON.toJSONString(treeNode);
+    @RequestMapping(value = "adminRecruit", produces = "text/plain;charset=utf-8")
+    public String adminRecruit(HttpServletRequest request,Integer limit,Integer page,String jobName1,Integer trade1,Integer industry1,Integer education1){
+        Admin admin = (Admin)request.getSession().getAttribute("admin");
+        HashMap<String,Object> condition = new HashMap<>();
+        Integer adminId = 1;
+        if(admin != null){
+            adminId = admin.getId();
+        }
+        if(jobName1 != null && !"".equalsIgnoreCase(jobName1)){
+           condition.put("title",jobName1);
+        }
+        if(trade1 != null){
+            condition.put("trade",trade1);
+        }
+        if(industry1 != null){
+            condition.put("industry",industry1);
+        }
+        if(education1 != null ){
+            condition.put("education",education1);
+        }
+        if(limit== null){
+            limit = 5;
+        }
+        if(page== null){
+            page = 1;
+        }
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd")
+                .create();
+        LayuiData<Station> layuiData = adminService.adminRecruit(adminId,limit,page,condition);
+        return gson.toJson(layuiData);
     }
 
-    @RequestMapping(value = "/editRight", produces = "text/plain;charset=utf-8")
+
+    //公司招聘管理=================招聘修改界面
+    @RequestMapping(value = "recruitUpdateFrame", produces = "text/plain;charset=utf-8")
+    public String recruitUpdateFrame(){
+        return "recruit-update";
+    }
+
+    //公司招聘管理=================招聘修改
+    @RequestMapping(value = "recruitUpdate", produces = "text/plain;charset=utf-8")
     @ResponseBody
-    public String editRight(String permList,String roleId){
-
-        Gson gson = new Gson();
-        List<String> idList = gson.fromJson(permList, new TypeToken<ArrayList<String>>() {}.getType());
-        System.out.println(idList);
-        return roleId;
+    public String recruitUpdate(HttpServletRequest request,Station station){
+        Admin admin = (Admin)request.getSession().getAttribute("admin");
+        Integer adminId = 1;
+        if(admin != null){ adminId = admin.getId(); }
+        Integer res = adminService.recruitUpdate(station,adminId);
+        return ""+res;
     }
+
+    //公司招聘管理=================招聘新增界面
+    @RequestMapping(value = "recruitInsertFrame", produces = "text/plain;charset=utf-8")
+    public String recruitInsertFrame(Integer id){
+        return "recruit-add";
+    }
+
+    //公司招聘管理=================招聘新增
+    @RequestMapping(value = "recruitInsert", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String recruitInsert(HttpServletRequest request,Station station){
+        Admin admin = (Admin)request.getSession().getAttribute("admin");
+        Integer adminId = 1;
+        if(admin != null){ adminId = admin.getId(); }
+        Integer res = adminService.recruitInsert(station,adminId);
+        return ""+res;
+    }
+
+
+
+    //求职管理====================界面显示
+    @RequestMapping(value = "adminBioCheckFrame", produces = "text/plain;charset=utf-8")
+    public String adminBioCheckFrame(){
+        return "admin-bio-check";
+    }
+
+
+    //求职管理====================界面显示
+    @RequestMapping(value = "adminBioCheck", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String adminBioCheck(HttpServletRequest request,Integer limit,Integer page,Integer education,Integer major,String title){
+        Admin admin = (Admin)request.getSession().getAttribute("admin");
+        Integer adminId = 1;
+        if(admin != null){
+            adminId = admin.getId();
+        }
+
+        HashMap<String,Object> condition = new HashMap<>();
+        if(education != null){
+            condition.put("education",education);
+        }
+        if(major != null){
+            condition.put("major",major);
+        }
+        if(title != null){
+            condition.put("title",title);
+        }
+
+        LayuiData<User> layuiData = adminService.adminBioCheck(limit,page,condition,adminId);
+
+        return new Gson().toJson(layuiData);
+    }
+
+
+
+    //获取下拉菜单的数据
+    @RequestMapping(value = "getOptionData", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String getOptionData(String type){
+        System.out.println("================="+type);
+        LayuiData<Params> paramsList = adminService.getOptionData(type);
+        return new Gson().toJson(paramsList);
+    }
+
+    //获取统计新增简历信息
+    @RequestMapping(value = "getConutData", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String getConutData(){
+        return new Gson().toJson(adminService.getConutData());
+    }
+
+    //求职进度表===============界面
+    @RequestMapping(value = "recruitScheduleFrame", produces = "text/plain;charset=utf-8")
+    public String recruitScheduleFrame(){
+        return "recruit-schedule";
+    }
+
+    //求职进度表===============数据获取
+    @RequestMapping(value = "recruitSchedule", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String recruitSchedule(Integer jobstation,Integer id){
+        Jobcontain jobcontain = adminService.recruitSchedule(jobstation);
+        return new Gson().toJson(jobcontain);
+    }
+
+    //公司简介界面
+    @RequestMapping(value = "companyUpdateFrame", produces = "text/plain;charset=utf-8")
+    public String companyUpdateFrame(HttpServletRequest request, Model model,Integer id){
+        Admin admin = (Admin)request.getSession().getAttribute("admin");
+        if(admin == null){
+            admin.setCompany(1);
+        }
+        Company company = adminService.getCompanyById(admin.getCompany());
+        model.addAttribute("company",company);
+        return "company-update";
+    }
+
+    //公司简介修改
+    @RequestMapping(value = "companyUpdate", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String companyUpdate(Company company){
+        if(company.getId() == null){
+            company.setId(1);
+        }
+        System.out.println(company.getIntroduce());
+        Integer res = adminService.companyUpadate(company);
+
+        return ""+res;
+    }
+
 
 }

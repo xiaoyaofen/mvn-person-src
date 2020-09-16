@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>发布招聘</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+
+    <script type="text/javascript" th:src="@{/X-admin/js/xadmin.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">岗位名称</label>
+        <div class="layui-input-block">
+            <input type="text" id="title"  name="title" lay-verify="title" autocomplete="off" placeholder="请输入岗位名称" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">招聘人数</label>
+        <div class="layui-input-block">
+            <input type="text" id="number" name="number" lay-verify="number" autocomplete="off" placeholder="请输入招聘人数" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">薪资</label>
+        <div class="layui-input-block">
+            <input type="text" id="money" name="money" lay-verify="money" autocomplete="off" placeholder="请输入薪资" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">福利</label>
+        <div class="layui-input-block">
+            <input type="text" id="welfare" name="welfare" lay-verify="welfare" autocomplete="off" placeholder="请输入福利" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">地区</label>
+        <div class="layui-input-block">
+            <input type="text" id="region" name="region" lay-verify="region" autocomplete="off" placeholder="请输入地址" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">工作时间</label>
+        <div class="layui-input-block">
+            <input type="text" id="worktime" name="worktime" lay-verify="worktime" autocomplete="off" placeholder="请输入限制地区" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">职位描述</label>
+        <div class="layui-input-block">
+            <input type="text" id="description" name="description" lay-verify="description" autocomplete="off" placeholder="请输入职位描述" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">职位选择</label>
+        <div class="layui-input-inline">
+            <select id="job" name="job">
+                <option value="">请选择职位</option>
+            </select>
+        </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">限制条件</label>
+        <div class="layui-input-inline">
+            <select id="education" name="education">
+                <option value="">请选择学历</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select id="sex" name="sex">
+                <option value="">请选性别</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select lay-filter="experience" id="experience" name="experience">
+                <option value="">请选择工作经验</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="button" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button id="return-button" type="button" class="layui-btn layui-btn-primary">返回</button>
+        </div>
+    </div>
+
+</form>
+<script>
+    layui.use(['form','layer'], function() {
+        var form = layui.form;
+        var layer = layui.layer;
+
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,number: [
+                /^[\S]{2,12}$/
+                ,'密码必须2到12位，且不能出现空格'
+            ]
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            var title= $('#title').val();
+            var experience= $('#experience').val();
+            var number= $('#number').val();
+            var money= $('#money').val();
+            var welfare= $('#welfare').val();
+            var region= $('#region').val();
+            var worktime= $('#worktime').val();
+            var description= $('#description').val();
+            var sex= $('#sex').val();
+            var experience= $('#experience').val();
+            var education= $('#education').val();
+            var job= $('#job').val();
+
+            alert(JSON.stringify(data.field));
+            $.ajax({
+                url: "/admin/recruitInsert",
+                data: "title="+title+"&experience="+experience+"&number="+number+"&money="+money+"&welfare="
+                    +welfare+"&region="+region+"&worktime="+worktime+"&description="+description
+                    +"&sex="+sex+"&education="+education+"&job="+job
+                ,
+                success: function (res) {
+                    if(res>0){
+                        alert("招聘信息添加成功");
+                    }else{
+                        alert("招聘信息添加失败");
+                    }
+                }
+            })
+            return false;
+        });
+
+
+        //按键返回
+        $('#return-button').on('click', function () {
+            location.href="adminRecruitFrame";
+        })
+
+        //下拉框绑定 工作经验
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'工作经验',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#experience').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                layui.form.render("select");
+            }
+        })
+
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'性别',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#sex').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                layui.form.render("select");
+            }
+        })
+
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'学历',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#education').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                layui.form.render("select");
+            }
+        })
+
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'岗位',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#job').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                layui.form.render("select");
+            }
+        })
+
+    });
+</script>
+
+</body>
+</html>

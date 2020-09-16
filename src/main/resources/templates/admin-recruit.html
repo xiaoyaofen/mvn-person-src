@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>招聘管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+</head>
+<body>
+
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5">
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" id="jobName1" name="jobName1"  placeholder="请输入岗位" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" id="trade1" name="trade1"  placeholder="请输入行业" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" id="education1" name="education1"  placeholder="请输入学历" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <input type="text" id="industry1" name="industry1"  placeholder="请输入专业" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-inline layui-show-xs-block">
+                            <button id="select-btn" class="layui-btn" data-type="reload" type="button">
+                                <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-card-body "><table class="layui-hide" id="demo" lay-filter="test"/></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script>
+    layui.use(['laydate','table','form','layer'], function(){
+
+        var laydate = layui.laydate;
+        var form = layui.form;
+        var table = layui.table;
+        var layer = layui.layer;
+
+        //执行一个 table 实例
+        table.render({
+            elem: '#demo'
+            ,height: 420
+            ,url: '/admin/adminRecruit' //数据接口
+            ,title: '招聘信息'
+            ,page:{
+                layout: [ 'prev', 'page', 'next', 'count','limit', 'refresh', 'skip']//自定义布局顺序
+                ,limit:5	//初始  每页几条数据
+                ,limits:[5,10,15]	//可以选择的 每页几条数据
+                ,groups:10 	//最多几个跳页按钮
+                ,first: false //不显示首页
+                ,last: false //不显示尾页
+            }
+            ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            ,defaultToolbar: ['filter', 'exports']
+            ,totalRow: true //开启合计行
+            ,cols: [
+                [ //表头
+                    {type: 'checkbox', fixed: 'left'}
+                    ,{field: 'pm', title: '序号', width:80, sort: true, fixed: 'left'}
+                    ,{field: 'id',hide: true}
+                    ,{field: 'trade', title: '行业', width: 300}
+                    ,{field: 'adminname', title: '发布者', width: 120}
+                    ,{field: 'jobname', title: '岗位', width: 200}
+                    ,{field: 'date', title: '发布时间', width: 180}
+                    ,{field: 'money', title: '薪资', width: 180}
+                    ,{field: 'number', title: '招聘人数', width: 150}
+                    ,{fixed: 'right' , title: '操作', width: 150, align:'center', toolbar: '#barDemo'}
+                ]
+            ]
+        });
+
+        //监听头工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id)
+                ,data = checkStatus.data; //获取选中的数据
+            switch(obj.event){
+                case 'add':
+                    location.href="recruitInsertFrame";
+                    break;
+            };
+        });
+
+        //监听行工具事件
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'detail'){
+                var id = data.id;
+                location.href="recruitUpdateFrame?id="+id;
+            }
+        });
+
+
+        $('#select-btn').click(function () {
+            var jobName1 = $("#jobName1").val();
+            var trade1 = $("#trade1").val();
+            var industry1 = $("#industry1").val();
+            var education1 = $("#education1").val();
+            //执行重载
+            table.reload('demo', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                , where: {
+                    jobName1: jobName1 //作为参数传递给后端php
+                    ,trade1: trade1
+                    ,industry1: industry1
+                    ,education1: education1
+                }
+            });
+        })
+
+        //=================== 查询
+        $('#select-btn').on('click', function () {
+            var type = $(this).data('type');//自定义type属性，这里即为reload
+            active[type] ? active[type].call(this) : ''; //如果存在active[type]，则调用改函数
+        });
+
+        // ===================上传
+        $('#upload-btn').on('click', function () {
+            layer.open({
+                type: 2 //Page层类型
+                , area: ['600px', '500px']
+                , title: '修改用户信息'
+                , shade: 0.6 //遮罩透明度
+                , maxmin: true //允许全屏最小化
+                , anim: 1 //0-6的动画形式，-1不开启
+                , content: "/admin/uploadFrame"
+                ,btn: ['确定', '返回']
+                ,success: function (layero, index) {
+
+                    var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦
+                    //为子窗口元素赋值
+                    body.contents().find("#gradeName").val(data.gradeName);//通过class名进行获取数据
+                    body.contents().find("#gradeUp").val(data.gradeUp);
+                    body.contents().find("#gradeDown").val(data.gradeDown);
+                    body.contents().find("#gradeId").val(data.gradeId);
+                    layui.form.render();
+                }
+                ,yes: function (index, layero) {         //按了弹出层的确定按钮时，这是将在父窗口中获取子窗口form标签里的所有值，并根据name名和值形成键值对json对象
+
+                    var body = layer.getChildFrame("body", index);
+                    var data = {};
+                    body.find("#changeGradeform").serializeArray().forEach(function (item) {    //获取弹出层写下的数据，input，下拉框啊，之类的表单元素（即changefileform下的所有数据）
+                        data[item.name] = item.value;   //根据表单元素的name属性来获取数据
+                    });
+                    $.ajax({
+                        url:path+"/grade/gradeUpdate",
+                        async: false,
+                        type:"POST",
+                        // dataType: "text",
+                        data:data,
+                        success: function(res){
+                            if(res>0){
+                                alert("修改成功");
+                            }else{
+                                alert("修改失败");
+                            }
+                        }
+                    })
+                    layer.close(index);
+                }
+                //返回按键
+                ,btn2: function(index, layero){
+                    if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+                        layer.close(index);
+                    }
+                    return false ;//开启该代码可禁止点击该按钮关闭
+                }
+                //右上角关闭按键
+                ,cancel: function(index, layero){
+                    if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+                        layer.close(index)
+                    }
+                    return false;
+                }
+            });
+        });
+
+
+    });
+</script>
+</html>

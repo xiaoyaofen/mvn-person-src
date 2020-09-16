@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Service
 public class KnowServiceImpl implements KnowService {
 
@@ -75,8 +79,8 @@ public class KnowServiceImpl implements KnowService {
     }
 
     @Override
-    public String findMaxValue() {
-        String maxValue=knowMapper.findMaxValue();
+    public String findMaxValue(String scope) {
+        String maxValue=knowMapper.findMaxValue(scope);
         return maxValue;
     }
 
@@ -166,8 +170,112 @@ public class KnowServiceImpl implements KnowService {
     }
 
     @Override
-    public Integer setProduct(String id, String product, String scope, String teacher, String detial, String start, String over) {
-        return null;
+    public void setProduct(String id, String product, String scope, String teacher, String detial, String start,String picture, String over) {
+        knowMapper.setProduct(id,product,scope,teacher,detial,start,picture,over);
+    }
+
+    @Override
+    public String findTeacherParam(String teacher) {
+        String teacher1=knowMapper.findTeacherParam(teacher);
+        return teacher1;
+    }
+
+    @Override
+    public Map<String, List<Menu>> findknowMenu() {
+        Map<String, List<Menu>> map = new HashMap<>();
+        List<Menu> list = knowMapper.findknowMenu(0);
+
+        for (int i = 0; i < list.size(); i++) {
+            Menu menu1 = list.get(i);
+            List<Menu> list1 = knowMapper.findknowMenu(menu1.getId());
+            map.put(menu1.getMenuname(), list1);
+        }
+        return map;
+    }
+
+    @Override
+    public LayuiData getTwoCharpter(String id) {
+        List<Menu> list= knowMapper.getTwoCharpter(id);
+        Integer count=knowMapper.getTwoCharpterCount(id);
+        LayuiData layuiData=new LayuiData();
+        layuiData.setMsg("");
+        layuiData.setCode(0);
+        layuiData.setCount(count);
+        layuiData.setData(list);
+        return layuiData;
+    }
+
+    @Override
+    public Integer getTwoCharpterCount(String id) {
+        Integer count=knowMapper.getTwoCharpterCount(id);
+        return count;
+    }
+
+    @Override
+    public TreeNode findAllMenu(String id,String productID) {
+        TreeNode treeRootNode = new TreeNode();
+        List<TreeNode> rootchildren = new ArrayList<>();
+        treeRootNode.setId(0);
+        String menuname=knowMapper.findKnowmenuName(id);
+        treeRootNode.setTitle(menuname);
+        treeRootNode.setChildren(rootchildren);
+        treeRootNode.setSpread(true);
+        treeRootNode.setChecked(false);
+        List<Menu> list = knowMapper.getTwoCharpter(id);
+
+        for (int i = 0; i < list.size(); i++) {
+            TreeNode treeNode = new TreeNode();
+            treeNode.setTitle(list.get(i).getMenuname());
+            treeNode.setId(-1);
+            treeNode.setSpread(true);
+            treeNode.setChecked(false);
+            List<TreeNode> children = new ArrayList<>();
+            treeNode.setChildren(children);
+            List<Menu> list1 = knowMapper.findMenunamebyid(String.valueOf(list.get(i).getId()));
+            List<Menu> list2 = knowMapper.findOneMenu(productID);
+            for (int j = 0; j < list1.size(); j++) {
+                TreeNode twoTreeNode = new TreeNode();
+                twoTreeNode.setTitle(list1.get(j).getMenuname());
+                twoTreeNode.setId(list1.get(j).getId());
+                for (int jj = 0; jj < list2.size(); jj++) {
+                    System.out.println(list1.get(j).getMenuname()+"=="+list2.get(jj).getMenuname());
+                        if (list1.get(j).getMenuname().equals(list2.get(jj).getMenuname())) {
+                            twoTreeNode.setChecked(true);
+                        }
+                }
+
+                children.add(twoTreeNode);
+            }
+            rootchildren.add(treeNode);
+        }
+        return treeRootNode;
+    }
+
+    @Override
+    public List<Menu> findOneMenu(String productID) {
+        List<Menu> list=knowMapper.findOneMenu(productID);
+        return list;
+    }
+
+    @Override
+    public Integer delAllMenu(String productID) {
+        Integer num=knowMapper.delAllMenu(productID);
+        return num;
+    }
+
+    @Override
+    public void addMenu(String productID, String charpterID) {
+        knowMapper.addMenu(productID,charpterID);
+    }
+
+    @Override
+    public void addTeacher(String teacher,String value) {
+        knowMapper.addTeacher(teacher,value);
+    }
+
+    @Override
+    public void addProduct(String product, String scope, String teacher, String detial, String start, String picture, String over,String publisher) {
+         knowMapper.addProduct(product,scope,teacher,detial,start,picture,over,publisher);
     }
 
 

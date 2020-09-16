@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>公司信息</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+</head>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>公司简介</legend>
+</fieldset>
+
+<form class="layui-form" action="" lay-filter="example">
+    <div class="layui-form-item">
+        <input id="name" type="text" name="name" lay-verify="name" autocomplete="off" placeholder="公司名称" class="layui-input"></div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">公司地址</label>
+        <div class="layui-input-block">
+            <input id="address" type="text" name="address" lay-verify="address"  placeholder="请输入公司地址" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">公司简介</label>
+        <div class="layui-input-block">
+            <textarea id="introduce" placeholder="请输入公司简介" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系方式</label>
+        <div class="layui-input-block">
+            <input id="tel" type="text" name="tel" lay-verify="tel"  placeholder="请输入联系方式" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">主营任务</label>
+        <div class="layui-input-block">
+            <input id="business" type="text" name="business" lay-verify="business"  placeholder="请输入主营任务" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">修改</button>
+
+<!--            <button type="button" class="layui-btn layui-btn-normal" id="LAY-component-form-setval">赋值</button>-->
+        </div>
+    </div>
+</form>
+
+
+
+
+<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            var introduce = $('#introduce').val();
+            var name = $('#name').val();
+            var address = $('#address').val();
+            var tel = $('#tel').val();
+            var business = $('#business').val();
+            if(introduce.length >200){
+                alert("输入简介超过200个字");
+            }else{
+                $.ajax({
+                    url:"/admin/companyUpdate",
+                    type: "POST",
+                    data:"name="+name+"&introduce="+introduce+"&address="+address+"&tel="+tel+"&business="+business,
+                    dataType: "json",
+                    success:function(res){
+                        if(res>0){
+                            alert("修改成功");
+                        }else{
+                            alert("修改失败");
+                        }
+                    }
+                })
+            }
+
+
+            return false;
+        });
+
+        //表单赋值
+        layui.$('#LAY-component-form-setval').on('click', function(){
+            form.val('example', {
+                "name": "歌尔股份有限公司"
+                ,"tel": "0536-03051234"//开关状态
+                ,"address": "中国山东省潍坊市高新技术产业 开发区东方路268号"
+                ,"business": "开发、制造、销售:声学、光学、无线通信技术及相关产品,机器人与自动化装备"
+            });
+            var introduce = $('#introduce').val("歌尔股份有限公司成立于2001年6月,2008年5月在深交所上市,主要从事微型声学模组、传感器、微显示光机模组等精密零组件,虚拟现实/增强现实、智能穿戴、智能音响、机器人/无人机等智能硬件的研发、制造和销售,目前已在多个领域建立了全球领先的综合竞争力。自上市以来,歌尔保持高速成长,年复合增长率达44.5%。 秉持一站式服务为客户创造更大价值的理念,歌尔深耕产业价值链上下游,已与消费电子领域的国际一流客户达成稳定、紧密、长期的战略合作关系。从上游精密元器件、模组,到下游的智能硬件,从模具、注塑、表面处理,到高精度自动线的自主设计与制造,歌尔打造了在价值链高度垂直整合的精密加工与智能制造的平台,为客户提供全方位服务。" );
+        });
+
+    });
+</script>
+
+</body>
+</html>

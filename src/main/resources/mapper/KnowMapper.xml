@@ -50,7 +50,7 @@
         select type,name from t_param where type='领域' and name=#{scope}
     </select>
     <select id="findMaxValue" resultType="java.lang.String">
-        select max(value) from t_param where type='领域'
+        select max(value) from t_param where type=#{scope}
     </select>
     <insert id="addScopeParam">
         insert into t_param (type,name,value) values ('领域',#{scope},#{maxValue})
@@ -125,4 +125,41 @@
     <select id="teacherSel" resultType="com.person.bean.Params">
         select name from t_param where type ='讲师'
     </select>
+    <select id="findTeacherParam" resultType="java.lang.String">
+        select value from t_param where type='讲师' and name=#{teacher}
+    </select>
+    <update id="setProduct">
+        update t_product set product=#{product},start=#{startOne},over=#{overOne},teacher=#{teacher},scope=#{scope},picture=#{picture},detial=#{detial} where id=#{id}
+    </update>
+    <select id="findknowMenu" resultType="com.person.bean.Menu">
+        select id,menuname,url,pid from t_knowmenu where pid=#{pid}
+    </select>
+    <select id="getTwoCharpter" resultType="com.person.bean.Menu">
+        select id,menuname from t_knowmenu where pid=#{id}
+    </select>
+    <select id="getTwoCharpterCount" resultType="java.lang.Integer">
+        select count(*) from t_knowmenu where pid=#{id}
+    </select>
+    <select id="findKnowmenuName" resultType="java.lang.String">
+        select menuname from t_knowmenu where id=#{id}
+    </select>
+    <select id="findMenunamebyid" resultType="com.person.bean.Menu">
+        select id,name as menuname from t_charpters where menuname=#{id}
+    </select>
+    <select id="findOneMenu" resultType="com.person.bean.Menu">
+        select c.id,c.name as menuname from t_charpter_product cp,t_charpters c where cp.charpterid=c.id and cp.productid=#{id}
+    </select>
+    <delete id="delAllMenu">
+        delete from t_charpter_product where charpterid in( select id from t_charpters where menuname in(select menuname from t_charpters where id=#{id}))
+    </delete>
+    <insert id="addMenu">
+        insert into t_charpter_product (charpterid,productid) values (#{charpterID},#{productID})
+    </insert>
+    <insert id="addTeacher">
+        insert into t_param (value,name,type) values (#{value},#{teacher},'讲师')
+    </insert>
+    <insert id="addProduct">
+        insert into t_product (product,start,over,publisher,teacher,scope,picture,detial,state) values
+        (#{product},#{start},#{over},#{publisher},#{teacher},#{scope},#{picture},#{detial},'启用')
+    </insert>
 </mapper>
