@@ -281,4 +281,30 @@ public class SystemServiceImpl implements SystemService {
         return flag;
     }
 
+    @Override
+    public List<Params> selectTrade() {
+        List<Params> list=systemMapper.selectTrade();
+        return list;
+    }
+
+    @Override
+    public LayuiData postManager(String trade, Integer page, Integer pageSize) {
+        LayuiData layuiData = new LayuiData();
+        Integer start = (page - 1) * pageSize;
+        List<JobTrade> list = systemMapper.postManager(trade,start,pageSize);
+        int count = systemMapper.postManagerCount(trade);
+        if (list.size() > 0) {
+            layuiData.setCode(0);
+            layuiData.setMsg("");
+            layuiData.setCount(count);
+            layuiData.setData(list);
+        } else {
+            layuiData.setCode(1);
+            layuiData.setMsg("查询失败");
+        }
+        return layuiData;
+    }
+
+
+
 }

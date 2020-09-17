@@ -8,6 +8,7 @@ import com.person.bean.User;
 import com.person.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -42,10 +43,11 @@ public class MenuController {
 
     @RequestMapping("/Menu")
     @ResponseBody
-    public String Menu(HttpServletRequest request, HttpServletResponse response) {
-//        Admin admin= (Admin) request.getSession().getAttribute("admin");
-//        Integer roleid= admin.getRole_id();
-        List<Menu> menuList =  menuService.getMenuListByRoleId(1);
+    public String Menu(HttpServletRequest request, Model model) {
+        Admin admin= (Admin) request.getSession().getAttribute("admin");
+        
+        Integer roleid= admin.getRoleid();
+        List<Menu> menuList =  menuService.getMenuListByRoleId(roleid);
         return JSON.toJSONString(menuList);
     }
 }

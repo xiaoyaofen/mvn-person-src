@@ -142,4 +142,14 @@ public interface SystemMapper {
     );
 
 
+    public List<Params> selectTrade();
+
+    public List<JobTrade> postManager(@Param("trade") String trade,
+                                      @Param("start") Integer start,
+                                      @Param("pageSize") Integer pageSize
+    );
+
+    public int postManagerCount(@Param("trade") String trade);
+
+
 }

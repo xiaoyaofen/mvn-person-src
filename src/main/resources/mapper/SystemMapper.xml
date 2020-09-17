@@ -88,7 +88,6 @@
     <select id="adminLog" resultType="com.person.bean.Daily">
         select (@i:=@i+1) num,t.account operation,DATE_FORMAT(t.time,'%Y-%m-%d') time,t.event event from
         ((select a.account,d.*from t_daily d left join t_admin a on d.worker= a.id where d.role='admin'
-
         <if test="startDate!=null and startDate!=''">
             AND d.time <![CDATA[>=]]> STR_TO_DATE(#{startDate},'%Y-%m-%d')
         </if>
@@ -131,7 +130,7 @@
         </if>
         order by d.time desc
     </select>
-<!--    用户管理列表-->
+    <!--    用户管理列表-->
     <select id="userList" resultType="com.person.bean.User">
         select (@i:=@i+1) num ,t.id id,t.name name,t.tel tel,t.school school,
         DATE_FORMAT(t.date,'%Y-%m-%d') date,t.state state FROM(select id,name,tel,school,date,state from t_user
@@ -144,7 +143,7 @@
                 and state=#{state}
             </if>
         </where>
-        order by date DESC limit  #{start},#{pageSize})t,(select @i:=0)p
+        order by date DESC limit #{start},#{pageSize})t,(select @i:=0)p
     </select>
 
     <select id="userLitCount" resultType="int">
@@ -160,7 +159,7 @@
         order by date DESC
     </select>
 
-<!--    用户管理禁用/启用-->
+    <!--    用户管理禁用/启用-->
     <update id="userManager">
         update t_user set state=#{state} where id=#{id}
     </update>
@@ -181,7 +180,7 @@
     <select id="selectCompany" resultType="com.person.bean.Company">
         select * from t_company where name=#{name}
     </select>
-    <insert id="addCompany"  useGeneratedKeys="true" keyProperty="id">
+    <insert id="addCompany" useGeneratedKeys="true" keyProperty="id">
         insert into t_company (name,qualification) values (#{company.name},#{company.qualification})
     </insert>
 
@@ -189,7 +188,7 @@
     <select id="selectSchool" resultType="com.person.bean.School">
         select * from t_school where name=#{name}
     </select>
-    <insert id="addSchool"  useGeneratedKeys="true" keyProperty="id">
+    <insert id="addSchool" useGeneratedKeys="true" keyProperty="id">
         insert into t_school (name) values (#{school.name})
     </insert>
 
@@ -197,5 +196,35 @@
         insert into t_admin (account,pwd,name,tel,address,company,roleid)
         values(#{account},#{pwd},#{name},#{tel},#{address},#{company},#{roleid})
     </insert>
+
+
+    <select id="selectTrade" resultType="com.person.bean.Params">
+        select * from t_param where type='行业'
+    </select>
+
+    <select id="postManager" resultType="com.person.bean.JobTrade">
+        select (@i:=@i+1) num,  t.* from(select j.id,j.jobid,j.tradeid,j.state,p1.name trad,p2.name job from t_job_trade j
+      left join t_param p1 on j.tradeid = p1.value and p1.type='行业'
+      left join t_param p2 on j.jobid = p2.value and p2.type = '岗位'
+      <where>
+          <if test="trade!=null and trade !=''">
+              p1.name like concat('%',#{trade},'%')
+          </if>
+      </where>
+          and j.state='true'
+      limit #{start},#{pageSize}) t,(select @i:=0)p
+    </select>
+
+    <select id="postManagerCount" resultType="int">
+        select count(*) from t_job_trade j
+        left join t_param p1 on j.tradeid = p1.value and p1.type='行业'
+        left join t_param p2 on j.jobid = p2.value and p2.type = '岗位'
+        <where>
+            <if test="trade!=null and trade !=''">
+                p1.name like concat('%',#{trade},'%')
+            </if>
+        </where>
+        and j.state='true'
+    </select>
 
 </mapper>
