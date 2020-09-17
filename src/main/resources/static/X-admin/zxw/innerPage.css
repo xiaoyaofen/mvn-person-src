@@ -1,0 +1,3195 @@
+.bgb {
+    width: 100%;
+    background-color: #414141;
+    min-height: 1px;
+    min-width: 1200px;
+}
+
+.ggb {
+    width: 100%;
+    background-color: #e7e7e7;
+    min-height: 1px;
+    min-width: 1200px;
+}
+
+.videoInfo {
+    width: 100%;
+    min-height: 1px;
+}
+
+.videoInfo .info {
+    line-height: 30px;
+    height: 40px;
+    text-align: left;
+    padding: 5px;
+    box-sizing: border-box;
+    background-color: #e7e7e7;
+}
+
+.videoInfo .info .shareAndfollow {
+    height: 30px;
+    line-height: 30px;
+    text-align: right;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.videoInfo .info .shareAndfollow a {
+    color: #6b6b6b;
+    text-decoration: none;
+    font-size: 15px;
+    background: none !important;
+    line-height: 30px;
+    height: 30px;
+    margin: 0px;
+    vertical-align: top;
+}
+
+.videoInfo .info .shareAndfollow a.like {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.videoInfo .info .shareAndfollow a.like i.Hui-iconfont-like2 {
+    color: #cf0c00;
+    animation: toLike 0.3s;
+    -webkit-animation: toLike 0.3s; /* Safari 和 Chrome */
+    animation-fill-mode: forwards;
+    vertical-align: top;
+}
+
+.videoInfo .info > .openOnPhone {
+    float: right;
+    line-height: 30px;
+    height: 30px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #636363;
+    position: relative;
+    margin-right: 155px;
+}
+
+.videoInfo .info > .openOnPhone span {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #636363;
+    border-radius: 50%;
+    line-height: 24px;
+    text-align: center;
+}
+
+/*.videoInfo .info > .openOnPhone .QRcore {
+    position: absolute;
+    display: none;
+    background: url("../Images/app.png") no-repeat center center;
+    width: 185px;
+    height: 240px;
+    left: -183px;
+    top: -25px;
+    z-index: 1000000;
+}*/
+
+.videoInfo .info > .openOnPhone .QRcore {
+    position: absolute;
+    display: none;
+    background: url("../Images/app2.png") no-repeat center center;
+    width: 185px;
+    height: 240px;
+    left: -183px;
+    top: -25px;
+    z-index: 1000000;
+    text-align: center;
+    padding: 15px 12px 15px 3px;
+    box-sizing: border-box;
+    line-height: 20px;
+}
+
+.videoInfo .info > .openOnPhone .QRcore .QRcorePic {
+    width: 135px;
+    height: 135px;
+    padding: 10px 10px 0px 10px;
+    display: inline-block;
+}
+
+.videoInfo .info > .openOnPhone:hover .QRcore {
+    display: block;
+}
+
+.videoInfo .player {
+    /*    padding: 0px 50px;*/
+    box-sizing: border-box;
+    text-align: center;
+    height: 600px \0;
+    min-height: 600px;
+    position: relative;
+    background-color: #8d8d8d;
+}
+
+.videoInfo .player #myElement {
+    text-align: center !important;
+    width: 1000px !important;
+    height: 600px !important;
+    float: left;
+}
+
+.videoInfo .player #myElement_wrapper {
+    text-align: center !important;
+    width: 1000px !important;
+    height: 600px !important;
+    display: block !important;
+    float: left;
+}
+
+.videoInfo .player object {
+    width: 1000px;
+    height: 600px;
+    float: left;
+}
+
+.videoInfo .player .alertBg {
+    width: 1000px;
+    height: 600px;
+    background-color: #fff;
+    float: left;
+}
+
+.videoInfo .player .alertBg .alert {
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: 150px;
+}
+
+.videoInfo .player .quickCatalog {
+    min-width: 40px;
+    height: 600px;
+    position: absolute;
+    display: block;
+    right: 160px;
+    top: 0px;
+    z-index: 999999;
+}
+
+.videoInfo .player .quickCatalog .catalog {
+    width: 40px;
+    height: 600px;
+    line-height: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #000 \9;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 15px;
+    box-sizing: border-box;
+}
+
+.videoInfo .player .quickCatalog .catalog a.videoNotes {
+    width: 40px;
+    height: 40px;
+    line-height: 20px;
+    vertical-align: middle;
+    color: #fff;
+    box-sizing: border-box;
+    position: absolute;
+    left: 2px;
+    top: 20px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+.videoInfo .player .quickCatalog .catalog > .title {
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    border-bottom: 1px solid #fff;
+    font-size: 13px;
+}
+
+.videoInfo .player .quickCatalog .catalog > .title a {
+    line-height: 30px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.videoInfo .player .quickCatalog .catalog .coursePages {
+    min-height: 1px;
+    max-height: 540px;
+    overflow-y: auto;
+}
+
+.videoInfo .player .quickCatalog .catalog .coursePages a {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fff;
+    display: block;
+    float: left;
+    margin: 5px;
+    line-height: 30px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.videoInfo .player .quickCatalog .catalog .coursePages a.checked {
+    color: #00aeff;
+    border-color: #00aeff;
+}
+
+.videoInfo .player .quickCatalog .catalog .coursePages a.selected {
+    color: #00aeff;
+    border-color: rgba(0, 0, 0, 0);
+    background-color: #00aeff;
+    color: #fff !important;
+}
+
+.videoInfo .player .quickCatalog .catalog .coursePages a:hover {
+    color: #00aeff;
+    border-color: #00aeff;
+}
+
+.videoInfo .player .quickCatalog .catalog .show {
+    text-decoration: none;
+    color: #fff;
+    padding: 80px 0px;
+    font-size: 13px;
+}
+
+.videoInfo .player .quickCatalog .catalog .video {
+    min-height: 1px;
+}
+
+.videoInfo .player .quickCatalog .videoList {
+    height: 520px;
+    text-align: left;
+    padding: 10px 0px 5px 0px;
+    box-sizing: border-box;
+}
+
+.videoInfo .player .quickCatalog .videoList li {
+    height: 24px;
+    line-height: 24px;
+    width: 290px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.videoInfo .player .quickCatalog .videoList li.title {
+    font-size: 14px;
+    color: #a6a6a6;
+    padding-left: 0px;
+}
+
+.videoInfo .player .quickCatalog .videoList li span.icon {
+    display: inline-block;
+    height: 24px;
+    width: 20px;
+    text-align: center;
+    line-height: 24px;
+    vertical-align: middle;
+}
+
+.videoInfo .player .quickCatalog .videoList li a {
+    text-decoration: none;
+    color: #fff;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.videoInfo .player .quickCatalog .videoList li a.checked {
+    text-decoration: none;
+    color: #00aeff;
+}
+
+.videoInfo .player .quickCatalog .videoList li a:hover {
+    text-decoration: none;
+    color: #00aeff;
+}
+
+.videoInfo .controls {
+    height: 50px;
+    background-color: #f3f3f3;
+    text-align: left;
+}
+
+.videoInfo .controls a {
+    height: 50px;
+    line-height: 50px;
+    padding: 0px 20px;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    vertical-align: middle;
+    letter-spacing: 1px;
+}
+
+.videoInfo .controls a.disabled {
+    cursor: not-allowed;
+}
+
+.videoInfo .controls a.askTeacher {
+    background: url("../Images/wenIcon.png") no-repeat left center;
+    padding-left: 50px;
+    float: right;
+    color: #00aeff;
+}
+
+.wbg {
+    background-color: #fff;
+}
+
+.head {
+    min-height: 1px;
+    padding: 15px 0px;
+    text-align: justify;
+}
+
+.head a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.head:after {
+    content: " ";
+    width: 100%;
+}
+
+.webPath {
+    text-align: left;
+    height: 50px;
+    line-height: 50px;
+}
+
+.webPath a {
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.courseResume {
+    width: 100%;
+    min-height: 1px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 20px 30px;
+    text-align: left;
+}
+
+.courseResume .courseLogo {
+    width: 300px;
+    height: 275px;
+    display: inline-block;
+}
+
+.courseResume .courseLogo .image {
+    width: 300px;
+    height: 235px;
+    overflow: hidden;
+}
+
+.courseResume .courseLogo .image img {
+    width: 300px;
+    height: 235px;
+    object-fit: scale-down;
+}
+
+.courseResume .courseLogo .shareAndfollow {
+    height: 40px;
+    line-height: 40px;
+    text-align: right;
+    position: relative;
+}
+
+.courseResume .courseLogo .shareAndfollow a {
+    color: #6b6b6b;
+    text-decoration: none;
+    font-size: 15px;
+    background: none !important;
+    line-height: 28px;
+    height: 28px;
+    margin: 0px;
+}
+
+.courseResume .courseLogo .shareAndfollow a:hover {
+    color: #00aeff;
+}
+
+.courseResume .courseLogo .shareAndfollow a.like {
+    width: 60px;
+    display: inline-block;
+}
+
+.courseResume .courseLogo .shareAndfollow a.like i.Hui-iconfont-like2 {
+    color: #cf0c00;
+    animation: toLike 0.3s;
+    -webkit-animation: toLike 0.3s; /* Safari 和 Chrome */
+    animation-fill-mode: forwards;
+}
+
+@keyframes toLike {
+    0% {
+        font-size: 1px;
+    }
+    50% {
+        font-size: 20px;
+    }
+    75% {
+        font-size: 13px;
+    }
+    90% {
+        font-size: 16px;
+    }
+    100% {
+        font-size: 15px;
+    }
+}
+
+.courseResume .courseInfo {
+    width: 800px;
+    height: 275px;
+    display: inline-block;
+}
+
+.courseResume .courseInfo .title {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 40px;
+    height: 40px;
+}
+
+.courseResume .courseInfo .countNum {
+    color: #636363;
+}
+
+.courseResume .courseInfo .countNum .complete {
+    font-size: 14px;
+    padding: 0px 0px 0px 24px;
+    background: url("../Images/videoIcon.png") no-repeat left center;
+    color: #e98f36;
+    line-height: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.courseResume .courseInfo .target {
+    width: 100%;
+    min-height: 1px;
+}
+
+.courseResume .courseInfo .target .description {
+    width: 650px;
+    height: 48px;
+    line-height: 24px;
+    overflow: hidden;
+    background-color: #f3f3f3;
+    padding: 10px;
+    font-size: 13px;
+    text-indent: 20px;
+}
+
+.courseResume .courseInfo .target .verInfo {
+    width: 650px;
+    height: 60px;
+    padding: 10px;
+}
+
+.courseResume .courseInfo .target .verInfo .name {
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    font-size: 14px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.courseResume .courseInfo .target .verInfo .content {
+    width: 200px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    font-size: 14px;
+    text-align: left;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.courseResume .rightTop {
+    width: 240px;
+    height: 30px;
+    right: 0px;
+    top: 0px;
+    padding: 10px;
+}
+
+.courseResume .rightTop a {
+    padding: 0px 10px;
+    text-decoration: none;
+    color: #636363;
+    font-size: 14px;
+    display: inline-block;
+    height: 30px;
+}
+
+.courseResume .rightTop a span.round {
+    height: 26px;
+    width: 26px;
+    border: 1px solid #636363;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    line-height: 26px;
+}
+
+.courseResume .rightTop a span.rect {
+    height: 26px;
+    width: 26px;
+    border-radius: 3px;
+    display: inline-block;
+    text-align: center;
+    line-height: 26px;
+    background-color: #ff6c00;
+    color: #fff;
+    font-weight: bold;
+}
+
+.courseResume .rightBottom {
+    width: 200px;
+    height: 50px;
+    right: 0px;
+    bottom: 10px;
+    padding: 10px;
+    text-align: right;
+}
+
+.courseResume .rightBottom a {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0px 5px;
+    padding: 7px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 18px;
+    box-sizing: border-box;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.courseResume .rightBottom a.Bbs {
+    background: url("../Images/Bbs2.png") no-repeat center center;
+}
+
+.courseResume .rightBottom a.Qa {
+    background: url("../Images/QA2.png") no-repeat center center;
+}
+
+.courseResume .rightBottom a.SC {
+    background: url("../Images/ShoppingCart2.png") no-repeat 10px center;
+}
+
+.lightBox {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.lightBox .title {
+    width: 140px;
+    line-height: 30px;
+    height: 80px;
+    display: inline-block;
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: border-box;
+    padding: 10px 0px;
+}
+
+.lightBox .coursePics {
+    width: 1000px;
+    height: 80px;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.lightBox .coursePics a {
+    width: 100px;
+    height: 75px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 3px 10px 0px 10px;
+}
+
+.lightBox .coursePics a img {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+}
+
+.tab {
+    height: 45px;
+    box-sizing: border-box;
+    margin: 0px 15px;
+    border-bottom: 1px solid #e7e7e7;
+    text-align: left;
+}
+
+.tab a {
+    height: 42px;
+    line-height: 42px;
+    padding: 0px 15px;
+    border-bottom: 2px solid #fff;
+    display: inline-block;
+    font-size: 16px;
+    text-decoration: none;
+    vertical-align: middle;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.tab a.checked {
+    color: #00aeff;
+    border-bottom: 2px solid #00aeff;
+}
+
+.tab span {
+    width: 1px;
+    height: 20px;
+    background-color: #999;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.tab .catalogMode {
+    height: 44px;
+    line-height: 44px;
+    display: block;
+    width: 180px;
+    float: right;
+    text-align: right;
+    color: #999;
+    padding-right: 20px;
+}
+
+.tab .catalogMode a {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 6px;
+    padding: 0px;
+    border: none;
+    color: #999;
+    height: 44px;
+    line-height: 44px;
+    font-size: 18px;
+}
+
+.tab .catalogMode a.checked {
+    color: #00aeff;
+}
+
+.chapters {
+    padding: 20px 0px;
+    margin: 0px;
+}
+
+.chapters li {
+    box-sizing: border-box;
+    min-height: 30px;
+    padding: 0px 40px 0px 50px;
+    text-align: left;
+}
+
+.chapters li a {
+    text-decoration: none;
+    width: 100%;
+    display: inline-block;
+}
+
+
+.chapters li.title {
+    line-height: 40px;
+    height: 40px;
+    font-size: 16px;
+    color: #8d8d8d;
+    background: url("../Images/Book.png") no-repeat 15px center;
+}
+
+.chapters li.node {
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.chapters li.node a {
+    color: #000;
+}
+
+.chapters li.node a .attr {
+    float: right;
+    color: #8d8d8d;
+    line-height: 30px;
+    width: 250px;
+    display: block;
+    text-align: right;
+}
+
+.chapters li.node a .attr span.needPay {
+    display: none;
+    color: #00aeff;
+    float: left;
+}
+
+.chapters li.node a .attr span.needPay.yes {
+    color: #ff7500;
+}
+
+.chapters li.node a .attr span.studCount {
+    float: right;
+}
+
+.chapters li.node:hover {
+    background-color: #e9e9e9;
+}
+
+.chapters li.node:hover a .attr span.needPay {
+    display: inline-block;
+}
+
+.chapters li.node:hover a .attr span.studCount:after {
+    content: "\0020\4eba\5b66\4e60";
+}
+
+.chapters li.node .more {
+    height: 100px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+}
+
+.chapters li.node:hover .more {
+    display: block;
+    height: 100px \0;
+    animation: showMore 0.5s;
+    -webkit-animation: showMore 0.5s; /* Safari 和 Chrome */
+    animation-fill-mode: forwards;
+}
+
+.chapters.big {
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+.chapters.big li {
+    width: 140px;
+    height: 160px;
+    display: block;
+    float: left;
+    padding: 0px;
+    text-align: center;
+    margin: 0px 22px 30px 12px;
+}
+
+.chapters.big li a {
+    width: 150px;
+    height: 160px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 4px;
+    /*box-shadow: 1px 1px 10px #eee;*/
+}
+
+.chapters.big li a:hover {
+    background-color: #eee;
+    border-radius: 4px;
+    box-shadow: 0px 0px 0px 10px #eee;
+}
+
+.chapters.big li.title, .chapters.big li.end {
+    background: url("../Images/chapterIcon.png") no-repeat;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-size: 140px 160px;
+}
+
+.chapters.big li.title .titleBig {
+    font-size: 16px;
+}
+
+.chapters.big li.title .titleSmall {
+    font-size: 13px;
+    padding: 0px 10px;
+    line-height: 20px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.chapters.big li .preview {
+    width: 150px;
+    height: 102px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+}
+
+.chapters.big li .preview .new {
+    right: 0px;
+    top: 0px;
+    height: 34px;
+    position: absolute;
+    background-image: url("../Images/new2.png");
+    background-repeat: no-repeat;
+    display: block;
+    width: 34px;
+    background-size: 34px 34px;
+    z-index: 3;
+}
+
+.chapters.big li .preview .shadow {
+    display: none;
+    position: absolute;
+    width: 150px;
+    height: 102px;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.65);
+    line-height: 95px;
+}
+
+.chapters.big li .preview .videoTime {
+    display: none;
+    position: absolute;
+    width: 140px;
+    height: 20px;
+    bottom: 0px;
+    right: 0px;
+    line-height: 20px;
+    color: #fff;
+    text-align: right;
+    padding: 0px 5px;
+    box-sizing: border-box;
+}
+
+.chapters.big li a:hover .preview .shadow, .chapters.big li a:hover .preview .videoTime {
+    display: block;
+}
+
+.chapters.big li .videoName {
+    padding: 0px 5px;
+    line-height: 18px;
+    height: 36px;
+    font-size: 13px;
+    color: #333;
+    text-align: left;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.chapters.big li .videoCount {
+    padding: 0px 5px;
+    line-height: 20px;
+    color: #999;
+    text-align: left;
+}
+
+.chapters.big li .videoCount .lock {
+    display: inline-block;
+    float: right;
+    line-height: 20px;
+}
+
+.chapters.big li.end .titleTop {
+    font-size: 14px;
+    line-height: 20px;
+    color: #999;
+    padding: 0px 5px;
+    box-sizing: border-box;
+}
+
+.chapters.big li.end .shopCar {
+    width: 30px;
+    height: 26px;
+    object-fit: contain;
+    padding: 12px 10px;
+    display: inline-block;
+    border-radius: 50%;
+    border: 1px solid #999;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.chapters.big li.end .shopCar img {
+    width: 30px;
+    height: 26px;
+    object-fit: contain;
+}
+
+.chapters.big li.end .titleBottom {
+    font-size: 14px;
+    line-height: 20px;
+    color: #00aeff;
+}
+
+.chapters.big li.end a {
+    width: 140px;
+    border-radius: 0px;
+    display: table-cell;
+    vertical-align: middle;
+    margin: auto;
+}
+
+.chapters.big li.end a:hover {
+    background-color: transparent;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px 0px;
+}
+
+@keyframes showMore {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 100px;
+    }
+}
+
+.chapters li.node .border15 {
+    height: 10px;
+    display: none;
+}
+
+.chapters li.node:hover .border15 {
+    display: block;
+}
+
+.chapters li.node .more .nodePic {
+    width: 120px;
+    height: 80px;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 10px 10px;
+    padding: 10px 0px;
+}
+
+.chapters li.node .more .nodePic img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.chapters li.node .more .details {
+    padding: 10px 0px;
+    height: 100px;
+    box-sizing: border-box;
+    line-height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.chapters li.node .more .details p {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.leftSize {
+    width: 910px;
+    min-width: 1px;
+    float: left;
+}
+
+.leftSize .comment {
+    width: 100%;
+    min-height: 1px;
+}
+
+.leftSize .comment .details {
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    padding: 0px 30px;
+    box-sizing: border-box;
+}
+
+.leftSize .comment .details p {
+    margin: 0px;
+}
+
+.leftSize .comment .details a {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.leftSize .comment .details a.checked {
+    color: #00aeff;
+}
+
+.leftSize .comment .details a i {
+    font-size: 16px;
+    vertical-align: middle;
+}
+
+.leftSize .comment .formEdit {
+    width: 630px;
+    min-height: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    text-align: left;
+}
+
+.leftSize .comment textarea {
+    height: 120px;
+}
+
+a.faceIconBtn {
+    position: absolute;
+    right: 140px;
+    bottom: 10px;
+    font-size: 15px;
+    color: #5a98de;
+    text-decoration: none;
+}
+
+.faceIcons {
+    position: absolute;
+    right: 130px;
+    font-size: 15px;
+    width: 470px;
+    height: 220px;
+    border-radius: 3px;
+    box-shadow: #ccc 0px 0px 8px;
+    background-color: #fff;
+    z-index: 99;
+}
+
+.faceIcons .iconType {
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+.faceIcons .iconType a {
+    text-decoration: none;
+}
+
+.faceIcons .iconType a.iconSelect {
+    padding: 0px 10px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 10px;
+    background-color: #ccc;
+    display: inline-block;
+    margin: 0px 5px;
+    font-size: 12px;
+}
+
+ .faceIcons .iconType a.checked {
+    background-color: #5a98de;
+    color: #fff;
+}
+
+.iconItem {
+    width: 100%;
+    height: 184px;
+    overflow: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.iconItem a {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    overflow: hidden;
+    margin: 0px 10px 10px 0px;
+}
+
+.iconItem a img {
+    width: 24px;
+    height: 24px;
+    object-fit: scale-down;
+}
+
+.leftSize .commentList {
+    clear: both;
+}
+
+.leftSize .commentList td {
+    vertical-align: middle;
+    line-height: 20px;
+}
+
+.leftSize .commentList td .avatar {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    display: inline-block;
+    float: none;
+}
+
+.leftSize .commentList td .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.leftSize .commentList td .setTop {
+    padding: 0px 10px;
+    line-height: 20px;
+    height: 20px;
+    background-color: #00aeff;
+    color: #fff;
+    display: inline-block;
+}
+
+.leftSize .commentList .userName {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+.leftSize .commentList .isAuthor{
+    padding: 1px 5px;background-color:#ffac2e;color: #fff;margin-left: 3px;border-radius: 2px;
+}
+
+.leftSize .commentList .isCustomerService
+{
+    padding: 1px 5px;background-color:#42ae13;color: #fff;margin-left: 3px;border-radius: 2px;
+}
+
+.leftSize .commentList td .commentText {
+    margin-top: 10px;
+    color: #727272;
+    position: relative;
+    width: 750px;
+    padding: 0px 0px 10px 0px;
+}
+
+.leftSize .commentList td .remarkInfo {
+    right: 0px;
+    bottom: 0px;
+    line-height: 20px;
+    clear: both;
+    text-align: right;
+    padding: 5px 0px 0px 0px;
+}
+
+.leftSize .commentList td .userName .showAll {
+    color: #999;
+    text-decoration: none;
+    display: none;
+}
+
+.leftSize .commentList td .userName .showAll.checked {
+    color: #00aeff;
+    text-decoration: none;
+}
+
+.leftSize .commentList .remarkInfo a {
+    text-decoration: none;
+}
+
+.leftSize .commentList .remarkInfo .date {
+    color: #727272;
+    display: inline-block;
+}
+
+.leftSize .commentList .remarkInfo .praise {
+    color: #727272;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.leftSize .commentList .remarkInfo .reply {
+    color: #727272;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.leftSize .commentList .remarkInfo .reply:hover {
+    color: #00aeff;
+}
+
+.leftSize .commentList .remarkInfo .report:after {
+    color: #727272;
+    margin-left: 15px;
+    content: "...";
+    text-decoration: none;
+}
+
+.leftSize .commentList .remarkInfo .report:hover:after {
+    content: "\4e3e\62a5";
+    color: #00aeff;
+}
+
+.leftSize .commentList .remarkInfo .praise.checked {
+    color: #00aeff;
+}
+
+.leftSize .commentList .remarkInfo .praise.cancel {
+    color: #dd514c;
+}
+
+.leftSize .commentList td .commentText .replyBody {
+    position: relative;
+    min-height: 60px;
+    width: 750px;
+    padding: 5px;
+    border-bottom: 1px solid #e3e3e3;
+    box-sizing: border-box;
+}
+
+.leftSize .commentList td .commentText .replyBody:nth-child(2) {
+   margin-top: 10px;
+}
+
+.leftSize .commentList td .commentText .replyBody .avatar {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    float: left;
+}
+
+.leftSize .commentList td .commentText .content {
+    line-height: 20px;
+    min-height: 20px;
+    max-height: 60px;
+    font-size: 12px;
+    word-wrap: break-word;
+    word-break: break-all;
+    width: 100%;
+    overflow: hidden;
+}
+
+.leftSize .commentList td .commentText .content.spread {
+    min-height: 20px;
+    max-height: none !important;
+    overflow: visible;
+}
+
+.leftSize .commentList td .commentText .replyBody .replyRight {
+    float: right;
+    width: 690px;
+    min-height: 40px;
+}
+
+.leftSize .commentList td .commentText .replyBody .replyRight .name {
+    height: 20px;
+    line-height: 20px;
+}
+
+.leftSize .commentList .at {
+    padding: 0px 5px;
+    background-color: #4fc3f7;
+    color: #fff;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.leftSize .commentList td .commentText .loadmore{
+    width: 100%;
+    height: 30px;
+    background-color: #f1f1f1;
+    text-decoration: none;
+    margin-top: 5px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.leftSize .commentList td .commentText .loadmore a{
+    text-decoration: none;
+    color: #999;
+}
+
+.leftSize .commentList td .commentText .sendReply{
+    width: 100%;
+    min-height: 1px;
+}
+
+
+.leftSize .courseOptions {
+    height: 900px \0;
+    max-height: 900px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.leftSize .courseOptions .title {
+    height: 40px;
+    border-radius: 20px;
+    background-color: #00aeff;
+    color: #fff;
+    line-height: 40px;
+    text-align: left;
+    font-size: 16px;
+    box-sizing: border-box;
+    padding: 0px 20px;
+}
+
+.leftSize .courseOptions .optionsContent {
+    height: 800px \0;
+    min-height: 60px;
+    max-height: 800px;
+    overflow: auto;
+    margin: 10px 0px;
+    box-sizing: border-box;
+}
+
+.leftSize .courseOptions .optionsContent .alert {
+    height: 200px;
+    line-height: 30px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.leftSize .courseOptions .optionsContent th {
+    color: #00aeff;
+    height: 30px;
+    line-height: 30px;
+    font-size: 15px;
+}
+
+.leftSize .courseOptions .optionsContent th .recommend {
+    display: inline-block;
+    padding: 0px 25px 0px 0px;
+    background: url("../Images/tuijian.png") no-repeat right center;
+}
+
+.leftSize .courseOptions .optionsContent td {
+    line-height: 20px;
+    font-size: 14px;
+    padding: 4px !important;
+}
+
+.leftSize .courseOptions .optionsContent td i {
+    font-weight: bold;
+}
+
+.statement {
+    width: 100%;
+    height: 220px;
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+    text-align: left;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    line-height: 20px;
+    font-size: 13px;
+    color: #8d8d8d;
+}
+
+.statement a {
+    text-decoration: none;
+}
+
+.statement a:hover {
+    border-bottom: 1px solid #00aeff;
+}
+
+.rightSize {
+    width: 270px;
+    min-width: 1px;
+    float: right;
+}
+
+.other {
+    min-height: 1px;
+    width: 100%;
+    padding: 0px 15px 15px 15px;
+    box-sizing: border-box;
+}
+
+.other .title {
+    height: 45px;
+    line-height: 45px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+    letter-spacing: 1px;
+    color: #00aeff;
+}
+
+.other .textContent {
+    line-height: 20px;
+    text-indent: 40px;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.other .recommend {
+    min-height: 1px;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.other .recommend .coursePic {
+    width: 200px;
+    height: 157px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.other .recommend .coursePic img {
+    width: 200px;
+    object-fit: scale-down;
+}
+
+.other .recommend .courseInfo {
+    height: 24px;
+    line-height: 24px;
+    padding: 5px 0px;
+    overflow: hidden;
+}
+
+.other .recommend .courseInfo p {
+    margin: 0px;
+}
+
+.other .expertInfo {
+    min-height: 1px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.other .expertInfo .avatar {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    vertical-align: top;
+    float: left;
+}
+
+.other .expertInfo .info {
+    float: left;
+    width: 120px;
+    min-height: 1px;
+    vertical-align: top;
+    display: block;
+}
+
+.other .expertInfo .avatar img {
+    width: 80px;
+    height: 80px;
+}
+
+.other .expertInfo .goToExpert {
+    width: 80px;
+    height: 26px;
+    line-height: 26px;
+    display: inline-block;
+    background: #dcb47b;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+
+.studentWords {
+    height: 420px;
+    padding: 0px 20px 20px 20px;
+    box-sizing: border-box;
+    /*text-align: justify;*/
+}
+
+.studentWords:after {
+    content: " ";
+    width: 100%;
+    display: inline-block;
+}
+
+.studentWords .title {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #e0e0e0;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.studentWords .title a {
+    display: block;
+    float: right;
+    line-height: 40px;
+    height: 40px;
+    font-size: 12px;
+    text-decoration: none;
+    margin: 0px 0px 0px 20px;
+}
+
+.studentWords a.student {
+    width: 201px;
+    height: 340px;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none;
+    float: left;
+    margin-right: 31px;
+}
+
+.studentWords a.student .userName {
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+}
+
+.studentWords a.student .introduce {
+    line-height: 20px;
+    height: 60px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.leftSizeS {
+    width: 300px;
+    min-height: 1px;
+    float: left;
+}
+
+.leftSizeS .softWare {
+    width: 100%;
+    min-height: 1px;
+}
+
+.leftSizeS .softWare a {
+    width: 40%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 15px 0px;
+    position: relative;
+}
+
+.leftSizeS .softWare a:hover {
+    color: #00aeff;
+    text-decoration: none;
+}
+
+.leftSizeS .softWare a span {
+    color: #0097df;
+    border-bottom: solid 2px #00aeff;
+    padding: 2px 0px;
+}
+
+.leftSizeS .ad {
+    width: 100%;
+    min-height: 1px;
+}
+
+.rightSizeS {
+    width: 880px;
+    min-height: 1px;
+    float: right;
+}
+
+.rightSizeS .softList {
+    width: 100%;
+    min-height: 1px;
+}
+
+.rightSizeS .softList .title {
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.rightSizeS .softList .title span {
+    border-left: solid 2px #00aeff;
+    padding: 0px 5px;
+    font-size: 14px;
+}
+
+.rightSizeS .softList .table td {
+    height: 24px;
+    line-height: 24px;
+    font-size: 13px;
+    padding: 7px 20px;
+}
+
+.rightSizeS .softList .table td a {
+    width: 100%;
+    height: 24px;
+    display: block;
+    text-decoration: none;
+}
+
+.rightSizeS .softList .table tr {
+    border-bottom: solid 1px #fff;
+}
+
+.rightSizeS .softList .table tr:hover {
+    background-color: #e0f3ff;
+}
+
+.pages {
+    width: 100%;
+    position: absolute;
+    height: 60px;
+    left: 0px;
+    bottom: 10px;
+    text-align: center;
+}
+
+.rightSizeS .softList .softName {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    font-size: 14px;
+    padding: 0px 15px;
+    background-color: #e9e9e9;
+    box-sizing: border-box;
+}
+
+.rightSizeS .softList .alert {
+    width: 100%;
+    height: 220px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    box-sizing: border-box;
+    padding: 20px;
+    line-height: 20px;
+}
+
+.videoArea {
+    min-height: 1px;
+}
+
+.subsection {
+    height: 120px;
+    text-align: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.subsection .list {
+    height: 60px;
+    padding: 10px;
+}
+
+.subsection .list a {
+    height: 55px;
+    width: 70px;
+    box-sizing: border-box;
+    border: 1px solid #c1c1c1;
+    color: #c1c1c1;
+    border-radius: 10px;
+    line-height: 55px;
+    margin-top: 5px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.subsection .list a.checked {
+    border: 1px solid #00aeff;
+    color: #00aeff;
+}
+
+.webNotice {
+    width: 100%;
+    min-height: 1px;
+    background-color: #fff;
+    padding: 0px 20px 20px 20px;
+    box-sizing: border-box;
+}
+
+.webNotice > .title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #c1c1c1;
+}
+
+.webNotice .notice {
+    width: 100%;
+    min-height: 1px;
+}
+
+.webNotice .notice .title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+
+.webNotice .notice .title .releaseDate {
+    float: right;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    color: #999;
+    font-size: 12px;
+}
+
+.webNotice .notice .noticeBody {
+    border-radius: 8px;
+    border: 1px solid #c1c1c1;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f3f3f3;
+    line-height: 24px;
+    text-align: left;
+}
+
+.webNotice .notice .noticeBody img {
+    max-width: 100%;
+    /* object-fit: contain;*/
+}
+
+.webNotice .otherNotice {
+    padding: 0px;
+    margin: 30px 0px 0px 0px;
+}
+
+.webNotice .otherNotice li {
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+}
+
+.webNotice .otherNotice li a {
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.webNotice .otherNotice li span {
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.webNotice .table a {
+    text-decoration: none;
+    color: #333;
+}
+
+.webNotice .table a:hover {
+    color: #b88b2a;
+}
+
+.LPpic {
+    background-color: #727272;
+    min-height: 1px;
+    text-align: left;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.LPpic .pic {
+    width: 910px;
+    height: 464px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.LPpic .pic img {
+    object-fit: contain;
+}
+
+.LPpic .synopsis {
+    width: 235px;
+    height: 464px;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    margin-left: 15px;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.learningGuide {
+    width: 100%;
+    border: 1px solid #c5c5c5;
+    background-color: #fff;
+    box-sizing: border-box;
+    min-height: 1px;
+}
+
+.learningGuide > .title {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px;
+    position: relative;
+    width: 400px;
+    display: inline-block;
+}
+
+.learningGuide > .title > .text {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    padding: 0px 15px;
+    background-color: #fff;
+    letter-spacing: 1px;
+}
+
+.learningGuide > .title > .line {
+    position: absolute;
+    height: 1px;
+    width: 400px;
+    background-color: #000;
+    display: inline-block;
+    z-index: 1;
+    top: 20px;
+    left: 0px;
+    z-index: 1;
+}
+
+.learningGuide .types {
+    margin: 0px;
+    text-align: left;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.learningGuide .types li {
+    width: 14%;
+    display: inline-block;
+    height: 80px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.learningGuide .types li > a {
+    width: 100%;
+    height: 80px;
+    display: block;
+    text-decoration: none;
+    color: #518fee;
+}
+
+.learningGuide .types li .icon {
+    display: inline-block;
+    width: 80px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    /*padding: 10px;*/
+    box-sizing: border-box;
+}
+
+.learningGuide .types li > a .icon img {
+    width: 60px \9;
+    height: 60px \9;
+    max-width: 60px;
+    max-height: 60px;
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+.learningGuide .types li > a img.normal {
+    display: inline-block;
+}
+
+.learningGuide .types li > a img.white {
+    display: none;
+}
+
+.learningGuide .types .typeName {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/*.learningGuide .types li > a:hover .icon {
+    border-radius: 50%;
+    background-color: #ef4e8b;
+}*/
+
+.learningGuide .types li > a:hover img.normal {
+    display: none;
+}
+
+.learningGuide .types li > a:hover img.white {
+    display: inline-block;
+}
+
+.learningGuide .types li > a:hover .typeName {
+    color: #ef4e8b;
+}
+
+.learningGuide .types li > a.checked img.normal {
+    display: none;
+}
+
+.learningGuide .types li > a.checked img.white {
+    display: inline-block;
+}
+
+.learningGuide .types li > a.checked .typeName {
+    color: #ef4e8b;
+}
+
+.courseList {
+    min-height: 1px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.courseList .courseSelect {
+    height: 40px;
+    width: 100%;
+    text-align: center;
+}
+
+.courseList .courseSelect a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    margin: 0px 10px;
+    letter-spacing: 1px;
+    box-shadow: #ccc 0px 0px 5px;
+}
+
+.courseList .courseSelect a.checked {
+    color: #fff;
+    background-color: #4e8dee;
+}
+
+.courseList .courses {
+    min-height: 1px;
+    text-align: left;
+}
+
+.courseList .courses .frame {
+    width: 280px;
+    height: 300px;
+    display: inline-block;
+    margin: 10px 3px;
+    position: relative;
+}
+
+.courseList .courses .frame .course {
+    width: 280px;
+    height: 300px;
+    text-decoration: none;
+    display: block;
+    margin: 10px 3px;
+}
+
+.courseList .courses .frame .course.alpha {
+    filter: alpha(40) \0;
+    opacity: 0.4;
+}
+
+.courseList .courses .frame .course .pic {
+    width: 280px;
+    height: 216px;
+    overflow: hidden;
+    display: block;
+}
+
+.courseList .courses .frame .course .pic .present {
+    display: none;
+    filter: alpha(80) \0;
+    background-color: #000 \0;
+    background: rgba(0, 0, 0, 0.7);
+    width: 280px;
+    height: 216px;
+    left: 0px;
+    top: 0px;
+    line-height: 20px;
+    color: #fff;
+    padding: 5px;
+    box-sizing: border-box;
+    text-indent: 20px;
+}
+
+/*.courseList .courses .course .pic:hover .present{
+    display: block;
+}*/
+
+.courseList .courses .frame .course .pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.courseList .courses .frame > .tipR {
+    border: 1px solid #fff;
+    background-color: #c30b00;
+    height: 20px;
+    padding: 0px 5px;
+    top: 10px;
+    right: -3px;
+    position: absolute;
+    line-height: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.courseList .courses .frame > .tipG {
+    border: 1px solid #fff;
+    background-color: #16c31d;
+    height: 20px;
+    padding: 0px 5px;
+    top: 10px;
+    right: -3px;
+    position: absolute;
+    line-height: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.courseList .courses .frame .course .name {
+    height: 30px;
+    line-height: 30px;
+    font-size: 15px;
+    text-align: left;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.courseList .courses .frame .course .name a {
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+    display: inline-block;
+    padding: 0px 20px 0px 40px;
+    border-radius: 20px;
+    background-color: #e9e9e9;
+    text-decoration: none;
+}
+
+.courseList .courses .frame .course .name a.online {
+    background-image: url("../Images/orangeBook.png");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+.courseList .courses .frame .course .name a.disk {
+    background-image: url("../Images/orangeDisk.png");
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+
+.RankingListTopPic {
+    min-height: 1px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.RankingListTopPic2 {
+    min-height: 1px;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-align: center;
+    padding: 30px;
+}
+
+.RankingListTopPic img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.RankingListTopPic2 img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.RankingListVoteArea {
+    min-height: 1px;
+}
+
+.RankingListVoteArea > .title {
+    height: 40px;
+    line-height: 40px;
+    letter-spacing: 1px;
+    padding: 0px 30px;
+    text-align: center;
+}
+
+.RankingListVoteArea > .title .rankingHistory {
+    right: 40px;
+    top: 0px;
+    letter-spacing: 0px;
+    text-decoration: none;
+    width: 90px;
+    height: 40px;
+}
+
+.RankingListVoteArea > .title .rankingHistory > a {
+    text-decoration: none;
+}
+
+.RankingListVoteArea > .title .rankingHistory:hover .rankinglist {
+    display: block;
+}
+
+.RankingListVoteArea > .title .rankingHistory .rankinglist {
+    position: absolute;
+    left: -15px;
+    top: 35px;
+    width: 130px;
+    min-height: 1px;
+    z-index: 99;
+    border-radius: 5px;
+    box-shadow: 0px 0px 8px;
+    background-color: #fff;
+    display: none;
+}
+
+.RankingListVoteArea > .title .rankingHistory .rankinglist > a {
+    height: 30px;
+    line-height: 30px;
+    width: 130px;
+    display: block;
+    text-decoration: none;
+    color: #999;
+    font-size: 12px;
+    box-sizing: border-box;
+    padding: 0px 10px;
+}
+
+.RankingListVoteArea > .title .rankingHistory .rankinglist > a:first-child {
+    border-radius: 5px 5px 0px 0px;
+}
+
+.RankingListVoteArea > .title .rankingHistory .rankinglist > a:last-child {
+    border-radius: 0px 0px 5px 5px;
+}
+
+.RankingListVoteArea > .title .rankingHistory .rankinglist > a:hover {
+    background-color: #f0f0f0;
+}
+
+.RankingListVoteArea .students {
+    width: 100%;
+    min-height: 1px;
+}
+
+.RankingListVoteArea .students li {
+    width: 25%;
+    min-height: 1px;
+    display: block;
+    margin: 15px 0px;
+    display: block;
+    float: left;
+}
+
+.RankingListVoteArea .students li .header {
+    width: 201px;
+    height: 267px;
+    border: solid 2px #fff;
+    overflow: hidden;
+    margin: auto;
+    box-shadow: #ccc 0px 0px 8px;
+}
+
+.RankingListVoteArea .students li .header img {
+    object-fit: contain;
+}
+
+.RankingListVoteArea .students li .header .name {
+    background-color: rgba(0, 0, 0, 0.6);
+    filter: alpha(opacity=80) \0;
+    background-color: #000 \0;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    text-indent: 10px;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 2;
+}
+
+.RankingListVoteArea .students li .count {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+}
+
+.RankingListVoteArea .students li .count .plus1 {
+    position: absolute;
+    margin-left: 10px;
+    color: #c11a1a;
+    animation: plus1Act 2s;
+    -webkit-animation: plus1Act 2s; /* Safari 和 Chrome */
+    animation-fill-mode: forwards;
+}
+
+@keyframes plus1Act {
+    0% {
+        opacity: 0;
+        bottom: -20px;
+    }
+    30% {
+        opacity: 1;
+        bottom: 0px;
+    }
+    70% {
+        opacity: 1;
+        bottom: 0px;
+    }
+    100% {
+        opacity: 0;
+        bottom: 20px;
+    }
+}
+
+.RankingListVoteArea .students li .button {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 5px;
+}
+
+.RankingListVoteArea .students li .button a.red {
+    width: 150px;
+    border-radius: 20px;
+    height: 36px;
+    line-height: 36px;
+    background-color: #c11a1a;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+
+.RankingListVoteArea .students li .button a.orange {
+    width: 150px;
+    border-radius: 20px;
+    height: 36px;
+    line-height: 36px;
+    border: #e9811a solid 1px;
+    box-sizing: border-box;
+    display: inline-block;
+    color: #e9811a;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+
+.RankingListVoteArea .students li .style2 {
+    width: 100%;
+    height: 200px;
+    background: url("../Images/rankingBG.png") no-repeat center bottom;
+    text-decoration: none;
+    display: block;
+    margin: 10px 0px;
+}
+
+.RankingListVoteArea .students li .style2 > .header {
+    width: 130px;
+    height: 130px;
+    box-shadow: 0px 2px 15px;
+    border: 2px solid #fff;
+    overflow: hidden;
+    border-radius: 50%;
+    background-position: -35px -10px;
+    background-repeat: no-repeat;
+}
+
+.RankingListVoteArea .students li .style2 > .header.small {
+    background-position: center center !important;
+}
+
+
+.RankingListVoteArea .students li .style2 > .header img {
+    object-fit: contain;
+}
+
+.RankingListVoteArea .students li .style2 .studentInfo {
+    height: 40px;
+    margin-top: 25px;
+    padding: 0px 20px;
+    box-sizing: border-box;
+}
+
+.RankingListVoteArea .students li .style2 .studentInfo .name {
+    line-height: 40px;
+    color: #333;
+    font-size: 14px;
+    float: left;
+}
+
+.RankingListVoteArea .students li .style2 .studentInfo .thanks {
+    color: #e67a10;
+    float: right;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+.rewardboard {
+    background: url("../Images/rewardboard2.png") no-repeat center center;
+    width: 332px;
+    height: 471px;
+    position: fixed;
+    top: 200px;
+    z-index: 999;
+    padding: 100px 60px 140px 40px;
+    box-sizing: border-box;
+}
+
+.rewardboard .info {
+    width: 100%;
+    min-height: 1px;
+}
+
+.rewardboard .info .rewardDes {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #fff;
+    text-align: left;
+    text-indent: 15px;
+}
+
+.rewardboard .info .rewardDes:nth-child(odd) {
+    background-color: #ff7878;
+}
+
+.rewardboard .info .moreInfo {
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.rewardboard.minimize {
+    background: url("../Images/giftIcon.png") no-repeat center center !important;
+    width: 88px !important;
+    height: 80px !important;
+    top: 300px !important;
+    padding: 15px 0px 0px 0px !important;
+    text-align: center;
+}
+
+.rewardboard.minimize a.maximizeBtn {
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 0px 0px 5px #ffb833;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.rewardboard .info .closeBtn {
+    height: 34px;
+    text-align: left;
+    line-height: 34px;
+}
+
+.rewardboard .closeBtn a {
+    background: url("../Images/closeBtn.png") no-repeat center center;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.RankingListVoteArea .awardStage {
+    width: 770px;
+    min-height: 1px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.RankingListVoteArea .awardStage:after {
+    content: " ";
+    width: 100%;
+}
+
+.RankingListVoteArea .awardStage li {
+    width: 230px;
+    display: inline-block;
+    min-height: 100px;
+    vertical-align: middle;
+}
+
+.RankingListVoteArea .awardStage li > a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.RankingListVoteArea .awardStage li .bg {
+    width: 230px;
+    height: 320px;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.RankingListVoteArea .awardStage li .bg .header {
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+    margin: auto;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 5px;
+    background-position: -35px -10px;
+    background-repeat: no-repeat;
+}
+
+.RankingListVoteArea .awardStage li .bg .header.small {
+    background-position: center center !important;
+}
+
+.RankingListVoteArea .awardStage li .bg .header img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+}
+
+.RankingListVoteArea .awardStage li .bg .name {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px #fff solid;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.RankingListVoteArea .awardStage li .bg.gold {
+    background: url("../Images/goldBG.jpg") no-repeat center center;
+}
+
+.RankingListVoteArea .awardStage li .bg.silver {
+    background: url("../Images/silverBG.jpg") no-repeat center center;
+}
+
+.RankingListVoteArea .awardStage li .bg.copper {
+    background: url("../Images/copperBG.jpg") no-repeat center center;
+}
+
+.RankingListVoteArea .awardStage .Medal {
+    height: 100px;
+    width: 100%;
+}
+
+.RankingListVoteArea .awardStage .Medal {
+    height: 100px;
+    width: 100%;
+}
+
+.RankingListVoteArea .awardStage .Medal.no1 {
+    background: url("../Images/NO.1.png") no-repeat center center;
+    background-size: 90px;
+}
+
+.RankingListVoteArea .awardStage .Medal.no2 {
+    background: url("../Images/NO.2.png") no-repeat center center;
+    background-size: 90px;
+}
+
+.RankingListVoteArea .awardStage .Medal.no3 {
+    background: url("../Images/NO.3.png") no-repeat center center;
+    background-size: 90px;
+}
+
+.RankingListVoteArea .awardStage li .bg.gold .button {
+    height: 30px;
+    line-height: 30px;
+    width: 120px;
+    border-radius: 20px;
+    color: #bca84d;
+    display: inline-block;
+    background-color: #fff;
+    margin-top: 20px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.RankingListVoteArea .awardStage li .bg.silver .button {
+    height: 30px;
+    line-height: 30px;
+    width: 120px;
+    border-radius: 20px;
+    color: #838383;
+    display: inline-block;
+    background-color: #fff;
+    margin-top: 20px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.RankingListVoteArea .awardStage li .bg.copper .button {
+    height: 30px;
+    line-height: 30px;
+    width: 120px;
+    border-radius: 20px;
+    color: #a6754a;
+    display: inline-block;
+    background-color: #fff;
+    margin-top: 20px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.RankingListVoteArea .getMore {
+    padding: 10px 30px;
+    border: 1px #ccc solid;
+    line-height: 20px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.RankingListDetails {
+    min-height: 1px;
+    width: 100%;
+}
+
+.RankingListDetails > .title {
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+
+.RankingListDetails .studentArea {
+    min-height: 1px;
+    width: 100%;
+    padding: 0px 20px;
+    box-sizing: border-box;
+}
+
+.RankingListDetails .studentArea .left {
+    float: left;
+    width: 200px;
+    min-height: 1px;
+}
+
+.RankingListDetails .studentArea .left .studentInfo {
+    width: 100%;
+    min-height: 1px;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .header {
+    width: 200px;
+    height: 267px;
+    overflow: hidden;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .header img {
+    width: 200px;
+    object-fit: scale-down;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .name {
+    font-size: 14px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .rankingNum {
+    display: block;
+    border-radius: 20px;
+    border: 1px solid #a6a6a6;
+    height: 30px;
+    line-height: 30px;
+    width: 150px;
+    margin: auto;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .rankingButton {
+    display: block;
+    border-radius: 20px;
+    background-color: #c11a1a;
+    height: 34px;
+    line-height: 34px;
+    width: 150px;
+    margin: 10px auto 0px auto;
+    color: #fff;
+    text-decoration: none;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .rankingButton.disabled {
+    background-color: #b7b7b7;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .medal {
+    width: 43px;
+    height: 65px;
+    overflow: hidden;
+    left: 0px;
+    top: -15px;
+    background-image: url("../Images/medal.png");
+    background-repeat: no-repeat;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .medal.champion {
+    background-position: 0px 0px;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .medal.second {
+    background-position: -44px 0px;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .medal.third {
+    background-position: -88px 0px;
+}
+
+.RankingListDetails .studentArea .left .studentInfo .medal.other {
+    background-position: -132px 0px;
+}
+
+.RankingListDetails .studentArea .right {
+    float: right;
+    width: 920px;
+    min-height: 1px;
+}
+
+.RankingListDetails .studentArea .right .infos {
+    width: 100%;
+    min-height: 1px;
+    text-align: left;
+}
+
+.RankingListDetails .studentArea .right .infos .item {
+    width: 45%;
+    height: 30px;
+    display: inline-block;
+    overflow: hidden;
+    text-align: left;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.RankingListDetails .studentArea .right .content {
+    line-height: 20px;
+    text-indent: 20px;
+    font-size: 13px;
+    min-height: 200px;
+}
+
+.RankingListDetails .studentArea .right .change {
+    line-height: 80px;
+    height: 80px;
+    text-align: center;
+}
+
+.RankingListDetails .studentArea .right .change a.prev {
+    background: url("../Images/orangeArrow.png") no-repeat;
+    background-position: 0px 0px;
+    font-size: 14px;
+    width: 110px;
+    height: 61px;
+    line-height: 61px;
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+    text-align: right;
+    padding-right: 20px;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+
+.RankingListDetails .studentArea .right .change a.prev.disabled {
+    background: url("../Images/grayArrow.png") no-repeat;
+    background-position: 0px 0px;
+}
+
+.RankingListDetails .studentArea .right .change a.next {
+    background: url("../Images/orangeArrow.png") no-repeat;
+    background-position: -111px 0px;
+    font-size: 14px;
+    width: 110px;
+    height: 61px;
+    line-height: 61px;
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+    text-align: left;
+    padding-left: 20px;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+
+.RankingListDetails .studentArea .right .change a.next.disabled {
+    background: url("../Images/grayArrow.png") no-repeat;
+    background-position: -111px 0px;
+}
+
+.RankingListDetails .studentArea .right .change .count {
+    font-size: 14px;
+    margin: 0px 20px;
+}
+
+#lineSwith {
+    width: 600px;
+    height: 200px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: auto;
+    background: #fff;
+}
+
+#lineSwith .switchs {
+    width: 100%;
+    min-height: 1px;
+    padding-top: 10px;
+}
+
+#lineSwith .switchs a {
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 17px;
+    border-radius: 14px;
+    background-color: #00aeff;
+    display: inline-block;
+    margin: 0px 5px;
+    color: #fff;
+    position: relative;
+    text-decoration: none;
+}
+
+#lineSwith .switchs a.checked {
+    cursor: not-allowed;
+}
+
+#lineSwith .switchs a i {
+    position: absolute;
+    right: 4px;
+    top: -5px;
+    color: #13ff00;
+}
+
+.wbg > .expertTitle {
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #333;
+    border-bottom: 1px #e7e7e7 solid;
+}
+
+.wbg > .expertType {
+    height: 40px;
+    line-height: 40px;
+    font-size: 13px;
+}
+
+.wbg > .expertType .floatArea {
+    width: 100%;
+    min-height: 1px;
+    text-align: center;
+    background-color: #fff;
+    position: static;
+}
+
+.wbg > .expertType .floatArea a {
+    padding: 0px 10px;
+    margin: 0px 6px;
+    height: 26px;
+    line-height: 26px;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.wbg > .expertType .floatArea.floating {
+    position: fixed;
+    top: 0px;
+    width: 1200px;
+    background-color: #333333;
+}
+
+.wbg > .expertType .floatArea.floating a {
+    color: #fff;
+}
+
+.wbg > .expertType a:hover {
+    box-shadow: #ccc 0px 0px 8px;
+    border-radius: 3px;
+}
+
+.wbg > .expertType a.checked {
+    color: #00aeff !important;
+}
+
+.expertList {
+    width: 100%;
+    min-height: 1px;
+}
+
+
+.expertList li {
+    width: 284px;
+    height: 220px;
+    background: url("../Images/rankingBG.png") no-repeat center bottom;
+    text-decoration: none;
+    display: block;
+    margin: 15px 7px;
+    float: left;
+}
+
+.expertList li a {
+    width: 100%;
+    height: 220px;
+    display: block;
+    text-decoration: none;
+}
+
+.expertList li a > .header {
+    width: 130px;
+    height: 130px;
+    box-shadow: 0px 2px 15px;
+    border: 2px solid #fff;
+    overflow: hidden;
+    border-radius: 50%;
+    background-position: -35px -10px;
+    background-repeat: no-repeat;
+    margin: auto;
+}
+
+.expertList li a > .header.small {
+    background-position: center center !important;
+    background-size: 134px 134px;
+}
+
+.expertList li a > .header img {
+    object-fit: contain;
+}
+
+.expertList li .expertInfo {
+    height: 40px;
+    margin-top: 10px;
+    padding: 0px 20px;
+    box-sizing: border-box;
+}
+
+.expertList li .expertInfo .name {
+    line-height: 24px;
+    color: #333;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.expertList li .expertInfo .major {
+    line-height: 24px;
+    color: #999;
+    font-size: 14px;
+    width: 240px;
+    display: block;
+}
+
+.expertDetails {
+    min-height: 250px;
+    background: url("../Images/expertHeaderBg.jpg") no-repeat center center;
+}
+
+.expertDetails .expertAvatar {
+    min-height: 1px;
+    width: 250px;
+    float: left;
+    padding: 60px 0px 20px 0px;
+    text-align: center;
+}
+
+.expertDetails .expertAvatar img {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+}
+
+.expertDetails .expertPresent {
+    padding-top: 60px;
+    height: 184px;
+    width: 950px;
+    float: right;
+}
+
+.expertDetails .expertPresent .presentContent {
+    height: 120px;
+    overflow: hidden;
+}
+
+.expertDetails .moreExpertsBtn {
+    height: 40px;
+    border: solid 2px #fff;
+    display: inline-block;
+    line-height: 40px;
+    padding: 0px 30px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.expertCourseAndClass {
+    min-height: 1px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.expertCourseAndClass > .links {
+    height: 30px;
+    border-bottom: solid 1px #eee;
+}
+
+.expertCourseAndClass > .links a {
+    height: 28px;
+    display: inline-block;
+    padding: 0px 15px;
+    text-decoration: none;
+    line-height: 28px;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.expertCourseAndClass > .links a span {
+    line-height: 26px;
+    border-bottom: 2px #fff solid;
+    height: 26px;
+    display: inline-block;
+}
+
+.expertCourseAndClass > .links a.checked {
+    color: #00aeff;
+}
+
+.expertCourseAndClass > .links a.checked span {
+    border-bottom: 2px #00aeff solid;
+}
+
+.expertCourseAndClass .courses {
+    min-height: 1px;
+}
+
+.expertCourseAndClass .courses .courseItem {
+    min-height: 1px;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.expertCourseAndClass .courses .courseItem .cpic {
+    width: 300px;
+    height: 235px;
+    padding-right: 50px;
+    float: left;
+}
+
+.expertCourseAndClass .courses .courseItem .courseText {
+    width: 810px;
+    height: 235px;
+    float: left;
+}
+
+.expertCourseAndClass .courses .courseItem .courseText > .title {
+    height: 40px;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.expertCourseAndClass .courses .courseItem .courseText .description {
+    line-height: 20px;
+    height: 170px;
+    overflow-y: hidden;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.expertCourseAndClass .courses .courseItem .gotoCourse {
+    display: block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    background-color: #00aeff;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.expertCourseAndClass .courses .courseItem a {
+    text-decoration: none;
+}
+
+.expertCourseAndClass .courses .courseItem .courseText > .title a:hover {
+    color: #00aeff;
+}
+
+.expertCourseAndClass .netClass {
+    min-height: 1px;
+}
+
+.expertCourseAndClass .netClass .netClassItem {
+    min-height: 1px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.expertCourseAndClass .netClass .netClassItem .epic {
+    min-height: 1px;
+    overflow: hidden;
+    width: 630px;
+    height: 261px;
+    float: left;
+}
+
+.expertCourseAndClass .netClass .netClassItem .courseText {
+    width: 520px;
+    height: 261px;
+    float: right;
+}
+
+.expertCourseAndClass .netClass .netClassItem .courseText > .title {
+    height: 40px;
+    font-weight: bold;
+    line-height: 40px;
+}
+
+.expertCourseAndClass .netClass .netClassItem .courseText .details {
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #00aeff;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.expertCourseAndClass .answers {
+    min-height: 1px;
+}
+
+.expertCourseAndClass .answers .table * {
+    color: #666;
+    font-size: 10pt;
+}
+
+.expertCourseAndClass .answers .table a:hover {
+    text-decoration: none;
+    color: #00aeff;
+}
+
+.overAccess {
+    width: 500px;
+    height: 550px;
+    text-align: center;
+    margin: auto;
+    padding: 100px 0px 0px 0px;
+}
+
+
+.courseNoteModal {
+    width: 650px;
+    height: 380px;
+    background-color: #fff;
+    box-sizing: border-box;
+    margin: 10px auto;
+}
+
+.courseNoteModal .menus {
+    height: 30px;
+    line-height: 30px;
+}
+
+.courseNoteModal .menus a {
+    text-decoration: none;
+    color: #999;
+}
+
+.courseNoteModal .menus a.checked {
+    color: #00aeff;
+}
+
+.courseNoteModal .timePoint {
+    display: block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    color: #00aeff;
+    background-color: #b2e3ff;
+    height: 16px;
+    line-height: 16px;
+    margin-top: 7px;
+}
+
+.courseNoteModal .noteType {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.courseNoteModal .noteType * {
+    vertical-align: middle;
+}
+
+.courseNoteModal .charNum {
+    display: block;
+    color: #999;
+    position: absolute;
+    right: 20px;
+    top: 180px;
+}
+
+.courseNoteModal .mainBody {
+    height: 300px;
+}
+
+.courseNoteModal .nodata {
+    height: 250px;
+    background-color: #e8e8e8;
+    color: #b4b4b4;
+    line-height: 20px;
+    font-size: 16px;
+    display: table-cell;
+    vertical-align: middle;
+    width: 650px;
+}

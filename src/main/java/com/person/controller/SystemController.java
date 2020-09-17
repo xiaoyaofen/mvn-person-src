@@ -351,4 +351,28 @@ public class SystemController {
         }
 
     }
+
+
+
+    @RequestMapping(value = "/tradeList", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String tradeList(){
+        List<Params> list = systemService.selectTrade();
+        return JSON.toJSONString(list);
+    }
+
+
+
+
+    @RequestMapping(value = "/jodTradeList", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String jodTradeList(HttpServletRequest request){
+        String pageStr = request.getParameter("page");//页码
+        String pageSizeStr = request.getParameter("limit");//每页记录数
+        String trade = request.getParameter("key[trade]");
+        Integer page = Integer.parseInt(pageStr);
+        Integer pageSize = Integer.parseInt(pageSizeStr);
+        LayuiData layuiData = systemService.postManager(trade,page,pageSize);
+        return JSON.toJSONString(layuiData);
+    }
 }

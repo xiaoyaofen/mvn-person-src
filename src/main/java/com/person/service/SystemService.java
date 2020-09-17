@@ -45,4 +45,12 @@ public interface SystemService {
     public Admin checkAccount(String account);
 
     public Boolean adminRegister(String roleId , String account, String name , String password, String phone,String address, String unit,String qualification);
+
+    public List<Params> selectTrade();
+
+    public LayuiData postManager( String trade, Integer page, Integer pageSize);
+
+
+
+
 }

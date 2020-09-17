@@ -335,9 +335,7 @@ public class ZhiShiKuController {
     public Object getTwoCharpter(@PathVariable(value = "id")String id,HttpServletRequest request, HttpServletResponse response){
         String productID= (String) request.getSession().getAttribute("productID");
         TreeNode treeNode=knowService.findAllMenu(id,productID);
-//        String str="{\"id\":0,\"title\":\"入门简介\",\"children\":[{\"id\":3,\"title\":\"入门\",\"children\":[{\"id\":1,\"title\":\"入门-1\",\"field\": \"\"},{\"id\":2,\"title\":\"入门-2\",\"children\":[],\"spread\":false,\"checked\":false}],\"spread\":true,\"checked\":false},{\"id\":4,\"title\":\"相关资料\",\"children\":[{\"id\":10,\"title\":\"资料介绍-1\",\"children\":[],\"spread\":false,\"checked\":true},{\"id\":11,\"title\":\"资料介绍-2\",\"children\":[],\"spread\":false,\"checked\":false}],\"spread\":true,\"checked\":false}],\"spread\":true,\"checked\":false}";
         return new Gson().toJson(treeNode);
-//        return str;
     }
 
     @RequestMapping(value = "/addTree")
