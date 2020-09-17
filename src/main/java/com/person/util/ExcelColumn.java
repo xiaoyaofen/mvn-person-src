@@ -20,7 +20,7 @@ public @interface ExcelColumn {
      * Excel标题
      *
      * @return
-     * @author Lynch
+     * @author
      */
     String value() default "";
 
@@ -28,7 +28,7 @@ public @interface ExcelColumn {
      * Excel从左往右排列位置
      *
      * @return
-     * @author Lynch
+     * @author
      */
     int col() default 0;
 }

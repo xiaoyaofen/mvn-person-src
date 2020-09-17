@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"><head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
 	<script type="text/javascript" async="" th:src="@{/X-admin/js/conversion.js}">
 	</script><script th:src="@{/X-admin/js/allmobilize.min.js}" charset="utf-8" id="allmobilize"></script>
 	<style type="text/css"></style>
@@ -16,17 +17,20 @@ console.log(1);
 	<link th:href="@{/X-admin/css/external.min.css}" type="text/css" rel="stylesheet">
 	<link th:href="@{/X-admin/css/popup.css}" type="text/css" rel="stylesheet">
 	<script type="text/javascript" th:src="@{/X-admin/js/jquery.1.10.1.min.js}"></script>
-	<script th:src="@{/X-admin/js/jquery.lib.min.js}" type="text/javascript"></script>
+	<script type="text/javascript" th:src="@{/X-admin/js/jquery.lib.min.js}" ></script>
 	<script type="text/javascript" th:src="@{/X-admin/js/ajaxfileupload.js}"></script>
 <!-- <script src="style/js/additional-methods.js" type="text/javascript"></script> -->
 <!--[if lte IE 8]>
 	<script type="text/javascript" th:src="@{/X-admin/js/excanvas.js}"></script>
 <![endif]-->
+
 <script type="text/javascript">
 var youdao_conv_id = 271546; 
 </script>
-	<script th:src="@{/X-admin/js/conv.js}" type="text/javascript"></script>
-<script th:src="@{/X-admin/js/ajaxCross.json}" charset="UTF-8"></script></head>
+
+<script th:src="@{/X-admin/js/conv.js}" type="text/javascript"></script>
+<script th:src="@{/X-admin/js/ajaxCross.json}" charset="UTF-8"></script>
+</head>
 <body>
 <div id="body">
 	<div id="header">
@@ -35,15 +39,17 @@ var youdao_conv_id = 271546;
             		<h2>基本信息</h2>
             		<span class="c_edit"></span>
             		<div class="basicShow">
-            			            			<span>jason |  男 |    大专 |  3年工作经验<br>
-            			            			18644444444 | jason@qq.com<br>
+                        <span>
+                            jason |  男 |    大专 |  3年工作经验<br>
+                            18644444444 | jason@qq.com<br>
             			</span>
             	<div class="profile_box" id="expectJob">
             		<h2>期望工作</h2>
-            		            		<span class="c_edit dn"></span>
+                    <span class="c_edit dn"></span>
             		<div class="expectShow dn">
-            		            			<span></span>
+                        <span></span>
             		</div><!--end .expectShow-->
+
             		<div class="expectEdit dn">
             			<form id="expectForm">
 	            			<table>
@@ -179,7 +185,7 @@ var youdao_conv_id = 271546;
 	            				</tr>
 	            				<tr>
 	            					<td colspan="2">
-										<input type="submit" value="保 存" class="btn_profile_save">
+										<input type="button" value="保 存" class="btn_profile_save">
 						          		<a class="btn_profile_cancel" href="javascript:;">取 消</a>
 	            					</td>
 	            				</tr>
@@ -539,19 +545,18 @@ var youdao_conv_id = 271546;
             			</form><!--end .experienceForm-->
             		</div><!--end .experienceEdit-->
             		
-            		            		<div class="experienceAdd pAdd">
-            		            			工作经历最能体现自己的工作能力，<br>
-						且完善后才可投递简历哦！
+                    <div class="experienceAdd pAdd">
+                        工作经历最能体现自己的工作能力，<br>
+                        且完善后才可投递简历哦！
 						<span>添加工作经历</span>
             		</div><!--end .experienceAdd-->
             	</div><!--end #workExperience-->
 
             	<div class="profile_box" id="projectExperience">
             		<h2>项目经验</h2>
-            		            		<span class="c_add dn"></span>
+                    <span class="c_add dn"></span>
             		<div class="projectShow dn">
-            		            			<ul class="plist clearfix">
-	            			            			</ul>
+            		      <ul class="plist clearfix"></ul>
             		</div><!--end .projectShow-->
             		<div class="projectEdit dn">
             			<form class="projectForm">
@@ -1267,4 +1272,13 @@ CallCenter.init(url);
 </div>
 </div>
 </body>
+<script>
+    window.onload=function(){          // 初始化内容      
+        init();
+    }
+    
+    function init() {
+        $("#expectJob > .c_edit").removeClass('dn');
+    }
+</script>
 </html>

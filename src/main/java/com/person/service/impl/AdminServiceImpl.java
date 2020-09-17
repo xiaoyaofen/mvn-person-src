@@ -11,6 +11,7 @@ import com.aliyuncs.profile.DefaultProfile;
 import com.person.bean.*;
 import com.person.mapper.AdminMapper;
 import com.person.service.AdminService;
+import com.person.util.SmsSenderUtil;
 import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -187,83 +188,31 @@ public class AdminServiceImpl implements AdminService {
         return adminMapper.checkResume(id,value,i);
     }
 
-    //求职管理=====删除求职简历
+
+    /**
+     * 求职管理=====删除求职简历
+     *
+     * @param id 求职表中id
+     * @return
+     */
     @Override
     public Integer deleteAminRecruit(Integer id) {
         return adminMapper.deleteAminRecruit(id);
     }
 
 
+    /**
+     * 发送短信接口
+     *
+     * @param phoneNum 手机号
+     * @param message     消息
+     * @return
+     */
+    @Override
+    public boolean sendSms(String phoneNum, String message) {
+        return SmsSenderUtil.sender(phoneNum, message);
+    }
 
-
-    //aliyuncs的参数
-
-    private String accessKeyID = "LTAI4GATztwWQJWd6NGWvEBJ";
-
-    private String accessKeySecret = "v7iRG7K07X7b6lq3BOIB4w1bUzmsA7";
-    //短信api的请求地址  固定
-
-    private String domain  = "dysmsapi.aliyuncs.com";
-    //指定地域名称 短信API的就是 cn-hangzhou 不能改变
-
-    private String regionId = "cn-hangzhou";
-    //您的申请签名
-
-    private String signName = "人才生态圈";
-    //你的模板
-
-    private String templateCode = "SMS_201721401";
-
-        /**
-         * 发送短信接口
-         *
-         * @param phoneNum 手机号
-         * @param message     消息
-         * @return
-         */
-        @Override
-        public boolean sendSms(String phoneNum, String message) {
-
-            // 指定地域名称 短信API的就是 cn-hangzhou 不能改变  后边填写您的  accessKey 和 accessKey Secret
-            DefaultProfile profile = DefaultProfile.getProfile(regionId, accessKeyID, accessKeySecret);
-            IAcsClient client = new DefaultAcsClient(profile);
-
-            // 创建通用的请求对象
-            CommonRequest request = new CommonRequest();
-            // 指定请求方式
-            request.setSysMethod(MethodType.POST);
-            // 短信api的请求地址  固定
-            request.setSysDomain(domain);
-            //签名算法版本  固定
-            request.setSysVersion("2017-05-25");
-            //请求 API 的名称
-            request.setSysAction("SendSms");
-            //指定地域名称
-            request.putQueryParameter("RegionId", regionId);
-            // 要给哪个手机号发送短信  指定手机号
-            request.putQueryParameter("PhoneNumbers", phoneNum);
-            // 您的申请签名
-            request.putQueryParameter("SignName", signName);
-            // 您申请的模板 code
-            request.putQueryParameter("TemplateCode", templateCode);
-
-            Map<String, Object> params = new HashMap<>();
-            //这里的key就是短信模板中的 ${xxxx}
-            params.put("code", message);
-
-            // 放入参数  需要把 map转换为json格式  使用fastJson进行转换
-            request.putQueryParameter("TemplateParam", JSON.toJSONString(params));
-
-            try {
-                CommonResponse response = client.getCommonResponse(request);
-                return response.getHttpResponse().isSuccess();
-
-            }  catch (ClientException e) {
-                e.printStackTrace();
-            }
-
-            return false;
-        }
 
     /**
      * 文件导出Excel

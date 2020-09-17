@@ -250,7 +250,6 @@ public class SystemController {
     //管理员登录界面
     @RequestMapping(value = "/adminLogInView", produces = "text/plain;charset=utf-8")
     public String adminLogInView() {
-
         return "adminLogin";
 
     }
@@ -263,7 +262,9 @@ public class SystemController {
             Admin admin = systemService.adminLogIn(account, pwd);
             if (admin != null) {
                 req.getSession().setAttribute("admin",admin);
+
                 return "登录成功";
+
             } else {
                 return "账号或密码错误";
             }
