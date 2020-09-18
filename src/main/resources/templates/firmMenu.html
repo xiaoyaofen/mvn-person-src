@@ -11,10 +11,10 @@
     <div class="layui-header">
         <div class="layui-logo">人才生态圈-后台管理</div>
         <ul class="layui-nav layui-layout-right">
-            <li class="layui-nav-item" >
-
+            <li class="layui-nav-item">
+                <a th:text="${adminMame}"></a>
             </li>
-            <li class="layui-nav-item"><a href="#">退了</a></li>
+            <li class="layui-nav-item"><a href="/system/adminLogout">退了</a></li>
         </ul>
     </div>
     <div class="layui-side layui-bg-black" id="admin-side">
@@ -35,11 +35,11 @@
 <script type="text/javascript" th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
 <script type="text/javascript" th:src="@{/X-admin/layui/layui.js}"></script>
 <script>
-    layui.use(['element','layer'], function () {
-        var layer=layui.layer;
+    layui.use(['element', 'layer'], function () {
+        var layer = layui.layer;
         //动态菜单
         layui.jquery.ajax({
-            url:  "/menu/Menu",
+            url: "/menu/Menu",
             method: 'POST',
             success: function (res) {
                 var data = JSON.parse(res);
@@ -47,9 +47,9 @@
                 for (var i = 0; i < data.length; i++) {
                     var strli = "<li class='layui-nav-item lay-unselect' >";
                     strli = strli + "<a href=\"javascript:;\">" + data[i].menuname + "</a>";
-                    var childMenus=data[i].menuList;
+                    var childMenus = data[i].menuList;
                     strli = strli + "<dl class='layui-nav-child'>";
-                    for(var j =0 ; j< childMenus.length ; j++){
+                    for (var j = 0; j < childMenus.length; j++) {
                         strli = strli + "<dd>" + "<a href=\"javascript:;\" onclick=\"addTab('" + childMenus[j].menuname + "','" + childMenus[j].url + "')\">" + childMenus[j].menuname + "</a>" + "</dd>";
                     }
                     strli = strli + "</dl>";
@@ -72,7 +72,7 @@
             layer.msg('切换-' + name)
         } else {
             //动态控制iframe高度
-            var tabheight = layui.jquery(window).height() -75;
+            var tabheight = layui.jquery(window).height() - 75;
             contentTxt = '<iframe src="' + url + '" scrolling="no" width="100%" height="' + (tabheight) + 'PX"></iframe>';
             //新增一个Tab项
             layui.element.tabAdd('tabDemo', {

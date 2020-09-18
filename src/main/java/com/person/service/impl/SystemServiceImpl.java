@@ -305,6 +305,104 @@ public class SystemServiceImpl implements SystemService {
         return layuiData;
     }
 
+    @Override
+    public Boolean delJob(Integer id, String state) {
+        Boolean flag = false;
+        int num = systemMapper.delJob(state, id);
+        if (num > 0) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    @Override
+    public String addJob(String job, Integer tradeId) {
+        String str=null;
+        Params params=systemMapper.checkJob(job);
+        if(params!=null){
+            JobTrade jobTrade=systemMapper.checkJobTrade(Integer.parseInt(params.getValue()),tradeId);
+            if(jobTrade==null){
+               int num1=systemMapper.addJobTrade(Integer.parseInt(params.getValue()),tradeId) ;
+                if(num1>0){
+                    str="1";
+                }else{
+                    str="2";
+                }
+            }else{
+                str="3";
+            }
+        }else{
+            String jobIddStr=systemMapper.maxJob();
+            Integer jobId=Integer.parseInt(jobIddStr)+1;
+            Integer num2=systemMapper.addJob(jobId,job);
+            num2=systemMapper.addJobTrade(jobId,tradeId) ;
+            if(num2>0){
+                str="1";
+            }else{
+                str="2";
+            }
+        }
+        return str;
+    }
+
+    @Override
+    public String editJob(String job, Integer tradeId, Integer id) {
+        String str=null;
+        Params params=systemMapper.checkJob(job);
+        System.out.println(params.getValue());
+        if(params!=null){
+            JobTrade jobTrade=systemMapper.checkJobTrade(Integer.parseInt(params.getValue()),tradeId);
+            if(jobTrade==null){
+                int num1=systemMapper.editJobTrade(Integer.parseInt(params.getValue()),tradeId,id) ;
+                if(num1>0){
+                    str="1";
+                }else{
+                    str="2";
+                }
+            }else{
+                str="3";
+            }
+        }else{
+            String jobIddStr=systemMapper.maxJob();
+            Integer jobId=Integer.parseInt(jobIddStr)+1;
+            Integer num2=systemMapper.addJob(jobId,job);
+            num2=systemMapper.editJobTrade(jobId,tradeId,id);
+            if(num2>0){
+                str="1";
+            }else{
+                str="2";
+            }
+        }
+        return str;
+    }
+
+    @Override
+    public LayuiData checkCompanyList(Integer page, Integer pageSize, String companyName, String state) {
+        LayuiData layuiData = new LayuiData();
+        Integer start = (page - 1) * pageSize;
+        List<CompanyCheck> list = systemMapper.checkCompanyList(start,pageSize,companyName,state);
+        int count = systemMapper.checkCompanyListCount(companyName,state);
+        if (list.size() > 0) {
+            layuiData.setCode(0);
+            layuiData.setMsg("");
+            layuiData.setCount(count);
+            layuiData.setData(list);
+        } else {
+            layuiData.setCode(1);
+            layuiData.setMsg("查询失败");
+        }
+        return layuiData;
+    }
+
+    @Override
+    public Boolean checkCompany(String state, Integer id) {
+        Boolean flag=false;
+        int num=systemMapper.checkCompany(state,id);
+        if(num>0){
+            flag=true;
+        }
+        return flag;
+    }
 
 
 }

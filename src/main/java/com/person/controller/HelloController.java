@@ -1,6 +1,7 @@
 package com.person.controller;
 
 
+import com.person.bean.Admin;
 import com.person.bean.User;
 import com.person.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/hello")
@@ -81,7 +84,9 @@ public class HelloController {
     }
 
     @GetMapping(value = "/firmMenu")
-    public String firmMenu() {
+    public String firmMenu(Model model, HttpServletRequest request) {
+        Admin admin= (Admin) request.getSession().getAttribute("admin");
+        model.addAttribute("adminMame",admin.getName());
         return "firmMenu";
     }
 
