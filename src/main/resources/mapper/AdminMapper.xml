@@ -42,24 +42,32 @@
 
     <!-- //高校人才推荐 ==============工作信息数据获取 ==-=zongshu  -->
     <select id="userRecommendNum" resultType="java.lang.Integer">
-        select count(*) from t_station
+        select count(*) from t_station s
+        LEFT JOIN t_param p1 on s.job = p1.value and type='岗位'
+        LEFT JOIN t_job_trade j on j.jobid = p1.value and p1.type = '岗位'
+        LEFT JOIN t_param p2 on j.tradeid = p2.value and p2.type='行业'
         <where>
-            <if test="condition.station !=null">and j.name like concat('%',#{condition.station},'%')</if>
-            <if test="condition.industry !=null">and j.trade like concat('%',#{condition.industry},'%')</if>
+            <if test="condition.station !=null">and p1.name like concat('%',#{condition.station},'%')</if>
+            <if test="condition.industry !=null">and p2.name like concat('%',#{condition.industry},'%')</if>
         </where>
     </select>
+
+
     <!--//高校人才推荐 ==============工作信息数据获取 ==-=数据     -->
     <select id="userRecommend" resultType="com.person.bean.Station">
-        select (@i:=@i+1)pm,ta.id,ta.company,ta.jobName,ta.trade,ta.adminName,ta.time from (
-        select s.id,s.company,j.name jobName,j.trade trade ,a.account adminName,s.time
-        from t_station s
-        inner join t_job j on s.jobid = j.id
-        inner join t_admin a on a.id = s.adminid
+        select ta.*,(@i:=@i+1)pm from
+        (select s.id,s.title,s.date,p2.name trade,p1.name job,a.name adminname,c.name companyname from t_station s
+        LEFT JOIN t_param p1 on s.job = p1.value and type='岗位'
+        LEFT JOIN t_admin a on a.id = s.adminid
+        LEFT JOIN t_company c on c.id = a.company
+        LEFT JOIN t_job_trade j on j.jobid = p1.value and p1.type = '岗位'
+        LEFT JOIN t_param p2 on j.tradeid = p2.value and p2.type='行业'
+
         <where>
-            <if test="condition.station !=null">and j.name like concat('%',#{condition.station},'%')</if>
-            <if test="condition.industry !=null">and j.trade like concat('%',#{condition.industry},'%')</if>
+            <if test="condition.station !=null">and p1.name like concat('%',#{condition.station},'%')</if>
+            <if test="condition.industry !=null">and p2.name like concat('%',#{condition.industry},'%')</if>
         </where>
-        order by s.time desc limit #{page},#{limit} ) ta,(select @i:=0)t
+        order by s.date desc limit #{page},#{limit} ) ta,(select @i:=0)t
     </select>
 
     <!--//高校人才推荐 ==============选择人才数据显示  =====总数-->
@@ -74,14 +82,17 @@
     </select>
     <!--//高校人才推荐 ==============选择人才数据显示  =====数据-->
     <select id="userSelect" resultType="com.person.bean.User">
-        select * from t_user
+
+        select ta.*,(@i:=@i+1)pm from
+        (select * from t_user
         <where>
             <if test="condition.beginDate != null">AND brith <![CDATA[>=]]> STR_TO_DATE(#{condition.beginDate},'%Y-%m-%d')</if>
             <if test="condition.endDate != null">AND brith <![CDATA[<=]]> STR_TO_DATE(#{condition.endDate},'%Y-%m-%d')</if>
             <if test="condition.schoolName != null"> AND school like CONCAT('%',#{condition.schoolName},'%')</if>
             <if test="condition.specialty != null">AND major like CONCAT('%',#{condition.specialty},'%')</if>
         </where>
-        limit #{page},#{limit}
+        order by date desc
+        limit #{page},#{limit}) ta,(select @i:=0)t
 
     </select>
     <!--//高校人才推荐 ==============确定选择推荐人选 ======新增jobprocess-->
@@ -114,11 +125,11 @@
     </select>
     <!--//公司招聘管理=================招聘新增-->
     <insert id="recruitInsert">
-        insert into t_station(title,region,experience,money,worktime,description,welfare,number,adminid,sex,education,job,company)
+        insert into t_station(title,region,experience,money,worktime,description,welfare,number,adminid,sex,education,job,company,request)
         values(
         #{station.title},#{station.region},#{station.experience},#{station.money},
         #{station.worktime},#{station.description},#{station.welfare},#{station.number},#{id},
-        #{station.sex},#{station.education},#{station.job},(select company from t_admin where id =#{id})
+        #{station.sex},#{station.education},#{station.job},(select company from t_admin where id =#{id},#{station.request})
         )
     </insert>
     <!--//公司招聘管理=================招聘修改-->
@@ -202,6 +213,7 @@
         select * from t_company where id = #{id}
     </select>
 
+
     <select id="showRecruit" resultType="com.person.bean.User">
         select *,(select name from t_param where value = sex and type = '性别') sexStr from t_user where id = #{id}
     </select>
@@ -228,5 +240,19 @@
 
     <select id="exportExcel" resultType="com.person.bean.BusClick">
         select * from t_user
+    </select>
+
+    <select id="getStationById" resultType="com.person.bean.Station">
+        select * from t_station where id = #{id}
+    </select>
+
+    <select id="recruitShowFrame" resultType="com.person.bean.Station">
+       select *,
+        (select p1.name from t_param p1 where p1.value = s.sex and p1.type="性别") sexStr ,
+        (select p2.name from t_param p2 where p2.value = s.education and p2.type="学历") educationStr,
+        (select p3.name from t_param p3 where p3.value = s.experience and p3.type="工作经验") experienceStr,
+        (select p4.name from t_param p4 where p4.value = s.job and p4.type="岗位") jobname ,
+        (select c.name from t_company c where c.id = s.company) companyname
+        from t_station s where id =  #{id}
     </select>
 </mapper>
