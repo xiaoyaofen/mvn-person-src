@@ -1,0 +1,211 @@
+﻿
+/* 路径 */
+.path{ margin:auto; width:1100px; height:40px; line-height:40px; color:#999; text-align:left; }
+.path a{ color:#1696F9; }
+
+/* 主体 */
+.main1{ margin:auto; width:1100px; height:auto; text-align:left; background-color:#FFF;overflow:hidden; }
+
+/* 主体左侧 */
+.main1 .left{ float:left; width:810px; height:auto;background: url(/images/browse/main3bg.png) right repeat-y; }
+.main1 .left .names{ float:left; width:760px;height:auto; padding:20px; padding-bottom:5px; }
+.main1 .left .names .n1{ float:left; width:605px;height:50px; }
+.main1 .left .names .n1 .name{ float:left; width:605px;height:auto; }
+.main1 .left .names .n1 .name .jobname{ float:left; width:auto; line-height:40px;font-size:18pt; color:#2E343B; margin-right:10px; }
+.main1 .left .names .n1 .name .hongbao{ float:left; width:auto;height:22px ;line-height:22px;position: relative; display: block;cursor: pointer; text-align:center; margin-left:5px; margin-top:10px; }
+.main1 .left .names .n1 .name .hongbao em{ float:left; width:35px; line-height:22px; background-color:#F10; font-style:normal; font-size:12px; color:#FFF; }
+.main1 .left .names .n1 .name .hongbao i{ float:left; width:auto; padding:0px 5px;line-height:20px; color:#F10; border:1px #F10 solid;font-style:normal;font-size:14px; font-weight:bold; }
+
+.main1 .left .names .n1 p{ float:left; width:605px; line-height:30px; font-size:12px; }
+.main1 .left .names .n1 p a{ color:#666; }
+.main1 .left .names .n1 p a:hover{ color:#1696F9; }
+
+.main1 .left .names .n2{ float:left; width:155px;height:auto; padding-top:20px; }
+.main1 .left .names .n2 a{ display:inline-block; width:95px; line-height:40px;font-size:13pt; background:url(/images/browse/company/apply.png) 25px 8px no-repeat; background-color:#00AADB;color:#FFF; padding-left:60px; cursor:pointer;border-radius:0px; font-weight:bold;border-radius:2px; }
+.main1 .left .names .n2 a:link{ color:#FFF; }
+.main1 .left .names .n2 a:hover{ background:url(/images/browse/company/apply.png) 25px 8px no-repeat; background-color:#1696F9;color:#FFF; }
+
+
+/* 时间和分享 */
+.main1 .left .date{ float:left; width:760px; height:30px; padding:5px 20px; margin-top:0px; border-bottom:1px #EEE solid;font-size:12px;  }
+.main1 .left .date span{ float:left; width:410px; line-height:30px;background:url(/images/browse/t3.png) 0px 6px no-repeat; padding-left:20px; color:#BBB;  }
+.main1 .left .date ul{ float:left; width:330px; line-height:30px; }
+.main1 .left .date ul li{ float:right;width:auto; line-height:30px; margin-left:15px; font-size:12px;display:inline; position: relative; }
+.main1 .left .date a{ color:#AAA; }
+.main1 .left .date ul li a.favButton{ float:left; width:70px; line-height:28px;position: relative; display: block; background:url(/images/browse/company/fav0.png) 8px 8px no-repeat; background-color:#F5F5F5; color:#B8C3CC;text-indent:30px;cursor: pointer; }
+.main1 .left .date ul li a.favButton:hover{ background:url(/images/browse/company/fav1.png) 8px 8px no-repeat; background-color:#00AADB; color:#FFF;}
+.main1 .left .date ul li a.Report{ float:left; width:70px; line-height:28px;position: relative; display: block; background:url(/images/browse/company/report0.png) 8px 8px no-repeat; background-color:#F5F5F5; color:#B8C3CC;text-indent:28px;cursor: pointer; }
+.main1 .left .date ul li a.Report:hover{ background:url(/images/browse/company/report1.png) 8px 8px no-repeat; background-color:#00AADB; color:#FFF;}
+
+.main1 .left .date ul li a.shareMore{ float:left; width:70px; line-height:28px;position: relative; display: block; background:url(/images/browse/company/share0.png) 8px 8px no-repeat; background-color:#F5F5F5; color:#B8C3CC; text-indent:30px;cursor: pointer; }
+.main1 .left .date ul li a.shareMore:hover{ background:url(/images/browse/company/share1.png) 8px 8px no-repeat; background-color:#00AADB; color:#FFF;}
+.main1 .left .date ul li a.shareMorecurrent { width:70px;height:30px; }
+.main1 .left .shareMoredown { z-index: 2; position: absolute; background: #E45B00;top:28px;left:0px; width:70px; height:30px;background-color:#FFF; border:1px #DDD solid; padding:5px 5px; }
+.main1 .left .shareMoredown .s1 { float:left; width:35px; height:30px; line-height:30px; }
+.main1 .left .shareMoredown .s2 { float:left; width:35px; height:30px; line-height:30px; }
+
+.main1 .left .date ul li a.shareMores{ float:left; width:35px; line-height:30px;position: relative; display: block;cursor: pointer; }
+.main1 .left .date ul li a.shareMores:hover{}
+.main1 .left .date ul li a.shareMorecurrents { width:70px;height:30px; }
+.main1 .left .shareMoredowns { z-index:100; position: absolute; background: #E45B00;top:40px;left:-85px; width:180px; height:auto;background-color:#FFF; border:1px #DDD solid; padding:10px 0px; overflow:hidden; }
+.main1 .left .shareMoredowns b{ float:left; width:180px; height:auto; padding:0px 0px; text-align:center;}
+.main1 .left .shareMoredowns p{ float:left; width:180px; height:auto; line-height:20px; padding:0px 0px; text-align:center; font-size:12px;color:#999;} 
+
+
+
+/* 基本信息 */
+.main1 .left .basic{ float:left; width:770px;height:auto; padding:0px 20px; }
+.main1 .left .basic ul li{ float:left; width:735px;height:auto; line-height:30px; margin:5px 0px; padding-left:35px; color:#555; }
+.main1 .left .basic ul .li1{ background:url(/images/browse/m1.png) 0px 3px no-repeat;color:#FF7700;  }
+.main1 .left .basic ul .li2{ background:url(/images/browse/m2.png) 0px 3px no-repeat; }
+.main1 .left .basic ul .li2 i{ float:left;width:auto; line-height:25px;padding:0px 8px; border:1px #E8E8E8 solid; margin-right:10px;font-style:normal; white-space: nowrap; color:#777; font-size:12px; }
+.main1 .left .basic ul .li3{ background:url(/images/browse/m3.png) 0px 3px no-repeat; }
+.main1 .left .basic ul .li4{ background:url(/images/browse/m4.png) 0px 3px no-repeat; }
+.main1 .left .basic ul .li4 i{ font-style:normal; margin-left:10px; color:#999; }
+.main1 .left .basic ul .li5{ background:url(/images/browse/m5.png) 0px 3px no-repeat; }
+.main1 .left .basic ul .li7{ background:url(/images/browse/m7.png) 0px 3px no-repeat; }
+
+/* 联系电话 */
+.main1 .left .basic ul .li6{ background:url(/images/browse/m6.png) 0px 3px no-repeat; }
+.main1 .left .basic ul .li6 span{ float:left; width:auto; line-height:30px;}
+.main1 .left .basic ul .li6 span b{ float:left; width:auto; line-height:30px; font-size:14pt; color:#F50; }
+.main1 .left .basic ul .li6 span a{ float:left; width:auto; line-height:30px; margin-left:10px; color:#1696F9; }
+.main1 .left .basic ul .li6 span a:hover{ color:#3F74C2; }
+.main1 .left .basic ul .li6 span i{ float:left; width:auto; line-height:30px; margin-left:10px; font-style:normal; color:#AAA; font-size:12px; }
+.main1 .left .basic ul .li6 p{ float:left; width:735px; line-height:25px; color:#999;  }
+
+
+
+/* 红包职位 */
+.main1 .left .jobmoneys{ float:left; width:760px; height:auto;text-align:left;background:url(/images/browse/money.png) left top no-repeat; background-color:#FFF; border-bottom:1px #eee solid; padding:15px 20px; }
+.main1 .left .jobmoneys .left{ float:left; width:500px; height:auto; }
+.main1 .left .jobmoneys .left ul{ float:left;width:500px; height:auto; }
+.main1 .left .jobmoneys .left ul li{ float:left;width:50%; line-height:35px; }
+.main1 .left .jobmoneys .left ul li p{ float:left;width:auto; line-height:35px; font-size:14px; color:#999; }
+.main1 .left .jobmoneys .left ul li i{ float:left;width:auto; line-height:35px; font-size:18px; color:#F50; margin-left:5px; font-style:normal; }
+.main1 .left .jobmoneys .rig{ float:right;width:155px; height:auto; display:inline; position: relative;}
+
+/* 分享红包 */
+.main1 .left .jobmoneys .rig .sharemoney{ float:left; width:155px; margin-bottom:10px; }
+.main1 .left .jobmoneys .rig .sharemoney a{ display:inline-block; width:155px; line-height:35px;font-size:16px; background-color:#74C03F;color:#FFF; text-align:center; cursor:pointer;border-radius:2px; }
+.main1 .left .jobmoneys .rig .sharemoney a:link{ color:#FFF; }
+.main1 .left .jobmoneys .rig .sharemoney a:hover{ background-color:#74C03F;color:#FFF; }
+
+.main1 .left .jobmoneys .rig .sharemoney .shareMoneys { z-index:100; position: absolute;top:33px;left:0px; width:153px; height:auto;background-color:#FFF; border:1px #74C03F solid; padding:10px 0px; box-shadow: 0px 0px 5px 0px #74C03F;overflow:hidden; }
+.main1 .left .jobmoneys .rig .sharemoney .shareMoneys b{ float:left; width:153px; height:auto; padding:0px 0px; text-align:center;}
+.main1 .left .jobmoneys .rig .sharemoney .shareMoneys p{ float:left; width:153px; height:auto; line-height:20px; padding:0px 0px; text-align:center; font-size:12px;color:#F60;} 
+
+/* 投递红包 */
+.main1 .left .jobmoneys .rig .applymoney{ float:left; width:200px; }
+.main1 .left .jobmoneys .rig .applymoney a{ display:inline-block; width:155px; line-height:35px;font-size:16px; background-color:#FE501B;color:#FFF; text-align:center; cursor:pointer;border-radius:2px; }
+.main1 .left .jobmoneys .rig .applymoney a:link{ color:#FFF; }
+.main1 .left .jobmoneys .rig .applymoney a:hover{ background-color:#F47736;color:#FFF; }
+
+
+
+
+/* 职位动态 */
+.main1 .left .nums{ float:left; width:760px;height:auto; margin:0px 20px;border-bottom:1px #E8E8E8 solid; }
+.main1 .left .nums .title{ float:left; width:760px;height:40px;background:url(/images/browse/company/line.png) 0px 20px repeat-x;  }
+.main1 .left .nums .title span{ float:left; width:80px;height:40px; line-height:40px; background-color:#FFF; margin-left:35px;color:#999; text-align:center; }
+.main1 .left .nums .conte{ float:left; width:760px;height:auto; }
+.main1 .left .nums .conte ul{ float:left; width:760px; height:auto; }
+.main1 .left .nums .conte ul li{ float:left; width:189px; height:auto; border-right:1px #DDD dashed; text-align:center; }
+.main1 .left .nums .conte ul li b{ float:left; width:189px; height:25px; line-height:25px; font-size:14pt; font-weight:normal; color:#444; }
+.main1 .left .nums .conte ul li p{ float:left; width:189px; height:25px; line-height:25px; color:#AAA; font-size:12px; }
+.main1 .left .nums .conte ul li:last-child{border-right:0;}
+
+
+/* 职位描述 */
+.main1 .left .detail{ float:left; width:760px;height:auto; margin:0px 20px; margin-top:20px; }
+.main1 .left .detail .title{ float:left; width:760px;height:40px; border-bottom:1px #EEE solid;text-align:center;font-size:16px;  }
+.a101 { float:left;width:auto; height:38px; line-height:38px; border-bottom:2px #1696F9 solid; padding:0px 20px;color: #1696F9;cursor:pointer}
+.a102 { float:left;width:auto; height:38px; line-height:38px; border-bottom:2px #FFFFFF solid; padding:0px 20px;color: #666;cursor:pointer}
+.main1 .left .detail .conte{ float:left; width:760px;height:auto; }
+.main1 .left .detail .conte .det{ float:left; width:760px;height:auto; padding:10px 0px; line-height:28px; color:#777; }
+
+/* 面试评价 */
+.main1 .left .comment{ float:left; width:760px;height:auto;}
+.main1 .left .comment ul{ float:left; width:760px;height:auto; padding:15px 0px; border-bottom:1px #DDD dashed; }
+.main1 .left .comment ul .li1{ float:left; width:90px;height:auto; padding-top:10px;}
+.main1 .left .comment ul .li1 b{ float:left; width:90px;height:70px; text-align:center;}
+.main1 .left .comment ul .li1 b img{ width:60px;height:60px; border:1px #E8E8E8 solid;border-radius:100%; }
+.main1 .left .comment ul .li1 p{ float:left; width:90px;height:30px; line-height:30px; font-size:12px; text-align:center; color:#999; }
+.main1 .left .comment ul .li2{ float:left; width:670px;height:auto; color:#999;}
+.main1 .left .comment ul .li2 .s1{ float:left; width:670px;height:40px;}
+.main1 .left .comment ul .li2 .s1 b{ float:left; width:470px; line-height:40px; font-weight:normal; }
+.main1 .left .comment ul .li2 .s1 p{ float:left; width:200px; line-height:40px;  text-align:right; }
+.main1 .left .comment ul .li2 .s2{ float:left; width:670px; height:30px; line-height:30px; }
+.main1 .left .comment ul .li2 .s2 b{ float:left; width:auto; height:30px; line-height:30px; font-weight:normal; }
+.main1 .left .comment ul .li2 .s2 i{ float:left; width:auto; height:30px; line-height:30px; font-style:normal;margin-right:15px; }
+.main1 .left .comment ul .li2 .s2 p{ float:left; width:120px; height:19px; margin-top:4px; margin-right:15px;background:url(/Images/star/bigstar0.png) no-repeat;}
+.main1 .left .comment ul .li2 .s2 p em{ float:left; width:120px; height:19px;background:url(/Images/star/bigstar1.png) no-repeat;}
+.main1 .left .comment ul .li2 .s3{ float:left; width:670px; height:auto;line-height:40px; }
+.main1 .left .comment ul .li2 .s3 i{ float:left;width:auto; line-height:25px;padding:0px 8px; border:1px #DDD solid; margin:10px 0px;margin-right:10px;font-style:normal; white-space: nowrap; color:#555; font-size:14px;border-radius:10px; }
+.main1 .left .comment ul .li2 .s4{ float:left; width:670px;height:auto;}
+.main1 .left .comment ul .li2 .s4 b{ float:left; width:670px; line-height:30px;color:#999; font-weight:normal; }
+.main1 .left .comment ul .li2 .s4 p{ float:left; width:670px; line-height:25px;color:#555;  }
+.main1 .left .comment .more{ float:left; width:760px;height:40px; line-height:40px; text-align:center;}
+.main1 .left .comment .more a{ color:#1696F9;}
+
+
+/* 相似职位 */
+.main1 .left .typejob{ float:left; width:780px;height:auto; margin-left:20px; padding:10px 0px;}
+.main1 .left .typejob .title{ float:left; width:760px; height:40px; line-height:40px;background: url(/images/browse/company/line.png) 0px 20px  repeat-x; }
+.main1 .left .typejob .title b{ float:left; width:90px; height:40px; line-height:40px;font-size:13pt; color:#2E343B; background-color:#FFF; font-weight:normal; }
+.main1 .left .typejob .conte{ float:left; width:780px; height:auto; padding:5px 0px;}
+.main1 .left .typejob .conte ul{ float:left; width:235px; height:auto; margin-right:10px; margin-bottom:10px; padding:5px 5px; border:1px #EEE solid; }
+.main1 .left .typejob .conte ul:hover{ border:1px #EEE solid; }
+.main1 .left .typejob .conte ul .li1{ float:left; width:70px; height:auto; padding-top:5px; }
+.main1 .left .typejob .conte ul .li1 img{ width:58px; height:58px; border:1px #FFF solid; }
+.main1 .left .typejob .conte ul .li2{ float:left; width:160px; height:auto;}
+.main1 .left .typejob .conte ul .li2 a{ float:left; width:100%; line-height:25px; color:#1696F9; }
+.main1 .left .typejob .conte ul .li2 p{ float:left; width:100%; line-height:20px; color:#F70; font-size:12px; }
+.main1 .left .typejob .conte ul .li2 i{ float:left; width:100%; line-height:20px; font-style:normal; font-size:12px; }
+.main1 .left .typejob .conte ul .li2 i a{ color:#999;}
+
+
+/* 主体右侧 */
+.main1 .right{ float:right; width:280px; height:auto; }
+
+/* 公司信息 */
+.main1 .combasic{ float:left; width:260px; height:auto; margin-top:20px;}
+.main1 .combasic  .logo{ float:left;width:260px; height:100px; text-align:center; }
+.main1 .combasic  .logo img{ width:98px; height:98px;  border:1px #E8E8E8 solid; }
+.main1 .combasic  .name{ float:left;width:260px; line-height:40px; text-align:center; font-size:12px; margin-bottom:5px; }
+.main1 .combasic  .name a{ color:#666; }
+.main1 .combasic  span{ float:left;width:220px; height:40px; color:#555; padding-left:40px;  }
+.main1 .combasic  .r1{ background: url(/images/browse/company/r1.png) 10px 4px no-repeat; }
+.main1 .combasic  .r2{ background: url(/images/browse/company/r2.png) 10px 4px no-repeat; }
+.main1 .combasic  .r3{ background: url(/images/browse/company/r3.png) 10px 4px no-repeat; }
+.main1 .combasic  .r4{ background: url(/images/browse/company/r4.png) 10px 4px no-repeat; }
+
+
+/* 微信 */
+.main1 .wzp{ float:left; width:260px; height:auto;}
+.main1 .wzp .title{ float:left; width:260px; height:40px; line-height:40px;background: url(/images/browse/company/line.png) 0px 20px  repeat-x; }
+.main1 .wzp .title b{ float:left; width:80px; height:40px; line-height:40px;font-size:13pt; color:#2E343B; background-color:#FFF; font-weight:normal; }
+.main1 .wzp .conte{ float:left; width:260px; height:auto; padding:10px 0px; text-align:center; }
+.main1 .wzp .conte img{ width:120px; height:120px; border:1px #E5E5E5 solid; padding:4px; }
+
+
+/* 其他职位 */
+.main1 .right .otherjob{ float:left; width:260px;height:auto;}
+.main1 .right .otherjob .title{ float:left; width:260px; height:40px; line-height:40px;background: url(/images/browse/company/line.png) 0px 20px  repeat-x; }
+.main1 .right .otherjob .title b{ float:left; width:130px; height:40px; line-height:40px;font-size:13pt; color:#2E343B; background-color:#FFF; font-weight:normal; }
+.main1 .right .otherjob .conte{ float:left; width:260px; height:auto; padding:0px 0px;}
+.main1 .right .otherjob .conte ul{ float:left; width:260px; height:auto; padding:5px 0px; border-bottom:1px #EEE dashed; }
+.main1 .right .otherjob .conte ul .li1{ float:left; width:260px; height:25px; line-height:25px; }
+.main1 .right .otherjob .conte ul .li1 a{ color:#1696F9;}
+.main1 .right .otherjob .conte ul .li2{ float:left; width:260px; height:25px; line-height:25px; color:#999; font-size:12px; }
+
+
+
+
+
+
+
+
+
+
+
