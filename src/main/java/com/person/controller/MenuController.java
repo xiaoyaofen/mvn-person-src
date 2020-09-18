@@ -45,7 +45,7 @@ public class MenuController {
     @ResponseBody
     public String Menu(HttpServletRequest request, Model model) {
         Admin admin= (Admin) request.getSession().getAttribute("admin");
-        
+        model.addAttribute("adminMame",admin.getName());
         Integer roleid= admin.getRoleid();
         List<Menu> menuList =  menuService.getMenuListByRoleId(roleid);
         return JSON.toJSONString(menuList);

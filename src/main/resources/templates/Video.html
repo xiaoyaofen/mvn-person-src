@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://cymooc.org/indexPage_IndexPage_index_Index -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script id="ivt_script" src="./首页_files/kf_ivt_new.php" charset="utf-8"></script><script id="hz6d_send_acc" src="./首页_files/sendacc.jsp" charset="utf-8"></script>
+
+<title>首页</title>
+<link rel="stylesheet" th:href="@{/X-admin/zxw/cy/activityList.css}">
+<link rel="shortcut icon" type="image/x-icon" href="http://cymooc.org/favicon.ico">
+<link rel="stylesheet" type="text/css" th:href="@{/X-admin/zxw/cy/muke.css}">
+<link th:href="@{/X-admin/zxw/cy/bootstrap.css}" type="text/css" rel="stylesheet" media="all">
+<link th:href="@{/X-admin/zxw/cy/style.css}" type="text/css" rel="stylesheet" media="all">
+<link th:href="@{/X-admin/zxw/cy/font-awesome.css}" rel="stylesheet">
+<!-- font-awesome icons -->
+<link th:href="@{/X-admin/zxw/cy/lsb.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" th:href="@{/X-admin/zxw/cy/navigationBar.css}">
+<link rel="stylesheet" th:href="@{/X-admin/zxw/cy/jquery.pagination.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/X-admin/zxw/cy/index.css}">
+
+<script src="./首页_files/1"></script><script type="text/javascript">
+	var ctx = ''
+</script>
+<style>
+#hotStudyDescribe>p {
+	font-size: 12px !important;
+	color: #999 !important;
+}
+.tif{position: relative; line-height: 20px; max-height: 100px;overflow: hidden;}
+.schoolCourseFont {
+	font-size: 14px;
+	color: #666666;
+	width: 170px;
+	margin-top: 2PX;
+}
+</style>
+<link rel="stylesheet" th:href="@{/X-admin/zxw/cy/layer.css}" id="layuicss-skinlayercss"></head>
+<body style="background-color:rgba(244, 244, 244, 1);"><div id="div_company_mini" style="line-height: 0; font-size: 0px; position: fixed; right: 30px; bottom: 30px; width: 360px; height: 0px; z-index: 1000000; cursor: move; overflow: visible;"><div class="mini-btn mini-btn3" id="mini-btn" onclick="show_floatWindow();" style="cursor: pointer; display: block; position: absolute; right: 0px; bottom: 0px; z-index: -1; width: 64px; height: 64px; border-radius: 32px; overflow: hidden; background: rgb(31, 140, 235); box-shadow: rgba(0, 0, 0, 0.06) 0px 1px 6px, rgba(0, 0, 0, 0.16) 0px 2px 32px !important;"><div style="position: relative;height: 100%;width: 100%;background: center center no-repeat;background-color: rgb(31, 140, 235);background-image: url(https://www25.53kf.com/style/chat/new2017/image/png/img-email36.png);background-image: url(https://www25.53kf.com/style/chat/new2017/image/svg/img-email36.svg), none;"><span id="info-num" style="display:none;position: absolute;top: 12px;right: 12px;z-index:10;height: 14px;min-width: 14px;line-height: 14px;border-radius: 7px;background: red;font-size: 12px;color: #FFFFFF;letter-spacing: 0.47px;text-align: center;">0</span></div></div><div id="iframe_company_mini_div" style="font-size: 0px; background-color: rgb(255, 255, 255); border-radius: 2px; overflow: hidden; width: 100%; height: 460px; box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 40px !important; display: none;"><h6 class="pc-visitor-header" style="width:100%;box-sizing:border-box;background: rgb(31, 140, 235) no-repeat 10px;margin:0;padding:0;padding-left: 10px;font-size: 14px;color: #fff;height: 36px;line-height: 36px;position: relative;font-weight: normal;padding-right: 72px;"><img style="max-width: 80px;width:auto;height:24px;float: left;margin-top: 6px;border-radius:2px;" src="./首页_files/mobile_53kf_1531556560.jpg"><label style="background: none; padding: 0; margin: 0; border: 0; line-height:36px;cursor:move;font-weight:normal;cursor:move;color: #fff;display: inline-block;float: left;max-width:78%;margin-left: 5px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size: 14px;" class="header-company">传一MOOC</label><span onclick="max_from_company_mini(this);" title="最大化" class="pc-new pc-title-btn" style="background: url(https://www25.53kf.com/style/chat/new2017/image/png/newWindow.png) center no-repeat;background-image: url(https://www25.53kf.com/style/chat/new2017/image/svg/newWindow.svg),none;position: absolute;width: 36px;height: 36px;cursor: pointer;right: 40px;top: 0;fill: #F08000;"></span><span onclick="hide_floatWindow();" title="最小化" class="pc-hide pc-title-btn" style="background-position: center center; background-size: initial; background-repeat: no-repeat; background-attachment: initial; background-origin: initial; background-clip: initial; background-image: url(&quot;https://www25.53kf.com/style/chat/new2017/image/svg/close2020.svg&quot;), none; position: absolute; width: 36px; height: 36px; cursor: pointer; right: 0px; top: 0px;"></span></h6><iframe id="iframe_company_mini" frameborder="0" style="height:424px;width:100%;margin:0;padding:0;visibility: inherit;opacity:1;position:inherit;" open_mini_windown="1" src="./首页_files/webCompany.html"></iframe></div></div><div id="kfivtwin" style="display: none; overflow: visible;"><div id="acc_title" class="Lelem" minheight="100" minwidth="100" maxheight="400" maxwidth="400" style="position: relative; z-index: 10000; overflow: visible;"><div class="Lelem" type="img" style="display: block; cursor: default; position: absolute; top: 64px; left: 5px; z-index: 10001; width: 390px; height: 196px;"><img style="width: 390px; height: 196px;" src="./首页_files/commonbg_3.png"></div><div style="display: block; cursor: default; position: absolute; top: 73px; left: 19px; z-index: 10002; width: 106px; height: 22px; color: rgb(255, 255, 255);" type="text" class="Lelem"><span style="vertical-align: top; font-size: 15.4px; line-height: 22px; color: rgb(255, 255, 255); font-family: 宋体;" iseditable="1">53KF在线客服</span></div><div style="display: block; cursor: pointer; position: absolute; top: 70px; left: 358px; z-index: 10003; width: 22px; height: 24px;" onclick="onliner_zdfq=3;jtfq_type=1;hidden_ivt();;" type="img" class="Lelem"><img src="./首页_files/closebtn_2.png" style="width: 22px; height: 24px;"></div><div style="display: block; cursor: default; position: absolute; top: 104px; left: 14px; z-index: 10004; width: 125px; height: 139px;" type="img" class="Lelem"><img src="./首页_files/otherimg_11.png" style="width: 125px; height: 139px;"></div><div style="display: block; cursor: default; position: absolute; top: 103px; left: 163px; z-index: 10005; width: 139px; height: 41px;" type="text" class="Lelem"><span style="vertical-align: top; font-size: 28.7px;" iseditable="1">欢迎咨询</span></div><div style="display: block; cursor: default; position: absolute; top: 147px; left: 162px; z-index: 10006; width: 227px; height: 17px;" type="text" class="Lelem"><span style="vertical-align: top; font-family: 宋体; font-size: 12px;" iseditable="1">53KF.com，感谢大家的支持！</span></div><div style="display: block; cursor: default; position: absolute; top: 167px; left: 164px; z-index: 10007; width: 192px; height: 17px;" type="text" class="Lelem"><span style="vertical-align: top; font-family: 宋体; font-size: 12px;" iseditable="1">请问有什么可以帮您？</span></div><div class="Lelem" type="img" onclick="onliner_zdfq=2;hz6d_is_exist(&quot;window.open(%22https%3A%2F%2Fwww25.53kf.com%2FwebCompany.php%3Fkf_sign%3DDI3MTMTYwMU5NzEwNDU1MDU4MzU4MDEzNzIxNzQ5NjM%3D%26arg%3D10174963%26style%3D1%26kflist%3Doff%26kf%3D%26zdkf_type%3D1%26lnk_overflow%3D0%26language%3Dzh-cn%26charset%3DGBK%26username%3D%26userinfo%3D%26introurl%3D%26lyurl%3D%26lytype%3D0%26copartner%3D%26referer%3Dhttp%253A%252F%252Fcymooc.org%252FindexPage_IndexPage_index_Index%26keyword%3D%26brief%3D%26logo%3D%26question%3D%26uid%3D85876ee95df0b3fa1f5d3071a60ac946%26guest_id%3D10455058358013%26tfrom%3D2%22%2C%22_blank%22%2C%22height%3D600%2Cwidth%3D800%2Ctop%3D50%2Cleft%3D200%2Cstatus%3Dyes%2Ctoolbar%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollbars%3Dno%2Clocation%3Dno%2Ctitlebar%3Dno%22)&quot;);hidden_ivt();;" style="display: block; cursor: pointer; position: absolute; top: 199px; left: 162px; z-index: 10008; width: 118px; height: 37px;"><img style="width: 118px; height: 37px;" src="./首页_files/clickbtn_10.png"></div><div style="display: block; cursor: pointer; position: absolute; top: 237px; left: 18px; z-index: 10009; width: 101px; height: 17px;" type="text" class="Lelem"><a href="http://www.53kf.com/" target="_blank" style="text-decoration:none;cursor:pointer;"><span style="vertical-align: top; font-size: 10px; line-height: 17px; color: rgb(138, 131, 126); font-family: 宋体;" iseditable="1">这是什么工具？</span></a></div><div style="display: block; cursor: pointer; position: absolute; top: 236px; left: 293px; z-index: 10010; width: 101px; height: 17px;" type="text" class="Lelem"><a href="http://www.53kf.com/" target="_blank" style="text-decoration:none;cursor:pointer;"><span style="vertical-align: top; font-size: 10px; line-height: 17px; color: rgb(138, 131, 126); font-family: 宋体;" iseditable="1">Powered by 53KF</span></a></div></div></div><div id="kfivteffect" style="display: none; position: absolute; width: 0px; height: 0px; overflow: hidden; border: 1px solid rgb(27, 136, 208); background: rgb(214, 238, 253); z-index: 10087;"></div><iframe id="kfiframe" src="./首页_files/saved_resource.html" frameborder="0" scrolling="no" style="display: none; overflow: hidden;"></iframe><div id="iconDiv1" style="height: auto; width: auto;"><iframe style="position:absolute;z-index:7998;width:0px;height:0px;top:0px;left:0px;" frameborder="0" src="./首页_files/saved_resource(1).html"></iframe><div id="iconDivMain1" style="z-index: 10085; left: 1178px; top: 354px; width: 130px; height: 140px; overflow: hidden; position: absolute;"><div id="KFLOGO" class="Lelem" maxwidth="400" maxheight="400" minwidth="100" minheight="100" style="width: 130px; height: 140px; position: relative; z-index: 10000;"></div></div></div>
+	<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=9a83d6b4e22369581df2a3c1ed5328bc7cfc10420af9ce6145989dabc0f61e58">
+		<img alt="QQ学习群" th:src="@{/X-admin/zxw/cy/left.jpg}" style="position: fixed;left: 10px;top: 365px;;z-index: 99999;">
+	</a>
+	<!--   导航栏 -->
+	
+
+
+
+<link rel="stylesheet" type="text/css" th:href="@{/X-admin/zxw/cy/muke.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/X-admin/zxw/cy/navigationBar.css}">
+<link th:href="@{/X-admin/zxw/cy/style.css}" type="text/css" rel="stylesheet" media="all">
+<link th:href="@{/X-admin/zxw/cy/font-awesome.css}" rel="stylesheet">
+<!-- font-awesome icons -->
+<link rel="stylesheet" th:href="@{/X-admin/zxw/cy/flexslider.css}" type="text/css" media="screen" property="">
+<script th:src="@{/X-admin/zxw/cy/jquery-2.2.3.min.js}"></script>
+<script th:src="@{/X-admin/zxw/cy/layer.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/X-admin/zxw/cy/main.js}"></script>
+<!-- 	  导航 -->
+<style type="text/css">
+	.safe_width {
+		width: 1100px;
+		margin: 10px auto;
+	}
+	
+	/*****************未登录时登录注册按钮******************/
+	.tkbtn {
+		display: inline-block;
+		width: 60px;
+		height: 35px;
+		line-height: 35px;
+		text-align: center;
+		background: url(http://cymooc.org:80/common/images/btn1.png) no-repeat;
+		font-size: 14px;
+	}
+	
+	.tkbtn:link,.tkbtn:visited {
+		color: #fff;
+		text-decoration: none;
+	}
+
+	.tkbtn:hover {
+	color: #fff;
+	background: url(http://cymooc.org:80/common/images/btn_hover1.png) no-repeat;
+	}
+
+	.tkbtn.tklog {
+	background-position: 0px 0px;
+	float: left;
+	}
+
+	.tkbtn.tkreg {
+	background-position: -0.87px -44px;
+	float: right;
+	}
+
+	::-webkit-input-placeholder { /* WebKit browsers */
+	color: #A9A9A9;
+	}
+	.navbar .nav > li .dropdown-menu {
+			margin: 0;
+		}
+	.navbar .nav > li:hover .dropdown-menu {
+			display: block;
+	}
+	ul.dropdown-menu {
+    top:30px;
+    left:-112px;
+    background:#fff;
+    border: none;
+	}
+	.dropdown-menu > li > a {
+    padding: 7px 20px;
+    color: gray;
+    letter-spacing: 1px;
+	}
+	.dropdown-menu > li > a:hover {
+    background-color:#F0F0F0;
+	}
+</style>
+<input type="hidden" id="basepath" value="http://cymooc.org:80/">
+<div class="headBar" id="fixed">
+	<div class="nav-art">
+		<span class="navimg-art"><a href="http://cymooc.org/"><img border="0" style="height:25px;width:140px;margin-top:15px;" th:src="@{/X-admin/zxw/cy/cymklogo.png}"></a></span>
+		<ul class="nag-art">
+
+            <li class="nag_li" style="margin-left:30px;" id="l0"><a href="http://cymooc.org/indexPage_IndexPage_index_Index" class="link1"> 首页 </a></li>
+            <li class="nag_li" id="l1"><a href="http://cymooc.org/course_CourseRe_courses_course" class="link1"> 课程库 </a></li>
+            <li class="nag_li" id="l2"><a href="http://cymooc.org/course_CourseRe_opens_course" class="link1"> 公开课 </a></li>
+            <li class="nag_li" id="l4"><a href="http://cymooc.org/activity_Activity_activityList_activity" class="link1"> 活动 </a></li>
+            <li class="nag_li" id="l3"><a href="http://cymooc.org/experts_Experts_index_teacher" class="link1"> 师资 </a></li>
+            <li class="nag_li" id="l5"><a href="http://cymooc.org/news_NewsPage_list_news?articletype=3" class="link1"> 文章 </a></li>
+            
+			
+			<li class="nag_li2">
+				<div class="select" style="width:250px;height: 30px;">
+
+						<input type="text" name="keywords" id="keywords" placeholder="搜索你感兴趣的新闻" value=""> <input type="hidden" name="type" value="1"> <a href="javascript:void(0);" onclick="mysearch()" class="sellink"> </a>
+			<!-- 		</form> -->
+				</div>
+			</li>
+		</ul>
+	<!-- 	<script>
+		$(function(){
+			$('.nag_li').click(function(){
+				alert(123)
+				$('.nag_li').css({border:none});
+				$('.nag_li').children().eq(0).css({color: '#ec6941'});
+				$(this).css({borderBottom: '2px solid #fa5c53'});
+				$(this).children().eq(0).css({color: '#D11303'});
+			});
+		});
+		</script> -->
+		<span class="massage"> <span class="exambtn_lore">
+		 
+		 			<div style="margin-top:8px;margin-left:-50px">
+					<a id="logc">
+					<span style="font-size:16px;color:#FA5C53;">登录/注册</span></a>
+					<!-- <a class="tkbtn tkreg"  id="regc">注册</a> -->
+					</div>
+				 
+				
+		</span>
+		</span>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	$(function() {
+		$("#l"+"").addClass("currentBar");
+	});
+/* 	function mysearch() {
+		form1.submit();
+	} */
+	function searchsubmit() {
+		$("#keywords").val(encodeURI($("#keywords").val()));
+	}
+	function mysearch() {
+	var title =  encodeURI(encodeURI($("#keywords").val().trim()));
+	window.location.href = "news_NewsPage_list_news?article_title="+title+"&articletype=&circle_id=";
+	};
+</script>
+
+	<!-- 经典课程 -->
+	<div id="courseDiv" class="safe" style="margin-top: 20px;margin-bottom: 20px;">
+		<div id="casecontent">
+			<div class="schoolTitle1" style="width:1120px;">
+				<div style="float:left;margin-left:50px;margin-left:510px;margin-bottom:20px;">经典课程</div>
+				<a style="float:right;color:#FCB315;font-size:15px;margin-top:35px;" href="http://cymooc.org/course_CourseRe_courses_course">查看更多&gt;&gt;</a>
+			</div>
+			<div class="safe" th:each="u : ${list}">
+				<div style="width:260px;float:left;margin-left:0px;margin-bottom:20px;overflow: hidden;border-radius: 5px;" class="box566 pld">
+								<a th:href="@{/person/Video(id=${u.getId()})}" target=_blank th:title="${u.getDetial()}" class="lsb-preview wthree_p_grid">
+									<img th:src="${u.getPicture()}" alt=" " class="casimg" onerror="this.src=&#39;http://cymooc.org:80/common/images/uiz7.jpg&#39;" style="width:260px;height:173px ">
+									<div class="agileinfo_content_wrap">
+										<div class="agileits_content">
+											<div style="font-size:12px;color:#ffffff;" align="center">
+												<span style="vertical-align: center;" th:title="${u.getProduct()}">
+												</span>
+												<div style="margin-top:6px;height:1px;width:100%;background:#ffffff;overflow:hidden;"></div>
+											</div>
+											<p style="margin-top:12px;font-size:10px;text-align:left;" th:text="${u.getTeacher()}">
+											</p>
+											<p style="font-size:10px;text-align:left;">点击量：130659</p>
+										</div>
+									</div>
+								</a>
+								<p style="color:#444444;font-size:16px;margin:0 12px; text-align:left;padding-right:10px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+									<span style="display:inline-block;float:left" th:text="${u.getProduct()}"></span>
+								</p><div class="marqueed">
+<!--									<div>拼图游戏是一款风靡一时的休闲手机游戏。玩家需要点击拼图来切换某个图块的位置，最后达到让所有图块组合成一张拼图的目标，玩家可以选择拼图的图片、拼图的难度等级，还可以在拼图的过程中，查看拼图模板，以减少拼图难度。此案例中，我们以Java语言为基础，学习Swing编程，Swing 是一个为Java设计的GUI工具包，是JAVA基础类的一部分，包括了图形用户界</div>-->
+								</div>
+								<p></p>
+								<p class="playform" style="font-size:14px;margin-left:10px;text-align:left;">
+									<span style="display:inline-block;width:91px;float:left;padding-right:10px;padding-left:0px;" th:text="${u.getTeacher()}"></span>
+									<span style="display:inline-block;width:70px;float:right;padding-right:10px;padding-left:25px;background:url(&#39;http://cymooc.org:80/common/images/index/u13.png&#39;) no-repeat;background-size:16px 16px;background-position-y:5px;">130659</span>
+								</p>
+								<div style="clear: both"></div>
+							</div>
+				
+			</div>
+		</div>
+	</div>
+	<!-- 经典课程 -->
+<!-- 热门公开课begin -->
+<div id="courseDiv" class="safe" style="margin-top: 20px;margin-bottom:20px;">
+		<div id="casecontent">
+			<div class="schoolTitle1" style="width:1120px;">
+				<div style="float:left;margin-left:490px;margin-bottom:20px;">热门公开课</div>
+				<a style="float:right;color:#FCB315;font-size:15px;margin-top:35px;" href="http://cymooc.org/course_CourseRe_opens_course">查看更多&gt;&gt;</a>
+			</div>
+			<div class="safe">
+			
+			
+					
+						
+							<div style="width:260px;float:left;margin-left:0px;margin-bottom:20px;overflow: hidden;border-radius: 5px;" class="box566 pld">
+								<a onclick="encryptUrl(10592)" title="聊聊软件开发的那些事(1)" class="lsb-preview wthree_p_grid">
+									<img th:src="@{/X-admin/zxw/cy/226ef57641024639836af7e960716375.jpg}" alt=" " class="casimg" onerror="this.src=&#39;http://cymooc.org:80/common/images/uiz7.jpg&#39;" style="width:260px;height:173px ">
+									<div class="agileinfo_content_wrap">
+										<div class="agileits_content">
+											<div style="font-size:12px;color:#ffffff;" align="center">
+												<span style="vertical-align: center;">企业需要什么样的人
+												</span>
+												<div style="margin-top:6px;height:1px;width:100%;background:#ffffff;overflow:hidden;"></div>
+											</div>
+											<p style="margin-top:12px;font-size:10px;text-align:left;">老师：欧忠良
+											</p>
+
+											<p style="font-size:10px;text-align:left;">点击量：1240</p>
+										</div>
+									</div>
+								</a>
+								<p style="color:#444444;font-size:16px;margin:0 12px; text-align:left;padding-right:10px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+									<span style="display:inline-block;float:left">企业需要什么样的人</span>
+								</p><div class="marqueed">
+									<div>聊聊软件开发的那些事(1)</div>
+								</div>
+								<p></p>
+								<p class="playform" style="font-size:14px;margin-left:10px;text-align:left;">
+									<span style="display:inline-block;width:91px;float:left;padding-right:10px;padding-left:0px;">欧忠良</span>
+									<span style="display:inline-block;width:70px;float:right;padding-right:10px;padding-left:25px;background:url(&#39;http://cymooc.org:80/common/images/index/u13.png&#39;) no-repeat;background-size:16px 16px;background-position-y:5px;">1240</span>
+								</p>
+								<div style="clear: both"></div>
+							</div>
+						
+						
+					
+				
+					
+						
+						
+							<div style="width:260px;float:left;margin-left:25px;margin-bottom:20px;overflow: hidden;border-radius: 5px;" class="box566 pld">
+								<a onclick="encryptUrl(10593)" title="聊聊软件开发的那些事(2)" class="lsb-preview wthree_p_grid">
+									<img th:src="@{/X-admin/zxw/cy/b1c9ce07b46142ee97d98973a44b74c6.jpg}" alt=" " class="casimg" onerror="this.src=&#39;http://cymooc.org:80/common/images/uiz7.jpg&#39;" style="width:260px;height:173px ">
+									<div class="agileinfo_content_wrap">
+										<div class="agileits_content">
+											<div style="font-size:12px;color:#ffffff;" align="center">
+												<span style="vertical-align: center;">程序员的成长之路
+												</span>
+												<div style="margin-top:6px;height:1px;width:100%;background:#ffffff;overflow:hidden;"></div>
+											</div>
+											<p style="margin-top:2px;font-size:10px;text-align:left;">老师：欧忠良
+											</p>
+
+											<p style="font-size:10px;text-align:left;">点击量：1153</p>
+										</div>
+									</div>
+								</a>
+								<p style="color:#444444;font-size:16px;margin:0 12px; text-align:left;padding-right:10px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+									<span style="display:inline-block;float:left">程序员的成长之路</span>
+								</p><div class="marqueed">
+									<div>聊聊软件开发的那些事(2)</div>
+								</div>
+								<p></p>
+								<p class="playform" style="font-size:14px;margin-left:10px;text-align:left;">
+									<span style="display:inline-block;width:91px;float:left;padding-right:10px;padding-left:0px;">欧忠良</span>
+									<span style="display:inline-block;width:70px;float:right;padding-right:10px;padding-left:25px;background:url(&#39;http://cymooc.org:80/common/images/index/u13.png&#39;) no-repeat;background-size:16px 16px;background-position-y:5px;">1153</span>
+								</p>
+								<div style="clear: both"></div>
+							</div>
+						
+					
+				
+					
+						
+						
+							<div style="width:260px;float:left;margin-left:25px;margin-bottom:20px;overflow: hidden;border-radius: 5px;" class="box566 pld">
+								<a onclick="encryptUrl(10594)" title="聊聊软件开发的那些事（3）" class="lsb-preview wthree_p_grid">
+									<img th:src="@{/X-admin/zxw/cy/5f5e115f5e4b465c812135164799f0dc.jpg}" alt=" " class="casimg" onerror="this.src=&#39;http://cymooc.org:80/common/images/uiz7.jpg&#39;" style="width:260px;height:173px ">
+									<div class="agileinfo_content_wrap">
+										<div class="agileits_content">
+											<div style="font-size:12px;color:#ffffff;" align="center">
+												<span style="vertical-align: center;">学编程的历经阶段
+												</span>
+												<div style="margin-top:6px;height:1px;width:100%;background:#ffffff;overflow:hidden;"></div>
+											</div>
+											<p style="margin-top:2px;font-size:10px;text-align:left;">老师：欧忠良
+											</p>
+
+											<p style="font-size:10px;text-align:left;">点击量：862</p>
+										</div>
+									</div>
+								</a>
+								<p style="color:#444444;font-size:16px;margin:0 12px; text-align:left;padding-right:10px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+									<span style="display:inline-block;float:left">学编程的历经阶段</span>
+								</p><div class="marqueed">
+									<div>聊聊软件开发的那些事（3）</div>
+								</div>
+								<p></p>
+								<p class="playform" style="font-size:14px;margin-left:10px;text-align:left;">
+									<span style="display:inline-block;width:91px;float:left;padding-right:10px;padding-left:0px;">欧忠良</span>
+									<span style="display:inline-block;width:70px;float:right;padding-right:10px;padding-left:25px;background:url(&#39;http://cymooc.org:80/common/images/index/u13.png&#39;) no-repeat;background-size:16px 16px;background-position-y:5px;">862</span>
+								</p>
+								<div style="clear: both"></div>
+							</div>
+						
+					
+				
+					
+						
+						
+							<div style="width:260px;float:left;margin-left:25px;margin-bottom:20px;overflow: hidden;border-radius: 5px;" class="box566 pld">
+								<a onclick="encryptUrl(10595)" title="聊聊软件开发的那些事（4）" class="lsb-preview wthree_p_grid">
+									<img th:src="@{/X-admin/zxw/cy/5a47ac47b98744089bf3aa4598c1087e.jpg}" alt=" " class="casimg" onerror="this.src=&#39;http://cymooc.org:80/common/images/uiz7.jpg&#39;" style="width:260px;height:173px ">
+									<div class="agileinfo_content_wrap">
+										<div class="agileits_content">
+											<div style="font-size:12px;color:#ffffff;" align="center">
+												<span style="vertical-align: center;">快速掌握一门开发语言
+												</span>
+												<div style="margin-top:6px;height:1px;width:100%;background:#ffffff;overflow:hidden;"></div>
+											</div>
+											<p style="margin-top:2px;font-size:10px;text-align:left;">老师：欧忠良
+											</p>
+
+											<p style="font-size:10px;text-align:left;">点击量：657</p>
+										</div>
+									</div>
+								</a>
+								<p style="color:#444444;font-size:16px;margin:0 12px; text-align:left;padding-right:10px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">
+									<span style="display:inline-block;float:left">快速掌握一门开发语言</span>
+								</p><div class="marqueed">
+									<div>聊聊软件开发的那些事（4）</div>
+								</div>
+								<p></p>
+								<p class="playform" style="font-size:14px;margin-left:10px;text-align:left;">
+									<span style="display:inline-block;width:91px;float:left;padding-right:10px;padding-left:0px;">欧忠良</span>
+									<span style="display:inline-block;width:70px;float:right;padding-right:10px;padding-left:25px;background:url(&#39;http://cymooc.org:80/common/images/index/u13.png&#39;) no-repeat;background-size:16px 16px;background-position-y:5px;">657</span>
+								</p>
+								<div style="clear: both"></div>
+							</div>
+						
+					
+				
+			
+			
+			
+			
+				
+			</div>
+		</div>
+	</div>
+<!-- 热门公开课 end-->	
+		
+	<!-- 活动新闻  -->
+ <div class="safe" id="newsPart" style="margin-top:1px;">
+
+		 <div class="safe"> 
+		<div style="float: left;font-size:26px;margin-left:510px;margin-bottom:20px;margin-top:20px;color:#FCB315;">活动新闻</div>
+			<div class="newsBox">
+				<div class="newsLong" idx="0" style="width: 1400px;">
+					
+						<a href="http://cymooc.org/activity_Activity_details_activity?id=10025">
+							<div class="new_list boxShadow" style="width:260px;">
+								<img th:src="@{/X-admin/zxw/cy/JF1611000.jpg}" style="width: 100%;height: 131px" onerror="this.src=&quot;http://cymooc.org:80/common/images/index/errorimg.jpg&quot;">
+								<div class="div_tag">活动资讯</div>
+								
+								
+									<div class="div_new_title">
+										<span class="new_title">JF17111班项目展示会</span>
+									</div>
+								
+								<div class="div_p_info">
+								<p class="overText"><img th:src="@{/X-admin/zxw/cy/u769.png}"> 2018-06-06 09:00:00 至2018-06-06 12:00:00</p>
+									<p class="overText">
+										<span> <img th:src="@{/X-admin/zxw/cy/u771.png}"> 大榕树文化创意园5号楼3层 </span>
+									</p>
+								</div>
+							</div>
+						</a>
+					
+						<a href="http://cymooc.org/activity_Activity_details_activity?id=10026">
+							<div class="new_list boxShadow" style="width:260px;">
+								<img th:src="@{/X-admin/zxw/cy/xindalu1.jpg}" style="width: 100%;height: 131px" onerror="this.src=&quot;http://cymooc.org:80/common/images/index/errorimg.jpg&quot;">
+								<div class="div_tag">活动资讯</div>
+								
+								
+									<div class="div_new_title">
+										<span class="new_title">福建新大陆支付技术有限公司企业参观</span>
+									</div>
+								
+								<div class="div_p_info">
+								<p class="overText"><img th:src="@{/X-admin/zxw/cy/u769.png}"> 2018-03-14 09:30:00 至2018-03-14 12:00:00</p>
+									<p class="overText">
+										<span> <img th:src="@{/X-admin/zxw/cy/u771.png}"> 福建新大陆支付技术有限公司 </span>
+									</p>
+								</div>
+							</div>
+						</a>
+					
+						<a href="http://cymooc.org/activity_Activity_details_activity?id=10027">
+							<div class="new_list boxShadow" style="width:260px;">
+								<img th:src="@{/X-admin/zxw/cy/xindalu2.jpg}" style="width: 100%;height: 131px" onerror="this.src=&quot;http://cymooc.org:80/common/images/index/errorimg.jpg&quot;">
+								<div class="div_tag">活动资讯</div>
+								
+								
+									<div class="div_new_title">
+										<span class="new_title">卓跃教育参观新大陆通信科技股份有限公司</span>
+									</div>
+								
+								<div class="div_p_info">
+								<p class="overText"><img th:src="@{/X-admin/zxw/cy/u769.png}"> 2017-12-20 09:30:00 至2017-12-20 12:00:00</p>
+									<p class="overText">
+										<span> <img th:src="@{/X-admin/zxw/cy/u771.png}"> 新大陆通信科技股份有限公司 </span>
+									</p>
+								</div>
+							</div>
+						</a>
+					
+						<a href="http://cymooc.org/activity_Activity_details_activity?id=10006">
+							<div class="new_list boxShadow" style="width:260px;">
+								<img th:src="@{/X-admin/zxw/cy/sstart2.jpg}" style="width: 100%;height: 131px" onerror="this.src=&quot;http://cymooc.org:80/common/images/index/errorimg.jpg&quot;">
+								<div class="div_tag">活动资讯</div>
+								
+								
+									<div class="div_new_title">
+										<span class="new_title">卓跃教育Html5/PHP就业明星交流会</span>
+									</div>
+								
+								<div class="div_p_info">
+								<p class="overText"><img th:src="@{/X-admin/zxw/cy/u769.png}"> 2017-07-08 09:00:00 至2017-07-08 12:00:00</p>
+									<p class="overText">
+										<span> <img th:src="@{/X-admin/zxw/cy/u771.png}"> 大榕树创意园5号楼3层 卓跃教育 </span>
+									</p>
+								</div>
+							</div>
+						</a>
+					
+						<a href="http://cymooc.org/activity_Activity_details_activity?id=10010">
+							<div class="new_list boxShadow" style="width:260px;">
+								<img th:src="@{/X-admin/zxw/cy/JF1712000.jpg}" style="width: 100%;height: 131px" onerror="this.src=&quot;http://cymooc.org:80/common/images/index/errorimg.jpg&quot;">
+								<div class="div_tag">活动资讯</div>
+								
+								
+									<div class="div_new_title">
+										<span class="new_title">JF1712班项目展示会</span>
+									</div>
+								
+								<div class="div_p_info">
+								<p class="overText"><img th:src="@{/X-admin/zxw/cy/u769.png}"> 2018-07-12 09:00:00 至2018-07-12 12:00:00</p>
+									<p class="overText">
+										<span> <img th:src="@{/X-admin/zxw/cy/u771.png}"> 大榕树创意园5号楼3层 卓跃教育 </span>
+									</p>
+								</div>
+							</div>
+						</a>
+					
+				</div>
+			</div>
+			<div class="div_left" style="left: 90px;background: url(http://cymooc.org:80/common/images/personal/u1604.png) no-repeat center;position: absolute;width: 30px;height: 70px;margin-top: -200px;   background-color: rgba(54, 54, 54, 0.5);cursor: pointer;"></div>
+			<div class="div_right" style="right: 95px;background: url(http://cymooc.org:80/common/images/personal/u1605.png) no-repeat center;position: absolute;width: 30px;height: 70px;margin-top: -200px;   background-color: rgba(54, 54, 54, 0.5);cursor: pointer;"></div>
+		</div>
+	 </div> 
+        
+	<!-- 活动新闻end -->
+		<!-- 专家 -->
+	<div class="safe" id="newsPart" style="margin-bottom: 20px;">
+	<div style="margin-left:500px;margin-bottom:20px;font-size: 26px;color: #FCB315;text-align: left;margin-bottom: 0px;margin-top: 0px;">金牌讲师</div>
+	<div id="expertcontent">
+			<!-- 专家信息 -->
+			
+				
+					
+						<!-- 专家信息 -->
+						<div style="width:260px;float:left;margin-left:20px;border-radius: 5px;" class="box2">
+							<!-- 专家照片区域 -->
+							<div class="team">
+								<div class="team-grids" style="width:260px;">
+									<div class="team-agileimg" style="width:260px;">
+										<img class="img-responsive" style="width:260px;height:280px;" th:src="@{/X-admin/zxw/cy/ouzhongliang.jpg}" alt="">
+										<div class="captn">
+
+											<div class="captn-top">
+												<h4 style="font-size:24px;">欧忠良</h4>
+												<p class="tif">
+												98年-04年：宏智科技/上海兴力科技-项目经理；04年-07年：博洋教育-学术总监、学术体系创始人；07年-09年：鑫诺通迅-研发部经理；09年-10年：三元达通迅-研发部经理；10年~至今：卓跃教育学术总监
+												</p>
+											</div>
+
+											<div class="social-w3lsicon">
+												<ul class="agileits_social_list">
+													<li><a href="tencent://message/?Menu=yes&amp;uin=2195974152&amp;Site=QQ&amp;Service=300&amp;sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" class="w3_agile_facebook"> <span>
+																联系老师</span></a></li>
+
+												</ul>
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<!-- 专家照片区域 END-->
+
+							<!-- 专家文字区域 -->
+							<p style="color:#444444;font-size:16px;margin-left:10px;text-align:left;">
+								欧忠良 &nbsp;&nbsp;&nbsp;&nbsp; 学术总监</p>
+
+							<p style="font-size:15px;margin-left:10px;text-align:left;">
+								擅长语言：C/C++</p>
+
+							
+							<!-- 专家文字END -->
+						</div>
+						<!-- 专家信息 END-->
+					
+					
+				
+			
+				
+					
+					
+						<!-- 专家信息 -->
+						<div style="width:260px;float:left;margin-left:20px;border-radius: 5px;" class="box2">
+							<!-- 专家照片区域 -->
+							<div class="team">
+								<div class="team-grids" style="width:260px;">
+									<div class="team-agileimg" style="width:260px;">
+										<img class="img-responsive" style="width:260px;height:280px;" th:src="@{/X-admin/zxw/cy/liyajing.jpg}" alt="">
+										<div class="captn">
+											<div class="captn-top">
+												<h4 style="font-size:24px;">李雅静</h4>
+												<p class="tif">
+												福建弘腾电子-项目经理 ；卓跃教育-金牌讲师/学术管理中心部门经理
+												</p>
+											</div>
+											<div class="social-w3lsicon">
+												<ul class="agileits_social_list">
+													<li><a href="tencent://message/?Menu=yes&amp;uin=2195974152&amp;Site=QQ&amp;Service=300&amp;sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" class="w3_agile_facebook"> <span>
+																联系老师</span></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 专家照片区域 END-->
+							<!-- 专家文字区域 -->
+							<p style="color:#444444;font-size:16px;margin-left:10px;text-align:left;">
+								李雅静 &nbsp;&nbsp;&nbsp;&nbsp; 金牌项目经理/学术经理</p>
+							<p style="font-size:15px;margin-left:10px;text-align:left;">
+								擅长语言：C/C++</p>
+							
+							<!-- 专家文字END -->
+						</div>
+						<!-- 专家信息 END-->
+					
+				
+			
+				
+					
+					
+						<!-- 专家信息 -->
+						<div style="width:260px;float:left;margin-left:20px;border-radius: 5px;" class="box2">
+							<!-- 专家照片区域 -->
+							<div class="team">
+								<div class="team-grids" style="width:260px;">
+									<div class="team-agileimg" style="width:260px;">
+										<img class="img-responsive" style="width:260px;height:280px;" th:src="@{/X-admin/zxw/cy/huangpingping.jpg}" alt="">
+										<div class="captn">
+											<div class="captn-top">
+												<h4 style="font-size:24px;">黄平平</h4>
+												<p class="tif">
+												原新大陆科技-项目经理；原星网锐捷-项目经理；原福州联讯科技-技术负责人；原博洋教育-高级讲师
+												</p>
+											</div>
+											<div class="social-w3lsicon">
+												<ul class="agileits_social_list">
+													<li><a href="tencent://message/?Menu=yes&amp;uin=2195974152&amp;Site=QQ&amp;Service=300&amp;sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" class="w3_agile_facebook"> <span>
+																联系老师</span></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 专家照片区域 END-->
+							<!-- 专家文字区域 -->
+							<p style="color:#444444;font-size:16px;margin-left:10px;text-align:left;">
+								黄平平 &nbsp;&nbsp;&nbsp;&nbsp; 金牌项目经理/学术经理</p>
+							<p style="font-size:15px;margin-left:10px;text-align:left;">
+								擅长语言：JAVA</p>
+							
+							<!-- 专家文字END -->
+						</div>
+						<!-- 专家信息 END-->
+					
+				
+			
+				
+					
+					
+						<!-- 专家信息 -->
+						<div style="width:260px;float:left;margin-left:20px;border-radius: 5px;" class="box2">
+							<!-- 专家照片区域 -->
+							<div class="team">
+								<div class="team-grids" style="width:260px;">
+									<div class="team-agileimg" style="width:260px;">
+										<img class="img-responsive" style="width:260px;height:280px;" th:src="@{/X-admin/zxw/cy/chenhao.jpg}" alt="">
+										<div class="captn">
+											<div class="captn-top">
+												<h4 style="font-size:24px;">陈灏</h4>
+												<p class="tif">
+												原福州夸克网络科技有限公司项目经理；原深圳天运网络科技有限公司-项目经理；卓跃教育-金牌讲师
+												</p>
+											</div>
+											<div class="social-w3lsicon">
+												<ul class="agileits_social_list">
+													<li><a href="tencent://message/?Menu=yes&amp;uin=2195974152&amp;Site=QQ&amp;Service=300&amp;sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45" class="w3_agile_facebook"> <span>
+																联系老师</span></a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 专家照片区域 END-->
+							<!-- 专家文字区域 -->
+							<p style="color:#444444;font-size:16px;margin-left:10px;text-align:left;">
+								陈灏 &nbsp;&nbsp;&nbsp;&nbsp; 金牌项目经理/学术经理</p>
+							<p style="font-size:15px;margin-left:10px;text-align:left;">
+								擅长语言：嵌入式C/C++</p>
+							
+							<!-- 专家文字END -->
+						</div>
+						<!-- 专家信息 END-->
+					
+				
+			
+			<div style="clear:both"></div>
+			
+	</div>
+	</div>
+	<!-- 专家end-->
+	<!-- foot -->
+	
+
+<div align="center" style="height:70px;width:100%;background: #fff;margin-top:20px">
+	<div style="display: inline-block;margin-top:15px">
+	<span style="margin: 10px;color:gray">联系热线：0591-83713060</span>|
+	<span style="margin: 10px;color:gray">地址：福州金山大榕树创意园5号楼3层</span>|
+	<span style="margin: 10px;color:gray">创造和实现美好梦想的地方</span><br> 
+	</div>
+	
+	<div style="display: inline-block;width: 5px"></div>
+	<img id="a" title="微信公众号：3315716916" style="width: 20px;height: 20px;" th:src="@{/X-admin/zxw/cy/weixin.jpg}">
+	<div style="display: inline-block;width: 10px"></div>
+	<a target="_blank" href="tencent://message/?Menu=yes&amp;uin=2195974152&amp;Site=QQ&amp;Service=300&amp;sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45"><img title="qq:梅老师 3315716916" style="width: 20px;height: 28px;z-index:99999" src="./首页_files/qq.jpg"> <br>
+	</a>
+<!-- 	站长统计 -->
+	<script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278629301'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1278629301%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script><span id="cnzz_stat_icon_1278629301"><a href="https://www.cnzz.com/stat/website.php?web_id=1278629301" target="_blank" title="站长统计"><img border="0" hspace="0" vspace="0" src="./首页_files/pic1.gif"></a></span><script src="./首页_files/z_stat.php" type="text/javascript"></script><script src="./首页_files/core.php" charset="utf-8" type="text/javascript"></script>
+	
+	<span>版权所有 闽ICP备11003491号</span>
+	<div style="clear:both"></div>
+	<div id="img" style="display:none;position: absolute;z-index:9999"><img width="200" heigh="200" style="display:inline-block;z-index:9999;" th:src="@{/X-admin/zxw/cy/qrcode_1127.jpg}"></div>
+</div>
+
+<!-- <script type="text/javascript" >  
+//  var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+//  document.write(unescape("%3Cspanid='cnzz_stat_icon_1273317759'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1273317759%26show%3Dpic1 ' type='text/javascript'%3E%3C/script%3E"));
+</script> -->
+
+<script>
+
+	$(function(){
+		// setScroll();
+		 $("#a").on("mouseover",function(){
+	            var  hight =  $("#a").position().top-200;
+	            var width = $("#a").position().left+10-100
+	            ;
+	            $("#img").css("top",hight+"px");
+	            $("#img").css("left",width+"px");
+	            $("#img").slideDown("slow")
+	        });
+	        $("#img").on("mouseout",function(){
+	            $("#img").hide("slow");
+	        });
+	})
+</script>
+
+
+
+	<script th:src="@{/X-admin/zxw/cy/jquery-2.1.4.js}"></script>
+	<script th:src="@{/X-admin/zxw/cy/index.js}"></script>
+	<script th:src="@{/X-admin/zxw/cy/bootstrap.js}"></script>
+	<script th:src="@{/X-admin/zxw/cy/jquery.pagination.min.js}"></script>
+	<script type="text/javascript" th:src="@{/X-admin/zxw/cy/jquery.SuperSlide.2.1.1.js}"></script>
+	<script type="text/javascript" th:src="@{/X-admin/zxw/cy/jsencrypt.min.js}" charset="UTF-8"></script>
+	<script type="text/javascript">
+		function encryptUrl(url, value) {
+			//alert(value);
+			value = value.toString();
+			//var str = "10552";
+			var publicKey = 'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ1Y+eHJ9hkQWKAvBTZI+TyLAPRfpCCWt0Cg4bzfhH0HbEmN04hPCb65zYgHAWwUGDRavzuOyOH9zu70XJjFj4UCAwEAAQ==';
+			//var publicKey = 'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBANID4bpP43dkdDdcl7HS3oJVIUKXNnpLLefL/CBWHGloZyF173SJoFeajEb+yjoI1GGToFqy7roqN1cE+etquTUCAwEAAQ==';
+			var encrypt = new JSEncrypt();
+			encrypt.setPublicKey(publicKey);
+			var encrypted = encrypt.encrypt(value);
+			//console.log(encrypted); 
+			window.location.href = 'course_CourseRe_index1_course?prodid2=' + encrypted;
+		}
+	
+		jQuery(".focusBox").slide({
+			mainCell : ".pic",
+			effect : "left",
+			autoPlay : true,
+			delayTime : 1000
+		});
+	
+		function encryptUrl(a) {
+			//alert(a);
+			a = a.toString();
+			var publicKey = 'MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJ1Y+eHJ9hkQWKAvBTZI+TyLAPRfpCCWt0Cg4bzfhH0HbEmN04hPCb65zYgHAWwUGDRavzuOyOH9zu70XJjFj4UCAwEAAQ==';
+			var encrypt = new JSEncrypt();
+			encrypt.setPublicKey(publicKey);
+			var aEn = encrypt.encrypt(a);
+			//alert(aEn);
+			window.location.href = 'course_CourseRe_index1_course?prodid2=' + aEn;
+		}
+	</script>
+	<script>
+		(function() {
+			var _53code = document.createElement("script");
+			_53code.src = "https://tb.53kf.com/code/code/10174963/1";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(_53code, s);
+		})();
+	</script>
+
+
+<script id="hz6d_flp_jquery" th:src="@{/X-admin/zxw/cy/jquery-1.4.2.flp.js}" charset="utf-8" type="text/javascript"></script></body></html>

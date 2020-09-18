@@ -1,0 +1,85 @@
+
+/* 遮罩层 */
+#div_overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index:100;
+	width: 100%;
+	height: 100%;
+	background-color:#999;
+	filter:alpha(opacity=40);
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+}
+
+/* 弹出对话框 */
+#div_window {
+	top: 0px;
+	left: 0px;
+	position: fixed;
+	_position: absolute;
+	background: #FFF;
+	z-index: 102;
+	color:#000000;
+	display:none;
+	border:0px;
+    padding:0px;
+    padding-bottom:16px;
+	border-radius:5px;
+	border:5px #999 solid;
+}
+
+#div_caption{
+	height:25px;
+	padding:10px 30px 10px 25px;
+}
+
+#div_closeWindow{
+	height:25px;
+	padding:10px 25px 10px 0;
+	float:right;
+}
+
+/* 标题 */
+#div_closeAjaxWindow{  background-color:#F0F0F0;padding:10px 10px;text-align:right;}
+#div_closeAjaxWindow span{ float:left;text-align:left; font-size:16px; color:#555;}
+
+
+
+/* 内容 */
+#div_ajaxContent{
+	padding:10px 15px 15px 15px;
+	background-color:White;
+	overflow:auto;
+}
+
+/* 图片内容 */
+#div_ImageContent{
+	padding:6px 6px 6px 6px;
+	background-color:White;
+	overflow:auto;
+}
+
+#div_load{
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 0px;
+	width: 100%;
+	overflow: visible;
+	visibility: visible;
+	display: block;
+	z-index:101;
+}
+
+#div_loadContent{
+	margin-left: -125px;
+	position: absolute;
+	top: -50px;
+	left: 50%;
+	width: 250px;
+	height: 100px;
+	visibility: visible;
+	
+}

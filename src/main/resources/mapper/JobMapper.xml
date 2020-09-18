@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.mapper.JobMapper">
+     <select id="findJobMenu" resultType="com.person.bean.Params">
+         select id,name from t_param where type='行业'
+     </select>
+    <select id="findJobMenuTwo" resultType="com.person.bean.Params">
+        select value,name from t_param where value in(
+        select jobid from t_job_trade where tradeid in( select value from t_param where id=#{id}))
+        and type='岗位'
+    </select>
+    <select id="findStation" resultType="com.person.bean.Station">
+         select s.id,s.title,s.region,c.name as jobname,p.name as educationStr,pp.name as experienceStr,
+         s.money,s.number,s.worktime,s.welfare from t_station s left join t_company c
+         on c.id=s.company left join t_param p on s.education=p.value and p.type='学历'
+         left join t_param pp on s.experience=pp.value and pp.type='工作经验'
+         where s.job=#{value}
+    </select>
+    <select id="findOneStation" resultType="com.person.bean.Station">
+         select s.id,s.title,s.region,c.name as jobname,p.name as educationStr,pp.name as experienceStr,
+         s.money,s.number,s.worktime,s.welfare from t_station s left join t_company c
+         on c.id=s.company left join t_param p on s.education=p.value and p.type='学历'
+         left join t_param pp on s.experience=pp.value and pp.type='工作经验'
+         where s.id=#{id}
+    </select>
+</mapper>

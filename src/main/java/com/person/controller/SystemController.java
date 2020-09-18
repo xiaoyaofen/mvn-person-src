@@ -6,16 +6,19 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.person.bean.*;
 import com.person.service.SystemService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -307,8 +310,7 @@ public class SystemController {
             File file1 = new File("");
             String filePath = file1.getCanonicalPath() +
                     File.separator + "src" + File.separator + "main" + File.separator + "resources"
-                    + File.separator + "static" + File.separator + "X-admin" + File.separator + "images"
-                    + File.separator + "qualification";
+                    + File.separator + "static" + File.separator  + "qualification";
             System.out.println("projectPath==" + filePath);
             String projectPath = filePath + File.separator + uuid + "." + prefix;
             System.out.println(projectPath);
@@ -352,6 +354,12 @@ public class SystemController {
 
     }
 
+    @RequestMapping(value = "/jobTradeView", produces = "text/plain;charset=utf-8")
+    public String jobTradeView(){
+        return "jobTrade";
+    }
+
+
 
 
     @RequestMapping(value = "/tradeList", produces = "text/plain;charset=utf-8")
@@ -374,5 +382,75 @@ public class SystemController {
         Integer pageSize = Integer.parseInt(pageSizeStr);
         LayuiData layuiData = systemService.postManager(trade,page,pageSize);
         return JSON.toJSONString(layuiData);
+    }
+
+
+    @RequestMapping(value = "/delJob", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String delJob(String id,String state){
+
+        Boolean flag = systemService.delJob(Integer.parseInt(id),state);
+        if (flag) {
+            return "success";
+        } else {
+            return "fail";
+        }
+    }
+
+    @RequestMapping(value = "/addJob", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public  String addJob(String job,String addTrade){
+
+        String str=systemService.addJob(job,Integer.parseInt(addTrade));
+        return str;
+    }
+
+
+
+    @RequestMapping(value = "/editJob", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public  String editJob(String job1,String editTrade,String id){
+        String str=systemService.editJob(job1,Integer.parseInt(editTrade),Integer.parseInt(id));
+        return str;
+
+    }
+
+
+    @RequestMapping(value = "/checkCompanyView", produces = "text/plain;charset=utf-8")
+    public String checkCompanyView(){
+        return "checkCompany";
+    }
+
+    @RequestMapping(value = "/checkCompanyList", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String checkCompanyList(HttpServletRequest request){
+        String pageStr = request.getParameter("page");//页码
+        String pageSizeStr = request.getParameter("limit");//每页记录数
+        String companyName = request.getParameter("key[companyName]");
+        String state =request.getParameter("key[state]");
+        Integer page = Integer.parseInt(pageStr);
+        Integer pageSize = Integer.parseInt(pageSizeStr);
+        LayuiData layuiData = systemService.checkCompanyList(page,pageSize,companyName,state);
+        return JSON.toJSONString(layuiData);
+    }
+
+    @RequestMapping(value = "/checkCompany", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String checkCompany(String id,String state){
+        Boolean flag=systemService.checkCompany(state,Integer.parseInt(id));
+        String str=null;
+        if(flag){
+            str="success";
+        }else{
+            str="fail";
+        }
+        return str;
+    }
+
+    @RequestMapping(value = "/adminLogout", produces = "text/plain;charset=utf-8")
+    public String logout(HttpSession session, SessionStatus sessionStatus){
+        session.invalidate();
+        sessionStatus.setComplete();
+        return "adminLogin";
     }
 }

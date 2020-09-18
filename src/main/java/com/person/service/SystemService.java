@@ -50,7 +50,16 @@ public interface SystemService {
 
     public LayuiData postManager( String trade, Integer page, Integer pageSize);
 
+    public Boolean delJob(Integer id,String state);
 
 
+    public String addJob(String job,Integer tradeId);
 
+    public String editJob(String job,Integer tradeId,Integer id);
+
+
+    public LayuiData checkCompanyList(Integer page,Integer pageSize,String companyName,String state);
+
+
+    public  Boolean checkCompany(String state, Integer id);
 }

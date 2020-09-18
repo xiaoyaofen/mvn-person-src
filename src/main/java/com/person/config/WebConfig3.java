@@ -13,8 +13,8 @@ public class WebConfig3 implements WebMvcConfigurer {
         File file1 = new File("");
         try {
             String filePath = file1.getCanonicalPath()+ File.separator +"src"+ File.separator +"main"+
-                    File.separator +"resources"+File.separator+"static"+File.separator+"X-admin"+File.separator+"upload"+File.separator;
-            registry.addResourceHandler("/X-admin/images/**").addResourceLocations("file:"+filePath);
+                    File.separator +"resources"+File.separator+"static"+File.separator;
+            registry.addResourceHandler("/qualification/**").addResourceLocations("file:"+filePath);
         }catch (Exception e) {
             e.printStackTrace();
         }

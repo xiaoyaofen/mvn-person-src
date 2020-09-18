@@ -151,5 +151,52 @@ public interface SystemMapper {
 
     public int postManagerCount(@Param("trade") String trade);
 
+    public int delJob(@Param("state") String state,
+                      @Param("id") Integer id
+    );
+
+
+    public Params checkJob(@Param("name") String name);
+
+    public String maxJob();
+
+    public int addJob(@Param("value") Integer value,
+                      @Param("name") String name
+    );
+
+
+    public JobTrade checkJobTrade(@Param("jobid") Integer jobid,
+                                  @Param("tradeid") Integer tradeid
+    );
+
+
+    public int addJobTrade(@Param("jobid") Integer jobid,
+                           @Param("tradeid") Integer tradeid
+    );
+
+    public int editJobTrade(@Param("jobid") Integer jobid,
+                            @Param("tradeid") Integer tradeid,
+                            @Param("id") Integer id
+    );
+
+
+
+
+    public List<CompanyCheck> checkCompanyList(@Param("start") Integer start,
+                                               @Param("pageSize") Integer pageSize,
+                                               @Param("companyName") String companyName,
+                                               @Param("state") String state
+
+    );
+
+    public int checkCompanyListCount(@Param("companyName") String companyName,
+                                     @Param("state") String state
+
+    );
+
+
+    public  int checkCompany(@Param("state") String state,
+                             @Param("id") Integer id);
+
 
 }

@@ -7,7 +7,6 @@
     <!--    参数列表-->
     <select id="getParamList" resultType="com.person.bean.Params">
         select (@i:=@i+1)pm,id,value,type,name FROM (select id,value,type,name,state from t_param where state='true'
-
         <if test="name!=null and name!=''">
             and name like concat('%',#{name},'%')
         </if>
@@ -19,7 +18,6 @@
     <!--    参数列表记录数-->
     <select id="getParamListCount" resultType="int">
         select count(*) from t_param where state='true'
-
         <if test="name!=null and name!=''">
             and name like concat('%',#{name},'%')
         </if>
@@ -33,7 +31,6 @@
     <select id="paramsTypeList" resultType="java.lang.String">
         select distinct  type from t_param
     </select>
-
     <!--    增加参数检测-->
     <select id="checkParams" resultType="com.person.bean.Params">
         select *from t_param where name=#{name} and type=#{type} and state='true' limit 1
@@ -181,7 +178,7 @@
         select * from t_company where name=#{name}
     </select>
     <insert id="addCompany" useGeneratedKeys="true" keyProperty="id">
-        insert into t_company (name,qualification) values (#{company.name},#{company.qualification})
+        insert into t_company (name,qualification,apply_time) values (#{company.name},#{company.qualification},now())
     </insert>
 
 
@@ -203,16 +200,17 @@
     </select>
 
     <select id="postManager" resultType="com.person.bean.JobTrade">
-        select (@i:=@i+1) num,  t.* from(select j.id,j.jobid,j.tradeid,j.state,p1.name trad,p2.name job from t_job_trade j
-      left join t_param p1 on j.tradeid = p1.value and p1.type='行业'
-      left join t_param p2 on j.jobid = p2.value and p2.type = '岗位'
-      <where>
-          <if test="trade!=null and trade !=''">
-              p1.name like concat('%',#{trade},'%')
-          </if>
-      </where>
-          and j.state='true'
-      limit #{start},#{pageSize}) t,(select @i:=0)p
+        select (@i:=@i+1) num, t.* from(select j.id,j.jobid,j.tradeid,j.state,p1.name trade,p2.name job from t_job_trade
+        j
+        left join t_param p1 on j.tradeid = p1.value and p1.type='行业'
+        left join t_param p2 on j.jobid = p2.value and p2.type = '岗位'
+        <where>
+            <if test="trade!=null and trade !=''">
+                p1.value= #{trade}
+            </if>
+            and j.state='true'
+        </where>
+        limit #{start},#{pageSize}) t,(select @i:=0)p
     </select>
 
     <select id="postManagerCount" resultType="int">
@@ -221,10 +219,80 @@
         left join t_param p2 on j.jobid = p2.value and p2.type = '岗位'
         <where>
             <if test="trade!=null and trade !=''">
-                p1.name like concat('%',#{trade},'%')
+                p1.value= #{trade}
             </if>
+            and j.state='true'
         </where>
-        and j.state='true'
+
     </select>
+
+    <update id="delJob">
+        update  t_job_trade set state=#{state} where id=#{id}
+    </update>
+
+
+    <!-- 检测参数表中是否有该职位类型-->
+    <select id="checkJob" resultType="com.person.bean.Params">
+        select * from t_param where name=#{name} and type='岗位' and state='true' limit 1
+    </select>
+
+    <!--    参数表中职位类型的最大值-->
+    <select id="maxJob" resultType="java.lang.String">
+        select max(cast(value as SIGNED)) value FROM t_param where type='岗位'
+    </select>
+
+    <!--    添加岗位到参数表-->
+    <insert id="addJob">
+        insert into t_param (value,type,name) values(#{value},'岗位',#{name})
+    </insert>
+
+    <!--   检测职位行业的关系表中是否已存在该职位行业关系-->
+    <select id="checkJobTrade" resultType="com.person.bean.JobTrade">
+        select * from t_job_trade where jobid=#{jobid} and tradeid=#{tradeid} and state='true' limit 1
+    </select>
+
+    <!--    增加行业职位关系-->
+    <insert id="addJobTrade">
+        insert into t_job_trade (jobid,tradeid) values(#{jobid},#{tradeid})
+    </insert>
+
+    <update id="editJobTrade">
+        update  t_job_trade set jobid=#{jobid},tradeid=#{tradeid} where id=#{id}
+    </update>
+
+
+    <!--   企业审核-->
+    <select id="checkCompanyList" resultType="com.person.bean.CompanyCheck">
+        select (@i:=@i+1) num,t.* from(
+        select c.id id,a.name,a.tel tel ,c.name company_name,DATE_FORMAT(c.apply_time,'%Y-%m-%d') time,
+        c.check_state state,c.qualification qualification from t_admin a left join t_company c on
+        a.company=c.id where a.roleid=2
+        <if test="companyName != null and companyName !=''">
+           and  c.name like concat('%',#{companyName},'%')
+        </if>
+        <if test="state !=null and state !='' ">
+           and  c.check_state =#{state}
+        </if>
+        order by c.apply_time DESC limit #{start},#{pageSize})t,(select @i:=0)p
+    </select>
+
+
+    <!--    企业审核总数-->
+    <select id="checkCompanyListCount" resultType="int">
+        select count(*) from t_admin a left join t_company c on a.company=c.id where a.roleid=2
+        <if test="companyName != null and companyName !=''">
+          and c.name like concat('%',#{companyName},'%')
+        </if>
+        <if test="state !=null and state !='' ">
+          and   c.check_state =#{state}
+        </if>
+
+        order by c.apply_time DESC
+    </select>
+
+    <update id="checkCompany">
+        update t_company set check_state =#{state} where id=#{id}
+    </update>
+
 
 </mapper>

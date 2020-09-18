@@ -4,7 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.person.mapper.VideoMapper">
     <select id="findVideo" resultType="com.person.bean.Menu">
-        select id,name as menuname,url from t_charpters where menuname in(select id from t_knowmenu
-        where pid in(select id from t_knowmenu where pid=#{id}))
+        select id,name as menuname,url from t_charpters where id in (
+        select cp.charpterid from t_charpter_product cp where productid=#{id})
+    </select>
+    <select id="findUrlById" resultType="java.lang.String">
+        select url from t_charpters where id=#{id}
+    </select>
+    <select id="findProduct" resultType="com.person.bean.Product">
+        select t_product.id,product,p1.name as teacher,
+        picture,detial from t_product left join t_param p on p.value=t_product.publisher
+        left join t_param p1 on p1.value=t_product.teacher left join t_param p2 on
+        p2.value=t_product.scope,(select @i:=0)t where p.type='发布者'and p1.type='讲师'
+        and p2.type='领域'
+    </select>
+    <select id="findProductOne" resultType="com.person.bean.Product">
+        select id,product,picture,detial from t_product where id=#{id}
+    </select>
+    <select id="findCharpterByid" resultType="com.person.bean.Charpter">
+        select id,name,detial from t_charpters where id=#{id}
     </select>
 </mapper>

@@ -28,7 +28,7 @@
                             <label for="trade" class="layui-form-label">行业</label>
                             <div class="layui-inline layui-show-xs-block">
                                 <div class="layui-inline layui-show-xs-block">
-                                    <select name="paramsType" id="trade" name="trade">
+                                    <select id="trade" name="trade" class="trade">
                                         <option value="">请选择行业</option>
 
                                     </select>
@@ -36,11 +36,15 @@
                             </div>
                         </div>
                         <div class="layui-inline layui-show-xs-block">
-                            <button class="layui-btn" data-type="reload" type="button">
+                            <button class="layui-btn" data-type="reload" id="search" type="button">
                                 <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                             </button>
                         </div>
                     </form>
+                </div>
+                <div class="layui-card-header">
+
+                    <button class="layui-btn" id="openAdd"><i class="layui-icon"></i>添加</button>
                 </div>
                 <div class="layui-card-body layui-table-body layui-table-main">
                     <table class="layui-table layui-form" id="test" lay-filter="test"></table>
@@ -49,81 +53,258 @@
         </div>
     </div>
 </div>
+
+<!--岗位类型修改-->
+
+<div class="layui-row" style="display: none" id="editDiv">
+    <input id="id" type="text" hidden>
+    <div class="layui-col-md10">
+        <form class="layui-form layui-from-pane">
+            <div class="layui-form-item">
+                <label class="layui-form-label">岗位类型：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="job1" id="job1" required lay-verify="required" placeholder="岗位类型"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">行业类型：</label>
+                <div class="layui-input-block">
+                    <select id="editTrade" name="editTrade" class="trade" lay-filter="editTrade">
+                        <option value="">请选择行业</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="demo13"
+                        id="sureFix1" style="margin-left: 50%" type="button">确认修改
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!--增加岗位类型-->
+<div class="layui-row" style="display: none" id="addDiv">
+    <div class="layui-col-md10">
+        <form class="layui-form layui-from-pane">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">岗位类型：</label>
+                <div class="layui-input-block">
+                    <input type="text" name="job" id="job" required lay-verify="required" placeholder="岗位类型"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">行业类型：</label>
+                <div class="layui-input-block">
+                    <select id="addTrade" name="trade" class="trade">
+                        <option value="">请选择行业</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn  layui-btn-submit " lay-submit="" lay-filter="sureFix2"
+                        id="sureFix2" style="margin-left: 50%" type="button">确认新增
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 </body>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 <script th:inline="none">
     layui.use(['form', 'laydate', 'table'], function () {
             var table = layui.table;
             var laydate = layui.laydate;
+            var form = layui.form;
+
             var $ = layui.$;
-            //日期范围
-            laydate.render({
-                elem: '#date1',
-                format: 'yyyy-MM-dd',
-                done: function (value, date, endDate) {
-                    var startDate = new Date(value).getTime();
-                    var endTime = new Date($('#date2').val()).getTime();
-                    if (endTime < startDate) {
-                        layer.msg('结束时间不能小于开始时间');
-                        $('#date1').val('');
-                    }
-                }
-            });
 
-            laydate.render({ //结束时间
-                elem: '#date2',
-                format: 'yyyy-MM-dd',
-                done: function (value, date, endDate) {
-                    var startDate = new Date($('#date1').val()).getTime();
-                    var endTime = new Date(value).getTime();
-                    if (endTime < startDate) {
-                        layer.msg('结束时间不能小于开始时间');
-                        $('#date2').val('');
+            $.ajax({
+                url: '/system/tradeList',
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    if (data != null) {
+                        $('.trade').empty();
+                        $('.trade').append(new Option("请选择行业", ""));
+                        $.each(data, function (index, item) {
+                            $('.trade').append(new Option(item.name, item.value));
+                        });
+                    } else {
+                        $('.trade').append(new Option("暂无数据", ""));
                     }
+                    layui.form.render("select");
                 }
+            })
 
-            });
+
             table.render({
                 elem: '#test'  //绑定table id
-                , url: '/system/adminLogList'  //数据请求路径
+                , url: '/system/jodTradeList'  //数据请求路径
                 , height: 480
                 , page: true   //开启分页
                 , limit: 10  //默认十条数据一页
-                , limits: [ 10, 20, 50]  //数据分页条
+                , limits: [10, 20, 50]  //数据分页条
                 , title: "管理员信息"
                 , id: 'testReload'
                 , cols: [[
                     {field: 'num', title: '序号', sort: true}
-                    , {field: 'operation',  title: '操作者', }
-                    , {field: 'event',  title: '操作事项'}
-                    , {field: 'time', title: '操作时间',}
-
+                    , {field: 'id', title: 'ID', hide: true}
+                    , {field: 'job', title: '岗位类型'}
+                    , {field: 'trade', title: '行业'}
+                    , {field: 'tradeid', title: '行业ID', hide: true}
+                    , {fixed: 'right', title: '操作', width: 250, align: 'center', toolbar: '#barDemo'}
                 ]]
-
-
             });
 
-            $('.layui-btn').click(function (){
-                var startTime=$('#date1').val();
-
-                console.log(startTime);
-                console.log(endTime);
+            $('#search').click(function () {
+                var trade = $('#trade').val();
                 table.reload('testReload', {
-                        url: '/system/adminLogList'
-                        ,page: {
+                        url: '/system/jodTradeList'
+                        , page: {
                             curr: 1 //重新从第 1 页开始
                         }
                         , where: {
                             key: {
-                                startTime: startTime,
-                                endTime: endTime,
+                                trade: trade,
+
                             }
                         }
                     }
                 )
 
+            });
+            table.on('tool(test)', function (obj) {
+                var data = obj.data //获得当前行数据
+                    , layEvent = obj.event; //获得 lay-event 对应的值
+                var id = data.id;
+                if (layEvent === 'edit') {
+                    $('#editTrade').val(data.tradeid)
+                    layer.open({
+                        type: 1,
+                        title: '岗位修改',
+                        content: $('#editDiv'),
+                        area: ['50%', '60%'],
+                        success: function () {
+                            $('#id').val(id);
+                            $('#job1').val(data.job);
+                            console.log(data.tradeid)
+                            layui.form.render();
+
+                        }
+                    });
+                } else if (layEvent === 'del') {
+                    layer.confirm('确定删除该岗位类型吗?', function (index) {
+                        var state = "false";
+                        $.ajax({
+                            url: "/system/delJob",
+                            method: 'post',
+                            data: "id=" + id + "&state=" + state,
+                            dataType: 'text',
+                            success: function (data) {
+                                if (data === "success") {
+                                    layer.alert("岗位类型成功", {
+                                        icon: 1
+                                    },)
+                                    obj.del(); //删除对应行（tr）的DOM结构
+                                    layer.close(index);
+                                } else {
+                                    layer.alert("岗位类型删除失败", {
+                                        icon: 2
+                                    })
+                                }
+                            },
+                        });
+                    })
+                }
+
+
+            });
+
+            $('#openAdd').click('on', function () {
+                layer.open({
+                    type: 1,
+                    title: '添加岗位',
+                    content: $('#addDiv'),
+                    area: ['50%', '60%'],
+                })
             })
+
+            // 增加岗位类型
+
+            $('#sureFix2').click(function () {
+                var job = $('#job').val();
+                var addTrade = $('#addTrade').val();
+                $.ajax({
+                    url: "/system/addJob",
+                    method: 'post',
+                    data: "job=" + job + "&addTrade=" + addTrade,
+                    dataType: 'text',
+                    success: function (data) {
+                        if (data === "1") {
+                            layer.alert("增加岗位类型成功", {
+                                icon: 1
+                            },);
+                           $('#addDiv').hide();
+                           location.reload();
+                        } else if (data === "2") {
+                            layer.alert("岗位类型删除失败", {
+                                icon: 2
+                            });
+                        }else if(data==="3"){
+                            layer.alert("该岗位类型已存在", {
+                                icon: 2
+                            });
+                        }
+                    }
+
+                });
+            })
+
+            $('#sureFix1').click(function () {
+                var id=$('#id').val();
+                var job1 = $('#job1').val();
+                var editTrade = $('#editTrade').val();
+                $.ajax({
+                    url: "/system/editJob",
+                    method: 'post',
+                    data: "job1=" + job1 + "&editTrade=" + editTrade+"&id="+id,
+                    dataType: 'text',
+                    success: function (data) {
+                        if (data === "1") {
+                            layer.alert("岗位类型修改成功", {
+                                icon: 1
+                            },);
+                            $('#editDiv').hide();
+                            location.reload();
+                        } else if (data === "2") {
+                            layer.alert("岗位类型修改失败", {
+                                icon: 2
+                            });
+                        }else if(data==="3"){
+                            layer.alert("该岗位类型已存在", {
+                                icon: 2
+                            });
+                        }
+                    }
+
+                });
+            })
+
+
         }
     );
+
 
 </script>
 </html>

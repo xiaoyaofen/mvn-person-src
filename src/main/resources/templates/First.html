@@ -53,20 +53,12 @@
         <div id="sidebar">
             <div class="mainNavs">
 
-                <div class="menu_box">
+                <div class="menu_box" th:each="item:${map}">
                     <div class="menu_main">
-                        <h2>技术 <span></span></h2>
-                        <a href="h/jobs/list_Java?labelWords=label">Java</a>
-                        <a href="h/jobs/list_PHP?labelWords=label">PHP</a>
-                        <a href="h/jobs/list_C?labelWords=label">C</a>
-                        <a href="h/jobs/list_C++?labelWords=label">C++</a>
-                        <a href="h/jobs/list_Android?labelWords=label">Android</a>
-                        <a href="h/jobs/list_iOS?labelWords=label">iOS</a>
-                        <a href="h/jobs/list_前端开发?labelWords=label">前端开发</a>
-                        <a href="h/jobs/list_测试?labelWords=label">测试</a>
-                        <a href="h/jobs/list_技术经理?labelWords=label">技术经理</a>
-                        <a href="h/jobs/list_项目经理?labelWords=label">项目经理</a>
-                        <a href="h/jobs/list_架构师?labelWords=label">架构师</a>
+                        <h2 th:text="${item.key}"><span></span></h2>
+                        <a  th:each="one:${item.value}" th:href="@{/job/onejob(value=${one.getValue()})}" target=_blank>
+                            <span th:text="${one.getName()}"></span>
+                        </a>
                     </div>
                     <div class="menu_sub dn">
                         <dl class="reset">
@@ -337,13 +329,13 @@
                     </div>
                 </div>
                 <div class="menu_box">
-                    <div class="menu_main">
-                        <h2>产品 <span></span></h2>
-                        <a href="h/jobs/list_产品经理?labelWords=label">产品经理</a>
-                        <a href="h/jobs/list_产品助理?labelWords=label">产品助理</a>
-                        <a href="h/jobs/list_无线产品经理?labelWords=label">无线产品经理</a>
-                        <a href="h/jobs/list_游戏策划?labelWords=label">游戏策划</a>
-                    </div>
+<!--                    <div class="menu_main">-->
+<!--                        <h2>产品 <span></span></h2>-->
+<!--                        <a href="h/jobs/list_产品经理?labelWords=label">产品经理</a>-->
+<!--                        <a href="h/jobs/list_产品助理?labelWords=label">产品助理</a>-->
+<!--                        <a href="h/jobs/list_无线产品经理?labelWords=label">无线产品经理</a>-->
+<!--                        <a href="h/jobs/list_游戏策划?labelWords=label">游戏策划</a>-->
+<!--                    </div>-->
                     <div class="menu_sub dn">
                         <dl class="reset">
                             <dt>
@@ -422,14 +414,14 @@
                     </div>
                 </div>
                 <div class="menu_box">
-                    <div class="menu_main">
-                        <h2>设计 <span></span></h2>
-                        <a href="h/jobs/list_UI?labelWords=label">UI</a>
-                        <a href="h/jobs/list_UE?labelWords=label">UE</a>
-                        <a href="h/jobs/list_设计师?labelWords=label">设计师</a>
-                        <a href="h/jobs/list_交互设计?labelWords=label">交互设计</a>
-                        <a href="h/jobs/list_数据分析?labelWords=label">数据分析</a>
-                    </div>
+<!--                    <div class="menu_main">-->
+<!--                        <h2>设计 <span></span></h2>-->
+<!--                        <a href="h/jobs/list_UI?labelWords=label">UI</a>-->
+<!--                        <a href="h/jobs/list_UE?labelWords=label">UE</a>-->
+<!--                        <a href="h/jobs/list_设计师?labelWords=label">设计师</a>-->
+<!--                        <a href="h/jobs/list_交互设计?labelWords=label">交互设计</a>-->
+<!--                        <a href="h/jobs/list_数据分析?labelWords=label">数据分析</a>-->
+<!--                    </div>-->
                     <div class="menu_sub dn">
                         <dl class="reset">
                             <dt>
@@ -590,12 +582,12 @@
                     </div>
                 </div>
                 <div class="menu_box">
-                    <div class="menu_main">
-                        <h2>运营 <span></span></h2>
-                        <a href="h/jobs/list_运营?labelWords=label">运营</a>
-                        <a href="h/jobs/list_游戏运营?labelWords=label">游戏运营</a>
-                        <a href="h/jobs/list_编辑?labelWords=label">编辑</a>
-                    </div>
+<!--                    <div class="menu_main">-->
+<!--                        <h2>运营 <span></span></h2>-->
+<!--                        <a href="h/jobs/list_运营?labelWords=label">运营</a>-->
+<!--                        <a href="h/jobs/list_游戏运营?labelWords=label">游戏运营</a>-->
+<!--                        <a href="h/jobs/list_编辑?labelWords=label">编辑</a>-->
+<!--                    </div>-->
                     <div class="menu_sub dn">
                         <dl class="reset">
                             <dt>
@@ -701,14 +693,14 @@
                     </div>
                 </div>
                 <div class="menu_box">
-                    <div class="menu_main">
-                        <h2>市场与销售 <span></span></h2>
-                        <a href="h/jobs/list_市场推广?labelWords=label">市场推广</a>
-                        <a href="h/jobs/list_市场策划?labelWords=label">市场策划</a>
-                        <a href="h/jobs/list_活动策划?labelWords=label">活动策划</a>
-                        <a href="h/jobs/list_BD?labelWords=label">BD</a>
-                        <a href="h/jobs/list_销售经理?labelWords=label">销售经理</a>
-                    </div>
+<!--                    <div class="menu_main">-->
+<!--                        <h2>市场与销售 <span></span></h2>-->
+<!--                        <a href="h/jobs/list_市场推广?labelWords=label">市场推广</a>-->
+<!--                        <a href="h/jobs/list_市场策划?labelWords=label">市场策划</a>-->
+<!--                        <a href="h/jobs/list_活动策划?labelWords=label">活动策划</a>-->
+<!--                        <a href="h/jobs/list_BD?labelWords=label">BD</a>-->
+<!--                        <a href="h/jobs/list_销售经理?labelWords=label">销售经理</a>-->
+<!--                    </div>-->
                     <div class="menu_sub dn">
                         <dl class="reset">
                             <dt>
@@ -853,13 +845,13 @@
                     </div>
                 </div>
                 <div class="menu_box">
-                    <div class="menu_main">
-                        <h2>职能 <span></span></h2>
-                        <a href="h/jobs/list_HR?labelWords=label">HR</a>
-                        <a href="h/jobs/list_行政?labelWords=label">行政</a>
-                        <a href="h/jobs/list_会计?labelWords=label">会计</a>
-                        <a href="h/jobs/list_出纳?labelWords=label">出纳</a>
-                    </div>
+<!--                    <div class="menu_main">-->
+<!--                        <h2>职能 <span></span></h2>-->
+<!--                        <a href="h/jobs/list_HR?labelWords=label">HR</a>-->
+<!--                        <a href="h/jobs/list_行政?labelWords=label">行政</a>-->
+<!--                        <a href="h/jobs/list_会计?labelWords=label">会计</a>-->
+<!--                        <a href="h/jobs/list_出纳?labelWords=label">出纳</a>-->
+<!--                    </div>-->
                     <div class="menu_sub dn">
                         <dl class="reset">
                             <dt>
@@ -1001,6 +993,8 @@
 
                 </form>
             </div>
+
+
             <style>
                 .ui-autocomplete {
                     width: 488px;
@@ -1037,6 +1031,7 @@
                     overflow: hidden;
                 }
             </style>
+<!--            ---------------------------------------------------------------------->
             <script type="text/javascript" th:src="@{/X-admin/js/search.min.js}"></script>
             <dl class="hotSearch">
                 <dt>热门搜索：</dt>
@@ -1090,7 +1085,7 @@
                     </ul>
                 </div>
             </div><!--/#main_banner-->
-
+<!--------------------------------------------------------------------------------->
             <ul id="da-thumbs" class="da-thumbs">
                 <li>
                     <a href="h/c/1650.html" target="_blank">
@@ -1176,6 +1171,10 @@
                 <li class="current">热门职位</li>
                 <li>最新职位</li>
             </ul>
+
+
+
+<!--            --------------------------------------------------------------------------------------->
             <div id="hotList">
                 <ul class="hot_pos reset">
                     <li class="clearfix">
