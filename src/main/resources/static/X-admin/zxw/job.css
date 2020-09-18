@@ -1,0 +1,191 @@
+﻿﻿.hidden{ height:30px;overflow:hidden }
+
+/* 搜索框 */
+#sMain0{ width:100%; height:130px;background:url(/images/header/smain.png) repeat-x; padding-top:30px; }
+#sMain0 .sea1{ margin:auto; width:880px; height:25px; }
+#sMain0 .sea1 .s1{ float:left; width:50px; height:25px; line-height:25px; margin-right:10px; text-align:center; background-color:#0FA3F6; color:#FFF; cursor:pointer;border-top-left-radius:2px;border-top-right-radius:2px; }
+#sMain0 .sea1 .s2{ float:left; width:50px; height:25px; line-height:25px; margin-right:10px; text-align:center; color:#BCC0C2; cursor:pointer; }
+
+#sMain0 .sea2{ margin:auto; width:880px; height:44px; }
+#sMain0 .sea2 .s1{ float:left;width:520px; height:44px; }
+#sMain0 .sea2 .s1 input{ float:left;width:516px; height:40px; line-height:40px;border:2px #0FA3F6 solid; padding:0px;background:url(/images/header/seabg.png) 15px center no-repeat; background-size:18px;text-indent:40px;font-family: "Microsoft YaHei", 微软雅黑; color:#BCC0C2; font-size:14px;outline:none;background-color:#FFF; }
+#sMain0 .sea2 .s2{ float:left;width:160px; height:44px; }
+#sMain0 .sea2 .s2 .pop{ float:left;width:160px;height:40px; line-height:40px;border:2px #0FA3F6 solid; border-left:none; border-right:none;background:url(/images/header/pop.png) right center no-repeat; background-color:#FFF;text-indent:15px;font-family: "Microsoft YaHei", 微软雅黑;  font-size:14px; color:#BCC0C2;cursor: pointer;} 
+
+#sMain0 .sea2 .s3{ float:left;width:120px; height:44px; }
+#sMain0 .sea2 .s3 input[type=image]{border-top-right-radius:2px;border-bottom-right-radius:2px; }
+#sMain0 .sea2 .s4{ float:left;width:80px; height:44px; }
+#sMain0 .sea2 .s4 a{ float:left; display:inline-block; width:60px; line-height:22px; margin-left:15px; color:#666; padding-left:20px; font-size:12px; }
+#sMain0 .sea2 .s4 a:hover{ color:#00A3CA; }
+#sMain0 .sea2 .s4 .a1{ background:url(/images/header/sea1.png) left center no-repeat; background-size:15px; }
+#sMain0 .sea2 .s4 .a2{ background:url(/images/header/sea2.png) left center no-repeat; background-size:16px; }
+
+#sMain0 .sea3{ margin:auto; width:880px; height:30px; margin-top:5px; font-size:12px; }
+#sMain0 .sea3 span{ float:left; width:auto; line-height:30px; color:#BCC0C2; }
+#sMain0 .sea3 p{ float:left; width:auto; line-height:30px; }
+#sMain0 .sea3 p a{ float:left; width:auto; line-height:30px; margin-left:15px; color:#8392A7; }
+#sMain0 .sea3 p a:hover{ color:#FE501B; }
+
+
+/*-------------------------------------- 搜索表单 开始------------------------------------- */
+#sMain1{ width:1200px; margin:auto; height:auto; background-color:#FFF; text-align:left;border:0px #E4E4E4 solid; padding:0px; margin-top:10px; }
+
+.seaForm2{ float:left; width:1200px; height:auto; padding:0px; text-align:left;  background-color:#FFF; }
+.seaForm21{ float:left; width:1200px; padding:0px 0px; }
+.seaForm21 li{ float:left; width:1170px; height:auto; line-height:30px; padding:10px 15px; border-top:0px #EEE solid; }
+.seaForm21 li b{ float:left; width:80px; height:auto;line-height:30px; font-weight:normal; color:#8392A7;  }
+.seaForm21 li p{ float:left; width:1040px;line-height:30px;padding:0px; }
+.seaForm21 li i{ float:right; width:50px; height:auto;line-height:30px;padding:0px; font-style:normal; background:url(../images/job/add.png) 5px 10px no-repeat;text-indent:18px;}
+.seaForm21 li i a{ color:#8392A7;}
+.seaForm21 li p a{ color:#172342; padding:3px 10px;white-space:nowrap; }
+.seaForm21 li p a:hover{ line-height:30px;background-color:#0FA3F6; padding:3px 10px; color: #FFF;border-radius:4px;}
+
+.seaForm21 .p1{ float:left; width:135px; height:26px;line-height:26px; margin-right:10px; display:inline; }
+.seaForm21 .p2{ float:right; width:271px; height:28px;line-height:28px; }
+
+.seaForm3{ float:left; width:1198px; height:auto; padding:0px; text-align:left; }
+.seaForm3 ul{ float:left; width:1178px; padding:5px 10px; }
+.seaForm3 ul li{ float:left; width:1168px; height:auto; line-height:28px; padding:0px 5px; color:#999; }
+.seaForm3 ul li a{ color:#666; margin-right:15px; white-space: nowrap; }
+.seaForm3 ul li a:hover{ color:#FF6600; margin-right:15px; }
+.seaForm3 ul li a i{ color:#AAA; font-style:normal; margin-right:2px; }
+
+
+/* 已选条件 */
+.seaForm22{ float:left; width:1180px; padding:5px 10px; background-color:#FFF; }
+.seaForm22 li{ float:left; width:1168px; height:auto; padding:5px 5px;  }
+.seaForm22 li b{ float:left; width:80px;line-height:25px; font-weight:normal; color:#999; }
+.seaForm22 li p{ float:left; width:1000px;line-height:25px;color:#999; }
+.seaForm22 li p a{ float:left; width:auto; line-height:25px;border:0px #FF6666 solid;background:url(../images/jobseek/l2.png) right no-repeat; padding:0px 8px; padding-right:20px;border-radius:4px; background-color:#0FA3F6; color:#FFF; margin-right:8px; white-space: nowrap; }
+.seaForm22 li p a i{ font-style:normal; color:#999; margin-right:5px; }
+
+.seaForm22 li i{ float:right; width:88px;line-height:25px; font-style:normal;color:#999; text-align:right; }
+.seaForm22 li i a{ background:url(../images/jobseek/empty2.png) 0px 5px no-repeat;color:#999; padding-left:15px; }
+.seaForm22 li i a:hover{ background:url(../images/jobseek/empty1.png) 0px 5px no-repeat;color:#FF6600; padding-left:15px;}
+
+
+/* 搜索按扭 */
+.inpSea1 { float: left; width:225px; height:34px; line-height:34px;background:url(../images/jobseek/inpsea.png) no-repeat;text-align:left; padding:0px; }
+.inpSea1 a:link b,.inpSea1 a:visited b{ float:left;width: 169px;height:34px; line-height:34px;padding:0px 8px;display: inline-block; white-space: nowrap;font-size: 12px; overflow: hidden; cursor: pointer; font-weight: normal; color:#999; }
+.seaText1{ float:left; width:200px; height:26px; line-height:26px; border:1px #E3E3E3 solid; border-right:none;padding:0px 9px; color:#999; text-align:left; }
+
+.inpSea2{ float:left;width:125px;height:26px; line-height:26px;background:url(../Images/job/inpSea2.png) no-repeat;padding:0px 5px; border:0px; font-size:14px; color:#666;cursor: pointer;} 
+.inpSea2List{ width:133px; left:0px; top:25px;z-index:88; border:1px #DDD solid;position:absolute; background-color:#FFF; display: none; }
+.inpSea2List ul{ width:133px; margin:0px; font-size:14px;height:196px; overflow-y:auto; overflow-x:hidden; }
+.inpSea2List li{ width:125px; line-height:28px;padding:0px 4px;cursor: pointer; }
+.inpSea2List li a{ width:100%; line-height:28px; display:inline-block; }
+
+a.seaLink:link { background-color:#0FA3F6; padding:2px 10px;color: #FFF;border-radius:4px; }
+a.seaLink:visited { color: #FFF; }
+a.seaLink:hover { color: #FFF; }
+
+#sMain9{ width:948px; margin:auto; height:auto; background-color:#FFF; border:1px #E5E5E5 solid; padding:0px 0px 0px 0px; margin-bottom:10px; text-align:left; overflow:hidden; }
+.seaForm9{ float:left; width:928px; height:auto; padding:10px; color:#BBB;}
+
+
+
+/*-------------------------------------- 职位列表框 开始------------------------------------- */
+#main1{ margin:auto; width:1200px; height:auto; text-align:left; padding-top:10px; overflow:hidden;  }
+#main1L{ float:left;width:950px; height:auto; }
+
+#sMain2,#sMain3{ float:left;width:948px; height:auto; margin-top:0px; background-color:#FFF; border:1px #E8E8E8 solid;overflow:hidden; }
+#sMain2{ border-top:1px #E8E8E8 solid;}
+#sMain3{ border-top:1px #E8E8E8;}
+
+/* 列表头 */
+.seaTop{ float:left; width:948px; height:45px; border-bottom:1px #E8E8E8 solid; }
+.seaTopl{ float:left; width:60%; height:45px; }
+.seaTopl ul li{ float:left; width:110px; height:44px; line-height:44px; padding:0px 0px; border-right:1px #E8E8E8 solid; text-align:center;  font-size:16px;}
+.seaTopl ul .new{ background:url(/images/job/new.png) 90px 7px no-repeat; }
+.jobClass1{ float:left; width:110px; height:44px; border-bottom:2px #FE501B solid; }
+.jobClass1 a{ color:#FE501B; font-weight:bold; }
+
+.jobClass2{ float:left; width:110px; height:44px; }
+.jobClass2:hover{ border-bottom:2px #FE501B solid; }
+.jobClass2 a{ color:#888; }
+
+.seaTopr{ float:right; width:40%; height:45px; line-height:45px; text-align:right;color:#8392A7; font-size:12px; }
+.seaTopr span{ margin-right:10px; }
+.seaTopr span i{ font-style:normal; color:#FE501B; padding:0px 3px; }
+
+
+/* 排序方式 */
+.seaTitle{ float:left; width:100%; height:40px; border-bottom:1px #E8E8E8 solid; text-align:left; color:#4D555D; background-color:#fff; }
+.seaTitle ul{ float:left; width:auto;height:40px; margin-left:10px; }
+.seaTitle ul li{ float:left; width:auto;height:40px;padding:10px 0px; }
+.seaSort1 a{ float:left; width:auto; line-height:20px; display:inline-block; background-color:#8594A8;border-radius:4px; padding:0px 10px; color:#FFF; font-size:12px; }
+.seaSort1 a:visited{ color:#FFF; }
+.seaSort2 a{ float:left; width:auto; line-height:20px; display:inline-block; color:#8392A7; padding:0px 10px; font-size:12px; }
+.seaSort2 a:hover{ background-color:#8594A8;border-radius:4px;color:#FFF;  }
+
+.seaTitle span{ float:right; width:auto;line-height:40px; margin-right:10px; font-size:12px; color:#8392A7; }
+.seaTitle span p{ float:right;width:auto;line-height:40px; margin-left:15px; }
+.seaTitle span input[type=checkbox]{ float:left;-webkit-appearance: none;appearance: none;width:14px;height:40px;margin-top:0px;cursor: pointer;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;position: relative;background: url(/images/form/check0.png) 0px center no-repeat;margin-right:5px;outline:none;}
+.seaTitle span input[type=checkbox]:checked{ background: url(/images/form/check1.png) 0px center no-repeat; margin-right:5px; }
+
+
+/* 职位列表 */
+.seaList{ float:left; width:910px; height:auto; padding:0px 19px; }
+.seaList ul{ float:left; width:910px; height:auto; border-bottom:1px #eee solid; padding:15px 0px; }
+.seaList .li11{ float:left; width:355px; height:auto; }
+.seaList .li11 .s1{ float:left; width:350px; height:30px; line-height:30px; padding-bottom:0px; }
+.seaList .li11 .s1 a{ float:left; width:auto; line-height:30px; font-size:13pt; color:#172342;  }
+.seaList .li11 .s1 a:hover{ color:#0FA3F6; }
+.seaList .li11 .s1 img{ width:35px; height:16px; margin-left:5px; margin-top:7px; }
+.seaList .li11 .s2{ float:left; width:350px; height:30px; }
+.seaList .li11 .s2 p{ float:left; width:auto; line-height:30px; font-size:12pt; color:#F47736; margin-left:0px;  }
+.seaList .li11 .s2 i{ float:left; width:auto; line-height:30px; margin-left:15px; font-style:normal; color:#8392A7; font-size:14px; }
+.seaList .li11 .s2 i em{ font-style:normal; margin:0px 3px; color:#D4D8EA; }
+
+.seaList .li12{ float:left; width:65px; height:auto; }
+.seaList .li12 img{ width:54px; height:54px; border:1px #f5f5f5 solid; }
+.seaList .li13{ float:left; width:350px; height:auto; }
+.seaList .li13 .s1{ float:left; width:350px; height:30px; line-height:30px; padding-bottom:0px; }
+.seaList .li13 .s1 a{ float:left; width:auto; line-height:30px; color:#172342; font-size:16px; }
+.seaList .li13 .s1 a:hover{ color:#0FA3F6; }
+.seaList .li13 .s1 img{ width:20px; height:15px; margin-left:0px; margin-top:8px; }
+.seaList .li13 .s2{ float:left; width:350px; height:30px; line-height:30px;color:#8392A7; font-size:14px; }
+.seaList .li13 .s2 em{ font-style:normal; margin:0px 3px; color:#D4D8EA; }
+.seaList .li14{ float:left; width:80px; height:auto; padding-top:15px; }
+.seaList .li14 a{ display:inline-block; width:70px; line-height:32px;font-size:14px; background-color:#FE501B;color:#FFF; text-align:center; cursor:pointer;border-radius:4px; }
+.seaList .li14 a:link{ color:#FFF; }
+.seaList .li14 a:hover{ background-color:#F47736;color:#FFF; }
+
+.seaList .li15{ float:right; width:60px; height:auto;line-height:32px;color:#D4D8EA; font-size:12px; text-align:center; padding-top:15px; }
+.seaList .li2{ float:left; width:910px; height:18px; margin-top:3px; }
+.seaList .li2 i{ float:left; width:auto; line-height:18px; background-color:#FFF; border:1px #D4D8EA solid;padding:0px 10px; margin-right:10px; font-style:normal; font-size:12px; color:#8392A7;border-radius:3px; }
+
+.seaPage{ float:left; width:100%; height:50px; line-height:50px; text-align:center;}
+/*-------------------------------------- 职位列表框 结束------------------------------------- */
+
+.topLine{ border-top:1px #E6E6E6 solid; }
+.bottomLine{ border-bottom:1px #DDD solid; }
+
+
+/* 右侧 */
+#main1R{ float:right;width:235px; height:auto; text-align:left; }
+.right1{ float:left; width:233px; height:auto; border:1px #E8E8E8 solid; background-color:#FFF; margin-bottom:15px; }
+.right1 .title{ float:left; width:213px; height:40px; line-height:40px;font-size:16px; padding-left:20px;background:url(../Images/jobseek/i10.gif) 10px 13px no-repeat; color:#555; }
+.right1 .conte{ float:left; width:233px; height:auto;}
+.right1 .conte ul li{ float:left; width:215px; height:auto; border-top:1px #EEE solid; margin:0px 9px; padding:3px 0px; }
+.right1 .conte ul li span{ float:left; width:215px; height:30px;line-height:30px; }
+.right1 .conte ul li span a{ float:left; display:inline-block;width:145px; line-height:30px; color:#172342; overflow: hidden;white-space: nowrap; text-overflow: ellipsis;font-size:15px; }
+.right1 .conte ul li span a:hover{ color:#0FA3F6; }
+.right1 .conte ul li span i{ float:left; width:70px; line-height:30px; text-align:right; font-style:normal; color:#F47736;font-size:13px; }
+.right1 .conte ul li p{ float:left; width:220px; line-height:25px; font-size:12px; color:#8392A7;overflow: hidden;white-space: nowrap; text-overflow: ellipsis; }
+
+
+/* 图片广告 */
+.pageAds { float: left;width:235px; height:160px; text-align:left; margin-bottom:15px;overflow:hidden}
+.pageAds IMG {WIDTH: 235px; FLOAT: left; HEIGHT: 160px; OVERFLOW: hidden}
+.pageAds IMG {BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; VERTICAL-ALIGN: top; BORDER-LEFT-WIDTH: 0px}
+.pageAds UL {PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px}
+.pageAds LI {PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px}
+.num {POSITION: absolute; BOTTOM: 5px; FONT: 12px/1.5 tahoma, arial; HEIGHT: 18px; RIGHT: 5px}
+.num LI {BORDER-BOTTOM: #f47500 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #f47500 1px solid; LINE-HEIGHT: 16px; BACKGROUND-COLOR: #fcf2cf; WIDTH: 16px; FONT-FAMILY: Arial; FLOAT: left; HEIGHT: 16px; COLOR: #d94b01; MARGIN-LEFT: 3px; FONT-SIZE: 12px; BORDER-TOP: #f47500 1px solid; CURSOR: pointer; BORDER-RIGHT: #f47500 1px solid}
+.num LI.on {LINE-HEIGHT: 18px; BACKGROUND-COLOR: #ff9415; MARGIN-TOP: -2px; WIDTH: 18px; HEIGHT: 18px; COLOR: #fff; FONT-SIZE: 14px; FONT-WEIGHT: bold}
+
+
+.ads208{ float:left; width:240px; height:auto; }
+.ads208 li{ float:left; width:240px; height:65px; }
+.ads208 li img{ border:1px #E5E5E5 solid; } 

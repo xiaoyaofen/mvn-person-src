@@ -90,11 +90,6 @@ public class HelloController {
         return "firmMenu";
     }
 
-    @GetMapping(value = "/first")
-    public String first() {
-        return "First";
-    }
-
 
     @GetMapping(value = "/center")
     public String center() {

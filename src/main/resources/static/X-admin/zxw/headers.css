@@ -1,0 +1,108 @@
+.fn-hide { display: none; }
+
+
+/* 顶部 */
+.pubtop{ margin:auto; width:100%; height:30px; background-color:#873A81; }
+.pubtopbar{ margin:auto; width:1100px; height:30px; text-align:left; }
+.barline{ background: url(/images/header/barline.png) no-repeat; }
+.pubtopbar .left{ float:left; width:400px; height:30px; font-size:13px; }
+.pubtopbar .left p{ float:left; width:auto; line-height:30px;color:#FFF; }
+.pubtopbar .left span{ float:left; width:auto; line-height:30px; margin-left:20px; }
+.pubtopbar .left span a{ float:left; display:inline-block;width:auto; height:30px;line-height:30px;background: url(/images/header/mobi.png) left center no-repeat;color:#FFF; padding-left:13px; }
+
+/* 右侧 */
+.pubtopbar .right{ float:left; width:700px; height:30px; }
+
+/* 登录注册 */
+.divLogin{ float:left; width:100%; height:30px; }
+.divLogin .login{ float:right;width:65px; height:30px;line-height:30px; font-size:13px; display:inline; position: relative; text-align:center;}
+.divLogin .login a{ color:#FFF; }
+.divLogin .login a:hover{ color:#fff; }
+.divLogin .login a.lMore{  float:left; width:55px;height:30px; z-index:313; position: relative; display: block; background: url(/images/header/menu1.png) 45px center no-repeat; text-align:left; padding-left:10px; }
+.divLogin .login a.lMorecurrent { width:55px;background: url(/images/header/menu2.png) 45px center no-repeat; background-color:#873A81;border-left:0px #EEE solid; border-right:0px #EEE solid;padding-left:10px; }
+.lMoredown { z-index: 12; position: absolute;top:30px;left:-10px;width:85px;background-color:#873A81; border:0px #EEE solid; border-top:none;}
+.lMoredown li{ float:left; width:85px;line-height:30px; text-align:center;}
+.lMoredown li a{ color:#FFF; }
+.lMoredown li:hover{ color:#FFF; background-color:#B34DAB; }
+
+/* 会员菜单 */
+.divUser{ float:left;width:100%;height:30px; line-height:30px;font-size:13px;  }
+.divUser .s1{ float:right;width:auto;height:30px; line-height:30px;display:inline; position: relative; }
+.divUser .s1 a{ color:#FFF; }
+.divUser .s1 a:hover{ color:#fff; }
+.divUser .s1 a.uMore{  float:left; width:auto;height:30px; z-index:3; position: relative; display: block;background: url(/images/header/menu1.png) right center no-repeat; padding:0px 15px;  }
+.divUser .s1 a.uMorecurrent { background: url(/images/header/menu2.png) right center no-repeat; }
+.uMoredown { z-index: 12; position: absolute;top:30px;right:-10px;width:85px;background-color:#873A81; border:0px #EEE solid; border-top:none;}
+.uMoredown li{ float:left; width:85px;line-height:30px; text-align:center;}
+.uMoredown li a{ color:#FFF; }
+.uMoredown li:hover{ color:#FFF;background-color:#B34DAB; }
+.divUser .s2{ float:right;width:auto;height:30px; line-height:30px;padding:0px 15px; text-align:center; }
+.divUser .s2 a{ color:#FFF; }
+.divUser .s2 a:hover{ color:#fff;  }
+
+
+/* 头部 */
+.pubhead{ margin:auto; width:100%; height:80px; background-color:#FFF; }
+.headbar{ margin:auto; width:1100px; height:80px; }
+
+/* LOGO */
+.headbar .left{ float:left;width:220px; height:80px; }
+.headbar .left img{ width:200px; height:60px; margin-top:10px; }
+
+/* 切换站点 */
+.headbar .middle{ float:left;width:140px; height:80px; }
+.weblist{ float:left;width:auto; height:25px;line-height:25px; padding-top:40px;display:inline; position: relative; font-size:14px;}
+.weblist a{ color:#444; }
+.weblist a i{ color:#D8DADA; font-size:12px; font-style:normal; margin-left:3px; }
+.weblist a.webMore{  float:left; width:auto;height:20px; z-index:9999; position: relative; display: block; padding-left:0px; }
+.weblist a.webMorecurrent { width:auto; height:20px; }
+.webMoredown { width:auto;z-index:9999; position: absolute;top:62px;left:0px;background-color:#FFF; border:5px #873A81 solid; text-align:left;}
+.webMoredown .tit{ float:left; width:465px; line-height:35px; background-color:#873A81; color:#FFF; font-size:16px; padding-left:20px; }
+.webMoredown ul{ float:left; width:465px; height:auto; padding:10px 10px;}
+.webMoredown ul li{ float:left; width:80px; height:35px; line-height:35px; margin:5px 5px;border:1px #EEE solid; text-align:center; }
+.webMoredown ul li:hover{ border:1px #F90 solid;}
+.webMoredown ul li a{ color:#555; }
+.webMoredown ul li a:hover{ color:#FE501B; }
+
+
+/* 导航 */
+.headbar .right{ float:right;width:720px; height:80px;}
+.headbar .right ul li{ float:left; width:80px; line-height:77px;display:inline; position: relative; text-align:center;font-size:16px; margin:0px 0px; }
+.headbar .right ul .hli a { color:#8392A7;}
+.headbar .right ul .hli a:hover { display:inline-block;width:auto;line-height:77px;border-bottom:3px #0FA3F6 solid; color:#0FA3F6;  }
+.headbar .right ul .over a{ display:inline-block;width:auto;line-height:77px; border-bottom:3px #0FA3F6 solid; }
+
+.headbar .right ul li a.hMore{ float:left; width:60px;height:80px; z-index:3; position: relative; display: block; background: url(/images/header/hmore1.png) 55px center no-repeat;color:#8392A7; text-align:left; padding-left:15px; }
+.headbar .right ul li a.hMorecurrent { background: url(/images/header/hmore2.png) 55px center  no-repeat; color:#0FA3F6; }
+.hMoredown { z-index: 2; position: absolute;top:50px;left:-30px; width:120px; height:auto; border-bottom:1px #D5D5D5 solid; padding-top:9px;background: url(../images/header/hmore_bg.png) top no-repeat; background-color:#FFF; }
+.hMoredown span{ float:left; width:120px;line-height:35px; text-align:center; font-size:14px;border-bottom:1px #E5E5E5 solid; }
+.hMoredown span a{ display:block; width:120px; line-height:35px;color:#8392A7; }
+.hMoredown span:last-child{ border-bottom:0;}
+.hMoredown span:hover{ background-color:#0FA3F6; }
+.hMoredown span:hover a{ color:#FFF; }
+
+
+/* 底部 */
+#footspace{ width:100%; height:40px; overflow:hidden }
+#foot{ width:100%; height:90px; margin:auto;background-color:#873A81; padding:15px 0px;  text-align:left; }
+.foots{ margin:auto; width:1100px; height:auto; }
+.foots .left{ float:left; width:100px; height:auto; }
+.foot1{ float:left;width:880px; height:30px; line-height:30px; color:#fff; margin-bottom:5px;font-size:12px; }
+.foot2{ float:left;width:880px; height:25px; line-height:25px; color:#FFF; font-size:12px; }
+.foot3{ float:left;width:880px; height:25px; line-height:25px; color:#FFF; font-size:12px;}
+.foot1 a{ color:#fff; margin-right:20px; }
+.foot2 a{ color:#FFF; }
+.foot3 a{ color:#FFF; }
+
+.foots .right{ float:right; width:180px; height:auto; }
+.foots .right .r1{ float:left; width:150px; height:30px; line-height:30px;color:#939393; font-size:12px; }
+.foots .right .r2{ float:left; width:150px; height:50px; }
+.foots .right .r2 .attme{ float:left; width:50px; height:40px; display:inline;POSITION: relative;  }
+.foots .right .r2 .attme a.aMore{  float:left; width:50px;height:40px; z-index:3; position: relative; display: block; }
+.foots .right .r2 .attme .f1{ background: url(/images/header/f1.png) center no-repeat;  }
+.foots .right .r2 .attme .f2{ background: url(/images/header/f2.png) center no-repeat;  }
+.foots .right .r2 .attme .f3{ background: url(/images/header/f3.png) center no-repeat;  }
+.foots .right .r2 .attme a.aMorecurrent { width:50px;height:40px; }
+
+.aMoredown { z-index:9; position: absolute; background: #FFF;top:-130px;left:-45px;width:130px; height:110px;background-color:#FFF;box-shadow: 0px 0px 3px 0px #ccc;text-align:center; padding:10px 0px; }
+.aMoredown img{width:110px; height:110px;}

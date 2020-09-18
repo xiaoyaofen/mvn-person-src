@@ -7,9 +7,9 @@
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="Cache" content="no-cache">
 
-    <title>PS服装产品修图视频教程-我要自学网</title>
-    <meta name="description" content="我要自学网-免费视频教程,提供全方位软件学习，有3D教程，平面教程，多媒体制作教程，办公信息化教程，机械设计教程，网站制作教程,电脑培训">
-    <meta name="keywords" content="PS服装产品修图视频教程,我要自学网,视频教程">
+    <title th:text="${product.getProduct()}"></title>
+<!--    <meta name="description" content="我要自学网-免费视频教程,提供全方位软件学习，有3D教程，平面教程，多媒体制作教程，办公信息化教程，机械设计教程，网站制作教程,电脑培训">-->
+    <meta name="keywords" th:text="${product.getProduct()}">
     <meta name="renderer" content="webkit">
     <link rel="icon" href="https://www.51zxw.net/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="https://www.51zxw.net/favicon.ico" type="image/x-icon">
@@ -28,8 +28,8 @@
     <link rel="stylesheet" th:href="@{/X-admin/zxw/public.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/X-admin/zxw//innerPage.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/X-admin/zxw/magnific-popup.css}">
-    <title>
-        PS服装产品修图视频教程-我要自学网
+    <title th:text="${product.getProduct()}">
+
     </title>
     <link id="layuicss-laydate" rel="stylesheet" th:href="@{/X-admin/zxw/laydate.css}" media="all">
     <link id="layuicss-layer" rel="stylesheet" th:href="@{/X-admin/zxw/layer.css}" media="all">
@@ -101,9 +101,8 @@
     <div class="content-box1200" style="background-color: #e7e7e7;">
         <div class="webPath">
             <a href="https://www.51zxw.net/Default.aspx">首页</a>
-            <i class="Hui-iconfont Hui-iconfont-arrow2-right"></i> <a
-                href="https://www.51zxw.net/List.aspx?cid=8">平面设计</a> <i
-                class="Hui-iconfont Hui-iconfont-arrow2-right"></i> <a href="https://www.51zxw.net/List.aspx?cid=875">PS服装产品修图视频教程</a>
+            <i class="Hui-iconfont Hui-iconfont-arrow2-right"></i>  <i
+                class="Hui-iconfont Hui-iconfont-arrow2-right"></i> <a href="https://www.51zxw.net/List.aspx?cid=875" th:text="${product.getProduct()}"></a>
         </div>
     </div>
 </div>
@@ -115,7 +114,7 @@
         <div class="courseResume pos-r">
             <div class="courseLogo va-t mr-30">
                 <div class="image">
-                    <img th:src="@{/X-admin/images/2020-09-15/e96379f5-447c-4427-b8a0-309f5e68e284.jpg}" alt="PS服装产品修图视频教程">
+                    <img th:src="${product.getPicture()}" th:alt="${product.getProduct()}">
                 </div>
                 <div class="shareAndfollow">
                     <div class="bdsharebuttonbox va-m bdshare-button-style0-16"
@@ -128,8 +127,8 @@
                 </div>
             </div>
             <div class="courseInfo va-t">
-                <div class="title">
-                    PS服装产品修图视频教程
+                <div class="title" th:text="${product.getProduct()}">
+
                 </div>
                 <div class="countNum">
                     <span class="mr-10 va-m">共<b class="c-danger">18</b>小节</span>
@@ -140,28 +139,28 @@
                 </div>
                 <div class="target mt-20">
                     <div class="f-14">课程概要</div>
-                    <div class="description">此教程从实际工作经验出发,总结出服装产品版型，分析到原图效果，再到具体实操，一系列都是为了你能从根源上掌握服装产品修图技能。</div>
+                    <div class="description" th:text="${product.getDetial()}"></div>
                     <div class="verInfo">
 
-                        <div class="name">教程程度:</div>
-                        <div class="content">
-                            高级
-                        </div>
+<!--                        <div class="name">教程程度:</div>-->
+<!--                        <div class="content">-->
+<!--                            高级-->
+<!--                        </div>-->
 
-                        <div class="name">软件版本:</div>
-                        <div class="content text-overflow" style="width: 260px;">
-                            <span title="PhotoshopCC2017">PhotoshopCC2017</span>
+<!--                        <div class="name">软件版本:</div>-->
+<!--                        <div class="content text-overflow" style="width: 260px;">-->
+<!--                            <span title="PhotoshopCC2017">PhotoshopCC2017</span>-->
 
 
-                        </div>
+<!--                        </div>-->
 
                         <br>
 
                         <div class="name">所需基础:</div>
-                        <div class="content text-overflow" title="PS软件基础">PS软件基础</div>
+                        <div class="content text-overflow" title="PS软件基础">基础人员</div>
 
-                        <div class="name">适合人群:</div>
-                        <div class="content text-overflow" style="width: 260px;" title="广告平面从业人员">广告平面从业人员</div>
+<!--                        <div class="name">适合人群:</div>-->
+<!--                        <div class="content text-overflow" style="width: 260px;" title="广告平面从业人员">广告平面从业人员</div>-->
                     </div>
                 </div>
             </div>
@@ -219,7 +218,7 @@
             <ul class="chapters " style="height: 1020px;"  >
 
 <!--                <li class="title"></li>-->
-                <li class="node" th:each="u : ${list}" th:text="${u.getMenuname()}" th:value="${u.getUrl()}" onclick="playVideo(this)">
+                <li class="node" th:each="u : ${list}" th:text="${u.getMenuname()}" th:value="${u.getId()}" onclick="playVideo(this)">
                     <img th:src="@{/X-admin/zxw/new1.png}">
                     <div class="attr"><span class="needPay va-m mr-30"><i class="Hui-iconfont Hui-iconfont-bofang "></i> 点击观看</span>
                         <span class="studCount va-m">251</span></div>
@@ -441,7 +440,7 @@
 <script charset="utf-8" th:src="@{/X-admin/zxw/qrcode.min.js}" type="text/javascript"></script>
 <script th:inline="javascript">
    function playVideo(obj) {
-       var url= $(obj).attr("value");
+       var id= $(obj).attr("value");
        // $("#oneVideo").attr("src","/X-admin"+url)
        // layer.open({
        //     //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
@@ -453,14 +452,13 @@
        //         $("#oneVideo").trigger("pause");
        //     }
        // });
-       url="/X-admin"+url;
        // $("#oneVideo").attr("src","/X-admin"+url)
        layer.open({
            //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
            type: 2,
            title: "视频观看",
-           area: ['800px', '550px'],
-           content: '/person/watchVideo/'+url,//引用的弹出层的页面层的方式加载修改界面表单
+           area: ['1200px', '600px'],
+           content: '/person/WatchVideo/'+id,//引用的弹出层的页面层的方式加载修改界面表单
            cancel: function(){
                // $("#oneVideo").trigger("pause");
            }

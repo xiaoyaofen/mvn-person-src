@@ -1,0 +1,349 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.safe{
+    width: 1120px;
+    margin: 20px auto;
+    height: auto;
+}
+.floatL{
+    float: left;
+}
+.floatR{
+    float: right;
+}
+.clear{
+    clear: both;
+}
+.overText{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+/*多行文本隐藏*/
+.overTextLines{position: relative; line-height: 20px; max-height: 40px;overflow: hidden;}
+.overTextLines::after{
+    content: "..."; position: absolute; bottom: 0; right: 0; padding-left: 40px;
+    background: -webkit-linear-gradient(left, transparent, #fff 55%);
+    background: -o-linear-gradient(right, transparent, #fff 55%);
+    background: -moz-linear-gradient(right, transparent, #fff 55%);
+    background: linear-gradient(to right, transparent, #fff 55%);
+}
+.v_head{
+    width: 1px;
+    height: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+.v_body{
+    display: inline-block;
+    vertical-align: middle;
+}
+/*-------------线下活动-------------*/
+.offlineActivity,.onlineActivity{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 5px;
+    -moz-box-shadow: 1px 5px 10px rgba(215, 215, 215, 0.349019607843137);
+    -webkit-box-shadow: 1px 5px 10px rgba(215, 215, 215, 0.349019607843137);
+    box-shadow: 1px 5px 10px rgba(215, 215, 215, 0.349019607843137);
+    overflow: hidden;
+}
+.activitySafe{
+    width: 1080px;
+    height: auto;
+    margin: 0 auto;
+}
+.acTitle{
+    font-size: 22px;
+    padding: 20px;
+    color: #fa5c53;
+    font-weight: 700;
+}
+.activityDiv{
+    width: 100%;
+    min-height: 100px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+.activityDiv>img{
+    /*width: 550px;*/
+    height: 300px;
+    display: block;
+    float: left;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.activityDescribe{
+    width: 510px;
+    float: left;
+    height: 300px;
+    position: relative;
+    margin-left: 30px;
+}
+.activityDescribe>p{
+    word-break: break-word;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    width: 100%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.activityTitle{
+    width: 100%;
+    font-weight: 600;
+    color: #000;
+    font-size: 18px;
+}
+.desDiv{
+    width: 100%;
+    height: 30px;
+    margin: 5px 0;
+    color: #999;
+    font-size: 14px;
+}
+.desDiv>img{
+    width: 26px;
+    height: 26px;
+}
+.desDiv>span{
+    width: 473px;
+    float: right;
+    line-height: 30px;
+    height: 30px;
+}
+.actip{
+    color: #999;
+    font-size: 14px;
+}
+.font1{
+    font-size: 14px;
+    color: black;
+}
+.fontBlue{
+    font-size: 14px;
+    color: #4facfb;
+}
+.fontRed{
+    color: #fa5c53;
+    font-size: 14px;
+}
+.acDetail{
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 40px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    background-color: #fa5c53;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.acIntro{
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 40px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    background-color: #fa5c53;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.acApply{
+    position:absolute;
+    bottom: 0;
+    left: 105px;
+    width: 100px;
+    height: 40px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    background-color: #fa5c53;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.acDetail:hover{
+    background-color: #fa041d;
+}
+.activityInfo{
+    width: 100%;
+    height: auto;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+.activityInfo>p{
+    font-size: 14px;
+    color: black;
+    word-break: break-word;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    width: 100%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.signUpDiv{
+    width: 450px;
+    margin: 0 auto;
+    height: auto;
+}
+.signUpDiv>.floatL,.signUpDiv>.floatR{
+    width: 225px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.signUpDiv input{
+    width: 140px;
+    border:1px solid #ccc;
+    height: 25px;
+    padding: 5px;
+    font-size: 13px;
+}
+.signUpBtn{
+    width: 100px;
+    height: 30px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    background-color: #fa5c53;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin-left: 175px;
+    float: left;
+    margin-bottom: 10px;
+}
+.signUpBtn:hover{
+    background-color: #fa041d;
+}
+/*-------------线上活动-------------*/
+
+.getMore{
+    text-align: center;
+    cursor: pointer;
+    color: #e3e3e3;
+    padding-bottom: 17px;
+}
+.getMore>span:hover{
+    color: #fa5c53;
+}
+
+/*-------------活动列表新样式-------------*/
+.active {
+    height: 30px;
+    margin: 15px;
+    /* padding-top: 25px; */
+    border-bottom: #e53935 solid 1px;
+}
+.nTitle {
+    width: 80px;
+    height: 29px;
+    display: inline-block;
+    padding: 5px 3px;
+    line-height: 20px;
+    font-size: 18px;
+    background-color: #e53935;
+    color: white;
+}
+/*---------------往期活动--------------*/
+.newActivity{
+    width: 280px;
+    height: 288px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5px;
+    -moz-box-shadow: 1px 5px 10px rgba(215, 215, 215, 0.349019607843137);
+    -webkit-box-shadow: 1px 5px 10px rgba(215, 215, 215, 0.349019607843137);
+    box-shadow: 1px 5px 10px rgba(215, 215, 215, 0.349019607843137);
+    overflow: hidden;
+    margin-top: 20px;
+}
+.activityDivs{
+    width: 255px;
+    height: 235px;
+    margin-top: 10px;
+    margin-right: 20px;
+    cursor: pointer;
+    float: left;
+    padding: 7px;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.activityDivs:hover{
+    border-color:rgba(122, 177, 241, 1);
+}
+.activityTops{
+    width: 100%;
+    height: 166px;
+    position: relative;
+    overflow: hidden;
+}
+.activityTops>img{
+    width: 253px;
+    height: 166px;
+}
+.activityDescribes{
+    width: 100%;
+    height: 60px;
+    position: absolute;
+    top: 136px;
+    background-color: rgba(0,0,0,0.6);
+}
+.activityDescribes>p{
+    color: white;
+    font-size: 14px;
+    line-height: 30px;
+    width: 230px;
+    margin: 0 auto;
+}
+.activityInfos{
+    width: 100%;
+}
+.activityInfos>p{
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666666;
+    width: 100%;
+}
+.activityInfos>p>img{
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+/*---------------往期活动--------------*/
+.ui-pagination-container .ui-pagination-page-item:hover{
+    border-color: rgba(231, 68, 52, 1);
+    color: rgba(231, 68, 52, 1);
+}
+.ui-pagination-container .ui-pagination-page-item.active{
+    background: rgba(231, 68, 52, 1);
+    border-color: rgba(231, 68, 52, 1);
+    color: white;
+}
+
+/*------直播地址样式--------*/
+.live_addr_img{
+	float:right;
+	right:350px;
+	margin-top:180px;
+	z-index:30;
+	position: absolute;
+	display:none;
+}
