@@ -81,4 +81,15 @@ select c.name,c.introduce,p.name,s.request,s.worktime,s.money,s.welfare  from t_
 left join t_station s on c.id=s.company left join t_param p ON p.value=s.job
 where p.type='岗位' and c.name=#{name} and p.name=#{pname}
     </select>
+    <select id="findbyname" resultType="com.person.bean.User">
+        select  * from t_user where account=#{account}
+    </select>
+
+    <insert id="getuserid">
+        insert into user_face_info (username) values (#{username});
+    </insert>
+
+    <select id="getFace" resultType="com.person.bean.User">
+        select * from t_user where account =(select username from user_face_info where face_id=#{faceId})
+    </select>
 </mapper>

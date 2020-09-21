@@ -4,11 +4,12 @@ import com.person.bean.Charpter;
 import com.person.bean.Menu;
 import com.person.bean.Product;
 import com.person.bean.Talk;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Mapper
 @Component
 public interface VideoMapper {
     public List<Menu> findVideo(@Param("id") String id);

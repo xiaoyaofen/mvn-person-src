@@ -1,16 +1,13 @@
 package com.person.service;
 
-import com.person.bean.Collect;
-import com.person.bean.Feedback;
-import com.person.bean.User;
-import com.person.bean.mixture;
+import com.person.bean.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.HashMap;
 import java.util.List;
 
 public interface UserService {
-    public User getUser(String account,String pwd);
+    public User getUser(String account, String pwd);
     public void addUser(String account,String pwd,String name,String sex,String age,String tel,String address);
     public String checkAccount(String account);
     public String checkSex(String name);
@@ -26,4 +23,10 @@ public interface UserService {
     public  Integer getsex(String name);
     public User findInfor(String id);
     public mixture introduce(String name, String pname);
+
+    public User findbyname(String account);
+
+    public void getuserid(String username);
+
+    public User getFace(String faceId);
 }

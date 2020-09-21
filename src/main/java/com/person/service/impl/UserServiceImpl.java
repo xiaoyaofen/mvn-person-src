@@ -1,9 +1,6 @@
 package com.person.service.impl;
 
-import com.person.bean.Collect;
-import com.person.bean.Feedback;
-import com.person.bean.User;
-import com.person.bean.mixture;
+import com.person.bean.*;
 import com.person.mapper.UserMapper;
 import com.person.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +88,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public mixture introduce(String name, String pname) {
         return userMapper.introduce(name,pname);
+    }
+
+    @Override
+    public User findbyname(String account) {
+        System.out.println(account+"===========");
+        return userMapper.findbyname(account);
+    }
+
+    @Override
+    public void getuserid(String username) {
+         userMapper.getuserid(username);
+    }
+
+    @Override
+    public User getFace(String faceId) {
+        return userMapper.getFace(faceId);
     }
 
 

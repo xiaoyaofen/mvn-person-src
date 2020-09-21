@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @Mapper
-@Component
 public interface AdminMapper {
 
     List<User> getUserByAdmin(@Param("condition") HashMap<String, Object> condition, @Param("limit") Integer limit, @Param("page") Integer page);

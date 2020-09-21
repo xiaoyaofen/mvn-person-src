@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Mapper
-@Component
 public interface MenuMapper {
     public List getMenu();
 //    public List<Menu> Menu(@Param("roleid")String roleid, @Param("pid")String pid);

@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 @Mapper
-@Component
 public interface KnowMapper {
      public List<Menu> getKnowMsg(@Param("page") Integer page, @Param("limit") Integer limit,@Param("title") String title,@Param("scope") String scope);
 

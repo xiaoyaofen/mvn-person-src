@@ -95,6 +95,11 @@ public class HelloController {
         model.addAttribute("adminMame",admin.getName());
         return "firmMenu";
     }
+//招聘首页
+    @GetMapping(value = "/first")
+    public String first() {
+        return "First";
+    }
 
 
     @GetMapping(value = "/center")
@@ -122,7 +127,26 @@ public class HelloController {
         return "Study";
     }
 
+    @GetMapping(value = "/myjianli")
+    public String myjianli() {
+        return "myjianli";
+    }
 
+
+
+
+//人脸识别注册
+    @GetMapping(value = "/face")
+    public String face() {
+        return "face_registrate";
+    }
+
+
+//人脸识别
+    @GetMapping(value = "/face1")
+    public String face1() {
+        return "face_search";
+    }
 
 
 }

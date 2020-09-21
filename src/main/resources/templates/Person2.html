@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>人才生态圈</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" th:href="@{/X-admin/lib/layui/css/layui.css}"  media="all">
+    <link rel="stylesheet" th:href="@{/X-admin/lib/layui/css/style.css}">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+
+</head>
+<body>
+<div>
+
+    <img th:src="@{/X-admin/images/biaoti.png}" style="margin-right: 600px;">
+    <span style="margin-right: 20px;color: red;font-size: 20px" th:text="${user.name}"></span>
+    <a  style="margin-right: 20px;font-size: 20px"  th:href="@{/hello/userLogin}">用户登录</a>
+    <a  style="margin-right: 20px;font-size: 20px"  th:href="@{/hello/userLogin}">企业登录</a>
+</div>
+
+<form action="" method="post" class="layui-form">
+    <ul class="layui-nav" style="text-align: center">
+        <li class="layui-nav-item"><a href="">首页</a></li>
+        <!--    <li class="layui-nav-item"><a href="">人才生态圈</a></li>-->
+        <li class="layui-nav-item"><a th:href="@{/hello/first}">找工作</a></li>
+        <li class="layui-nav-item"><a href="">技术成长</a></li>
+        <li class="layui-nav-item"><a lay-submit lay-filter="center" >个人中心</a></li>
+    </ul>
+</form>
+<div class="layui-carousel" id="test10">
+    <div carousel-item=""  >
+        <div><img th:src="@{/X-admin/images/beijing.png}"></div>
+        <div><img th:src="@{/X-admin/images/beijing.png}"></div>
+        <div><img th:src="@{/X-admin/images/beijing.png}"></div>
+        <div><img th:src="@{/X-admin/images/beijing.png}"></div>
+
+    </div>
+</div>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>成果展示</legend>
+</fieldset>
+<div class="layui-carousel" id="test11">
+    <div carousel-item="">
+        <div><video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video></div>
+        <div><video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video></div>
+        <div><video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video></div>
+
+    </div>
+
+</div>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>技术成长专区</legend>
+</fieldset>
+<div class="layui-carousel" id="test12">
+    <div carousel-item="">
+        <div carousel-item="">
+            <div carousel-item="">
+                <div><video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video></div>
+                <div><video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video></div>
+                <div><video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<video th:src="@{/X-admin/images/入门介绍.mp4}" width="420" height="200" controls="controls"> </video></div>
+
+            </div>
+
+        </div>
+    </div>
+</div><fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>高校专区</legend>
+</fieldset>
+<div class="layui-carousel" id="test13">
+    <div carousel-item="">
+        <div><img src="../image/beijing.png">&nbsp&nbsp<img src="../image/beijing.png">&nbsp&nbsp<img src="/maven_demo1/image/beijing.png">&nbsp&nbsp<img src="/maven_demo1/image/beijing.png"></div>
+        <div><img src="../image/beijing.png">&nbsp&nbsp<img src="../image/beijing.png">&nbsp&nbsp<img src="/maven_demo1/image/beijing.png">&nbsp&nbsp<img src="/maven_demo1/image/beijing.png"></div>
+        <div><img src="../image/beijing.png">&nbsp&nbsp<img src="../image/beijing.png">&nbsp&nbsp<img src="/maven_demo1/image/beijing.png">&nbsp&nbsp<img src="/maven_demo1/image/beijing.png"></div>
+        <div><img src="../image/beijing.png">&nbsp&nbsp<img src="../image/beijing.png">&nbsp&nbsp<img src="/maven_demo1/image/beijing.png">&nbsp&nbsp<img src="/maven_demo1/image/beijing.png"></div>
+    </div>
+</div>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>名企专区</legend>
+</fieldset>
+<div class="layui-carousel" id="test14">
+    <div carousel-item="">
+        <div><img src="../image/ma2.png">&nbsp&nbsp<img src="../image/ma2.png">&nbsp&nbsp<img src="/maven_demo1/image/ma2.png">&nbsp&nbsp<img src="/maven_demo1/image/ma2.png"></div>
+        <div><img src="../image/ma2.png">&nbsp&nbsp<img src="../image/ma2.png">&nbsp&nbsp<img src="/maven_demo1/image/ma2.png">&nbsp&nbsp<img src="/maven_demo1/image/ma2.png"></div>
+        <div><img src="../image/ma2.png">&nbsp&nbsp<img src="../image/ma2.png">&nbsp&nbsp<img src="/maven_demo1/image/ma2.png">&nbsp&nbsp<img src="/maven_demo1/image/ma2.png"></div>
+        <div><img src="../image/ma2.png">&nbsp&nbsp<img src="../image/ma2.png">&nbsp&nbsp<img src="/maven_demo1/image/ma2.png">&nbsp&nbsp<img src="/maven_demo1/image/ma2.png"></div>
+    </div>
+</div>
+
+
+
+<script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+
+        //常规轮播
+        carousel.render({
+            elem: '#test1'
+            ,arrow: 'always'
+        });
+
+        //改变下时间间隔、动画类型、高度
+        carousel.render({
+            elem: '#test2'
+            ,interval: 1800
+            ,anim: 'fade'
+            ,height: '120px'
+        });
+
+        //设定各种参数
+        var ins3 = carousel.render({
+            elem: '#test3'
+        });
+        //图片轮播
+        carousel.render({
+            elem: '#test11'
+            ,width: '1430px'
+            ,height: '200px'
+            ,interval: 5000
+        });
+
+        //事件
+        carousel.on('change(test4)', function(res){
+            console.log(res)
+        });
+
+        var $ = layui.$, active = {
+            set: function(othis){
+                var THIS = 'layui-bg-normal'
+                    ,key = othis.data('key')
+                    ,options = {};
+
+                othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                options[key] = othis.data('value');
+                ins3.reload(options);
+            }
+        };
+
+        //监听开关
+        form.on('switch(autoplay)', function(){
+            ins3.reload({
+                autoplay: this.checked
+            });
+        });
+
+        $('.demoSet').on('keyup', function(){
+            var value = this.value
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
+
+            options[this.name] = value;
+            ins3.reload(options);
+        });
+
+        //其它示例
+        $('.demoTest .layui-btn').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+
+
+        form.on('submit(center)', function () {
+            $.ajax({
+                url: '/menu/centerMenu',
+                // data: data,
+                dataType: 'text',
+                type: 'post',
+                success: function (data) {
+                    var json=JSON.parse(data)
+                    if(json==null){
+                        layer.msg("请先登录");
+                    }else{
+                        location.href = "/hello/menu";
+                    }
+
+                }
+            })
+            return false;
+        })
+
+    });
+</script>
+<script>
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+
+        //常规轮播
+        carousel.render({
+            elem: '#test1'
+            ,arrow: 'always'
+        });
+
+        //改变下时间间隔、动画类型、高度
+        carousel.render({
+            elem: '#test2'
+            ,interval: 1800
+            ,anim: 'fade'
+            ,height: '120px'
+        });
+
+        //设定各种参数
+        var ins3 = carousel.render({
+            elem: '#test3'
+        });
+        //图片轮播
+        carousel.render({
+            elem: '#test12'
+            ,width: '1430px'
+            ,height: '200px'
+            ,interval: 5000
+        });
+
+        //事件
+        carousel.on('change(test4)', function(res){
+            console.log(res)
+        });
+
+        var $ = layui.$, active = {
+            set: function(othis){
+                var THIS = 'layui-bg-normal'
+                    ,key = othis.data('key')
+                    ,options = {};
+
+                othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                options[key] = othis.data('value');
+                ins3.reload(options);
+            }
+        };
+
+        //监听开关
+        form.on('switch(autoplay)', function(){
+            ins3.reload({
+                autoplay: this.checked
+            });
+        });
+
+        $('.demoSet').on('keyup', function(){
+            var value = this.value
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
+
+            options[this.name] = value;
+            ins3.reload(options);
+        });
+
+        //其它示例
+        $('.demoTest .layui-btn').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    });
+</script>
+<script>
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+
+        //常规轮播
+        carousel.render({
+            elem: '#test1'
+            ,arrow: 'always'
+        });
+
+        //改变下时间间隔、动画类型、高度
+        carousel.render({
+            elem: '#test2'
+            ,interval: 1800
+            ,anim: 'fade'
+            ,height: '120px'
+        });
+
+        //设定各种参数
+        var ins3 = carousel.render({
+            elem: '#test3'
+        });
+        //图片轮播
+        carousel.render({
+            elem: '#test13'
+            ,width: '1430px'
+            ,height: '200px'
+            ,interval: 5000
+        });
+
+        //事件
+        carousel.on('change(test4)', function(res){
+            console.log(res)
+        });
+
+        var $ = layui.$, active = {
+            set: function(othis){
+                var THIS = 'layui-bg-normal'
+                    ,key = othis.data('key')
+                    ,options = {};
+
+                othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                options[key] = othis.data('value');
+                ins3.reload(options);
+            }
+        };
+
+        //监听开关
+        form.on('switch(autoplay)', function(){
+            ins3.reload({
+                autoplay: this.checked
+            });
+        });
+
+        $('.demoSet').on('keyup', function(){
+            var value = this.value
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
+
+            options[this.name] = value;
+            ins3.reload(options);
+        });
+
+        //其它示例
+        $('.demoTest .layui-btn').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    });
+</script>
+<script>
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+
+        //常规轮播
+        carousel.render({
+            elem: '#test1'
+            ,arrow: 'always'
+        });
+
+        //改变下时间间隔、动画类型、高度
+        carousel.render({
+            elem: '#test2'
+            ,interval: 1800
+            ,anim: 'fade'
+            ,height: '120px'
+        });
+
+        //设定各种参数
+        var ins3 = carousel.render({
+            elem: '#test3'
+        });
+        //图片轮播
+        carousel.render({
+            elem: '#test14'
+            ,width: '1430px'
+            ,height: '200px'
+            ,interval: 5000
+        });
+
+        //事件
+        carousel.on('change(test4)', function(res){
+            console.log(res)
+        });
+
+        var $ = layui.$, active = {
+            set: function(othis){
+                var THIS = 'layui-bg-normal'
+                    ,key = othis.data('key')
+                    ,options = {};
+
+                othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                options[key] = othis.data('value');
+                ins3.reload(options);
+            }
+        };
+
+        //监听开关
+        form.on('switch(autoplay)', function(){
+            ins3.reload({
+                autoplay: this.checked
+            });
+        });
+
+        $('.demoSet').on('keyup', function(){
+            var value = this.value
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
+
+            options[this.name] = value;
+            ins3.reload(options);
+        });
+
+        //其它示例
+        $('.demoTest .layui-btn').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    });
+</script>
+<script>
+    layui.use(['carousel', 'form'], function(){
+        var carousel = layui.carousel
+            ,form = layui.form;
+
+        //常规轮播
+        carousel.render({
+            elem: '#test1'
+            ,arrow: 'always'
+        });
+
+        //改变下时间间隔、动画类型、高度
+        carousel.render({
+            elem: '#test2'
+            ,interval: 1800
+            ,anim: 'fade'
+            ,height: '120px'
+        });
+
+        //设定各种参数
+        var ins3 = carousel.render({
+            elem: '#test3'
+        });
+        //图片轮播
+        carousel.render({
+            elem: '#test10'
+            ,width: '1500px'
+            ,height: '344px'
+            ,interval: 5000        });
+
+        //事件
+        carousel.on('change(test4)', function(res){
+            console.log(res)
+        });
+
+        var $ = layui.$, active = {
+            set: function(othis){
+                var THIS = 'layui-bg-normal'
+                    ,key = othis.data('key')
+                    ,options = {};
+
+                othis.css('background-color', '#5FB878').siblings().removeAttr('style');
+                options[key] = othis.data('value');
+                ins3.reload(options);
+            }
+        };
+
+        //监听开关
+        form.on('switch(autoplay)', function(){
+            ins3.reload({
+                autoplay: this.checked
+            });
+        });
+
+        $('.demoSet').on('keyup', function(){
+            var value = this.value
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
+
+            options[this.name] = value;
+            ins3.reload(options);
+        });
+
+        //其它示例
+        $('.demoTest .layui-btn').on('click', function(){
+            var othis = $(this), type = othis.data('type');
+            active[type] ? active[type].call(this, othis) : '';
+        });
+    });
+
+
+
+</script>
+<script>
+    $("#userlogin").on("click", function () {
+        layer.open({
+            //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+            type: 1,
+            title: "用户登录",
+            area: ['70%', '70%'],
+            content: $("#popUpdateTest")
+        });
+    });
+</script>
+
+</body>
+</html>
+</ul>
+</body>
+</html>

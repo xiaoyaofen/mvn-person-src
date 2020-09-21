@@ -9,7 +9,6 @@
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 </head>
 <body>
-<canvas id="c" style="position: absolute;z-index: -1;text-align: center;"></canvas>
 <div class="login-main">
 
     <header class="layui-elip">欢迎登录人才生态圈平台</header>
@@ -33,14 +32,14 @@
             <button lay-submit lay-filter="login" class="layui-btn">登录</button>
         </div>
         <hr/>
-        <p><a th:href="@{/system/adminRegisterView}" class="fl" >立即注册</a>&nbsp&nbsp<a href="../jsp/Register.jsp" class="fl" style="margin-left: 28px">短信验证</a><a href="javascript:;" class="fr">忘记密码？</a></p>
+        <p><a th:href="@{/system/adminRegisterView}" class="fl" >立即注册</a>&nbsp&nbsp<a th:href="@{/system/forgetPwdView}" class="fr">忘记密码？</a></p>
     </form>
 
 </div>
 
 <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
 <script th:src="@{/X-admin/lib/layui/layui.js}"></script>
-<script th:src="@{/X-admin/js/canvas.js}"></script>
+
 
 
 <script type="text/javascript">

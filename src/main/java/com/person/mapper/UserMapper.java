@@ -1,19 +1,13 @@
 package com.person.mapper;
 
-import com.person.bean.Collect;
-import com.person.bean.Feedback;
-import com.person.bean.User;
-import com.person.bean.mixture;
+import com.person.bean.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
-import javax.sound.sampled.Mixer;
 import java.util.HashMap;
 import java.util.List;
 
 @Mapper
-@Component
 public interface UserMapper {
     public User getUser(@Param("account") String account, @Param("pwd") String pwd);
     public void addUser(@Param("account") String account, @Param("pwd") String pwd, @Param("name") String name, @Param("sex") String sex,@Param("age") String age, @Param("tel") String tel, @Param("address") String address);
@@ -33,4 +27,11 @@ public interface UserMapper {
     public User findInfor(@Param("id")String id);
 
     public mixture introduce(@Param("name")String name,@Param("pname")String pname);
+
+
+    public User findbyname(@Param("account")String account);
+     public void getuserid(@Param("username")String username);
+
+
+     public User getFace(@Param("faceId")String faceId);
 }

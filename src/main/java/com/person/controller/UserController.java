@@ -1,18 +1,34 @@
 package com.person.controller;
 
+import cn.hutool.core.codec.Base64;
+import cn.hutool.core.util.RandomUtil;
+import com.PersonProjectApplication;
+import com.arcsoft.face.toolkit.ImageFactory;
+import com.arcsoft.face.toolkit.ImageInfo;
+import com.facedemo.base.Result;
+import com.facedemo.base.Results;
+import com.facedemo.enums.ErrorCodeEnum;
+import com.facedemo.pojo.UserFaceInfo;
+import com.facedemo.service.FaceEngineService;
+import com.facedemo.service.UserFaceInfoService;
 import com.google.gson.Gson;
 import com.person.bean.*;
 import com.person.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import sun.reflect.generics.tree.VoidDescriptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.transform.Source;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,7 +41,8 @@ import java.util.UUID;
 public class UserController {
     @Autowired
     UserService userService;
-//用户登录
+
+    //用户登录
     @RequestMapping("/getUser")
     @ResponseBody
     public String getUser(HttpServletRequest request, HttpServletResponse response) {
@@ -33,7 +50,6 @@ public class UserController {
         String account = request.getParameter("account");
         String pwd = request.getParameter("pwd");
         String code = request.getParameter("code");
-        System.out.println(account);
         if (num.toUpperCase().equals(code.toUpperCase())) {
             User user = userService.getUser(account, pwd);
             if (user != null) {
@@ -47,7 +63,7 @@ public class UserController {
         }
     }
 
-//用户注册
+    //用户注册
     @RequestMapping("/register")
     @ResponseBody
     public String register(HttpServletRequest request, HttpServletResponse response) {
@@ -62,49 +78,52 @@ public class UserController {
         System.out.println(password);
         System.out.println(sex);
         System.out.println(address);
-        String num=userService.checkSex(sex);
+        String num = userService.checkSex(sex);
         System.out.println(num);
         String user = userService.checkAccount(account);
-        if (user!= null) {
+        if (user != null) {
             return "该账号已经存在！";
         } else {
-            userService.addUser(account,password,name,num,age,phone,address);
+            userService.addUser(account, password, name, num, age, phone, address);
             return "注册成功";
 
         }
     }
 
-//用户求职反馈表
+    //用户求职反馈表
     @RequestMapping("/getFeedback")
     @ResponseBody
     public String getFeedback(HttpServletRequest request, HttpServletResponse response) {
-        User user= (User) request.getSession().getAttribute("user");
-        Integer userid= user.getId();
-        String page=request.getParameter("page");
-        String limit=request.getParameter("limit");
+        User user = (User) request.getSession().getAttribute("user");
+        Integer userid = user.getId();
+        String page = request.getParameter("page");
+        String limit = request.getParameter("limit");
         String startTime = request.getParameter("startTime");
         String endTime = request.getParameter("endTime");
-        String industry= request.getParameter("industry");
+        String industry = request.getParameter("industry");
         System.out.println(industry);
-        String post= request.getParameter("post");
+        String post = request.getParameter("post");
         System.out.println(post);
-        HashMap<String,Object> condition=new HashMap<>();
-        Integer startL=(Integer.valueOf(page)-1)*Integer.valueOf(limit);
-        Integer endL=Integer.valueOf(page)*Integer.valueOf(limit);
-        condition.put("startL",startL);
-        condition.put("endL",endL);
-        if (startTime!=null&&!"".equals(startTime)){
-            condition.put("startTime",startTime);
-        }if (endTime!=null&&!"".equals(endTime)){
-            condition.put("endTime",endTime);
-        }if (industry!=null&&!"".equals(industry)){
-            condition.put("industry",industry);
-        }if (post!=null&&!"".equals(post)){
-            condition.put("post",post);
+        HashMap<String, Object> condition = new HashMap<>();
+        Integer startL = (Integer.valueOf(page) - 1) * Integer.valueOf(limit);
+        Integer endL = Integer.valueOf(page) * Integer.valueOf(limit);
+        condition.put("startL", startL);
+        condition.put("endL", endL);
+        if (startTime != null && !"".equals(startTime)) {
+            condition.put("startTime", startTime);
         }
-        List<Feedback> list=userService.getFeedback(String.valueOf(userid),condition);
-        Integer count=userService.findCount(String.valueOf(userid),condition);
-        LayuiData layuiData=new LayuiData();
+        if (endTime != null && !"".equals(endTime)) {
+            condition.put("endTime", endTime);
+        }
+        if (industry != null && !"".equals(industry)) {
+            condition.put("industry", industry);
+        }
+        if (post != null && !"".equals(post)) {
+            condition.put("post", post);
+        }
+        List<Feedback> list = userService.getFeedback(String.valueOf(userid), condition);
+        Integer count = userService.findCount(String.valueOf(userid), condition);
+        LayuiData layuiData = new LayuiData();
         layuiData.setMsg("");
         layuiData.setCode(0);
         layuiData.setCount(count);
@@ -112,41 +131,43 @@ public class UserController {
         return new Gson().toJson(layuiData);
 
 
-
     }
 
 
-//用户收藏表
+    //用户收藏表
     @RequestMapping("/getCollect")
     @ResponseBody
     public String getCollect(HttpServletRequest request, HttpServletResponse response) {
 //        User user= (User) request.getSession().getAttribute("user");
 //        Integer userid= user.getId();
-        String page=request.getParameter("page");
-        String limit=request.getParameter("limit");
+        String page = request.getParameter("page");
+        String limit = request.getParameter("limit");
         String startTime = request.getParameter("startTime");
         String endTime = request.getParameter("endTime");
-        String industry= request.getParameter("industry");
+        String industry = request.getParameter("industry");
         System.out.println(industry);
-        String post= request.getParameter("post");
+        String post = request.getParameter("post");
         System.out.println(post);
-        HashMap<String,Object> condition=new HashMap<>();
-        Integer startL=(Integer.valueOf(page)-1)*Integer.valueOf(limit);
-        Integer endL=Integer.valueOf(page)*Integer.valueOf(limit);
-        condition.put("startL",startL);
-        condition.put("endL",endL);
-        if (startTime!=null&&!"".equals(startTime)){
-            condition.put("startTime",startTime);
-        }if (endTime!=null&&!"".equals(endTime)){
-            condition.put("endTime",endTime);
-        }if (industry!=null&&!"".equals(industry)){
-            condition.put("industry",industry);
-        }if (post!=null&&!"".equals(post)){
-            condition.put("post",post);
+        HashMap<String, Object> condition = new HashMap<>();
+        Integer startL = (Integer.valueOf(page) - 1) * Integer.valueOf(limit);
+        Integer endL = Integer.valueOf(page) * Integer.valueOf(limit);
+        condition.put("startL", startL);
+        condition.put("endL", endL);
+        if (startTime != null && !"".equals(startTime)) {
+            condition.put("startTime", startTime);
         }
-        List<Collect> list=userService.getCollect("1",condition);
-        Integer count=userService.findCount2("1",condition);
-        LayuiData layuiData=new LayuiData();
+        if (endTime != null && !"".equals(endTime)) {
+            condition.put("endTime", endTime);
+        }
+        if (industry != null && !"".equals(industry)) {
+            condition.put("industry", industry);
+        }
+        if (post != null && !"".equals(post)) {
+            condition.put("post", post);
+        }
+        List<Collect> list = userService.getCollect("1", condition);
+        Integer count = userService.findCount2("1", condition);
+        LayuiData layuiData = new LayuiData();
         layuiData.setMsg("");
         layuiData.setCode(0);
         layuiData.setCount(count);
@@ -173,13 +194,13 @@ public class UserController {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String dateStr = simpleDateFormat.format(date);
             File file1 = new File("");
-            String filePath = file1.getCanonicalPath()+ File.separator +"src"+ File.separator +"main"+
-                    File.separator +"resources"+File.separator+"static"+File.separator+"upload"+File.separator;
+            String filePath = file1.getCanonicalPath() + File.separator + "src" + File.separator + "main" +
+                    File.separator + "resources" + File.separator + "static" + File.separator + "upload" + File.separator;
             //"/upload/"最后的的斜杠会被tomcat取消掉，需要把/放在projectPath
 //            String savePath = request.getSession().getServletContext().getRealPath("/upload");
             //要保存的问题件路径和名称   /upload/2020-09-09/uuid.jpg
 //            System.out.println(savePath);
-            String projectPath = filePath + File.separator+ dateStr + File.separator + uuid + "." + prefix;
+            String projectPath = filePath + File.separator + dateStr + File.separator + uuid + "." + prefix;
 //            System.out.println("projectPath==" + projectPath);
             File files = new File(projectPath);
             //打印查看上传路径
@@ -191,11 +212,11 @@ public class UserController {
             file.transferTo(files); // 将接收的文件保存到指定文件中
 //            System.out.println("文件存储");
 //            System.out.println(projectPath);
-            LayuiData layuiData=new LayuiData();
+            LayuiData layuiData = new LayuiData();
             layuiData.setCode(0);
             layuiData.setMsg("上传成功");
-            String url="\\upload" + File.separator + dateStr + File.separator + uuid + "." + prefix;
-            userService.down(url,"1");
+            String url = "\\upload" + File.separator + dateStr + File.separator + uuid + "." + prefix;
+            userService.down(url, "1");
 //            System.out.println("文件信息："+tit+userId+introduce+projectPath);
             return layuiData;
         } catch (Exception e) {
@@ -203,12 +224,13 @@ public class UserController {
             return null;
         }
     }
+
     @RequestMapping("/getimg")
     @ResponseBody
     public Object getimg(HttpServletRequest request, HttpServletResponse response) {
 //        User user= (User) request.getSession().getAttribute("user");
 //        Integer userId=user.getId();
-        User img= userService.getimg("1");
+        User img = userService.getimg("1");
         return new Gson().toJson(img);
     }
 
@@ -223,51 +245,106 @@ public class UserController {
         String tel = request.getParameter("tel");
         String sex = request.getParameter("sex");
         String address = request.getParameter("address");
-        Integer sex1=userService.getsex(sex);
-        userService.Infor(account,name,sex1,tel,address,"1");
-        User img= userService.getimg("1");
+        Integer sex1 = userService.getsex(sex);
+        userService.Infor(account, name, sex1, tel, address, "1");
+        User img = userService.getimg("1");
         return new Gson().toJson(img);
     }
 
-//起初的信息
+    //起初的信息
     @RequestMapping("/Infor")
     @ResponseBody
     public Object Infor(HttpServletRequest request, HttpServletResponse response) {
 //        User user= (User) request.getSession().getAttribute("user");
 //        Integer userId=user.getId();
-        User img= userService.getimg("1");
+        User img = userService.getimg("1");
         return new Gson().toJson(img);
     }
 
-//简历
+    //简历
     @RequestMapping("/findInfor")
-    public  Object showRecruit(Model model){
+    public Object showRecruit(Model model) {
 //        User user= (User) request.getSession().getAttribute("user");
 //        Integer userId=user.getId();
-        User user =  userService.findInfor("1");
-        model.addAttribute("user",user);
+        User user = userService.findInfor("1");
+        model.addAttribute("user", user);
         return "myresume";
     }
 
-//查看
+    //查看
     @RequestMapping("/find")
-    public  Object showFind(Model model){
+    public Object showFind(Model model) {
 //        User user= (User) request.getSession().getAttribute("user");
 //        Integer userId=user.getId();
-        User user =  userService.findInfor("1");
-        model.addAttribute("user",user);
+        User user = userService.findInfor("1");
+        model.addAttribute("user", user);
         return "Collect";
     }
 
     @RequestMapping("/introduce")
     @ResponseBody
-    public  Object introduce(HttpServletRequest request, HttpServletResponse response){
+    public Object introduce(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String pname = request.getParameter("pname");
-        mixture obj =  userService.introduce(name,pname);
+        mixture obj = userService.introduce(name, pname);
         System.out.println(obj);
-        return new Gson().toJson(obj );
+        return new Gson().toJson(obj);
+    }
+
+//获取用户名
+    @RequestMapping("/getName")
+    @ResponseBody
+    public Object getName(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("name");
+        String pname = request.getParameter("pname");
+        mixture obj = userService.introduce(name, pname);
+        return new Gson().toJson(obj);
     }
 
 
+
+    //人脸注册的判断
+    @RequestMapping("/ifFace")
+    @ResponseBody
+    public Object ifFace(Model model,HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getParameter("account");
+        System.out.println(name);
+        User user = userService.findbyname(name);
+        if (user==null){
+            return new Gson().toJson(2);
+        }else {
+            userService.getuserid(name);
+            return new Gson().toJson(1);
+        }
+
+    }
+
+
+    @RequestMapping("/getlogin")
+    @ResponseBody
+    public Object getlogin(HttpServletRequest request, HttpServletResponse response) {
+        String faceId = request.getParameter("faceId");
+        User user=userService.getFace(faceId);
+        request.getSession().setAttribute("user", user);
+        return new Gson().toJson(1);
+    }
+
+
+
+
+    @RequestMapping("/myName")
+    public String myName(HttpServletRequest request, HttpServletResponse response,Model model) {
+        String account = request.getParameter("account");
+        System.out.println(account);
+        User user=userService.findbyname(account);
+        model.addAttribute("user", user);
+        System.out.println(user.getAccount());
+        return "Person2";
+    }
+
+
+
 }
+
+
+
