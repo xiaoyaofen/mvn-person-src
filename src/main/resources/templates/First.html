@@ -7,7 +7,6 @@
     <!-- end 云适配 -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>人才招聘</title>
-
     <script type="text/javascript">
         var ctx = "h";
         console.log(1);
@@ -41,14 +40,15 @@
                 <li><a href="jianli.html" rel="nofollow">我的简历</a></li>
                 <li><a href="create.html" rel="nofollow">发布职位</a></li>
             </ul>
-            <ul class="loginTop">
-                <li><a href="login.html" rel="nofollow">登录</a></li>
-                <li>|</li>
-                <li><a href="register.html" rel="nofollow">注册</a></li>
-            </ul>
+            <div class="weblist">
+<!--            <ul class="loginTop">-->
+<!--                <li><a href="login.html" rel="nofollow">登录</a></li>-->
+<!--                <li>|</li>-->
+<!--                <li><a href="register.html" rel="nofollow">注册</a></li>-->
+<!--            </ul>-->
         </div>
     </div><!-- end #header -->
-    <div id="container">
+    <div id="container" style="margin-top: 80px">
 
         <div id="sidebar">
             <div class="mainNavs">
@@ -967,8 +967,40 @@
                     </div>
                 </div>
             </div>
-            <a class="subscribe" href="subscribe.html" target="_blank">订阅职位</a>
+            <a class="subscribe" href="subscribe.html" target="_blank">当前位置</a>
+            <div style="width: 230px;height:180px;" id="map"></div>
         </div>
+        <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=98c388d3f9fb5f75bbb00d86000b0d70"></script>
+        <script>
+            var map = new AMap.Map('map', {
+                zoom:11,//级别
+                center: [116.397428, 39.90923],//中心点坐标
+                viewMode:'3D'//使用3D视图
+            });
+            mapObj = new AMap.Map('map');
+            mapObj.plugin('AMap.Geolocation', function () {
+                geolocation = new AMap.Geolocation({
+                    enableHighAccuracy: true,//是否使用高精度定位，默认:true
+                    timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+                    maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+                    convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+                    showButton: true,        //显示定位按钮，默认：true
+                    buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+                    buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+                    showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+                    showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+                    panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+                    zoomToAccuracy:true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+                    // extensions:all,
+                    accuracy:1000
+                });
+                mapObj.addControl(geolocation);
+                geolocation.getCurrentPosition();
+                AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+                AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+            });
+        </script>
+
         <div class="content">
             <div id="search_box">
                 <form id="searchForm" name="searchForm" action="list.html" method="get">
@@ -1034,7 +1066,6 @@
 <!--            ---------------------------------------------------------------------->
             <script type="text/javascript" th:src="@{/X-admin/js/search.min.js}"></script>
             <dl class="hotSearch">
-                <dt>热门搜索：</dt>
                 <dd><a href="list.htmlJava?labelWords=label&city=">Java</a></dd>
                 <dd><a href="list.htmlPHP?labelWords=label&city=">PHP</a></dd>
                 <dd><a href="list.htmlAndroid?labelWords=label&city=">Android</a></dd>
@@ -2116,7 +2147,9 @@
         <input type="hidden" id="resubmitToken" value=""/>
         <a id="backtop" title="回到顶部" rel="nofollow"></a>
     </div><!-- end #container -->
-</div><!-- end #body -->
+</div>
+
+    <!-- end #body -->
 <!--	<div id="footer">-->
 <!--		<div class="wrapper">-->
 <!--			<a href="about.html" target="_blank" rel="nofollow">联系我们</a>-->
@@ -2129,8 +2162,6 @@
 <script type="text/javascript" th:src="@{/X-admin/js/core.min.}"></script>
 <script type="text/javascript" th:src="@{/X-admin/js/popup.min.}"></script>
 
-<!-- <script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
- -->
-
+<script src="style/js/wb.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>	

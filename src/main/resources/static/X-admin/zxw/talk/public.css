@@ -1,0 +1,408 @@
+
+body {
+    margin: 0px;
+    text-align: center;
+    font-size: 12px;
+    font-family: sans-serif, "微软雅黑";
+    background-color: #f3f3f3;
+}
+
+.commonLogo {
+    background: url("../Images/logo_white.png") no-repeat center center;
+    width: 172px;
+    height: 58px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.headLinks {
+    height: 58px;
+    min-width: 1px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.headLinks > a {
+    height: 58px;
+    line-height: 58px;
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    margin: 0px 15px;
+    text-decoration: none;
+}
+
+.headLinks .courseTypes {
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    top: 43px;
+    left: -34px;
+    display: none;
+    z-index: 99;
+}
+
+.headLinks .courseTypes li {
+    height: 40px;
+    line-height: 40px;
+    background-color: #333333;
+    width: 140px;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.headLinks .courseTypes li a {
+    width: 100%;
+    height: 40px;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+}
+
+.headLinks .courseTypes li:hover {
+    background-color: #636363;
+}
+
+.content-box {
+    width: 1300px \0;
+    max-width: 1440px;
+    min-width: 1300px;
+    margin: 0px auto;
+    min-height: 1px;
+    padding: 0 100px;
+    box-sizing: border-box;
+}
+
+.content-box1200 {
+    width: 1200px !important;
+    margin: 0px auto;
+    min-height: 1px;
+    box-sizing: border-box;
+}
+
+.search {
+    height: 36px;
+    width: 330px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    text-indent: 0px;
+    line-height: 36px;
+    text-align: right;
+    background-color: #fff;
+}
+
+.search input {
+    height: 36px;
+    width: 260px;
+    line-height: 36px;
+    border: none;
+    vertical-align: top;
+    border-radius: 20px;
+    text-indent: 10px;
+    font-size: 14px;
+    color: #6e6e6e;
+}
+
+.search button {
+    height: 36px;
+    width: 60px;
+    background-color: #acce22;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    vertical-align: top;
+    font-size: 20px;
+    line-height: 36px;
+}
+
+.search button i.icon-sandglass2.searching {
+    animation-name: sandglass_rotate;
+    animation-duration: 1.5s;
+    animation-timing-function: ease;
+    display: inline-block;
+}
+
+@keyframes sandglass_rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.help {
+    height: 56px;
+    line-height: 56px;
+    float: right;
+    padding: 0px 10px;
+    font-size: 14px !important;
+}
+
+.user {
+    height: 56px;
+    line-height: 56px;
+    float: right;
+    padding: 0px 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.user span {
+    max-width: 80px;
+    display: inline-block;
+    vertical-align: middle;
+    word-wrap: normal !important;
+}
+
+.user img {
+    height: 50px;
+    width: 50px;
+    object-fit: scale-down;
+    vertical-align: middle;
+}
+
+.user .userMenu {
+    top: 55px;
+    right: 0;
+    width: 180px;
+    min-height: 250px;
+    border-radius: 4px;
+    background-color: #f8f7f7;
+    z-index: 9999999;
+    position: absolute;
+    border: 1px solid #bebebe;
+    display: none;
+}
+
+.user .userMenu .details {
+    min-height: 180px;
+    max-height: 200px;
+    background-color: #e5e5e5;
+    line-height: 24px;
+}
+
+.user .userMenu .details p {
+    padding: 0px 10px;
+    margin: 0px;
+}
+
+.user .userMenu .details .avatar {
+    width: 54px;
+    height: 54px;
+    overflow: hidden;
+    margin: 10px auto 0px auto;
+}
+
+.user .userMenu .details .uid {
+    line-height: 20px;
+    padding: 0px 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.user .userMenu .details img {
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+}
+
+.user .userMenu .details .recharge {
+    display: inline-block;
+    border-radius: 10px;
+    height: 24px;
+    line-height: 24px;
+    background-color: #fbd22f;
+    font-size: 12px;
+    width: 80px;
+    color: #000;
+}
+
+.user .userMenu .funLink {
+    line-height: 24px;
+    color: #000;
+    font-size: 14px;
+    text-decoration: none;
+    display: block;
+    padding: 2px;
+}
+
+.user .userMenu .funLink:hover {
+    color: #636363;
+}
+
+footer .links {
+    min-height: 1px;
+}
+
+footer .links .imgLinks {
+    width: calc(100% - 100px);
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+footer .links.nopic {
+    padding-left: 95px;
+}
+
+footer .links a {
+    font-size: 12px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+footer .Navbar {
+    text-align: center;
+    line-height: 30px;
+}
+
+footer .Navbar a {
+    display: inline-block;
+    width: 70px;
+    border-radius: 4px;
+    height: 22px;
+    line-height: 22px;
+    text-decoration: none;
+    background-color: #3899dd;
+    color: #fff;
+    margin: 0px 5px;
+    letter-spacing: 1px;
+}
+
+footer .Navbar a:hover {
+    background-color: #2e75ae;
+    color: #fff;
+}
+
+.quickJump {
+    min-height: 1px;
+    width: 70px;
+    position: fixed;
+    top: 140px;
+    text-align: center;
+    display: none;
+}
+
+.quickJump nav a {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #fff;
+    font-size: 14px;
+    margin: 10px 0px;
+    box-shadow: #ccc 0px 0px 8px;
+    box-sizing: border-box;
+    padding: 8px 0px 0px 0px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border: 1px solid #e2e2e2 \0;
+}
+
+.quickJump nav a span {
+    z-index: 99999;
+}
+
+.quickJump nav a.checked {
+    color: #fff;
+    background-color: #00aeff;
+}
+
+.commonFunctions {
+    width: 90px;
+    min-height: 1px;
+    position: fixed;
+    top: 200px;
+    text-align: center;
+    z-index: 1000000;
+    display: none;
+}
+
+.commonFunctions > div {
+    width: 95px;
+    height: 60px;
+    line-height: 60px;
+    text-align: left;
+}
+
+.commonFunctions .Btn {
+    width: 50px;
+    height: 50px;
+    box-shadow: #ccc 1px 1px 5px;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px !important;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border: 1px solid #e2e2e2 \0;
+}
+
+.commonFunctions .Btn span {
+    margin-top: 8px;
+    display: inline-block;
+    color: #000;
+}
+
+.commonFunctions .Modal {
+    display: none;
+    background: url("../Images/wx.png") no-repeat left center;
+    width: 180px;
+    height: 250px;
+    position: absolute;
+    left: -176px;
+    top: -10px;
+    line-height: 94px;
+    text-align: right;
+}
+
+.ads {
+    display: inline-block;
+    min-height: 1px;
+}
+
+.placeholder {
+    position: static !important;
+    left: 0px !important;
+    top: 0px !important;
+
+}
+
+.layui-laypage a {
+    text-decoration: none;
+}
+
+.viewOnPhone {
+    position: relative;
+}
+
+.viewOnPhone .QRcore {
+    position: absolute;
+    display: none;
+    background: url("../Images/app2.png") no-repeat center center;
+    width: 185px;
+    height: 240px;
+    left: -175px;
+    top: -25px;
+    z-index: 9999;
+    text-align: center;
+    padding: 15px 12px 15px 3px;
+    box-sizing: border-box;
+    line-height: 20px;
+}
+
+.viewOnPhone .QRcore .QRcorePic {
+    width: 135px;
+    height: 135px;
+    padding: 10px 10px 0px 10px;
+    display: inline-block;
+}
+
+.viewOnPhone:hover .QRcore {
+    display: block;
+}

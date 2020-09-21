@@ -12,11 +12,12 @@ public class Product {
     private String picture;
     private String detial;
     private String state;
+    private String productid;
+    private String time;
 
     public Product(){}
 
-    public Product(Integer pm, Integer id, String product, String start, String over,
-                   String publisher, String teacher, String scope, String picture, String detial, String state) {
+    public Product(Integer pm, Integer id, String product, String start, String over, String publisher, String teacher, String scope, String picture, String detial, String state, String productid, String time) {
         this.pm = pm;
         this.id = id;
         this.product = product;
@@ -28,6 +29,8 @@ public class Product {
         this.picture = picture;
         this.detial = detial;
         this.state = state;
+        this.productid = productid;
+        this.time = time;
     }
 
     public Integer getId() {
@@ -116,5 +119,21 @@ public class Product {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getProductid() {
+        return productid;
+    }
+
+    public void setProductid(String productid) {
+        this.productid = productid;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

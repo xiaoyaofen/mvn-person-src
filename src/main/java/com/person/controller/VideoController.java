@@ -1,8 +1,6 @@
 package com.person.controller;
 
-import com.person.bean.Charpter;
-import com.person.bean.Menu;
-import com.person.bean.Product;
+import com.person.bean.*;
 import com.person.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +24,16 @@ public class VideoController {
 
     @GetMapping(value = "/Video")
     public String Video(Model model,HttpServletRequest request, HttpServletResponse response) {
+        User user= (User) request.getSession().getAttribute("user");
         String id=request.getParameter("id");
+        if (user!=null){
+            Product product=videoService.hasStudy(String.valueOf(user.getId()),id);
+            if (null==product){
+                videoService.addStudy(String.valueOf(user.getId()),id);
+            }else {
+                videoService.updateStudyTime(String.valueOf(user.getId()),id);
+            }
+        }
         List<Menu> list=videoService.findVideo(id);
         Product product=videoService.findProductOne(id);
         model.addAttribute("product",product);
@@ -51,4 +58,30 @@ public class VideoController {
         return "Video";
     }
 
+    @GetMapping(value = "/talk")
+    public String talk(Model model) {
+        List<Talk> list=videoService.findTalk();
+        Integer count=videoService.findTalkCount();
+        model.addAttribute("list",list);
+        model.addAttribute("count",count);
+        return "Talk";
+    }
+
+    @GetMapping(value = "/addMessage")
+    @ResponseBody
+    public Object addMessage(Model model,HttpServletRequest request, HttpServletResponse response) {
+        String message=request.getParameter("message");
+        User user= (User) request.getSession().getAttribute("user");
+        if (user!=null){
+            Integer num=videoService.addMessage(message,String.valueOf(user.getId()));
+            if (num!=0){
+                return "发表成功";
+            }else {
+                return "发表失败，请重试！";
+            }
+        }else {
+            return "请先登录才能发表评论";
+        }
+
+    }
 }

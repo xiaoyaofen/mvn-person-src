@@ -23,4 +23,27 @@
     <select id="findCharpterByid" resultType="com.person.bean.Charpter">
         select id,name,detial from t_charpters where id=#{id}
     </select>
+    <select id="findTalk" resultType="com.person.bean.Talk">
+        select t.id,u.name,t.message,DATE_FORMAT(t.time,'%Y-%m-%d %H:%i:%s') as time from t_talk t left join t_user u
+        on t.userid=u.id
+    </select>
+    <select id="findTalkCount" resultType="java.lang.Integer">
+        select count(*) from t_talk
+    </select>
+    <insert id="addMessage">
+        INSERT into t_talk (userid,message) VALUES (#{userid},#{message})
+    </insert>
+    <select id="studyProduct" resultType="com.person.bean.Product">
+        select s.productid,p.product,p.picture,DATE_FORMAT(s.time,'%Y-%m-%d %H:%i:%s') as time from t_study s left join t_product p
+        on s.productid=p.id where s.userid=#{userid}
+    </select>
+    <update id="updateStudyTime">
+        update t_study set time=now() where userid=#{userid} and productid=#{productid}
+    </update>
+    <select id="hasStudy" resultType="com.person.bean.Product">
+        select id from t_study where userid=#{userid} and productid=#{productid}
+    </select>
+    <insert id="addStudy">
+        insert into t_study (userid,productid) values (#{userid},#{productid})
+    </insert>
 </mapper>

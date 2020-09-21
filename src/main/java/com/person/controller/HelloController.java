@@ -2,8 +2,10 @@ package com.person.controller;
 
 
 import com.person.bean.Admin;
+import com.person.bean.Product;
 import com.person.bean.User;
 import com.person.service.UserService;
+import com.person.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/hello")
@@ -19,6 +22,9 @@ public class HelloController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    VideoService videoService;
 
     @RequestMapping("/getUser")
     @ResponseBody
@@ -108,7 +114,13 @@ public class HelloController {
         return "jianli";
     }
 
-
+    @GetMapping(value = "/study")
+    public String study(Model model, HttpServletRequest request) {
+        User user= (User) request.getSession().getAttribute("user");
+        List<Product> list=videoService.studyProduct(String.valueOf(user.getId()));
+        model.addAttribute("list",list);
+        return "Study";
+    }
 
 
 
