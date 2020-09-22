@@ -1,5 +1,6 @@
 package com.person.service.impl;
 
+import com.person.aoplog.Log;
 import com.person.bean.*;
 import com.person.mapper.SystemMapper;
 import com.person.service.SystemService;
@@ -17,6 +18,7 @@ public class SystemServiceImpl implements SystemService {
 
 
     @Override
+    @Log(operationType = "参数列表", operationName = "admin")
     public LayuiData getParamList(Integer page, Integer pageSize, String name, String type) {
         LayuiData layuiData = new LayuiData();
         Integer start = (page - 1) * pageSize;
@@ -35,12 +37,14 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "参数类型", operationName = "admin")
     public List<String> paramsTypeList() {
         List<String> list = systemMapper.paramsTypeList();
         return list;
     }
 
     @Override
+    @Log(operationType = "增加参数", operationName = "admin")
     public Boolean addParams(String name, String type, String value) {
         Boolean flag = false;
 
@@ -55,6 +59,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "删除参数", operationName = "admin")
     public Boolean delParams(String state, int id) {
         Boolean flag = false;
         int num = systemMapper.delParams(state, id);
@@ -65,6 +70,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "检测参数是否已存在", operationName = "admin")
     public Params checkParams(String paramsName, String paramsType) {
 
         Params params=systemMapper.checkParams(paramsName,paramsType);
@@ -73,6 +79,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "修改参数", operationName = "admin")
     public Boolean editParams(String name, int id) {
         Boolean flag = false;
         int num = systemMapper.editParams(name, id);
@@ -83,6 +90,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "查询角色列表", operationName = "admin")
     public LayuiData roleList() {
 
         LayuiData layuiData = new LayuiData();
@@ -101,6 +109,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "查询权限", operationName = "admin")
     public TreeNode findRight(int roleId) {
         TreeNode treeRootNode=new TreeNode();
         List<TreeNode>rootNode=new ArrayList<>();
@@ -141,6 +150,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "修改权限", operationName = "admin")
     public Boolean editRight(int roleId, List<String> list) {
         Boolean flag=false;
 
@@ -156,6 +166,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "管理员日志列表", operationName = "admin")
     public LayuiData adminLog(Integer page, Integer pageSize, String startDate, String endDate) {
         LayuiData layuiData = new LayuiData();
         Integer start = (page - 1) * pageSize;
@@ -174,6 +185,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "用户日志列表", operationName = "admin")
     public LayuiData userLog(Integer page, Integer pageSize, String startDate, String endDate) {
         LayuiData layuiData = new LayuiData();
         Integer start = (page - 1) * pageSize;
@@ -192,6 +204,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "用户列表", operationName = "admin")
     public LayuiData userList(Integer page, Integer pageSize, String school, String state) {
         LayuiData layuiData = new LayuiData();
         Integer start = (page - 1) * pageSize;
@@ -210,6 +223,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "禁用/启用用户", operationName = "admin")
     public Boolean userManager(Integer id, String state) {
         Boolean flag = false;
         int num = systemMapper.userManager(id, state);
@@ -220,6 +234,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "管理员登录", operationName = "admin")
     public Admin adminLogIn(String account, String pwd) {
 
         Admin admin=systemMapper.adminLogIn(account,pwd);
@@ -227,13 +242,14 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "查询角色", operationName = "admin")
     public List<Role> findRole() {
-
         List<Role> list=systemMapper.findRole();
         return list;
     }
 
     @Override
+    @Log(operationType = "新注册检测账号", operationName = "admin")
     public Admin checkAccount(String account) {
         Admin admin=systemMapper.checkAccount(account);
 
@@ -243,6 +259,7 @@ public class SystemServiceImpl implements SystemService {
     //2企业
     //3高校
     @Override
+    @Log(operationType = "管理员注册", operationName = "admin")
     public Boolean adminRegister(String roleId, String account, String name, String password, String phone, String address, String unit, String qualification) {
          Boolean flag=false;
         Integer unitId =null;
@@ -282,12 +299,14 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "查询行业", operationName = "admin")
     public List<Params> selectTrade() {
         List<Params> list=systemMapper.selectTrade();
         return list;
     }
 
     @Override
+    @Log(operationType = "查询行业岗位类型关系", operationName = "admin")
     public LayuiData postManager(String trade, Integer page, Integer pageSize) {
         LayuiData layuiData = new LayuiData();
         Integer start = (page - 1) * pageSize;
@@ -306,6 +325,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "删除岗位类型", operationName = "admin")
     public Boolean delJob(Integer id, String state) {
         Boolean flag = false;
         int num = systemMapper.delJob(state, id);
@@ -316,6 +336,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "增加岗位类型", operationName = "admin")
     public String addJob(String job, Integer tradeId) {
         String str=null;
         Params params=systemMapper.checkJob(job);
@@ -346,6 +367,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "修改岗位类型", operationName = "admin")
     public String editJob(String job, Integer tradeId, Integer id) {
         String str=null;
         Params params=systemMapper.checkJob(job);
@@ -377,6 +399,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "公司审核列表", operationName = "admin")
     public LayuiData checkCompanyList(Integer page, Integer pageSize, String companyName, String state) {
         LayuiData layuiData = new LayuiData();
         Integer start = (page - 1) * pageSize;
@@ -395,6 +418,7 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
+    @Log(operationType = "审核公司", operationName = "admin")
     public Boolean checkCompany(String state, Integer id) {
         Boolean flag=false;
         int num=systemMapper.checkCompany(state,id);
@@ -403,6 +427,33 @@ public class SystemServiceImpl implements SystemService {
         }
         return flag;
     }
+
+    @Override
+    @Log(operationType = "重置密码", operationName = "admin")
+    public String resetPassword(String password, String phone) {
+        String marks=null;
+        Admin admin=systemMapper.findAdminByPhone(phone);
+        if(admin==null){
+            marks="2";
+        }else {
+            int num=systemMapper.resetPassword(password,phone);
+            if(num>0){
+                marks="1";
+            }else{
+                marks="3";
+            }
+        }
+        return marks;
+    }
+
+    @Override
+    @Log(operationType = "检查手机号码是否已注册", operationName = "admin")
+    public Admin findAdminByPhone(String phone) {
+        Admin admin=systemMapper.findAdminByPhone(phone);
+        return admin;
+    }
+
+
 
 
 }

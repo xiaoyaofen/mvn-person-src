@@ -1,5 +1,6 @@
 package com.person.service.impl;
 
+import com.person.aoplog.Log;
 import com.person.bean.Menu;
 import com.person.mapper.MenuMapper;
 import com.person.service.MenuService;
@@ -30,6 +31,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    @Log(operationType = "查询后台菜单", operationName = "admin")
     public List<Menu> getMenuListByRoleId(Integer roleid) {
         List<Menu> list =new ArrayList<Menu>();
         list=menuMapper.getMenuListByRoleId(roleid);

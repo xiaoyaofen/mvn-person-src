@@ -7,16 +7,18 @@ public class Daily {
     private Integer worker;
     private  String operation;
     private Integer num;
+    private String  role;
     public Daily() {
     }
 
-    public Daily(Integer id, String event, String time, Integer worker, String operation,Integer num) {
+    public Daily(Integer id, String event, String time, Integer worker, String operation, Integer num, String role) {
         this.id = id;
         this.event = event;
         this.time = time;
         this.worker = worker;
         this.operation = operation;
-        this.num=num;
+        this.num = num;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -68,6 +70,14 @@ public class Daily {
         this.num = num;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "Daily{" +
@@ -77,6 +87,7 @@ public class Daily {
                 ", worker=" + worker +
                 ", operation='" + operation + '\'' +
                 ", num=" + num +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

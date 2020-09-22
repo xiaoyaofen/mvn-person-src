@@ -198,4 +198,15 @@ public interface SystemMapper {
                              @Param("id") Integer id);
 
 
+
+    public Admin findAdminByPhone(@Param("phone") String phone);
+
+    public int resetPassword(@Param("password") String password,
+                             @Param("phone") String phone
+    );
+
+
+    public List<Product> getProduct();
+
+
 }

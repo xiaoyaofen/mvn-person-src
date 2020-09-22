@@ -1,5 +1,6 @@
 package com.person.service.impl;
 
+import com.person.aoplog.Log;
 import com.person.bean.Menu;
 import com.person.bean.Params;
 import com.person.bean.Station;
@@ -19,6 +20,7 @@ public class JobServiceImpl implements JobService {
     JobMapper jobMapper;
 
     @Override
+    @Log(operationType = "工作菜单", operationName = "admin")
     public Map<String, List<Params>> findJobMenu() {
         Map<String, List<Params>> map = new HashMap<>();
         List<Params> list = jobMapper.findJobMenu();
@@ -32,12 +34,14 @@ public class JobServiceImpl implements JobService {
     }
 
     @Override
+    @Log(operationType = "查询职业", operationName = "admin")
     public List<Station> findStation(String value) {
         List<Station> list=jobMapper.findStation(value);
         return list;
     }
 
     @Override
+    @Log(operationType = "找具体工作", operationName = "admin")
     public Station findOneStation(String id) {
         Station station=jobMapper.findOneStation(id);
         return station;

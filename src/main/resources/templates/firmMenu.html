@@ -73,8 +73,7 @@
         } else {
             //动态控制iframe高度
             var tabheight = layui.jquery(window).height() - 75;
-            contentTxt = '<iframe src="' + url + '" scrolling="no" width="100%" height="' + (tabheight) + 'PX"></iframe>';
-            //新增一个Tab项
+            contentTxt = '<iframe src="' + url + '" scrolling="no" width="100%" height="' + (tabheight) + 'PX"></iframe>';            //新增一个Tab项
             layui.element.tabAdd('tabDemo', {
                 title: name,
                 content: contentTxt,

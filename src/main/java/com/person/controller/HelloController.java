@@ -92,7 +92,9 @@ public class HelloController {
     @GetMapping(value = "/firmMenu")
     public String firmMenu(Model model, HttpServletRequest request) {
         Admin admin= (Admin) request.getSession().getAttribute("admin");
-        model.addAttribute("adminMame",admin.getName());
+        if(admin!=null){
+            model.addAttribute("adminMame",admin.getName());
+        }
         return "firmMenu";
     }
 //招聘首页

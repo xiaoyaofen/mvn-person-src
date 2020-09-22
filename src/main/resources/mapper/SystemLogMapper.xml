@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.mapper.SystemLogMapper">
+
+    <insert id="insertSystemLog">
+        insert into t_daily (event,time,worker,role)values (#{daily.event},now(),#{daily.worker},#{daily.role})
+    </insert>
+
+</mapper>
+
+

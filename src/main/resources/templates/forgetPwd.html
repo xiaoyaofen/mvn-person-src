@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>忘记密码</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/lib/layui/css/layui.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/lib/layui/css/style.css}">
+    <script type="text/javascript" th:src="@{/X-admin/js/jquery.min.js}"></script>
+    <script th:src="@{/X-admin/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/X-admin/js/xadmin.js}"></script>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="login-main">
+    <header class="layui-elip">找回密码</header>
+    <form class="layui-form">
+        <div class="layui-input-inline">
+            <input type="text" name="phone" id="phone" required lay-verify="phone" placeholder="手机号码"
+                   autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-input-inline">
+            <div class="layui-inline layui-show-xs-block">
+                <input type="text" name="code" id="code" value="" placeholder="请输入验证码" class="layui-input"
+                       autocomplete="off" style="width: 150px" required lay-verify="required">
+            </div>
+            <div class="layui-inline layui-show-xs-block">
+                <button type="button" id="getCode" class="layui-btn" style="width: 180px;">获取验证码</button>
+            </div>
+        </div>
+
+        <div class="layui-input-inline">
+            <input type="password" name="password" id="password" required lay-verify="password" placeholder="密码"
+                   autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-input-inline">
+            <input type="password" name="repass" id="repass" lay-verify="repassword" placeholder="确认密码"
+                   autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-input-inline" style="text-align: center">
+              <span>
+            <button lay-submit lay-filter="login" class="layui-btn" style="width: 80px;height: 30px;">确定</button>
+
+                <a class="layui-btn" th:href="@{/system/adminLogInView}">返回</a>
+                    </span>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    var flag = 60;
+    layui.use(['form', 'jquery', 'layer'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+
+        $('#getCode').click(function () {
+            var regex = /^1[3456789]\d{9}$/;
+            var phone = $('#phone').val();
+            if (!(phone.match(regex))) {
+                layer.msg("请输入真确的手机号")
+            } else {
+                if (flag < 60) {
+                    return;
+                }
+                timer();
+                $.ajax({
+                    url: '/system/getCode',
+                    method: 'post',
+                    data: "phone=" + phone,
+                    dataType: 'text',
+                    success: function (res) {
+                        if (res === "1") {
+                            layer.msg("已成功发送验证码请及时查收")
+                        } else {
+                            layer.msg("发送验证码失败")
+                        }
+                    }
+                })
+            }
+        })
+
+        form.verify({
+            password: [
+                /^[\S]{6,12}$/
+                , '密码必须6到12位，且不能出现空格'
+            ],
+            repassword: function (value) {
+                if ($('#password').val() !== value)
+                    return '两次密码输入不一致！'
+            },
+            phone: [
+                /^1[3456789]\d{9}$/
+                , '手机号码格式不正确'
+            ],
+            code: function (value) {
+                if (value.length < 1) {
+                    return '请先获取手机验证码！'
+                }
+            }
+
+        })
+
+        form.on('submit(login)', function (data) {
+            $.ajax({
+                url: '/system/resetPassword',
+                data: data.field,
+                dataType: 'text',
+                type: 'post',
+                success: function (res) {
+                    if (res==="1") {
+                      layer.confirm('您的密码已重置,是否跳转到登录页',function(index) {
+                          location.href="/system/adminLogInView"
+                        })
+                    }else if(res==="2"){
+                        layer.msg('未查到与该手机号码绑定的用户');
+                    }else if(res==="3"){
+                        layer.msg('重置密码失败');
+                    }else if(res==="4"){
+                        layer.msg('验证码已过时请重新获取验证码');
+                    }
+                    else if(res==="5"){
+                        layer.msg('验证码错误');
+                    }
+                }
+            })
+            return false;
+        })
+
+
+    })
+
+    function timer() {
+        flag--;
+        var msg = flag + "秒后重新获取验证码"
+        $('#getCode').text(msg);
+        if (flag === 0) {
+            $('#getCode').text("获取验证码");
+            flag = 60;
+        } else {
+            setTimeout("timer()", 1000);
+        }
+    }
+</script>
+</html>

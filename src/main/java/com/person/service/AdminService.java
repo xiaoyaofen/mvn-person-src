@@ -62,14 +62,6 @@ public interface AdminService {
     //求职管理=====删除求职简历
     Integer deleteAminRecruit(Integer id);
 
-    /**
-     * 发送短信的接口
-     * @param phoneNum 手机号
-     * @param message     消息
-     * @return
-     */
-    public boolean sendSms(String phoneNum, String message);
-
     //excel导出
     List<BusClick> exportExcel(Integer adminid);
 

@@ -294,5 +294,16 @@
         update t_company set check_state =#{state} where id=#{id}
     </update>
 
+    <select id="findAdminByPhone" resultType="com.person.bean.Admin">
+        select*from t_admin where tel=#{phone}
+    </select>
+
+    <update id="resetPassword">
+        update t_admin set pwd=#{password} where tel=#{phone}
+    </update>
+
+    <select id="getProduct" resultType="com.person.bean.Product">
+        select * from t_product
+    </select>
 
 </mapper>

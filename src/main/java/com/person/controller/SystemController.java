@@ -5,7 +5,10 @@ import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.person.bean.*;
+import com.person.service.AdminService;
 import com.person.service.SystemService;
+import com.person.util.SmsSenderUtil;
+import com.person.util.VerifyUtil;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +35,9 @@ public class SystemController {
 
     @Autowired
     private SystemService systemService;
+
+    @Autowired
+    private AdminService adminService;
 
     @RequestMapping(value = "/paramsView", produces = "text/plain;charset=utf-8")
     public String paramsView(String name, String type) {
@@ -253,6 +260,7 @@ public class SystemController {
     //管理员登录界面
     @RequestMapping(value = "/adminLogInView", produces = "text/plain;charset=utf-8")
     public String adminLogInView() {
+
         return "adminLogin";
 
     }
@@ -265,9 +273,7 @@ public class SystemController {
             Admin admin = systemService.adminLogIn(account, pwd);
             if (admin != null) {
                 req.getSession().setAttribute("admin",admin);
-
                 return "登录成功";
-
             } else {
                 return "账号或密码错误";
             }
@@ -339,23 +345,48 @@ public class SystemController {
         String code = request.getParameter("code");
         String address = request.getParameter("address");
         String unit = request.getParameter("unit");
-        String qualification=request.getParameter("qualification");
-        Admin admin= systemService.checkAccount(account);
-        if(admin!=null){
-            return "1";
-        }else{
-         Boolean flag=systemService.adminRegister(roleId,account,name,password,phone,address,unit,qualification);
-           if(flag){
-               return "2";
-           }else{
-               return "3";
-           }
+        String qualification = request.getParameter("qualification");
+        String resMsg=null;
+        Admin admin = systemService.checkAccount(account);
+        if (admin != null) {
+            resMsg= "1";
         }
+        else{
+            Long newTime = new Date().getTime();
+            System.out.println(newTime);
+            HttpSession session = request.getSession();
+            Long currentLong = (Long) session.getAttribute("currentLong");
+            System.out.println(currentLong);
+            if(newTime - currentLong > (120 * 1000)){
+                resMsg="4" ;
+            }else{
+                String verifyCode = (String) session.getAttribute("verifyCode");
+                if(code.equalsIgnoreCase(verifyCode)){
+                    Boolean flag = systemService.adminRegister(roleId, account, name, password, phone, address, unit, qualification);
+                    if (flag) {
+                        resMsg= "2";
+                    } else {
+                        resMsg= "3";
+                    }
+                }else{
+                    resMsg="5";
+                }
+            }
+        }
+//        else {
+//            Boolean flag = systemService.adminRegister(roleId, account, name, password, phone, address, unit, qualification);
+//            if (flag) {
+//                return "2";
+//            } else {
+//                return "3";
+//            }
+//        }
+        return resMsg;
 
     }
 
     @RequestMapping(value = "/jobTradeView", produces = "text/plain;charset=utf-8")
-    public String jobTradeView(){
+    public String jobTradeView() {
         return "jobTrade";
     }
 
@@ -364,7 +395,7 @@ public class SystemController {
 
     @RequestMapping(value = "/tradeList", produces = "text/plain;charset=utf-8")
     @ResponseBody
-    public String tradeList(){
+    public String tradeList() {
         List<Params> list = systemService.selectTrade();
         return JSON.toJSONString(list);
     }
@@ -453,4 +484,115 @@ public class SystemController {
         sessionStatus.setComplete();
         return "adminLogin";
     }
+
+
+    @RequestMapping(value = "/forgetPwdView", produces = "text/plain;charset=utf-8")
+    public String forgetPwdView() {
+        return "forgetPwd";
+    }
+
+
+    @RequestMapping(value = "/getCode", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String getCode(String phone, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long currentLong = (Long) session.getAttribute("currentLong");
+        String code = (String) session.getAttribute("verifyCode");
+        String resMsg = null;
+        if (currentLong == null) {
+            code = VerifyUtil.createCode();
+            currentLong = new Date().getTime();
+            session.setAttribute("verifyCode", code);
+            session.setAttribute("currentLong", currentLong);
+            boolean sendFlag = SmsSenderUtil.sender(phone,code);
+            if (sendFlag) {
+                resMsg = "1";
+            } else {
+                resMsg = "2";
+            }
+
+        } else {
+            Long newTime = new Date().getTime();
+            if (newTime - currentLong > (60 * 1000)) {
+                code = VerifyUtil.createCode();
+                session.setAttribute("currentLong", newTime);
+                boolean sendFlag = SmsSenderUtil.sender(phone,code);
+                if (sendFlag) {
+                    resMsg = "1";
+                } else {
+                    resMsg = "2";
+                }
+            }
+        }
+        return resMsg;
+    }
+
+
+    @RequestMapping(value = "/resetPassword", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String resetPassword(HttpServletRequest request) {
+        String phone = request.getParameter("phone");
+        String code = request.getParameter("code");
+        String password = request.getParameter("password");
+        Long newTime = new Date().getTime();
+        HttpSession session = request.getSession();
+        Long currentLong = (Long) session.getAttribute("currentLong");
+        String marks = null;
+        if (newTime - currentLong > (120 * 1000)) {
+            marks = "4";
+        } else {
+            String verifyCode = (String) session.getAttribute("verifyCode");
+            if (code.equalsIgnoreCase(verifyCode)) {
+                marks = systemService.resetPassword(password, phone);
+            } else {
+                marks = "5";
+            }
+        }
+        return marks;
+    }
+
+    @RequestMapping(value = "/getCodes", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String getCodes(String phone, HttpServletRequest request) {
+        System.out.println(phone);
+        Admin admin = systemService.findAdminByPhone(phone);
+        String resMsg = null;
+        if (admin != null) {
+            resMsg = "3";
+        } else {
+            HttpSession session = request.getSession();
+            Long currentLong = (Long) session.getAttribute("currentLong");
+            String code = (String)session.getAttribute("verifyCode");
+            if(currentLong == null){
+                code = VerifyUtil.createCode();
+                currentLong = new Date().getTime();
+                session.setAttribute("verifyCode", code);
+                session.setAttribute("currentLong", currentLong);
+                boolean sendFlag = SmsSenderUtil.sender(phone,code);
+                if(sendFlag){
+                    resMsg= "1";
+                }else{
+                    resMsg= "2";
+                }
+
+            }else{
+                Long newTime = new Date().getTime();
+                if (newTime - currentLong > (60 * 1000)) {
+                    code = VerifyUtil.createCode();
+                    session.setAttribute("currentLong", newTime);
+                    boolean sendFlag = SmsSenderUtil.sender(phone,code);
+                    if(sendFlag){
+                        resMsg= "1";
+                    }else{
+                        resMsg= "2";
+                    }
+                }
+            }
+        }
+
+        return resMsg;
+    }
+
+
+
 }

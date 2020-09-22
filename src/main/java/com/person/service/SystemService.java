@@ -62,4 +62,10 @@ public interface SystemService {
 
 
     public  Boolean checkCompany(String state, Integer id);
+
+    public String resetPassword( String password, String phone);
+
+    public Admin findAdminByPhone(String phone);
+
+
 }
