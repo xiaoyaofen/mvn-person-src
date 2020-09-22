@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import sun.java2d.pipe.SpanIterator;
 import sun.reflect.generics.tree.VoidDescriptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -138,16 +139,14 @@ public class UserController {
     @RequestMapping("/getCollect")
     @ResponseBody
     public String getCollect(HttpServletRequest request, HttpServletResponse response) {
-//        User user= (User) request.getSession().getAttribute("user");
-//        Integer userid= user.getId();
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userid= user.getId();
         String page = request.getParameter("page");
         String limit = request.getParameter("limit");
         String startTime = request.getParameter("startTime");
         String endTime = request.getParameter("endTime");
         String industry = request.getParameter("industry");
-        System.out.println(industry);
         String post = request.getParameter("post");
-        System.out.println(post);
         HashMap<String, Object> condition = new HashMap<>();
         Integer startL = (Integer.valueOf(page) - 1) * Integer.valueOf(limit);
         Integer endL = Integer.valueOf(page) * Integer.valueOf(limit);
@@ -165,8 +164,50 @@ public class UserController {
         if (post != null && !"".equals(post)) {
             condition.put("post", post);
         }
-        List<Collect> list = userService.getCollect("1", condition);
-        Integer count = userService.findCount2("1", condition);
+        List<Collect> list = userService.getCollect(String.valueOf(userid), condition);
+        Integer count = userService.findCount2(String.valueOf(userid), condition);
+        LayuiData layuiData = new LayuiData();
+        layuiData.setMsg("");
+        layuiData.setCode(0);
+        layuiData.setCount(count);
+        layuiData.setData(list);
+        return new Gson().toJson(layuiData);
+
+    }
+
+
+
+    //我的人脉
+    @RequestMapping("/getContacts")
+    @ResponseBody
+    public String getContacts(HttpServletRequest request, HttpServletResponse response) {
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userid= user.getId();
+        String page = request.getParameter("page");
+        String limit = request.getParameter("limit");
+        String startTime = request.getParameter("startTime");
+        String endTime = request.getParameter("endTime");
+        String number = request.getParameter("number");
+        String name = request.getParameter("name");
+        HashMap<String, Object> condition = new HashMap<>();
+        Integer startL = (Integer.valueOf(page) - 1) * Integer.valueOf(limit);
+        Integer endL = Integer.valueOf(page) * Integer.valueOf(limit);
+        condition.put("startL", startL);
+        condition.put("endL", endL);
+        if (startTime != null && !"".equals(startTime)) {
+            condition.put("startTime", startTime);
+        }
+        if (endTime != null && !"".equals(endTime)) {
+            condition.put("endTime", endTime);
+        }
+        if (number != null && !"".equals(number)) {
+            condition.put("number", number);
+        }
+        if (name != null && !"".equals(name)) {
+            condition.put("name", name);
+        }
+        List<Contacts> list = userService.getContacts(String.valueOf(userid), condition);
+        Integer count = userService.findCount3(String.valueOf(userid), condition);
         LayuiData layuiData = new LayuiData();
         layuiData.setMsg("");
         layuiData.setCode(0);
@@ -181,8 +222,8 @@ public class UserController {
     @ResponseBody
     public Object upload(HttpServletRequest request, HttpServletResponse response,
                          MultipartFile file) {
-//        User user= (User) request.getSession().getAttribute("user");
-//        Integer userId=user.getId();
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userId=user.getId();
         try {
             //获取文件名,
             String originalName = file.getOriginalFilename();
@@ -216,8 +257,7 @@ public class UserController {
             layuiData.setCode(0);
             layuiData.setMsg("上传成功");
             String url = "\\upload" + File.separator + dateStr + File.separator + uuid + "." + prefix;
-            userService.down(url, "1");
-//            System.out.println("文件信息："+tit+userId+introduce+projectPath);
+            userService.down(url, String.valueOf(userId));
             return layuiData;
         } catch (Exception e) {
             e.printStackTrace();
@@ -228,9 +268,9 @@ public class UserController {
     @RequestMapping("/getimg")
     @ResponseBody
     public Object getimg(HttpServletRequest request, HttpServletResponse response) {
-//        User user= (User) request.getSession().getAttribute("user");
-//        Integer userId=user.getId();
-        User img = userService.getimg("1");
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userId=user.getId();
+        User img = userService.getimg(String.valueOf(userId));
         return new Gson().toJson(img);
     }
 
@@ -238,15 +278,15 @@ public class UserController {
     @RequestMapping("/getInfor")
     @ResponseBody
     public Object getInfor(HttpServletRequest request, HttpServletResponse response) {
-//        User user= (User) request.getSession().getAttribute("user");
-//        Integer userId=user.getId();
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userId=user.getId();
         String name = request.getParameter("name");
         String account = request.getParameter("account");
         String tel = request.getParameter("tel");
         String sex = request.getParameter("sex");
         String address = request.getParameter("address");
         Integer sex1 = userService.getsex(sex);
-        userService.Infor(account, name, sex1, tel, address, "1");
+        userService.Infor(account, name, sex1, tel, address, String.valueOf(userId));
         User img = userService.getimg("1");
         return new Gson().toJson(img);
     }
@@ -255,28 +295,28 @@ public class UserController {
     @RequestMapping("/Infor")
     @ResponseBody
     public Object Infor(HttpServletRequest request, HttpServletResponse response) {
-//        User user= (User) request.getSession().getAttribute("user");
-//        Integer userId=user.getId();
-        User img = userService.getimg("1");
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userId=user.getId();
+        User img = userService.getimg(String.valueOf(userId));
         return new Gson().toJson(img);
     }
 
     //简历
     @RequestMapping("/findInfor")
-    public Object showRecruit(Model model) {
-//        User user= (User) request.getSession().getAttribute("user");
-//        Integer userId=user.getId();
-        User user = userService.findInfor("1");
+    public Object showRecruit(HttpServletRequest request, HttpServletResponse response,Model model) {
+        User user1= (User) request.getSession().getAttribute("user");
+        Integer userId=user1.getId();
+        User user = userService.findInfor(String.valueOf(userId));
         model.addAttribute("user", user);
         return "myresume";
     }
 
     //查看
     @RequestMapping("/find")
-    public Object showFind(Model model) {
-//        User user= (User) request.getSession().getAttribute("user");
-//        Integer userId=user.getId();
-        User user = userService.findInfor("1");
+    public Object showFind(HttpServletRequest request, HttpServletResponse response,Model model) {
+        User user1= (User) request.getSession().getAttribute("user");
+        Integer userId=user1.getId();
+        User user = userService.findInfor(String.valueOf(userId));
         model.addAttribute("user", user);
         return "Collect";
     }
@@ -287,7 +327,6 @@ public class UserController {
         String name = request.getParameter("name");
         String pname = request.getParameter("pname");
         mixture obj = userService.introduce(name, pname);
-        System.out.println(obj);
         return new Gson().toJson(obj);
     }
 
@@ -308,7 +347,6 @@ public class UserController {
     @ResponseBody
     public Object ifFace(Model model,HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("account");
-        System.out.println(name);
         User user = userService.findbyname(name);
         if (user==null){
             return new Gson().toJson(2);
@@ -338,8 +376,29 @@ public class UserController {
         System.out.println(account);
         User user=userService.findbyname(account);
         model.addAttribute("user", user);
-        System.out.println(user.getAccount());
         return "Person2";
+    }
+
+
+    //简历
+    @RequestMapping("/getjianli")
+
+    public Object getjianli(HttpServletRequest request, HttpServletResponse response,Model model) {
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userId=user.getId();
+        Integer education=user.getEducation();
+        Integer a=user.getSex();
+        Integer b=user.getEducation();
+        User user1=userService.findInfor(String.valueOf(userId));
+
+        Params params=userService.getValue(String.valueOf(education));
+        Params params1=userService.Sex(String.valueOf(a));
+        Params params2=userService.getExperience(String.valueOf(b));
+        model.addAttribute("params2", params2);
+        model.addAttribute("params1", params1);
+        model.addAttribute("params", params);
+        model.addAttribute("user1", user1);
+        return "jianli";
     }
 
 

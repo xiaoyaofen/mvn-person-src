@@ -20,13 +20,13 @@
 </head>
 <body>
 <div class="demoTable">
-    行业：
+    学号：
     <div class="layui-inline">
-        <input class="layui-input" type="text" name="industry" id="industry">
+        <input class="layui-input" type="text" name="number" id="number">
     </div>
-    岗位：
+    名字：
     <div class="layui-inline">
-        <input class="layui-input" type="text" name="post" id="post">
+        <input class="layui-input" type="text" name="name" id="name">
     </div>
 
     <button class="layui-btn" data-type="reload">搜索</button>
@@ -65,11 +65,11 @@
         table.render({
             elem: '#test'
             , height: 312
-            , url: '/user/getCollect' //数据接口
+            , url: '/user/getContacts' //数据接口
             , cols: [
                 [ //表头
                     {field: 'id', title: '序号', width:80, sort: true, fixed: 'left'}
-                    ,{field: 'industry', title: '学号', align: 'center', width: 160}
+                    ,{field: 'number', title: '学号', align: 'center', width: 160}
                     , {field: 'name', title: '名字', width: 160, align: 'center', sort: true}
                     , {field: 'sex', title: '性别', align: 'center', width: 160}
                     , {field: 'company', title: '所在公司', align: 'center', width: 160}
@@ -158,16 +158,16 @@
         });
         var $ = layui.$, active = {
             reload: function () {
-                var industry = $('#industry').val();
-                var post = $('#post').val();
+                var number = $('#number').val();
+                var name = $('#name').val();
 
                 //执行重载
                 table.reload('testReload', {
-                    url:'/user/getCollect',
+                    url:'/user/getContacts',
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
-                    , where: {"industry": industry, "post": post}
+                    , where: {"number":number, "name":name}
 
                 }, 'data');
             }

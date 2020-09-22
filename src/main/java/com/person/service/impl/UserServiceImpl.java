@@ -61,6 +61,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<Contacts> getContacts(String userid, HashMap<String, Object> condition) {
+        return userMapper.getContacts(userid,condition);
+    }
+
+    @Override
+    public Integer findCount3(String userid, HashMap<String, Object> condition) {
+        return userMapper.findCount3(userid,condition);
+    }
+
+    @Override
     public void down(String img,String id) {
         userMapper.down(img,id);
     }
@@ -98,12 +108,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void getuserid(String username) {
-         userMapper.getuserid(username);
+
+        userMapper.getuserid(username);
     }
 
     @Override
     public User getFace(String faceId) {
+
         return userMapper.getFace(faceId);
+    }
+
+    @Override
+    public Params getValue(String value) {
+        return userMapper.getValue(value);
+    }
+
+    @Override
+    public Params Sex(String value) {
+        return userMapper.Sex(value);
+    }
+
+    @Override
+    public Params getExperience(String value) {
+        return userMapper.getExperience(value);
     }
 
 

@@ -26,7 +26,7 @@
     </div>
     岗位：
     <div class="layui-inline">
-        <input class="layui-input" type="text" name="post1" id="post1">
+        <input class="layui-input" type="text" name="post" id="post">
     </div>
 
     <button class="layui-btn" data-type="reload">搜索</button>
@@ -189,7 +189,7 @@
                 var post = $('#post').val();
                 //执行重载
                 table.reload('testReload', {
-                    url:'/user/getFeedback',
+                    url:'/user/getCollect',
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
@@ -238,42 +238,7 @@
         });
     }
 
-    /*用户-删除*/
-    // function member_del(obj, id) {
-    //     layer.confirm('确认要删除吗？', function (index) {
-    //         //发异步删除数据
-    //         $(obj).parents("tr").remove();
-    //         layer.msg('已删除!', {icon: 1, time: 1000});
-    //     });
-    // }
 
-    // function delAll(argument) {
-    //     var data = tableCheck.getData();
-    //     layer.confirm('确认要删除吗？' + data, function (index) {
-    //         //捉到所有被选中的，发异步进行删除
-    //         layer.msg('删除成功', {icon: 1});
-    //         $(".layui-form-checked").not('.header').parents('tr').remove();
-    //     });
-    // }
-
-    // $("#add").on("click", function () {
-    //     layer.open({
-    //         //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-    //         type: 1,
-    //         title: "新增管理员",
-    //         area: ['50%', '50%'],
-    //         content: $("#popSearchRoleTest")
-    //     });
-    // });
-    // function selectRole(){
-    //     layer.open({
-    //         //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
-    //         type:1,
-    //         title:"查找用户角色",
-    //         area: ['50%','50%'],
-    //         content:$("#popSearchRoleTest1").html()
-    //     });
-    // }
 </script>
 
 
@@ -302,7 +267,7 @@
             <label class="layui-form-label">招聘职位</label>
             <div class="layui-input-block">
                 <input type="text" name="newname" required lay-verify="required" autocomplete="off"
-                       class="layui-input" id="post">
+                       class="layui-input" id="post1">
             </div>
         </div>
         <div class="layui-form-item">

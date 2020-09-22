@@ -30,6 +30,11 @@ public class User{
     private String school;//学校
     private String outlook;//社会面貌
     private String img; //用户头像
+    private String email;
+
+    private  String project;//项目经验
+    private String educationbackground;//教育背景
+    private String self;//自我描述
 
 
     private String username;//人脸识别的名字
@@ -90,6 +95,54 @@ public class User{
         this.school = school;
         this.outlook = outlook;
         this.img = img;
+    }
+
+    public String getProject() {
+        return project;
+    }
+
+    public void setProject(String project) {
+        this.project = project;
+    }
+
+    public String getEducationbackground() {
+        return educationbackground;
+    }
+
+    public void setEducationbackground(String educationbackground) {
+        this.educationbackground = educationbackground;
+    }
+
+    public String getSelf() {
+        return self;
+    }
+
+    public void setSelf(String self) {
+        this.self = self;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFaceId() {
+        return faceId;
+    }
+
+    public void setFaceId(String faceId) {
+        this.faceId = faceId;
     }
 
     public String getImg() {

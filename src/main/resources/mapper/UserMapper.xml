@@ -37,15 +37,15 @@
         </if>
     </select>
     <select id="getCollect" resultType="com.person.bean.Collect" parameterType="hashmap">
-        select * from t_collect where userid=#{userid}
-        <if test="map.industry!=null and map.industry!=''">
-            and industry like concat ('%',#{map.industry},'%')
-        </if>
-        <if test="map.post!=null and map.post!=''">
-            and post like concat ('%',#{map.post},'%')
-        </if>
-        limit #{map.startL},#{map.endL};
-    </select>
+    select * from t_collect where userid=#{userid}
+    <if test="map.industry!=null and map.industry!=''">
+        and industry like concat ('%',#{map.industry},'%')
+    </if>
+    <if test="map.post!=null and map.post!=''">
+        and post like concat ('%',#{map.post},'%')
+    </if>
+    limit #{map.startL},#{map.endL};
+</select>
 
     <select id="findCount2" resultType="java.lang.Integer">
         select count(*) from t_collect where userid=#{userid}
@@ -56,6 +56,29 @@
             and post like concat ('%',#{map.post},'%')
         </if>
     </select>
+<!--    //我的人脉-->
+    <select id="getContacts" resultType="com.person.bean.Contacts" parameterType="hashmap">
+        select * from t_contacts where userid=#{userid}
+        <if test="map.number!=null and map.number!=''">
+            and number like concat ('%',#{map.number},'%')
+        </if>
+        <if test="map.name!=null and map.name!=''">
+            and name like concat ('%',#{map.name},'%')
+        </if>
+        limit #{map.startL},#{map.endL};
+    </select>
+
+    <select id="findCount3" resultType="java.lang.Integer">
+        select count(*) from t_contacts where userid=#{userid}
+        <if test="map.number!=null and map.number!=''">
+            and number like concat ('%',#{map.number},'%')
+        </if>
+        <if test="map.name!=null and map.name!=''">
+            and name like concat ('%',#{map.name},'%')
+        </if>
+    </select>
+
+
     <update id="down">
         update t_user set img=#{img} where id=#{id};
     </update>
@@ -68,7 +91,7 @@
     </update>
 <!--    //获得性别-->
     <select id="getsex" resultType="java.lang.Integer">
-        SELECT value from t_param WHERE name=#{name}
+        SELECT value from t_param WHERE and name=#{name}
     </select>
 <!--//查找用户信息-->
     <select id="findInfor" resultType="com.person.bean.User">
@@ -91,5 +114,17 @@ where p.type='岗位' and c.name=#{name} and p.name=#{pname}
 
     <select id="getFace" resultType="com.person.bean.User">
         select * from t_user where account =(select username from user_face_info where face_id=#{faceId})
+    </select>
+
+    <select id="getValue" resultType="com.person.bean.Params">
+        select name from t_param where type='学历' and value=#{value}
+    </select>
+<!--    //查找性别-->
+    <select id="Sex" resultType="com.person.bean.Params">
+        select name from t_param where type='性别' and value=#{value}
+    </select>
+<!--    //查找工作经验-->
+    <select id="getExperience" resultType="com.person.bean.Params">
+        select name from t_param where type='工作经验' and value=#{value}
     </select>
 </mapper>

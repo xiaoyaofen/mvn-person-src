@@ -148,5 +148,11 @@ public class HelloController {
         return "face_search";
     }
 
+//我的人脉
+    @GetMapping(value = "/contacts")
+    public String contacts() {
+        return "Mycontacts";
+    }
+
 
 }

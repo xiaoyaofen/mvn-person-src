@@ -17,6 +17,10 @@ public interface UserService {
 //用户收藏表
     public List<Collect> getCollect(String userid, HashMap<String, Object> condition);
     public Integer findCount2(String userid,HashMap<String, Object> condition);
+
+    public List<Contacts> getContacts(String userid, HashMap<String, Object> condition);
+    public Integer findCount3(String userid,HashMap<String, Object> condition);
+
     public void down(String img,String id);
     public User  getimg(String id);
     public void Infor(String account,String name,Integer sex,String tel,String address,String id);
@@ -29,4 +33,10 @@ public interface UserService {
     public void getuserid(String username);
 
     public User getFace(String faceId);
+
+    public Params getValue(String value);
+
+    public Params Sex(String value);
+
+    public Params getExperience(String value);
 }
