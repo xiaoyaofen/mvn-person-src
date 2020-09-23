@@ -25,6 +25,7 @@ public class MenuServiceImpl implements MenuService {
     MenuMapper menuMapper;
 
     @Override
+    @Log(operationType = "个人中心菜单", operationName = "user")
     public List getMenu() {
         List<Menu> menuList= menuMapper.getMenu();
         return menuList;

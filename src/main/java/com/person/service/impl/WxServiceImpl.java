@@ -1,5 +1,6 @@
 package com.person.service.impl;
 
+import com.person.aoplog.Log;
 import com.person.bean.User;
 import com.person.mapper.WxMapper;
 import com.person.service.WxService;
@@ -13,6 +14,7 @@ public class WxServiceImpl implements WxService {
     WxMapper wxMapper;
 
     @Override
+    @Log(operationType = "微信登录", operationName = "admin")
     public User login(String account, String pwd) {
         User user=wxMapper.login(account,pwd);
         return user;
