@@ -24,6 +24,7 @@ mybatis:
       cache: false
 
 
+
 #aliyun:
 #  accessKeyID: LTAI4GATztwWQJWd6NGWvEBJ   #你的accessKeyID
 #  accessKeySecret: v7iRG7K07X7b6lq3BOIB4w1bUzmsA7                #你的accessKeySecret

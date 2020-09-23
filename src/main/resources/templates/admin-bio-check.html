@@ -39,7 +39,7 @@
                             <button id="select-btn" class="layui-btn" data-type="reload" type="button">
                                 <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                             </button>
-                            <button id="load-btn" class="layui-btn"type="button">导出数据</button>
+                            <button id="load-btn" class="layui-btn"type="button">导出简历资料</button>
                         </div>
                      </form>
                 </div>
@@ -81,8 +81,9 @@
             ,cols: [
                 [ //表头
                     {type: 'checkbox', fixed: 'left'}
-                    ,{field: 'jobstation', title: '序号', width:80, sort: true, fixed: 'left'}
-                    ,{field: 'id',hide: true}
+                    ,{field: 'pm', title: '序号', width:80, sort: true, fixed: 'left'}
+                    ,{field: 'id',width:200,hide: true}
+                    ,{field: 'jobstation',hide:true}
                     ,{field: 'title', title: '岗位', width: 300}
                     ,{field: 'name', title: '应聘者', width: 150}
                     ,{field: 'major', title: '专业', width: 300}
@@ -128,8 +129,9 @@
                 var id = data.id;
                 var jobstation = data.jobstation;//
                 var title= data.title;
+                var username = data.name;
 
-                location.href="/admin/hiringScheduleFrame?id="+id+"&jobstation="+jobstation+"&title="+title;
+                location.href="/admin/hiringScheduleFrame?id="+id+"&jobstation="+jobstation+"&title="+title+"&username="+username;
             }
         });
 
@@ -159,7 +161,7 @@
 
         //=================== 导出文件
         $('#load-btn').on('click', function () {
-            alert("导出文件");
+            location.href = "/admin/exportExcel";
         });
 
 

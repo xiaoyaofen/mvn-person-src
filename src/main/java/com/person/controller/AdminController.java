@@ -1,9 +1,15 @@
 package com.person.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.domain.AlipayTradeWapPayModel;
+import com.alipay.api.request.AlipayTradeWapPayRequest;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.person.bean.*;
+import com.person.config.AlipayConfig;
 import com.person.service.AdminService;
 import com.person.util.EailSenderUitl;
 import com.person.util.ExcelUtils;
@@ -287,7 +293,12 @@ public class AdminController {
 
     //公司招聘管理=================招聘修改界面
     @RequestMapping(value = "recruitUpdateFrame", produces = "text/plain;charset=utf-8")
-    public String recruitUpdateFrame(){
+    public String recruitUpdateFrame(Model model,Integer id){
+        if(id== null){
+            id = 13;
+        }
+        Station station = adminService.getStationById(id);
+        model.addAttribute("station",station);
         return "recruit-update";
     }
 
@@ -318,7 +329,6 @@ public class AdminController {
         Integer res = adminService.recruitInsert(station,adminId);
         return ""+res;
     }
-
 
 
     //求职管理====================界面显示
@@ -353,6 +363,7 @@ public class AdminController {
 
         return new Gson().toJson(layuiData);
     }
+
 
     //求职管理=====================删除求职简历
     @RequestMapping(value = "deleteAminRecruit", produces = "text/plain;charset=utf-8")
@@ -412,7 +423,6 @@ public class AdminController {
         if(company.getId() == null){
             company.setId(1);
         }
-        System.out.println("======================================"+company.getIntroduce());
         Integer res = adminService.companyUpadate(company);
         return ""+res;
     }
@@ -430,19 +440,21 @@ public class AdminController {
 
     //招聘进度
     @RequestMapping(value = "hiringScheduleFrame", produces = "text/plain;charset=utf-8")
-    public String hiringScheduleFrame(Integer id,Integer jobstation,String title,Model model){
+    public String hiringScheduleFrame(String username,Integer id,Integer jobstation,String title,Model model){
         System.out.println(id); // 学生id
         System.out.println(jobstation);
+
         Jobcontain jobcontain = adminService.hiringScheduleFrame(jobstation);
         model.addAttribute("job",jobcontain);
         model.addAttribute("userid",id);
+        model.addAttribute("username",username);
         model.addAttribute("jobstation",jobstation);
         model.addAttribute("title",title);
         return "hiring-schedule";
     }
 
     //求职进度审核=====审核
-    @RequestMapping("checkResume")
+    @RequestMapping(value="checkResume", produces = "text/plain;charset=utf-8")
     @ResponseBody
     public String checkResume(String id,String value,Integer i){
         System.out.println(id);
@@ -454,14 +466,14 @@ public class AdminController {
 
 
     //邮箱发送
-    @RequestMapping("test")
-    @ResponseBody
-    public  String main() throws Exception {
-        return EailSenderUitl.sendMail();
-    }
+//    @RequestMapping("sendEmailToUser")
+//    @ResponseBody
+//    public  String sendEmailToUser(String date,String company,String user) throws Exception {
+//        return EailSenderUitl.sendMail(date,company,user);
+//    }
 
     //手机验证码发送
-    @RequestMapping(value = "/sendSms")
+    @RequestMapping(value = "/sendSms", produces = "text/plain;charset=utf-8")
     @ResponseBody
     public String sendSms(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -478,6 +490,7 @@ public class AdminController {
             Long newTime = new Date().getTime();
             if (newTime - currentLong > (10 * 1000)) {
                 code = VerifyUtil.createCode();
+                session.setAttribute("verifyCode", code);
                 session.setAttribute("currentLong", newTime);
                 //boolean sendFlag = adminService.sendSms("15294560890",code);
             }
@@ -490,7 +503,7 @@ public class AdminController {
     }
 
     //数据导出
-    @RequestMapping(value = "exportExcel", method = RequestMethod.GET)
+    @RequestMapping(value = "exportExcel", produces = "text/plain;charset=utf-8")
     public void exportExcel(HttpServletResponse response,HttpServletRequest request)  throws IOException {
         Admin admin = (Admin)request.getSession().getAttribute("admin");
         Integer adminid = 1;
@@ -503,17 +516,139 @@ public class AdminController {
         ExcelUtils.writeExcel(response, resultList, BusClick.class);
         long t2 = System.currentTimeMillis();
         System.out.println(String.format("write over! cost:%sms", (t2 - t1)));
+//        return "admin-bio-check";
     }
 
 
     /**
-     * 发送短信的接口
+     * 简历展示
      * @Param id 书生序号
      * @return
      */
     @RequestMapping("showRecruit2")
-    public String showRecruit2(Integer id){
-        return "jianli";
+    public String showRecruit2(Model model,Integer id){
+        if(id== null){
+            id = 1;
+        }
+        User user = adminService.showRecruit(id);
+        model.addAttribute("user",user);
+        return "resume-show";
+    }
+
+    /**
+     * 招聘信息展示
+     * @Param id 招聘信息id
+     * @return
+     */
+    @RequestMapping("recruitShowFrame")
+    public String recruitShowFrame(Model model,Integer id){
+        if(id == null){
+            id = 13;
+        }
+        Station station = adminService.recruitShowFrame(id);
+        model.addAttribute("station",station );
+        return "recruit-show";
+    }
+
+    /**
+     * 地图显示
+     * @Param id 招聘信息id
+     * @return
+     */
+    @RequestMapping("recruitSelectMap")
+    public String recruitSelectMap(Model model,Integer id){
+        if(id == null){
+            id = 13;
+        }
+        Station station = adminService.recruitShowFrame(id);
+        model.addAttribute("station",station );
+        return "recruit-select-map";
+    }
+
+
+    @RequestMapping(value="enablejob" , produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String enablejob(HttpServletRequest request,Integer id){
+        User user = (User)request.getSession().getAttribute("user");
+        if(user == null){
+            user = new User();
+            user.setId(1);
+        }
+        Integer res = adminService.enablejob(user.getId(),id);
+        return res+"";
+    }
+
+
+    /**
+     * 充值中心界面显示
+     *
+     * */
+    @RequestMapping("accountRecharge" )
+    public String accountRecharge(){
+        return "admin-chongzhizhongxin";
+    }
+
+    /**
+     * 充值中心操作
+     *
+     * */
+    @RequestMapping("pay")
+    @ResponseBody
+    public String payMoney() throws AlipayApiException {
+        String WIDTCout_trade_no = "20200914099011";
+        String WIDsubject = "菜单";
+        String WIDtotal_amount = "100";
+        String WIDbody = "测试";
+        AlipayConfig alipayConfig=new AlipayConfig();
+        AlipayClient alipayClient=new DefaultAlipayClient(alipayConfig.gatewayUrl,alipayConfig.app_id,alipayConfig.RSA_PRIVATE_KEY,alipayConfig.FORMAT
+                ,alipayConfig.charset,alipayConfig.alipay_public_key,alipayConfig.sign_type);
+
+//        创建请求
+        AlipayTradeWapPayRequest alipayTradeWapPayRequest=new AlipayTradeWapPayRequest();
+//        传入参数
+        AlipayTradeWapPayModel alipayTradeWapPayModel=new AlipayTradeWapPayModel();
+        alipayTradeWapPayModel.setOutTradeNo(WIDTCout_trade_no);
+        alipayTradeWapPayModel.setSubject(WIDsubject);
+        alipayTradeWapPayModel.setTotalAmount(WIDtotal_amount);
+        alipayTradeWapPayModel.setBody(WIDbody);
+        alipayTradeWapPayRequest.setBizModel(alipayTradeWapPayModel);
+        alipayTradeWapPayRequest.setNotifyUrl(alipayConfig.notify_url);
+        alipayTradeWapPayRequest.setReturnUrl(alipayConfig.return_url);
+
+        String form = alipayClient.pageExecute(alipayTradeWapPayRequest).getBody();
+        System.out.println(form);
+        return form;
+    }
+
+    /**
+     * 邀请用户弹窗内容
+     *
+     * */
+    @RequestMapping(value="inviteUserByCompanyFrame" , produces = "text/plain;charset=utf-8")
+    public String inviteUserByCompanyFrame(){
+        return "admin-inviteUserByCompany";
+    }
+
+
+    /**
+     * 处理用户简历弹窗内容
+     *
+     * */
+    @RequestMapping(value="handleUserByCompanyFrame" , produces = "text/plain;charset=utf-8")
+    public String handleUserByCompanyFrame(){
+        return "admin-handleUserByCompanyFrame";
+    }
+
+
+    /**
+     * 邀请用户 - 发送邮件
+     *
+     * */
+    @RequestMapping(value="inviteUserByCompany" , produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String inviteUserByCompany(Integer userid,String date,String address,String tel,Integer jobstation) throws Exception {
+        Integer res = adminService.inviteUserByCompany(userid,date,address,tel,jobstation);
+        return ""+res;
     }
 
 

@@ -17,6 +17,7 @@
     <script type="text/javascript" th:src="@{/X-admin/zxw/job/ReadClick.aspx}"></script>
 </head>
 <body class="bodybg">
+<input type="hidden" th:value="${station.id}" id="jobid"/>
 <form name="myForm" method="post" action="http://www.37zp.com/zhaopin/job_117574.html?Jobid=117574" id="myForm">
     <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTIwNjY3MDAzNTRkZEgoEjTyCLT+FWCdqWqANpTzLuojopiRL5zPOKzRf+/Z">
     <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="A48BCB1C">
@@ -90,7 +91,7 @@
                     <p><a th:text="${station.getJobname()}"></a></p>
                 </div>
                 <div class="n2">
-                    <a href="http://www.37zp.com/resume/res_toApply.aspx?jobid=117574" name="btn_Apply">投个简历</a>
+                    <a onclick="enablejob()" name="btn_Apply">投个简历</a>
                 </div>
             </div>
             <div class="date" id="date">
@@ -306,6 +307,22 @@
                 $(this).find(".aMore").removeClass("aMorecurrent");
             });
         })
+
+
+        function enablejob(){
+            var jobid = $("#jobid").val();
+            $.ajax({
+                url: "/admin/enablejob",
+                data:"id="+jobid,
+                success:function(res){
+                    if(res>0){
+                        alert("简历投递成功");
+                    }else{
+                        alert("网络错误，请重新投递");
+                    }
+                }
+            })
+        }
     </script>
     <input name="hid_Jobid" type="hidden" id="hid_Jobid">
 </form>

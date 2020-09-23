@@ -19,7 +19,7 @@ public class Station {
     private Integer jobid;//职位序号
     private String jobname;//职位
     private String worktime;//工作时间
-    private String description;//职位描述
+    private String description;//职位描述（需要做什么）
     private String welfare;//工作福利
     private String other;//其他
     private String number;//招聘人数
@@ -30,7 +30,7 @@ public class Station {
     private Integer pm;//序号
 
     private String trade;//行业
-    private String request;
+    private String request;//岗位要求（需要什么能力）
     private String jobexpress;
     private String people;
     private String time;

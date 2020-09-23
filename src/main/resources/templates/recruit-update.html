@@ -18,71 +18,101 @@
     <![endif]-->
 </head>
 <body>
-<input id="id" type="hidden" value="3">
+<input id="id" type="hidden" th:value="${station.id}">
+<input type="hidden" th:value="${station.job}" id="job1">
+<input type="hidden" th:value="${station.education}" id="education1">
+<input type="hidden" th:value="${station.sex}" id="sex1">
+<input type="hidden" th:value="${station.experience}" id="experience1">
 
 <form class="layui-form" action="">
     <div class="layui-form-item">
         <label class="layui-form-label">岗位名称</label>
         <div class="layui-input-block">
-            <input type="text" id="title"  name="title" lay-verify="title" autocomplete="off" placeholder="请输入岗位名称" class="layui-input">
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">工作经验</label>
-        <div class="layui-input-block">
-            <input type="text" id="experience"  name="experience" lay-verify="experience" autocomplete="off" placeholder="请输入工作经验" class="layui-input">
+            <input th:value="${station.title}" type="text" id="title"  name="title" lay-verify="title" autocomplete="off" placeholder="请输入岗位名称" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">招聘人数</label>
         <div class="layui-input-block">
-            <input type="text" id="number" name="number" lay-verify="number" autocomplete="off" placeholder="请输入招聘人数" class="layui-input">
+            <input th:value="${station.number}" type="text" id="number" name="number" lay-verify="number1" autocomplete="off" placeholder="请输入招聘人数" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">薪资</label>
         <div class="layui-input-block">
-            <input type="text" id="money" name="money" lay-verify="money" autocomplete="off" placeholder="请输入薪资" class="layui-input">
+            <input th:value="${station.money}" type="text" id="money" name="money" lay-verify="money" autocomplete="off" placeholder="请输入薪资" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">福利</label>
         <div class="layui-input-block">
-            <input type="text" id="welfare" name="welfare" lay-verify="welfare" autocomplete="off" placeholder="请输入福利" class="layui-input">
+            <input th:value="${station.welfare}" type="text" id="welfare" name="welfare" lay-verify="welfare" autocomplete="off" placeholder="请输入福利" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">地区</label>
         <div class="layui-input-block">
-            <input type="text" id="region" name="region" lay-verify="region" autocomplete="off" placeholder="请输入地址" class="layui-input">
+            <input th:value="${station.region}" type="text" id="region" name="region" lay-verify="region" autocomplete="off" placeholder="请输入地址" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
         <label class="layui-form-label">工作时间</label>
         <div class="layui-input-block">
-            <input type="text" id="worktime" name="worktime" lay-verify="worktime" autocomplete="off" placeholder="请输入限制地区" class="layui-input">
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">职位描述</label>
-        <div class="layui-input-block">
-            <input type="text" id="description" name="description" lay-verify="description" autocomplete="off" placeholder="请输入职位描述" class="layui-input">
+            <input th:value="${station.worktime}" type="text" id="worktime" name="worktime" lay-verify="worktime" autocomplete="off" placeholder="请输入限制地区" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">普通文本域</label>
+        <label class="layui-form-label">岗位要求</label>
         <div class="layui-input-block">
-            <textarea id="jindji" placeholder="请输入内容" class="layui-textarea"></textarea>
+            <textarea th:text="${station.description}" id="description" placeholder="应聘者需要什么能力" class="layui-textarea" name="description"></textarea>
+            <i><span class="count-change">0</span>/200</i>
         </div>
     </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">岗位描述</label>
+        <div class="layui-input-block">
+            <textarea th:text="${station.request}" id="request" placeholder="岗位的具体事务" class="layui-textarea" name="request"></textarea>
+            <i><span class="count-change">0</span>/200</i>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">职位选择</label>
+        <div class="layui-input-inline">
+            <select id="job" name="job">
+                <option value="">请选择职位</option>
+            </select>
+        </div>
+    </div>
+
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">限制条件</label>
+        <div class="layui-input-inline">
+            <select id="education" name="education">
+                <option value="">请选择学历</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select id="sex" name="sex">
+                <option value="">请选性别</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select lay-filter="experience" id="experience" name="experience">
+                <option value="">请选择工作经验</option>
+            </select>
+        </div>
+    </div>
+
 
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -90,8 +120,6 @@
             <button id="return-button" type="button" class="layui-btn layui-btn-primary">返回</button>
         </div>
     </div>
-
-</form>
 <script>
     layui.use(['form','layer'], function() {
         var form = layui.form;
@@ -128,6 +156,113 @@
         $('#return-button').on('click', function () {
             location.href="adminRecruitFrame";
         })
+
+        //下拉框绑定 工作经验
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'工作经验',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#experience').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                $('#experience').val($("#experience1").val());
+                layui.form.render("select");
+            }
+        })
+
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'性别',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#sex').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                $('#sex').val($("#sex1").val());
+                layui.form.render("select");
+            }
+        })
+
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'学历',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#education').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                $('#education').val($("#education1").val());
+                layui.form.render("select");
+            }
+        })
+
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'岗位',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#job').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                $('#job').val($("#job1").val());
+                layui.form.render("select");
+            }
+        })
+
+
+        textLength = 200;
+
+        $(function () {
+            var text = $('#description').val();
+            var len = text.length;
+            $('#description').next().find('span').html(len);
+            $('textarea').keyup(function () {
+                var text = $(this).val();
+                len = text.length;
+                if (len > textLength) {
+                    return false;
+                }
+                $(this).next().find('span').html(len);
+            })
+        });
+
+        $("#description").on("input propertychange", function() {
+            var $this = $(this),
+                _val = $this.val(),
+                count = "";
+            if (_val.length > textLength) {
+                $this.val(_val.substring(0, textLength));
+            }
+            count =_val.length;
+            $("#text-count").text(count);
+        });
+
+
+        $(function () {
+            var text = $('#request').val();
+            var len = text.length;
+            $('#request').next().find('span').html(len);
+            $('textarea').keyup(function () {
+                var text = $(this).val();
+                len = text.length;
+                if (len > textLength) {
+                    return false;
+                }
+                $(this).next().find('span').html(len);
+            })
+        });
+
+        $("#request").on("input propertychange", function() {
+            var $this = $(this),
+                _val = $this.val(),
+                count = "";
+            if (_val.length > textLength) {
+                $this.val(_val.substring(0, textLength));
+            }
+            count =_val.length;
+            $("#text-count").text(count);
+        });
 
 
     });

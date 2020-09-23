@@ -87,4 +87,46 @@ public interface AdminMapper {
      * @return
      */
     List<BusClick> exportExcel(@Param("id") Integer adminid);
+
+    /**
+     * 获取招聘信息
+     *
+     * @param id 用户序号
+     * @return
+     */
+    Station getStationById(@Param("id") Integer id);
+
+
+    /**
+     * 招聘信息展示
+     * @Param id 招聘信息id
+     * @return
+     */
+    Station recruitShowFrame(@Param("id") Integer id);
+
+    /**
+     * 投递简历
+     * @Param id 用户id
+     * @Param id1 招聘信息id
+     * @return
+     */
+    Integer enablejob(@Param("id") Integer id,@Param("jobid") Integer id1);
+
+    /**
+     * 判断简历是否投递
+     * @Param id 用户id
+     * @Param id1 招聘信息id
+     * @return
+     */
+    Integer sureEnablejob(@Param("id")Integer id,@Param("jobid") Integer id1);
+
+    /**
+     * 邀请用户 - 发送邮件
+     *@Param userid 用户id
+     * @Param date 邀请时间
+     * @Param address 邀请地点
+     * @Param tel 联系方式
+     * @Param jobstation 求职表中序号
+     * */
+    Jobcontain inviteUserByCompany(@Param("jobstation") Integer jobstation);
 }

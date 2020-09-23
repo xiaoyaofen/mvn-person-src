@@ -12,6 +12,7 @@ public class Admin {
     private String state;     //状态
     private String money;     //余额
     private String name;
+    private Integer pm;
     public Admin(Integer id, String account, String pwd, String tel, String address, Integer company, Integer roleid, String state, String money,String name) {
         this.id = id;
         this.account = account;
@@ -27,6 +28,20 @@ public class Admin {
 
     public Admin(){
 
+    }
+
+    public Admin(Integer id, String account, String pwd, String tel, String address, Integer company, Integer roleid, String state, String money, String name, Integer pm) {
+        this.id = id;
+        this.account = account;
+        this.pwd = pwd;
+        this.tel = tel;
+        this.address = address;
+        this.company = company;
+        this.roleid = roleid;
+        this.state = state;
+        this.money = money;
+        this.name = name;
+        this.pm = pm;
     }
 
     public Integer getId() {
@@ -115,5 +130,13 @@ public class Admin {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getPm() {
+        return pm;
+    }
+
+    public void setPm(Integer pm) {
+        this.pm = pm;
     }
 }

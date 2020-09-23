@@ -19,6 +19,8 @@
 </head>
 <body>
 
+
+
 <form class="layui-form" action="">
     <div class="layui-form-item">
         <label class="layui-form-label">岗位名称</label>
@@ -62,12 +64,23 @@
         </div>
     </div>
 
-    <div class="layui-form-item">
-        <label class="layui-form-label">职位描述</label>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">岗位要求</label>
         <div class="layui-input-block">
-            <input type="text" id="description" name="description" lay-verify="description" autocomplete="off" placeholder="请输入职位描述" class="layui-input">
+            <textarea id="description" placeholder="应聘者需要什么能力" class="layui-textarea" name="description"></textarea>
+            <i><span class="count-change">0</span>/200</i>
         </div>
     </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">岗位描述</label>
+        <div class="layui-input-block">
+            <textarea  id="request" placeholder="岗位的具体事务" class="layui-textarea" name="request"></textarea>
+            <i><span class="count-change">0</span>/200</i>
+        </div>
+    </div>
+
+
 
     <div class="layui-form-item">
         <label class="layui-form-label">职位选择</label>
@@ -108,25 +121,26 @@
     </div>
 
 </form>
+
 <script>
     layui.use(['form','layer'], function() {
         var form = layui.form;
         var layer = layui.layer;
 
-        form.verify({
-            title: function(value){
-                if(value.length < 5){
-                    return '标题至少得5个字符啊';
-                }
-            }
-            ,number: [
-                /^[\S]{2,12}$/
-                ,'密码必须2到12位，且不能出现空格'
-            ]
-            ,content: function(value){
-                layedit.sync(editIndex);
-            }
-        });
+        // form.verify({
+        //     title: function(value){
+        //         if(value.length < 5){
+        //             return '标题至少得5个字符啊';
+        //         }
+        //     }
+        //     ,number: [
+        //         /^[\S]{2,12}$/
+        //         ,'密码必须2到12位，且不能出现空格'
+        //     ]
+        //     ,content: function(value){
+        //         layedit.sync(editIndex);
+        //     }
+        // });
 
 
         //监听提交
@@ -143,13 +157,15 @@
             var experience= $('#experience').val();
             var education= $('#education').val();
             var job= $('#job').val();
+            var request = $('#request').val();
 
             alert(JSON.stringify(data.field));
             $.ajax({
                 url: "/admin/recruitInsert",
+                type: "post",
                 data: "title="+title+"&experience="+experience+"&number="+number+"&money="+money+"&welfare="
                     +welfare+"&region="+region+"&worktime="+worktime+"&description="+description
-                    +"&sex="+sex+"&education="+education+"&job="+job
+                    +"&sex="+sex+"&education="+education+"&job="+job+"&request="+request
                 ,
                 success: function (res) {
                     if(res>0){
@@ -177,6 +193,7 @@
                 $.each(data.data, function (index, item) {
                     $('#experience').append(new Option(item.name, item.value));// 下拉菜单里添加元素
                 });
+
                 layui.form.render("select");
             }
         })
@@ -189,6 +206,7 @@
                 $.each(data.data, function (index, item) {
                     $('#sex').append(new Option(item.name, item.value));// 下拉菜单里添加元素
                 });
+
                 layui.form.render("select");
             }
         })
@@ -213,9 +231,63 @@
                 $.each(data.data, function (index, item) {
                     $('#job').append(new Option(item.name, item.value));// 下拉菜单里添加元素
                 });
+
                 layui.form.render("select");
             }
         })
+
+        textLength = 200;
+
+        $(function () {
+            var text = $('#description').val();
+            var len = text.length;
+            $('#description').next().find('span').html(len);
+            $('textarea').keyup(function () {
+                var text = $(this).val();
+                len = text.length;
+                if (len > textLength) {
+                    return false;
+                }
+                $(this).next().find('span').html(len);
+            })
+        });
+
+        $("#description").on("input propertychange", function() {
+            var $this = $(this),
+                _val = $this.val(),
+                count = "";
+            if (_val.length > textLength) {
+                $this.val(_val.substring(0, textLength));
+            }
+            count =_val.length;
+            $("#text-count").text(count);
+        });
+
+
+        $(function () {
+            var text = $('#request').val();
+            var len = text.length;
+            $('#request').next().find('span').html(len);
+            $('textarea').keyup(function () {
+                var text = $(this).val();
+                len = text.length;
+                if (len > textLength) {
+                    return false;
+                }
+                $(this).next().find('span').html(len);
+            })
+        });
+
+        $("#request").on("input propertychange", function() {
+            var $this = $(this),
+                _val = $this.val(),
+                count = "";
+            if (_val.length > textLength) {
+                $this.val(_val.substring(0, textLength));
+            }
+            count =_val.length;
+            $("#text-count").text(count);
+        });
 
     });
 </script>
