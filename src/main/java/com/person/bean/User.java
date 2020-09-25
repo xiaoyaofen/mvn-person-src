@@ -44,7 +44,6 @@ public class User{
     private String username;//人脸识别的名字
     private  String faceId;//人脸识别的id
     private Integer pm;
-    private Integer num;
     private String title;//工作标题
     private String recommend;//
     private Integer jobstation;
@@ -53,7 +52,7 @@ public class User{
     public User() {
     }
 
-    public User(Integer id, String account, String pwd, String name, Integer sex, String sexStr, Integer age, String tel, String address, String email, String state, String money, Date date, String jobstate, Date resgisdata, Date birthday, String specialty, Integer schoolId, String schoolName, Integer resume, Date brith, Integer education, String educationStr, Integer exprience, String major, String school, String outlook, String img, String project, String educationbackground, String self, String username, String faceId, Integer pm, Integer num, String title, String recommend, Integer jobstation) {
+    public User(Integer id, String account, String pwd, String name, Integer sex, String sexStr, Integer age, String tel, String address, String email, String state, String money, Date date, String jobstate, Date resgisdata, Date birthday, String specialty, Integer schoolId, String schoolName, Integer resume, Date brith, Integer education, String educationStr, Integer exprience, String major, String school, String outlook, String img, String project, String educationbackground, String self, Integer num, String username, String faceId, Integer pm, String title, String recommend, Integer jobstation) {
         this.id = id;
         this.account = account;
         this.pwd = pwd;
@@ -85,166 +84,13 @@ public class User{
         this.project = project;
         this.educationbackground = educationbackground;
         this.self = self;
+        this.num = num;
         this.username = username;
         this.faceId = faceId;
         this.pm = pm;
-        this.num = num;
         this.title = title;
         this.recommend = recommend;
         this.jobstation = jobstation;
-    }
-
-    public User(Integer id, String account, String pwd, String name, Integer sex, String sexStr, Integer age, String tel, String address, String email, String state, String money, Date date, String jobstate, Date resgisdata, Date birthday, String specialty, Integer schoolId, String schoolName, Integer resume, Date brith, Integer education, String educationStr, Integer exprience, String major, String school, String outlook, String img, String project, String educationbackground, String self, String username, String faceId) {
-        this.id = id;
-        this.account = account;
-        this.pwd = pwd;
-        this.name = name;
-        this.sex = sex;
-        this.sexStr = sexStr;
-        this.age = age;
-        this.tel = tel;
-        this.address = address;
-        this.email = email;
-        this.state = state;
-        this.money = money;
-        this.date = date;
-        this.jobstate = jobstate;
-        this.resgisdata = resgisdata;
-        this.birthday = birthday;
-        this.specialty = specialty;
-        this.schoolId = schoolId;
-        this.schoolName = schoolName;
-        this.resume = resume;
-        this.brith = brith;
-        this.education = education;
-        this.educationStr = educationStr;
-        this.exprience = exprience;
-        this.major = major;
-        this.school = school;
-        this.outlook = outlook;
-        this.img = img;
-        this.project = project;
-        this.educationbackground = educationbackground;
-        this.self = self;
-        this.username = username;
-        this.faceId = faceId;
-    }
-
-    public User(Integer id, String account, String pwd, String name, Integer sex, String sexStr, Integer age, String tel, String address, String email, String state, String money, Date date, String jobstate, Date resgisdata, Date birthday, String specialty, Integer schoolId, String schoolName, Integer resume, Date brith, Integer education, String educationStr, Integer exprience, String major, String school, String outlook, String img, String project, String educationbackground, String self, String username, String faceId, Integer pm, Integer num) {
-        this.id = id;
-        this.account = account;
-        this.pwd = pwd;
-        this.name = name;
-        this.sex = sex;
-        this.sexStr = sexStr;
-        this.age = age;
-        this.tel = tel;
-        this.address = address;
-        this.email = email;
-        this.state = state;
-        this.money = money;
-        this.date = date;
-        this.jobstate = jobstate;
-        this.resgisdata = resgisdata;
-        this.birthday = birthday;
-        this.specialty = specialty;
-        this.schoolId = schoolId;
-        this.schoolName = schoolName;
-        this.resume = resume;
-        this.brith = brith;
-        this.education = education;
-        this.educationStr = educationStr;
-        this.exprience = exprience;
-        this.major = major;
-        this.school = school;
-        this.outlook = outlook;
-        this.img = img;
-        this.project = project;
-        this.educationbackground = educationbackground;
-        this.self = self;
-        this.username = username;
-        this.faceId = faceId;
-        this.pm = pm;
-        this.num = num;
-    }
-
-    public User(Integer id, String account, String pwd, String name, Integer sex, String sexStr, Integer age, String tel, String address, String email, String state, String money, Date date, String jobstate, Date resgisdata, Date birthday, String specialty, Integer schoolId, String schoolName, Integer resume, Date brith, Integer education, String educationStr, Integer exprience, String major, String school, String outlook, String img, String project, String educationbackground, String self, String username, String faceId, Integer pm, Integer num, String title) {
-        this.id = id;
-        this.account = account;
-        this.pwd = pwd;
-        this.name = name;
-        this.sex = sex;
-        this.sexStr = sexStr;
-        this.age = age;
-        this.tel = tel;
-        this.address = address;
-        this.email = email;
-        this.state = state;
-        this.money = money;
-        this.date = date;
-        this.jobstate = jobstate;
-        this.resgisdata = resgisdata;
-        this.birthday = birthday;
-        this.specialty = specialty;
-        this.schoolId = schoolId;
-        this.schoolName = schoolName;
-        this.resume = resume;
-        this.brith = brith;
-        this.education = education;
-        this.educationStr = educationStr;
-        this.exprience = exprience;
-        this.major = major;
-        this.school = school;
-        this.outlook = outlook;
-        this.img = img;
-        this.project = project;
-        this.educationbackground = educationbackground;
-        this.self = self;
-        this.username = username;
-        this.faceId = faceId;
-        this.pm = pm;
-        this.num = num;
-        this.title = title;
-    }
-
-    public User(Integer id, String account, String pwd, String name, Integer sex, String sexStr, Integer age, String tel, String address, String email, String state, String money, Date date, String jobstate, Date resgisdata, Date birthday, String specialty, Integer schoolId, String schoolName, Integer resume, Date brith, Integer education, String educationStr, Integer exprience, String major, String school, String outlook, String img, String project, String educationbackground, String self, String username, String faceId, Integer pm, Integer num, String title, String recommend) {
-        this.id = id;
-        this.account = account;
-        this.pwd = pwd;
-        this.name = name;
-        this.sex = sex;
-        this.sexStr = sexStr;
-        this.age = age;
-        this.tel = tel;
-        this.address = address;
-        this.email = email;
-        this.state = state;
-        this.money = money;
-        this.date = date;
-        this.jobstate = jobstate;
-        this.resgisdata = resgisdata;
-        this.birthday = birthday;
-        this.specialty = specialty;
-        this.schoolId = schoolId;
-        this.schoolName = schoolName;
-        this.resume = resume;
-        this.brith = brith;
-        this.education = education;
-        this.educationStr = educationStr;
-        this.exprience = exprience;
-        this.major = major;
-        this.school = school;
-        this.outlook = outlook;
-        this.img = img;
-        this.project = project;
-        this.educationbackground = educationbackground;
-        this.self = self;
-        this.username = username;
-        this.faceId = faceId;
-        this.pm = pm;
-        this.num = num;
-        this.title = title;
-        this.recommend = recommend;
     }
 
     public Integer getId() {
@@ -495,6 +341,14 @@ public class User{
         this.self = self;
     }
 
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -519,14 +373,6 @@ public class User{
         this.pm = pm;
     }
 
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -549,14 +395,6 @@ public class User{
 
     public void setJobstation(Integer jobstation) {
         this.jobstation = jobstation;
-    }
-
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
     }
 }
 
