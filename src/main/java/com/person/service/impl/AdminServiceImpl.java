@@ -12,6 +12,7 @@ import com.person.aoplog.Log;
 import com.person.bean.*;
 import com.person.mapper.AdminMapper;
 import com.person.service.AdminService;
+import com.person.util.EailSenderUitl;
 import com.person.util.SmsSenderUtil;
 import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -181,6 +182,7 @@ public class AdminServiceImpl implements AdminService {
 
     //获取公司信息
     @Override
+    @Log(operationType = "公司获取", operationName = "admin")
     public Company getCompanyById(Integer id) {
         return adminMapper.getCompanyById(id);
     }
@@ -225,5 +227,64 @@ public class AdminServiceImpl implements AdminService {
     public List<BusClick> exportExcel(Integer adminid) {
         return adminMapper.exportExcel(adminid);
     }
+
+    /**
+     * 获取招聘信息
+     *
+     * @param id 招聘信息序号
+     * @return
+     */
+    @Override
+    @Log(operationType = "招聘信息获取", operationName = "admin")
+    public Station getStationById(Integer id) {
+        return adminMapper.getStationById(id);
+    }
+
+    /**
+     * 招聘信息展示
+     * @Param id 招聘信息id
+     * @return
+     */
+    @Override
+    @Log(operationType = "招聘信息展示", operationName = "admin")
+    public Station recruitShowFrame(Integer id) {
+
+        return adminMapper.recruitShowFrame(id);
+    }
+
+
+    /**
+     * 投递简历
+     * @Param id 用户id
+     * @Param id1 招聘信息id
+     * @return
+     */
+    @Override
+    @Log(operationType = "投递简历", operationName = "user")
+    public Integer enablejob(Integer id, Integer id1) {
+        Integer res = adminMapper.sureEnablejob(id,id1);
+        if(res < 1){
+             res = adminMapper.enablejob(id,id1);
+        }
+        return res;
+    }
+
+
+    /**
+     * 邀请用户 - 发送邮件
+     *@Param userid 用户id
+     * @Param date 邀请时间
+     * @Param address 邀请地点
+     * @Param tel 联系方式
+     * @Param jobstation 求职表中序号
+     * */
+    @Override
+    @Log(operationType = "邀请用户", operationName = "admin")
+    public Integer inviteUserByCompany(Integer userid, String date, String address, String tel, Integer jobstation) throws Exception {
+        Jobcontain station = adminMapper.inviteUserByCompany(jobstation);
+        EailSenderUitl.sendMail(date,station.getCompany(),station.getUsername(),address,station.getEmail());
+        return adminMapper.checkResume("two","已邀请",jobstation);
+    }
+
 
 }

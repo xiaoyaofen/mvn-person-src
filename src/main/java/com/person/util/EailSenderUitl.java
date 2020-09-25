@@ -28,7 +28,7 @@ public class EailSenderUitl {
     public static String receiveMailAccount = "1433274394@qq.com";
 //        public static String receiveMailAccount = "948844680@qq.com";
 
-    public static String sendMail() throws Exception {
+    public static String sendMail(String date,String company,String user,String address,String email) throws Exception {
 
         // 1. 创建参数配置, 用于连接邮件服务器的参数配置
         Properties props = new Properties();                    // 参数配置
@@ -55,7 +55,7 @@ public class EailSenderUitl {
         session.setDebug(true);                                 // 设置为debug模式, 可以查看详细的发送 log
 
         // 3. 创建一封邮件
-        MimeMessage message = createMimeMessage(session, myEmailAccount, receiveMailAccount);
+        MimeMessage message = createMimeMessage(session, myEmailAccount, receiveMailAccount,date,company,user,address);
 
         // 4. 根据 Session 获取邮件传输对象
         Transport transport = session.getTransport();
@@ -95,21 +95,21 @@ public class EailSenderUitl {
      * @return
      * @throws Exception
      */
-    public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail) throws Exception {
+    public static MimeMessage createMimeMessage(Session session, String sendMail, String receiveMail,String date,String company,String user,String address) throws Exception {
         // 1. 创建一封邮件
         MimeMessage message = new MimeMessage(session);
 
         // 2. From: 发件人
-        message.setFrom(new InternetAddress(sendMail, "人才网", "UTF-8"));
+        message.setFrom(new InternetAddress(sendMail, "人才生态圈", "UTF-8"));
 
         // 3. To: 收件人（可以增加多个收件人、抄送、密送）
-        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "XX用户", "UTF-8"));
+        message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, user+"用户", "UTF-8"));
 
         // 4. Subject: 邮件主题
-        message.setSubject("打折钜惠");
+        message.setSubject("面试邀请");
 
         // 5. Content: 邮件正文（可以使用html标签）
-        message.setText("XX用户你好, 今天全场5折, 快来抢购, 错过今天再等一年。。。");
+        message.setText(user+"用户你好, 【"+company+"】邀请您于【"+date+"】在【"+address+"】 进行面试，详情请到网站查询");
 
         // 6. 设置发件时间
         message.setSentDate(new Date());

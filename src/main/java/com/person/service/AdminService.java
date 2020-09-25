@@ -65,5 +65,33 @@ public interface AdminService {
     //excel导出
     List<BusClick> exportExcel(Integer adminid);
 
+    //获取发布简历
+    Station getStationById(Integer id);
 
+    /**
+     * 招聘信息展示
+     * @Param id 招聘信息id
+     * @return
+     */
+    Station recruitShowFrame(Integer id);
+
+
+    /**
+     * 投递简历
+     * @Param id 用户id
+     * @Param id1 招聘信息id
+     * @return
+     */
+    Integer enablejob(Integer id, Integer id1);
+
+
+    /**
+     * 邀请用户 - 发送邮件
+     *@Param userid 用户id
+     * @Param date 邀请时间
+     * @Param address 邀请地点
+     * @Param tel 联系方式
+     * @Param jobstation 求职表中序号
+     * */
+    Integer inviteUserByCompany(Integer userid, String date, String address, String tel, Integer jobstation) throws Exception;
 }

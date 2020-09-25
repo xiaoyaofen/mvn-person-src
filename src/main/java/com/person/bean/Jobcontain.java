@@ -10,11 +10,15 @@ public class Jobcontain {
     private String two;
     private String three;
     private String four;
+    private String company;//公司名
+    private String address;//公司地址
+    private String username; ///用户名
+    private String email;//用户email
 
     public Jobcontain() {
     }
 
-    public Jobcontain(Integer id, Integer userid, Integer jobprocessid, Integer stateid, String one, String two, String three, String four) {
+    public Jobcontain(Integer id, Integer userid, Integer jobprocessid, Integer stateid, String one, String two, String three, String four, String company, String address, String username, String email) {
         this.id = id;
         this.userid = userid;
         this.jobprocessid = jobprocessid;
@@ -23,6 +27,10 @@ public class Jobcontain {
         this.two = two;
         this.three = three;
         this.four = four;
+        this.company = company;
+        this.address = address;
+        this.username = username;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -87,5 +95,37 @@ public class Jobcontain {
 
     public void setFour(String four) {
         this.four = four;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

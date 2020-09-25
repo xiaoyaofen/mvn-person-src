@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>招聘信息展示</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/X-admin/recruitshowframe/common.8c085dab.js}" charset="utf-8"></script>
+    <script th:src="@{/X-admin/recruitshowframe/jobDetail.5e64f9aa.js}" charset="utf-8"></script>
+    <script th:src="@{/X-admin/recruitshowframe/pointtrack.js}" charset="utf-8"></script>
+    <script th:src="@{/X-admin/recruitshowframe/trackData.js}" charset="utf-8"></script>
+    <link rel="stylesheet" th:href="@{/X-admin/recruitshowframe/common.35e4a2fb.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/recruitshowframe/jobDetail.ec5439e9.css}">
+
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+
+
+    <script>
+
+        $(document).ready(function () {
+            $(window).resize(function () {
+                if (!$("#area_channel_layer").is(":hidden")) {
+                    setLayerPosition();
+                }
+            });
+        });
+
+        window.areaChannelChangeTab = function (sName, oEvent) {
+            $("#area_channel_layer_all").children().hide();
+            $("#area_channel_layer_list").children().removeClass("on");
+            $(oEvent).addClass("on");
+            $("#area_channel_layer_all").children("div[name='area_channel_div_" + sName + "']").show();
+            $("#area_channel_layer_backdrop").show();
+        };
+
+        window.openAreaChannelLayer = function () {
+            setLayerPosition();
+            $("#area_channel_layer,#area_channel_layer_backdrop").show();
+        };
+
+        window.setLayerPosition = function () {
+            var dl = $(document).scrollLeft();
+            var dt = $(document).scrollTop();
+            var ww = $(document).width();
+            var dwh = $(document).height();
+            var wwh = $(window).height();
+            var ow = $("#area_channel_layer").width();
+            var oh = $("#area_channel_layer").height();
+            var fLeft = (ww - ow) / 2 + dl;
+            var fTop = (wwh - oh) * 382 / 1000 + dt;//黄金比例
+            $("#area_channel_layer").css({'left': Math.max(parseInt(fLeft), dl), 'top': Math.max(parseInt(fTop), dt)});
+            $("#area_channel_layer_backdrop").css({'width': ww + 'px', 'height': dwh + 'px'});
+        }
+    </script>
+
+</div>
+<input type="hidden" id="pageCode" value="10201">
+<input type="hidden" id="refdomain" value="">
+<input type="hidden" id="refpagecode" value="01">
+<div class="tCompany_reminder">
+    <div class="in"><strong>警示：</strong><span>以招聘为名收取培训费用、提供培训贷款，或在录用过程中需支付体检、服装、押金等费用的，都属违法行为。一经发现，请</span><a
+            href="javascript:showReportDiv();" class="a">立即举报</a><span>，并向当地公安机关报案。更多</span><a target="_blank"
+                                                                                               href="https://help.51job.com/learnmore.html"
+                                                                                               class="a">详情</a><em
+            class="close" id="closewarning"></em></div>
+</div>
+<div class="tCompanyPage">
+    <div class="tCompany_topbanner clearfix">
+        <div id="adTonglan" class="topbannerLink">
+            <div><a href="https://ac.51job.com/phpAD/adtrace.php?ID=34440790" title="简历优化" target="_blank"
+                    onfocus="blur()"><img th:src="@{/X-admin/recruitshowframe/750_90.jpg}"
+                                          border="0" width="750" height="90"></a></div>
+            <div style="display:none;"><img
+                    th:src="@{/X-admin/recruitshowframe/adid=34440790}" width="0" border="0"
+                    height="0"></div>
+        </div>
+        <script type="text/javascript">var ads = new Array();
+        ads[1] = '<div><a href="https://ac.51job.com/phpAD/adtrace.php?ID=34444959" title="前程无忧51job服务号关注" target="_blank" onfocus="blur()"><img src="//img01.51jobcdn.com/im/mkt/tg/2019banner/wx/750_90.jpg" border=0 width="750" height="90"></a></div><div style="display:none;"><img src="//www.51job.com/ex/page_view.php/adid=34444959"  width="0" border="0" height="0"/></div>';
+        ads[2] = '<div><a href="https://ac.51job.com/phpAD/adtrace.php?ID=34429978" title="无忧精英网" target="_blank" onfocus="blur()"><img src="//img01.51jobcdn.com/im/pm/jinying/banner2019.8.19/750x90.jpg" border=0 width="750" height="90"></a></div><div style="display:none;"><img src="//www.51job.com/ex/page_view.php/adid=34429978"  width="0" border="0" height="0"/></div>';
+        ads[3] = '<div><a href="https://ac.51job.com/phpAD/adtrace.php?ID=34233986" title="培训频道" target="_blank" onfocus="blur()"><img src="//img01.51jobcdn.com/im/mkt/zn/banner/20200309/7501.jpg" border=0 width="750" height="90"></a></div><div style="display:none;"><img src="//www.51job.com/ex/page_view.php/adid=34233986"  width="0" border="0" height="0"/></div>';
+        ads[4] = '<div><a href="https://ac.51job.com/phpAD/adtrace.php?ID=34440790" title="简历优化" target="_blank" onfocus="blur()"><img src="https://img01.51jobcdn.com/im/mkt/tg/2020banner/yhjl/1/750_90.jpg" border=0 width="750" height="90"></a></div><div style="display:none;"><img src="//www.51job.com/ex/page_view.php/adid=34440790"  width="0" border="0" height="0"/></div>';
+        var index = Math.floor(Math.random() * 4 + 1);
+        var ad = ads[index];
+        if (ad) {
+            document.getElementById('adTonglan').innerHTML = ad;
+        }</script>
+        <div class="topbannerList">
+            <ul>
+                <li><a adid="34444961" onmousedown="return AdsClick(34444961)"
+                       href="https://mkt.51job.com/tg/lp_wx29/index.html" title="前程无忧51job服务号关注" target="_blank">简历到底要不要放照片？</a>
+                </li>
+                <li><a adid="34511490" onmousedown="return AdsClick(34511490)"
+                       href="https://arts.51job.com/arts/05/440300.html" title="编辑部" target="_blank">这些根本就是面试官的套路啊</a>
+                </li>
+                <li><a adid="34511491" onmousedown="return AdsClick(34511491)"
+                       href="https://arts.51job.com/arts/05/440367.html" title="编辑部" target="_blank">几招拯救最难找工作的3类人</a>
+                </li>
+                <li><a adid="34456198" onmousedown="return AdsClick(34456198)"
+                       href="https://mkt.51job.com/tg/dk_ztc/index.html" title="打卡签到活动"
+                       target="_blank">最新名企职位发布，诚邀您投递</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tCompany_center clearfix">
+        <div id="tHeader_mk" style="height: 0px;"></div>
+        <div class="tHeader tHjob" style="display: block;">
+            <div class="in">
+                <div class="cn">
+                    <h1 th:text="${station.title}">
+                        <input value="116671628" name="hidJobID" id="hidJobID" type="hidden"jt="2">
+                    </h1><strong><span th:text="${station.money}"></span></strong>
+                    <p class="cname">
+                        <a href="https://jobs.51job.com/all/co5389246.html" target="_blank" th:text="${station.companyname}"
+                           class="catn">北京领微逸动科技服务有限公司<em class="icon_b i_link"></em></a>
+                        <a track-type="jobsButtonClick" event-type="2" class="i_house"
+                           href="https://jobs.51job.com/all/co5389246.html?#syzw" target="_blank">查看所有职位</a>
+                    </p>
+                    <p class="msg ltype"
+                       title="北京-朝阳区&#160;&#160;|&#160;&#160;&#160;&#160;|&#160;&#160;大专&#160;&#160;|&#160;&#160;招5人&#160;&#160;|&#160;&#160;09-17发布&#160;&#160;|&#160;&#160;普通话">
+                        <span style="color: black" th:text="${station.region}"></span>&nbsp;<span>|</span>&nbsp;&nbsp;<span style="color: black" th:text="${station.experienceStr}"></span>&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;<span style="color: black" th:text="${station.educationStr}"></span>&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;<span style="color: black" th:text="${station.number}"></span>&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;<span style="color: black" th:text="${#dates.format(station.date, 'yyyy-MM-dd')}" ></span>&nbsp;&nbsp;<span>|</span>&nbsp;&nbsp;普通话
+                    </p>
+                    <div class="jtag">
+                        <div class="t1">
+                            <span class="sp4">周末双休</span>
+                            <span class="sp4">餐饮补贴</span>
+                            <span class="sp4">年终奖金</span>
+                            <span class="sp4">绩效奖金</span>
+                            <span class="sp4">专业培训</span>
+                            <span class="sp4">花式团建</span>
+                            <span class="sp4">弹性工作</span>
+                            <span class="sp4">带薪年假</span>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="op">
+                    <a track-type="jobsButtonClick" event-type="1" class="but_sq" id="app_ck" href="javascript:void(0);"
+                       onclick="delivery(&#39;hidJobID&#39;, &#39;1&#39;, &#39;//i.51job.com&#39;, &#39;c&#39;, &#39;&#39;, &#39;01&#39;, &#39;01&#39;, &#39;//img02.51jobcdn.com&#39;);return false;">
+                        <img width="19" height="24"
+                             src="./【北京-朝阳区项目咨询顾问_项目咨询顾问招聘_北京领微逸动科技服务有限公司】-前程无忧官方招聘网站_files/but_sq_arr.png" alt="">申请职位</a>
+                    <a track-type="jobsButtonClick" event-type="4" class="icon_b i_upline" id="116671628"
+                       target="_blank"
+                       href="https://i.51job.com/userset/bounce_window_redirect.php?jobid=116671628&amp;redirect_type=2">竞争力分析</a>
+                    <a track-type="jobsButtonClick" event-type="3" class="icon_b i_collect" href="javascript:void(0);"
+                       onclick="saveCollection(&#39;116671628&#39;);return false;">收藏</a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <div class="tCompany_main">
+            <div class="tBorderTop_box">
+                <h2><span class="bname">职位信息</span></h2>
+                <div class="bmsg job_msg inbox">
+                    <div th:each="image,status : ${#strings.arraySplit(station.description, '\n')}">
+                        <p th:text="${image}"></p>
+                    </div>
+                    <p>岗位要求：</p>
+                    <div th:each="image,status : ${#strings.arraySplit(station.request, '\n')}">
+                        <p th:text="${image}"></p>
+                    </div>
+                    <p>福利待遇：</p>
+                    <p th:text="${station.welfare}">提供五险、午餐补助、加班补助、花式团建、丰厚的月高薪</p>
+                    <p>办公地点：<span th:text="${station.region}"></span></p>
+                    <p>工作时间：<span th:text="${station.worktime}"></span></p>
+                    <div class="mt10">
+                        <p class="fp"><span class="label">职能类别：</span><a class="el tdn"
+                                                                         href="https://jobs.51job.com/beijing-cyq/xiaoshoujingli/">销售经理</a>
+                        </p>
+                        <p class="fp"><span class="label">关键字：</span><a class="el tdn"
+                                                                        href="https://search.51job.com/list/010000,010500,0000,00,9,99,%25E9%25AB%2598%25E8%2596%25AA,2,1.html?lang=c&amp;postchannel=0000&amp;workyear=99&amp;cotype=99&amp;degreefrom=99&amp;jobterm=99&amp;companysize=99&amp;ord_field=0&amp;dibiaoid=0&amp;line=&amp;welfare=">高薪</a><a
+                                class="el tdn"
+                                href="https://search.51job.com/list/010000,010500,0000,00,9,99,%25E9%2594%2580%25E5%2594%25AE,2,1.html?lang=c&amp;postchannel=0000&amp;workyear=99&amp;cotype=99&amp;degreefrom=99&amp;jobterm=99&amp;companysize=99&amp;ord_field=0&amp;dibiaoid=0&amp;line=&amp;welfare=">销售</a><a
+                                class="el tdn"
+                                href="https://search.51job.com/list/010000,010500,0000,00,9,99,%25E5%2592%25A8%25E8%25AF%25A2,2,1.html?lang=c&amp;postchannel=0000&amp;workyear=99&amp;cotype=99&amp;degreefrom=99&amp;jobterm=99&amp;companysize=99&amp;ord_field=0&amp;dibiaoid=0&amp;line=&amp;welfare=">咨询</a><a
+                                class="el tdn"
+                                href="https://search.51job.com/list/010000,010500,0000,00,9,99,%25E9%25A1%25BE%25E9%2597%25AE,2,1.html?lang=c&amp;postchannel=0000&amp;workyear=99&amp;cotype=99&amp;degreefrom=99&amp;jobterm=99&amp;companysize=99&amp;ord_field=0&amp;dibiaoid=0&amp;line=&amp;welfare=">顾问</a><a
+                                class="el tdn"
+                                href="https://search.51job.com/list/010000,010500,0000,00,9,99,%25E6%25B2%259F%25E9%2580%259A,2,1.html?lang=c&amp;postchannel=0000&amp;workyear=99&amp;cotype=99&amp;degreefrom=99&amp;jobterm=99&amp;companysize=99&amp;ord_field=0&amp;dibiaoid=0&amp;line=&amp;welfare=">沟通</a>
+                        </p>
+                    </div>
+                    <div class="share"><a track-type="jobsButtonClick" event-type="6" class="a"
+                                          href="javascript:void(0);" onclick="weixinMa();">微信分享</a>
+                        <div id="weixinMa_fx" style="display:none;"><img width="198" height="198" alt="二维码"
+                                                                         org="https://jobs.51job.com/wx_qrcode.php?url=https%3A%2F%2Fm.51job.com%2Fsearch%2Fjobdetail.php%3Fjobid%3D116671628">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="tBorderTop_box">
+                <h2><span class="bname">联系方式</span></h2>
+                <div class="bmsg inbox">
+                    <p class="fp"><span class="label">上班地址：</span><span th:text="${station.address}"></span></p>
+                    <a track-type="jobsButtonClick" event-type="7" class="icon_b i_map" href="javascript:void(0);"
+                       onclick="showMapIframe(&#39;https://search.51job.com/jobsearch/bmap/map.php?jobid=116671628&#39;, &#39;东大桥SOHO尚都北塔B座1808&#39;);return false;">地图</a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="tBorderTop_box">
+                <h2><span class="bname">公司信息</span></h2>
+                <div class="tmsg inbox">
+                    我们是北京领微逸动科技服务有限公司，致力于帮助企业更好的实现企业发展。积极建设科技咨询、企业管理咨询、企业培训等。帮助企业不断提高自我、发展自我、成就自我。以专业化的服务模式为企业发展提供源助力。
+                </div>
+            </div>
+        </div>
+        <div class="tCompany_sidebar">
+            <div class="tBorderTop_box">
+                <h2><span class="bname">公司信息</span></h2>
+                <div class="com_msg"><a class="com_name himg" href="https://jobs.51job.com/all/co5389246.html"
+                                        target="_blank"><img
+                        src="./【北京-朝阳区项目咨询顾问_项目咨询顾问招聘_北京领微逸动科技服务有限公司】-前程无忧官方招聘网站_files/5389246_300.jpg" width="63"
+                        height="63" alt="">
+                    <p title="北京领微逸动科技服务有限公司">北京领微逸动科技服务有限公司</p></a>
+                </div>
+                <div class="com_tag">
+                    <p class="at" title="民营公司"><span class="i_flag"></span>民营公司</p>
+                    <p class="at" title="少于50人"><span class="i_people"></span>少于50人</p>
+                    <p class="at" title="专业服务(咨询、人力资源、财会),互联网/电子商务">
+                        <span class="i_trade"></span>
+                        <a href="https://company.51job.com/beijing/hy07/">专业服务(咨询、人力资源、财会)</a>
+                        <a href="https://company.51job.com/beijing/hy32/">互联网/电子商务</a>
+                    </p>
+                </div>
+                <a track-type="jobsButtonClick" event-type="2" class="icon_b i_house"
+                   href="https://jobs.51job.com/all/co5389246.html?#syzw" target="_blank"><span class="icon_det"></span>查看所有职位</a>
+            </div>
+
+
+        </div>
+        <div class="clear"></div>
+        <!--地区招聘 start -->
+        <div class="tSeach_list_bot">
+            <div id="announcement">
+                <div id="announcementbody">
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/baotou">包头招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shijiazhuang">石家庄招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tianjin">天津招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taiyuan">太原招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huhhot">呼和浩特招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/baoding">保定招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/langfang">廊坊招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qinhuangdao">秦皇岛招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tangshan">唐山招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/handan">邯郸招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/errduosi">鄂尔多斯招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changchun">长春招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dalian">大连招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shenyang">沈阳招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/harbin">哈尔滨招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jilin">吉林招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/anshan">鞍山招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yingkou">营口招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/fushun">抚顺招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dandong">丹东招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tieling">铁岭招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/daqing">大庆招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanjing">南京招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanchang">南昌招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/ningbo">宁波招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nantong">南通招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changzhou">常州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qingdao">青岛招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/quanzhou">泉州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/suzhou">苏州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shaoxing">绍兴招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/fuzhou">福州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taizhoue">台州招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuxi">无锡招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wenzhou">温州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hangzhou">杭州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hefei">合肥招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiamen">厦门招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xuzhou">徐州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jinan">济南招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jiaxing">嘉兴招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jinhua">金华招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yantai">烟台招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yangzhou">扬州招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/kunshan">昆山招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changshu">常熟招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhangjiagang">张家港招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yancheng">盐城招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/lianyungang">连云港招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huaian">淮安招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taizhou">泰州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhangzhou">漳州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhenjiang">镇江招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/linyi">临沂招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuhu">芜湖招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/weifang">潍坊招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/weihai">威海招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huzhou">湖州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yiwu">义乌招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zibo">淄博招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jining">济宁招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanning">南宁招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changsha">长沙招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dongguan">东莞招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/sanya">三亚招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuhan">武汉招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhengzhou">郑州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhongshan">中山招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhuhai">珠海招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/haikou">海口招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/foshan">佛山招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huizhou">惠州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jiangmen">江门招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shantou">汕头招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhanjiang">湛江招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qingyuan">清远招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/luoyang">洛阳招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yichang">宜昌招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiangyang">襄阳招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jingzhou">荆州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhuzhou">株洲招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hengyang">衡阳招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiangtan">湘潭招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changde">常德招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/liuzhou">柳州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/chengdu">成都招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/chongqing">重庆招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/guiyang">贵阳招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/kunming">昆明招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/mianyang">绵阳招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/urumqi">乌鲁木齐招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xian">西安招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/lanzhou">兰州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xianyang">咸阳招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yinchuan">银川招聘</a></li>
+                    </ul>
+
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/baotou">包头人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shijiazhuang">石家庄人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tianjin">天津人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taiyuan">太原人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huhhot">呼和浩特人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/baoding">保定人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/langfang">廊坊人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qinhuangdao">秦皇岛人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tangshan">唐山人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/handan">邯郸人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/errduosi">鄂尔多斯人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changchun">长春人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dalian">大连人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shenyang">沈阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/harbin">哈尔滨人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jilin">吉林人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/anshan">鞍山人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yingkou">营口人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/fushun">抚顺人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dandong">丹东人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tieling">铁岭人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/daqing">大庆人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanjing">南京人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanchang">南昌人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/ningbo">宁波人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nantong">南通人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changzhou">常州人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qingdao">青岛人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/quanzhou">泉州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/suzhou">苏州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shaoxing">绍兴人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/fuzhou">福州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taizhoue">台州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuxi">无锡人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wenzhou">温州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hangzhou">杭州人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hefei">合肥人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiamen">厦门人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xuzhou">徐州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jinan">济南人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jiaxing">嘉兴人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jinhua">金华人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yantai">烟台人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yangzhou">扬州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/kunshan">昆山人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changshu">常熟人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhangjiagang">张家港人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yancheng">盐城人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/lianyungang">连云港人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huaian">淮安人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taizhou">泰州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhangzhou">漳州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhenjiang">镇江人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/linyi">临沂人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuhu">芜湖人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/weifang">潍坊人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/weihai">威海人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huzhou">湖州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yiwu">义乌人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zibo">淄博人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jining">济宁人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanning">南宁人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changsha">长沙人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dongguan">东莞人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/sanya">三亚人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuhan">武汉人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhengzhou">郑州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhongshan">中山人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhuhai">珠海人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/haikou">海口人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/foshan">佛山人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huizhou">惠州人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jiangmen">江门人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shantou">汕头人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhanjiang">湛江人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qingyuan">清远人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/luoyang">洛阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yichang">宜昌人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiangyang">襄阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jingzhou">荆州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhuzhou">株洲人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hengyang">衡阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiangtan">湘潭人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changde">常德人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/liuzhou">柳州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/chengdu">成都人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/chongqing">重庆人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/guiyang">贵阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/kunming">昆明人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/mianyang">绵阳人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/urumqi">乌鲁木齐人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xian">西安人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/lanzhou">兰州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xianyang">咸阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yinchuan">银川人才网</a></li>
+                    </ul>
+
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/baotou">包头招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shijiazhuang">石家庄招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tianjin">天津招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taiyuan">太原招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huhhot">呼和浩特招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/baoding">保定招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/langfang">廊坊招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qinhuangdao">秦皇岛招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tangshan">唐山招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/handan">邯郸招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/errduosi">鄂尔多斯招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changchun">长春招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dalian">大连招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shenyang">沈阳招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/harbin">哈尔滨招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jilin">吉林招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/anshan">鞍山招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yingkou">营口招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/fushun">抚顺招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dandong">丹东招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tieling">铁岭招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/daqing">大庆招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanjing">南京招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanchang">南昌招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/ningbo">宁波招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nantong">南通招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changzhou">常州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qingdao">青岛招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/quanzhou">泉州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/suzhou">苏州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shaoxing">绍兴招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/fuzhou">福州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taizhoue">台州招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuxi">无锡招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wenzhou">温州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hangzhou">杭州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hefei">合肥招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiamen">厦门招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xuzhou">徐州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jinan">济南招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jiaxing">嘉兴招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jinhua">金华招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yantai">烟台招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yangzhou">扬州招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/kunshan">昆山招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changshu">常熟招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhangjiagang">张家港招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yancheng">盐城招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/lianyungang">连云港招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huaian">淮安招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taizhou">泰州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhangzhou">漳州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhenjiang">镇江招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/linyi">临沂招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuhu">芜湖招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/weifang">潍坊招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/weihai">威海招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huzhou">湖州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yiwu">义乌招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zibo">淄博招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jining">济宁招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanning">南宁招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changsha">长沙招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dongguan">东莞招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/sanya">三亚招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuhan">武汉招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhengzhou">郑州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhongshan">中山招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhuhai">珠海招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/haikou">海口招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/foshan">佛山招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huizhou">惠州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jiangmen">江门招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shantou">汕头招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhanjiang">湛江招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qingyuan">清远招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/luoyang">洛阳招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yichang">宜昌招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiangyang">襄阳招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jingzhou">荆州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhuzhou">株洲招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hengyang">衡阳招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiangtan">湘潭招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changde">常德招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/liuzhou">柳州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/chengdu">成都招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/chongqing">重庆招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/guiyang">贵阳招聘</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/kunming">昆明招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/mianyang">绵阳招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/urumqi">乌鲁木齐招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xian">西安招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/lanzhou">兰州招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xianyang">咸阳招聘</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yinchuan">银川招聘</a></li>
+                    </ul>
+
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/baotou">包头人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shijiazhuang">石家庄人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tianjin">天津人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taiyuan">太原人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huhhot">呼和浩特人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/baoding">保定人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/langfang">廊坊人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qinhuangdao">秦皇岛人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tangshan">唐山人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/handan">邯郸人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/errduosi">鄂尔多斯人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changchun">长春人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dalian">大连人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shenyang">沈阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/harbin">哈尔滨人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jilin">吉林人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/anshan">鞍山人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yingkou">营口人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/fushun">抚顺人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dandong">丹东人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/tieling">铁岭人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/daqing">大庆人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanjing">南京人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanchang">南昌人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/ningbo">宁波人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nantong">南通人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changzhou">常州人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qingdao">青岛人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/quanzhou">泉州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/suzhou">苏州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shaoxing">绍兴人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/fuzhou">福州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taizhoue">台州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuxi">无锡人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wenzhou">温州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hangzhou">杭州人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hefei">合肥人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiamen">厦门人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xuzhou">徐州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jinan">济南人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jiaxing">嘉兴人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jinhua">金华人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yantai">烟台人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yangzhou">扬州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/kunshan">昆山人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changshu">常熟人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhangjiagang">张家港人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yancheng">盐城人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/lianyungang">连云港人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huaian">淮安人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/taizhou">泰州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhangzhou">漳州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhenjiang">镇江人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/linyi">临沂人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuhu">芜湖人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/weifang">潍坊人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/weihai">威海人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huzhou">湖州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yiwu">义乌人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zibo">淄博人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jining">济宁人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/nanning">南宁人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changsha">长沙人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/dongguan">东莞人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/sanya">三亚人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/wuhan">武汉人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhengzhou">郑州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhongshan">中山人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhuhai">珠海人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/haikou">海口人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/foshan">佛山人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/huizhou">惠州人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jiangmen">江门人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/shantou">汕头人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhanjiang">湛江人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/qingyuan">清远人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/luoyang">洛阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yichang">宜昌人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiangyang">襄阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/jingzhou">荆州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/zhuzhou">株洲人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/hengyang">衡阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xiangtan">湘潭人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/changde">常德人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/liuzhou">柳州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/chengdu">成都人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/chongqing">重庆人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/guiyang">贵阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/kunming">昆明人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/mianyang">绵阳人才网</a></li>
+                    </ul>
+                    <ul>
+                        <li style="font-size:14px;color:#666;">地区人才网招聘</li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/urumqi">乌鲁木齐人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xian">西安人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/lanzhou">兰州人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/xianyang">咸阳人才网</a></li>
+                        <li class="st_one"><a target="_blank" href="https://www.51job.com/yinchuan">银川人才网</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <a href="https://jobs.51job.com/beijing-cyq/116671628.html?t=2&amp;s=01#top" id="goTop" style="display: none;">回到<br>顶部</a>
+        <a href="https://i.51job.com/userset/advice.php?from=jobs" target="_blank" class="dw_fb">意见反馈</a>
+    </div>
+</div>
+<!--引用js-->
+<script type="text/javascript"
+        src="./【北京-朝阳区项目咨询顾问_项目咨询顾问招聘_北京领微逸动科技服务有限公司】-前程无忧官方招聘网站_files/common.8c085dab.js"></script>
+<script type="text/javascript"
+        src="./【北京-朝阳区项目咨询顾问_项目咨询顾问招聘_北京领微逸动科技服务有限公司】-前程无忧官方招聘网站_files/jobDetail.5e64f9aa.js"></script>
+
+
+</body>
+</html>

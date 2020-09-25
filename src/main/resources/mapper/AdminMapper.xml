@@ -159,11 +159,13 @@
         <if test="condition.major !=null">and u.major = (select name from t_param where value =#{condition.major} and type='专业')</if>
         <if test="condition.education !=null">and u.education=#{condition.education}</if>
     </select>
+
+
     <!-- //求职管理====================界面显示=======数据-->
     <select id="adminBioCheck" resultType="com.person.bean.User">
+        select tab.*,(@i:=@i+1)pm from (
         select j.id jobstation,u.name,u.major,u.tel,u.school,s.title,u.id,
-        (select name from t_school where id =
-        (select company from t_admin where id =  j.adminid)) recommend
+        (select name from t_school where id =(select company from t_admin where id =  j.adminid)) recommend
         from t_jobcontain j
         left join t_user u on j.userid = u.id
         LEFT JOIN t_station s on j.stateid = s.id
@@ -171,8 +173,13 @@
         <if test="condition.title !=null"> and s.title like concat('%',#{condition.title},'%')</if>
         <if test="condition.major !=null">and u.major = (select name from t_param where value =#{condition.major} and type='专业')</if>
         <if test="condition.education !=null">and u.education=#{condition.education}</if>
-        limit #{page},#{limit}
+        order by j.id desc limit #{page},#{limit}
+        )tab,(select @i:=0)t
+
     </select>
+
+
+
     <!--    获取下拉菜单的数据-->
     <select id="getOptionData" resultType="com.person.bean.Params">
         select * from t_param where type = #{type}
@@ -213,9 +220,12 @@
         select * from t_company where id = #{id}
     </select>
 
-
+    <!--    获取个人信息，简历信息-->
     <select id="showRecruit" resultType="com.person.bean.User">
-        select *,(select name from t_param where value = sex and type = '性别') sexStr from t_user where id = #{id}
+        select *,
+        (select name from t_param p where p.value = sex and p.type = '性别') sexStr,
+        (select name from t_param p2 where p2.value = education and p2.type = '学历') educationStr
+        from t_user where id = #{id}
     </select>
 
 
@@ -238,6 +248,7 @@
     <!--//求职管理=====删除求职简历-->
     <delete id="deleteAminRecruit" parameterType="java.lang.Integer">delete from t_jobcontain where id = #{id}</delete>
 
+<!--    用户信息导出-->
     <select id="exportExcel" resultType="com.person.bean.BusClick">
         select * from t_user
     </select>
@@ -254,5 +265,31 @@
         (select p4.name from t_param p4 where p4.value = s.job and p4.type="岗位") jobname ,
         (select c.name from t_company c where c.id = s.company) companyname
         from t_station s where id =  #{id}
+    </select>
+
+
+<!--    简历投递-->
+    <insert id="enablejob" >
+        insert t_jobcontain (userid,stateid,adminid) values(#{id},#{jobid},(select adminid from t_station where id = #{jobid}))
+    </insert>
+
+<!--    判断简历是否投递过-->
+    <select id="sureEnablejob" resultType="java.lang.Integer">
+        select count(*) from t_jobcontain
+        <where>
+            <if test="id != null "> and userid = #{id}</if>
+            <if test="jobid != null ">and stateid= #{jobid}</if>
+            and one = '未查看'
+        </where>
+    </select>
+
+
+<!--    邀请面试-->
+    <select id="inviteUserByCompany" resultType="com.person.bean.Jobcontain">
+        select u.name username,u.email,c.name company,c.address from t_jobcontain j
+        LEFT JOIN t_user u on u.id = j.userid
+        LEFT JOIN t_admin a on a.id = j.adminid
+        LEFT JOIN t_company c on c.id = a.company
+        where j.id = #{jobstation}
     </select>
 </mapper>

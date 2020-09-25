@@ -97,7 +97,7 @@
                 ,data = checkStatus.data; //获取选中的数据
             switch(obj.event){
                 case 'add':
-                    location.href="recruitInsertFrame";
+                    location.href="/admin/recruitInsertFrame";
                     break;
             };
         });
@@ -113,7 +113,7 @@
                 });
             } else if(obj.event === 'detail'){
                 var id = data.id;
-                location.href="recruitUpdateFrame?id="+id;
+                location.href="/admin/recruitUpdateFrame?id="+id;
             }
         });
 

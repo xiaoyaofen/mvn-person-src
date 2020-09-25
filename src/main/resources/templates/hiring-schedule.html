@@ -30,6 +30,7 @@
             </colgroup>
             <thead>
             <tr>
+                <th>申请者</th>
                 <th>岗位</th>
                 <th>第一阶段</th>
                 <th>第二阶段</th>
@@ -39,11 +40,12 @@
             </thead>
             <tbody>
             <tr>
-                <td><a th:href="@{javascript:void(0)}" th:text="${title}" ></a></td>
-                <td><a id="one" th:href="@{javascript:void(0)}" th:text="${job.one}" ></a></td>
-                <td><a id="two" th:href="@{javascript:void(0)}"  th:text="${job.two}" ></a></td>
-                <td><a id="three" th:href="@{javascript:void(0)}"  th:text="${job.three}" ></a></td>
-                <td><a id="four" th:href="@{javascript:void(0)}"  th:text="${job.four}" ></a></td>
+                <td><a th:href="@{javascript:void(0)}" th:text="${username}" /></td>
+                <td><a th:href="@{javascript:void(0)}" th:text="${title}" /></td>
+                <td><a id="one" th:href="@{javascript:void(0)}" th:text="${job.one}" style="color: red" /></td>
+                <td><a id="two" th:href="@{javascript:void(0)}"  th:text="${job.two}" style="color: red"  /></td>
+                <td><a id="three" th:href="@{javascript:void(0)}"  th:text="${job.three}" style="color: red" /></td>
+                <td><a id="four" th:href="@{javascript:void(0)}"  th:text="${job.four}" style="color: red" /></td>
             </tr>
             </tbody>
         </table>
@@ -52,61 +54,160 @@
 </div>
 
 <script>
-    $('#one').on('click', function () {
-        var userid = $("#userid").val();
-        var i = $("#jobstation").val();
-        $.ajax({
-            url:"/admin/checkResume",
-            data:'id=one&value=已查看&i='+i,
-            success:function(res){
-                if(res>0){
-                    $("#one").text("已查看");
-                    location.href="/admin/showRecruit?id="+userid;
-                }
-            }
-        })
-    })
 
-    $('#two').on('click', function () {
-        var i = $("#jobstation").val();
-        $.ajax({
-            url:"/admin/checkResume",
-            data:'id=two&value=已邀请&i='+i,
-            success:function(res){
-                if(res>0){
-                    alert("邀请成功");
-                    $("#two").text("已邀请");
-                }
-            }
-        })
-    })
+    layui.use(['laydate','table','form','layer'], function() {
+        var layer = layui.layer;
+        var form= layui.form;
 
-    $('#three').on('click', function () {
-        var i = $("#jobstation").val();
-        $.ajax({
-            url:"/admin/checkResume",
-            data:'id=three&value=已面试&i='+i,
-            success:function(res){
-                if(res>0){
-                    alert("面试完成");
-                    $("#three").text("已面试");
-                }
-            }
-        })
-    })
 
-    $('#four').on('click', function () {
-        var i = $("#jobstation").val();
-        $.ajax({
-            url:"/admin/checkResume",
-            data:'id=four&value=已处理&i='+i,
-            success:function(res){
-                if(res>0){
-                    alert('处理完成');
-                    $("#four").text("已处理");
+        $('#one').on('click', function () {
+            var userid = $("#userid").val();
+            var i = $("#jobstation").val();
+            $.ajax({
+                url: "/admin/checkResume",
+                data: 'id=one&value=已查看&i=' + i,
+                success: function (res) {
+                    if (res > 0) {
+                        $("#one").text("已查看");
+                        location.href = "/admin/showRecruit2?id=" + userid;
+                    }
                 }
-            }
+            })
         })
+
+        $('#two').on('click', function () {
+            var two =$('#two').text();
+            if(two == '已邀请'){
+                alert("该用户已经被邀请过了");
+            }else{
+                layer.open({
+                    type: 2
+                    , content: "/admin/inviteUserByCompanyFrame"
+                    , area: ['600px', '500px']
+                    , title: '修改用户信息'
+                    , shade: 0.6 //遮罩透明度
+                    , maxmin: true //允许全屏最小化
+                    , anim: 1 //0-6的动画形式，-1不开启
+                    , btn: ['确定', '返回']
+                    , yes: function (index, layero) {
+
+                        var body = layer.getChildFrame("body", index);
+                        var address = body.contents().find("#address").val();
+                        var date = body.contents().find("#date").val();
+                        var tel = body.contents().find("#tel").val();
+                        console.log(date);
+                        console.log(address);
+                        console.log(tel);
+
+                        var i = $("#jobstation").val();
+                        var userid = $("#userid").val();
+                        console.log($("#two").text());
+                        console.log(userid);
+                        console.log(i);
+
+                        $.ajax({
+                            url: "/admin/inviteUserByCompany",
+                            data: 'id=two&value=已邀请&jobstation=' + i + "&userid=" + userid+"&address="+address+"&date="+date+"&tel="+tel,
+                            success: function (res) {
+                                if (res > 0) {
+                                    alert("邀请成功");
+                                    $("#two").text("已邀请");
+                                }
+                            }
+                        })
+                        layer.close(index);
+                    }
+                    //返回按键
+                    , btn2: function (index, layero) {
+                        if (confirm('确定要关闭么')) { //只有当点击confirm框的确定时，该层才会关闭
+                            layer.close(index);
+                        }
+                        return false;//开启该代码可禁止点击该按钮关闭
+                    }
+                    //右上角关闭按键
+                    , cancel: function (index, layero) {
+                        if (confirm('确定要关闭么')) { //只有当点击confirm框的确定时，该层才会关闭
+                            layer.close(index)
+                        }
+                        return false;
+                    }
+                });
+            }
+
+
+        })
+
+        $('#three').on('click', function () {
+            var i = $("#jobstation").val();
+            $.ajax({
+                url: "/admin/checkResume",
+                data: 'id=three&value=已面试&i=' + i,
+                success: function (res) {
+                    if (res > 0) {
+                        alert("面试完成");
+                        $("#three").text("已面试");
+                    }
+                }
+            })
+        })
+
+        $('#four').on('click', function () {
+
+            var four =$('#four').text();
+            if(four != '待处理'){
+                alert("投递简历已经处理完成");
+            }else{
+                layer.open({
+                    type: 2
+                    , content: "/admin/handleUserByCompanyFrame"
+                    , area: ['600px', '500px']
+                    , title: '修改用户信息'
+                    , shade: 0.6 //遮罩透明度
+                    , maxmin: true //允许全屏最小化
+                    , anim: 1 //0-6的动画形式，-1不开启
+                    , btn: ['确定', '返回']
+
+                    , yes: function (index, layero) {
+
+                        var body = layer.getChildFrame("body", index);
+                        var state = body.contents().find("#state").val();
+                        console.log(state);
+                        if(state == null || state == undefined || state == ''){
+                            alert("请选择对简历的处理");
+                        }else{
+                            var i = $("#jobstation").val();
+                            $.ajax({
+                                url: "/admin/  ",
+                                data: 'id=four&value='+state+'&i=' + i,
+                                success: function (res) {
+                                    if (res > 0) {
+                                        alert('处理完成');
+                                        $("#four").text(state);
+                                    }
+                                }
+                            })
+                            layer.close(index);
+                        }
+                    }
+                    //返回按键
+                    , btn2: function (index, layero) {
+                        if (confirm('确定要关闭么')) { //只有当点击confirm框的确定时，该层才会关闭
+                            layer.close(index);
+                        }
+                        return false;//开启该代码可禁止点击该按钮关闭
+                    }
+                    //右上角关闭按键
+                    , cancel: function (index, layero) {
+                        if (confirm('确定要关闭么')) { //只有当点击confirm框的确定时，该层才会关闭
+                            layer.close(index)
+                        }
+                        return false;
+                    }
+                });
+            }
+
+        })
+
     })
 </script>
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>处理用户投递简历</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+</head>
+<body>
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户录用？</label>
+        <div class="layui-input-block">
+            <select id="state" name="state" lay-verify="required">
+                <option value=""></option>
+                <option value="录用">录用</option>
+                <option value="淘汰">淘汰</option>
+            </select>
+        </div>
+    </div>
+</form>
+<script>
+    layui.use(['laydate','table','form','layer'], function() {
+        var layer = layui.layer;
+        var form= layui.form;
+    })
+</script>
+
+</body>
+</html>
