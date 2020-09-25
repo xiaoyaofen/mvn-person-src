@@ -45,4 +45,16 @@ public interface UserMapper {
     public Params Sex(@Param("value")String value);
 
     public Params getExperience(@Param("value")String value);
+
+
+    public String updatesex(@Param("name")String name);
+
+    public String updatexperience(@Param("name")String name);
+
+    public void updateinfor(@Param("name")String name,@Param("sex")String sex,@Param("education")String education,@Param("tel")String tel,@Param("address")String address,@Param("id")Integer id);
+
+    public void jobexperience(@Param("jobexperience")String jobexperience,@Param("id")String id);
+    public void project(@Param("project")String project,@Param("id")String id);
+    public void education(@Param("education")String education,@Param("id")String id);
+    public void self(@Param("self")String self,@Param("id")String id);
 }

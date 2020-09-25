@@ -51,7 +51,6 @@ public class SystemLogAspect {
      */ 
     @Before("controllerAspect()")
     public void doBefore(JoinPoint joinPoint) {
-        System.out.println("==========执行controller前置通知===============");
         
         if(logger.isInfoEnabled()){
             logger.info("before " + joinPoint);
@@ -61,7 +60,7 @@ public class SystemLogAspect {
     //配置controller环绕通知,使用在方法aspect()上注册的切入点 需要有返回值
       @Around("controllerAspect()")
       public Object around(JoinPoint joinPoint){
-          System.out.println("==========开始执行controller环绕通知===============");
+
           long start = System.currentTimeMillis();
           Object object=null;
           String methodName = joinPoint.getSignature().getName();
@@ -72,9 +71,9 @@ public class SystemLogAspect {
               if(logger.isInfoEnabled()){
                   logger.info("around " + joinPoint + "\tUse time : " + (end - start) + " ms!");
               }
-              System.out.println("==========结束执行controller环绕通知===============");
+
           } catch (Throwable e) {
-        	  System.out.println("环绕通知中的异常--------------------------------"+methodName+"-------"+e.getMessage());
+
               long end = System.currentTimeMillis();
               if(logger.isInfoEnabled()){
                   logger.info("around " + joinPoint + "\tUse time : " + (end - start) + " ms with exception : " + e.getMessage());
@@ -122,11 +121,11 @@ public class SystemLogAspect {
                 }  
             }
             //*========控制台输出=========*//  
-            System.out.println("=====controller后置通知开始=====");  
-            System.out.println("请求方法:" + (joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()")+"."+operationType);  
-            System.out.println("方法描述:" + operationType);
-//            System.out.println("请求人:" + user.getUserName());
-            System.out.println("请求IP:" + ip);  
+//            System.out.println("=====controller后置通知开始=====");
+//            System.out.println("请求方法:" + (joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()")+"."+operationType);
+//            System.out.println("方法描述:" + operationType);
+////            System.out.println("请求人:" + user.getUserName());
+//            System.out.println("请求IP:" + ip);
             //*========数据库日志=========*//
 
              if(user!=null){
@@ -190,7 +189,7 @@ public class SystemLogAspect {
         //获取请求ip  
         String ip = request.getRemoteAddr(); */ 
         //获取用户请求方法的参数并序列化为JSON格式字符串  
-        System.out.println("异常通知开始------------------------------------------");
+//        System.out.println("异常通知开始------------------------------------------");
 //        User user = new User();
 //        user.setId(1);
 //        user.setName("张三");
@@ -223,14 +222,14 @@ public class SystemLogAspect {
                  }  
              }
              /*========控制台输出=========*/  
-            System.out.println("=====异常通知开始=====");  
-            System.out.println("异常代码:" + e.getClass().getName());  
-            System.out.println("异常信息:" + e.getMessage());  
-            System.out.println("异常方法:" + (joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()")+"."+operationType);  
-            System.out.println("方法描述:" + operationName);  
-//            System.out.println("请求人:" + user.getName());
-            System.out.println("请求IP:" + ip);  
-            System.out.println("请求参数:" + params);  
+//            System.out.println("=====异常通知开始=====");
+//            System.out.println("异常代码:" + e.getClass().getName());
+//            System.out.println("异常信息:" + e.getMessage());
+//            System.out.println("异常方法:" + (joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName() + "()")+"."+operationType);
+//            System.out.println("方法描述:" + operationName);
+////            System.out.println("请求人:" + user.getName());
+//            System.out.println("请求IP:" + ip);
+//            System.out.println("请求参数:" + params);
                /*==========数据库日志=========*/  
 //            SystemLog log = new SystemLog();
 //            log.setId(UUID.randomUUID().toString());
@@ -245,7 +244,7 @@ public class SystemLogAspect {
 //            log.setRequestIp(ip);
             //保存数据库  
 //            systemLogService.insert(log);  
-            System.out.println("=====异常通知结束=====");  
+//            System.out.println("=====异常通知结束=====");
         }  catch (Exception ex) {  
             //记录本地异常日志  
             logger.error("==异常通知异常==");  

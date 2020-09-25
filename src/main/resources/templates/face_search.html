@@ -136,7 +136,7 @@
                             success: function (data) {
                                 if (data===1){
                                     alert("登录成功")
-                                    location.href = "/hello/person";
+                                    location.href="/user/myName1";
                                 }
 
 
@@ -208,7 +208,7 @@
                                 type: 'post',
                                 success: function (data) {
                                     alert("登录成功")
-                                    location.href = "/hello/person";
+                                    location.href="/user/myName?account="+account;
                                 }
                             })
                             return false;

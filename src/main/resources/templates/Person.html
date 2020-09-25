@@ -161,6 +161,7 @@
 
 
         </div>
+
     </div>
     <div style="text-align: center">
         <p>&copy; 2020 <a href="/">海峡人才生态圈</a> MIT license
@@ -178,6 +179,7 @@
 </div>
 </body>
 <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
     layui.use(['carousel', 'form'], function () {
         var carousel = layui.carousel
@@ -296,21 +298,21 @@
         //图片轮播
         carousel.render({
             elem: '#test12'
-            , width: '1430px'
-            , height: '200px'
-            , interval: 5000
+            ,width: '1430px'
+            ,height: '200px'
+            ,interval: 5000
         });
 
         //事件
-        carousel.on('change(test4)', function (res) {
+        carousel.on('change(test4)', function(res){
             console.log(res)
         });
 
         var $ = layui.$, active = {
-            set: function (othis) {
+            set: function(othis){
                 var THIS = 'layui-bg-normal'
-                    , key = othis.data('key')
-                    , options = {};
+                    ,key = othis.data('key')
+                    ,options = {};
 
                 othis.css('background-color', '#5FB878').siblings().removeAttr('style');
                 options[key] = othis.data('value');
@@ -319,45 +321,45 @@
         };
 
         //监听开关
-        form.on('switch(autoplay)', function () {
+        form.on('switch(autoplay)', function(){
             ins3.reload({
                 autoplay: this.checked
             });
         });
 
-        $('.demoSet').on('keyup', function () {
+        $('.demoSet').on('keyup', function(){
             var value = this.value
-                , options = {};
-            if (!/^\d+$/.test(value)) return;
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
 
             options[this.name] = value;
             ins3.reload(options);
         });
 
         //其它示例
-        $('.demoTest .layui-btn').on('click', function () {
+        $('.demoTest .layui-btn').on('click', function(){
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
     });
 </script>
 <script>
-    layui.use(['carousel', 'form'], function () {
+    layui.use(['carousel', 'form'], function(){
         var carousel = layui.carousel
-            , form = layui.form;
+            ,form = layui.form;
 
         //常规轮播
         carousel.render({
             elem: '#test1'
-            , arrow: 'always'
+            ,arrow: 'always'
         });
 
         //改变下时间间隔、动画类型、高度
         carousel.render({
             elem: '#test2'
-            , interval: 1800
-            , anim: 'fade'
-            , height: '120px'
+            ,interval: 1800
+            ,anim: 'fade'
+            ,height: '120px'
         });
 
         //设定各种参数
@@ -367,21 +369,21 @@
         //图片轮播
         carousel.render({
             elem: '#test13'
-            , width: '1430px'
-            , height: '200px'
-            , interval: 5000
+            ,width: '1430px'
+            ,height: '200px'
+            ,interval: 5000
         });
 
         //事件
-        carousel.on('change(test4)', function (res) {
+        carousel.on('change(test4)', function(res){
             console.log(res)
         });
 
         var $ = layui.$, active = {
-            set: function (othis) {
+            set: function(othis){
                 var THIS = 'layui-bg-normal'
-                    , key = othis.data('key')
-                    , options = {};
+                    ,key = othis.data('key')
+                    ,options = {};
 
                 othis.css('background-color', '#5FB878').siblings().removeAttr('style');
                 options[key] = othis.data('value');
@@ -390,45 +392,45 @@
         };
 
         //监听开关
-        form.on('switch(autoplay)', function () {
+        form.on('switch(autoplay)', function(){
             ins3.reload({
                 autoplay: this.checked
             });
         });
 
-        $('.demoSet').on('keyup', function () {
+        $('.demoSet').on('keyup', function(){
             var value = this.value
-                , options = {};
-            if (!/^\d+$/.test(value)) return;
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
 
             options[this.name] = value;
             ins3.reload(options);
         });
 
         //其它示例
-        $('.demoTest .layui-btn').on('click', function () {
+        $('.demoTest .layui-btn').on('click', function(){
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
     });
 </script>
 <script>
-    layui.use(['carousel', 'form'], function () {
+    layui.use(['carousel', 'form'], function(){
         var carousel = layui.carousel
-            , form = layui.form;
+            ,form = layui.form;
 
         //常规轮播
         carousel.render({
             elem: '#test1'
-            , arrow: 'always'
+            ,arrow: 'always'
         });
 
         //改变下时间间隔、动画类型、高度
         carousel.render({
             elem: '#test2'
-            , interval: 1800
-            , anim: 'fade'
-            , height: '120px'
+            ,interval: 1800
+            ,anim: 'fade'
+            ,height: '120px'
         });
 
         //设定各种参数
@@ -438,21 +440,21 @@
         //图片轮播
         carousel.render({
             elem: '#test14'
-            , width: '1430px'
-            , height: '200px'
-            , interval: 5000
+            ,width: '1430px'
+            ,height: '200px'
+            ,interval: 5000
         });
 
         //事件
-        carousel.on('change(test4)', function (res) {
+        carousel.on('change(test4)', function(res){
             console.log(res)
         });
 
         var $ = layui.$, active = {
-            set: function (othis) {
+            set: function(othis){
                 var THIS = 'layui-bg-normal'
-                    , key = othis.data('key')
-                    , options = {};
+                    ,key = othis.data('key')
+                    ,options = {};
 
                 othis.css('background-color', '#5FB878').siblings().removeAttr('style');
                 options[key] = othis.data('value');
@@ -461,45 +463,45 @@
         };
 
         //监听开关
-        form.on('switch(autoplay)', function () {
+        form.on('switch(autoplay)', function(){
             ins3.reload({
                 autoplay: this.checked
             });
         });
 
-        $('.demoSet').on('keyup', function () {
+        $('.demoSet').on('keyup', function(){
             var value = this.value
-                , options = {};
-            if (!/^\d+$/.test(value)) return;
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
 
             options[this.name] = value;
             ins3.reload(options);
         });
 
         //其它示例
-        $('.demoTest .layui-btn').on('click', function () {
+        $('.demoTest .layui-btn').on('click', function(){
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
     });
 </script>
 <script>
-    layui.use(['carousel', 'form'], function () {
+    layui.use(['carousel', 'form'], function(){
         var carousel = layui.carousel
-            , form = layui.form;
+            ,form = layui.form;
 
         //常规轮播
         carousel.render({
             elem: '#test1'
-            , arrow: 'always'
+            ,arrow: 'always'
         });
 
         //改变下时间间隔、动画类型、高度
         carousel.render({
             elem: '#test2'
-            , interval: 1800
-            , anim: 'fade'
-            , height: '120px'
+            ,interval: 1800
+            ,anim: 'fade'
+            ,height: '120px'
         });
 
         //设定各种参数
@@ -515,15 +517,15 @@
         });
 
         //事件
-        carousel.on('change(test4)', function (res) {
+        carousel.on('change(test4)', function(res){
             console.log(res)
         });
 
         var $ = layui.$, active = {
-            set: function (othis) {
+            set: function(othis){
                 var THIS = 'layui-bg-normal'
-                    , key = othis.data('key')
-                    , options = {};
+                    ,key = othis.data('key')
+                    ,options = {};
 
                 othis.css('background-color', '#5FB878').siblings().removeAttr('style');
                 options[key] = othis.data('value');
@@ -532,23 +534,23 @@
         };
 
         //监听开关
-        form.on('switch(autoplay)', function () {
+        form.on('switch(autoplay)', function(){
             ins3.reload({
                 autoplay: this.checked
             });
         });
 
-        $('.demoSet').on('keyup', function () {
+        $('.demoSet').on('keyup', function(){
             var value = this.value
-                , options = {};
-            if (!/^\d+$/.test(value)) return;
+                ,options = {};
+            if(!/^\d+$/.test(value)) return;
 
             options[this.name] = value;
             ins3.reload(options);
         });
 
         //其它示例
-        $('.demoTest .layui-btn').on('click', function () {
+        $('.demoTest .layui-btn').on('click', function(){
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });

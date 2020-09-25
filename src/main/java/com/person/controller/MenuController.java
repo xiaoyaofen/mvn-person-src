@@ -27,7 +27,6 @@ public class MenuController {
     @RequestMapping("/centerMenu")
     @ResponseBody
     public String centerMenu(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println(33333);
         User user= (User) request.getSession().getAttribute("user");
             return new Gson().toJson(user);
     }

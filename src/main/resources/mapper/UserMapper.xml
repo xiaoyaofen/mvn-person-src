@@ -127,4 +127,43 @@ where p.type='岗位' and c.name=#{name} and p.name=#{pname}
     <select id="getExperience" resultType="com.person.bean.Params">
         select name from t_param where type='工作经验' and value=#{value}
     </select>
+
+
+<!--    查找性别-->
+    <select id="updatesex" resultType="java.lang.String">
+        select value from t_param where type='性别' and name=#{name}
+    </select>
+
+    <!--    查找学历-->
+    <select id="updatexperience" resultType="java.lang.String" >
+        select value from t_param where type='学历' and name=#{name}
+    </select>
+
+<!--    修改个人基本信息-->
+    <update id="updateinfor" >
+        update t_user set name=#{name},sex=#{sex},education=#{education},tel=#{tel},address=#{address} where id=#{id};
+    </update>
+
+<!--修改工作经历-->
+    <update id="jobexperience">
+        update t_user set jobexperience=#{jobexperience} where id=#{id};
+    </update>
+
+    <!--修改项目经验-->
+    <update id="project">
+        update t_user set project=#{project} where id=#{id};
+    </update>
+
+    <!--修改教育背景-->
+    <update id="education">
+        update t_user set educationbackground=#{educationbackground} where id=#{id};
+    </update>
+
+    <!--自我描述-->
+    <update id="self">
+        update t_user set self=#{self} where id=#{id};
+    </update>
+
+
+
 </mapper>

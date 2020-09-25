@@ -134,6 +134,12 @@ public class HelloController {
         return "myjianli";
     }
 
+//    简历
+    @GetMapping(value = "/jianli1")
+    public String myjianli1() {
+        return "jianli1";
+    }
+
 
 
 
@@ -154,6 +160,12 @@ public class HelloController {
     @GetMapping(value = "/contacts")
     public String contacts() {
         return "Mycontacts";
+    }
+
+
+    @GetMapping(value = "/con")
+    public String con() {
+        return "11";
     }
 
 

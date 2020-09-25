@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.person.bean.*;
 import com.person.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -366,6 +367,16 @@ public class UserController {
         request.getSession().setAttribute("user", user);
         return new Gson().toJson(1);
     }
+//    @RequestMapping("/getlogin1")
+//    @ResponseBody
+//    public Object getlogin1(HttpServletRequest request, HttpServletResponse response,Model model) {
+//        String faceId = request.getParameter("faceId");
+//        User user=userService.getFace(faceId);
+//        request.getSession().setAttribute("user", user);
+//        String account=user.getAccount();
+//        model.addAttribute("user", user);
+//        return new Gson().toJson(1);
+//    }
 
 
 
@@ -373,8 +384,17 @@ public class UserController {
     @RequestMapping("/myName")
     public String myName(HttpServletRequest request, HttpServletResponse response,Model model) {
         String account = request.getParameter("account");
-        System.out.println(account);
         User user=userService.findbyname(account);
+        model.addAttribute("user", user);
+        return "Person2";
+    }
+
+
+    @RequestMapping("/myName1")
+    public String myName1(HttpServletRequest request, HttpServletResponse response,Model model) {
+//        String account = request.getParameter("account");
+
+        User user=userService.findbyname("111");
         model.addAttribute("user", user);
         return "Person2";
     }
@@ -382,7 +402,6 @@ public class UserController {
 
     //简历
     @RequestMapping("/getjianli")
-
     public Object getjianli(HttpServletRequest request, HttpServletResponse response,Model model) {
         User user= (User) request.getSession().getAttribute("user");
         Integer userId=user.getId();
@@ -390,7 +409,6 @@ public class UserController {
         Integer a=user.getSex();
         Integer b=user.getEducation();
         User user1=userService.findInfor(String.valueOf(userId));
-
         Params params=userService.getValue(String.valueOf(education));
         Params params1=userService.Sex(String.valueOf(a));
         Params params2=userService.getExperience(String.valueOf(b));
@@ -398,9 +416,130 @@ public class UserController {
         model.addAttribute("params1", params1);
         model.addAttribute("params", params);
         model.addAttribute("user1", user1);
-        return "jianli";
+        return "jianli1";
+    }
+//    简历的基本信息
+@RequestMapping("/updatebase")
+@ResponseBody
+public Object updatebase(HttpServletRequest request, HttpServletResponse response,Model model) {
+    User user= (User) request.getSession().getAttribute("user");
+    Integer userId=user.getId();
+    String name = request.getParameter("name");
+    String sex1 = request.getParameter("sex");
+    String detial1 = request.getParameter("detial");
+    String tel = request.getParameter("tel");
+    String email = request.getParameter("email");
+    String sex2=userService.updatesex(sex1);
+   String detial=userService.updatexperience(detial1);
+    userService.updateinfor(name,sex2,detial,tel,email,userId);
+    User user1=userService.findInfor(String.valueOf(userId));
+    request.getSession().setAttribute("user", user1);
+    Integer education=user1.getEducation();
+    Integer a=user1.getSex();
+    Integer b=user1.getEducation();
+    Params params=userService.getValue(String.valueOf(education));
+    Params params1=userService.Sex(String.valueOf(a));
+    Params params2=userService.getExperience(String.valueOf(b));
+    model.addAttribute("params2", params2);
+    model.addAttribute("params1", params1);
+    model.addAttribute("params", params);
+    model.addAttribute("user1", user1);
+    return new Gson().toJson(1);
+}
+
+
+
+    @RequestMapping("/experience")
+    @ResponseBody
+    public Object experience(HttpServletRequest request, HttpServletResponse response,Model model) {
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userId=user.getId();
+        String myexperience = request.getParameter("myexperience");
+         userService.jobexperience(myexperience,String.valueOf(userId));
+        User user1=userService.findInfor(String.valueOf(userId));
+        request.getSession().setAttribute("user", user1);
+        Integer education=user1.getEducation();
+        Integer a=user1.getSex();
+        Integer b=user1.getEducation();
+        Params params=userService.getValue(String.valueOf(education));
+        Params params1=userService.Sex(String.valueOf(a));
+        Params params2=userService.getExperience(String.valueOf(b));
+        model.addAttribute("params2", params2);
+        model.addAttribute("params1", params1);
+        model.addAttribute("params", params);
+        model.addAttribute("user1", user1);
+        return new Gson().toJson(1);
     }
 
+
+
+    @RequestMapping("/project1")
+    @ResponseBody
+    public Object project1(HttpServletRequest request, HttpServletResponse response,Model model) {
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userId=user.getId();
+        String project1 = request.getParameter("project1");
+        userService.project(project1,String.valueOf(userId));
+        User user1=userService.findInfor(String.valueOf(userId));
+        request.getSession().setAttribute("user", user1);
+        Integer education=user1.getEducation();
+        Integer a=user1.getSex();
+        Integer b=user1.getEducation();
+        Params params=userService.getValue(String.valueOf(education));
+        Params params1=userService.Sex(String.valueOf(a));
+        Params params2=userService.getExperience(String.valueOf(b));
+        model.addAttribute("params2", params2);
+        model.addAttribute("params1", params1);
+        model.addAttribute("params", params);
+        model.addAttribute("user1", user1);
+        return new Gson().toJson(1);
+    }
+
+    @RequestMapping("/education1")
+    @ResponseBody
+    public Object education1(HttpServletRequest request, HttpServletResponse response,Model model) {
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userId=user.getId();
+        String education1 = request.getParameter("education1");
+        userService.education(education1,String.valueOf(userId));
+        User user1=userService.findInfor(String.valueOf(userId));
+        request.getSession().setAttribute("user", user1);
+        Integer education=user1.getEducation();
+        Integer a=user1.getSex();
+        Integer b=user1.getEducation();
+        Params params=userService.getValue(String.valueOf(education));
+        Params params1=userService.Sex(String.valueOf(a));
+        Params params2=userService.getExperience(String.valueOf(b));
+        model.addAttribute("params2", params2);
+        model.addAttribute("params1", params1);
+        model.addAttribute("params", params);
+        model.addAttribute("user1", user1);
+        return new Gson().toJson(1);
+    }
+
+
+    @RequestMapping("/self1")
+    @ResponseBody
+    public Object self1(HttpServletRequest request, HttpServletResponse response,Model model) {
+        System.out.println(1456);
+        User user= (User) request.getSession().getAttribute("user");
+        Integer userId=user.getId();
+        String self1 = request.getParameter("self1");
+        userService.self(self1,String.valueOf(userId));
+        User user1=userService.findInfor(String.valueOf(userId));
+        request.getSession().setAttribute("user", user1);
+        Integer education=user1.getEducation();
+        Integer a=user1.getSex();
+        Integer b=user1.getEducation();
+        Params params=userService.getValue(String.valueOf(education));
+        Params params1=userService.Sex(String.valueOf(a));
+        Params params2=userService.getExperience(String.valueOf(b));
+        model.addAttribute("params2", params2);
+        model.addAttribute("params1", params1);
+        model.addAttribute("params", params);
+        model.addAttribute("user1", user1);
+        return new Gson().toJson(1);
+    }
 
 
 }

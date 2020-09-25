@@ -4,6 +4,7 @@ import com.person.aoplog.Log;
 import com.person.bean.*;
 import com.person.mapper.UserMapper;
 import com.person.service.UserService;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -154,6 +155,55 @@ public class UserServiceImpl implements UserService {
     @Log(operationType = "查找工作经验", operationName = "user")
     public Params getExperience(String value) {
         return userMapper.getExperience(value);
+    }
+
+    @Override
+    @Log(operationType = "查找性别参数", operationName = "user")
+    public String updatesex(String name) {
+
+      String A=  userMapper.updatesex(name);
+        System.out.println("1234"+A);
+
+        return A;
+    }
+
+    @Override
+    @Log(operationType = "查找学历参数", operationName = "user")
+    public String updatexperience(String name) {
+        return userMapper.updatexperience(name);
+    }
+
+    @Override
+    @Log(operationType = "修改信息", operationName = "user")
+    public void updateinfor(String name, String sex, String education, String tel, String address,Integer id) {
+        userMapper.updateinfor(name,sex,education,tel,address,id);
+    }
+
+    @Override
+    @Log(operationType = "修改经历", operationName = "user")
+    public void jobexperience(String jobexperience,String id) {
+        userMapper.jobexperience(jobexperience,id);
+    }
+
+    @Override
+    @Log(operationType = "修改项目经验", operationName = "user")
+    public void project(String project,String id) {
+        userMapper.project(project,id);
+
+    }
+
+    @Override
+    @Log(operationType = "修改教育背景", operationName = "user")
+    public void education(String education,String id) {
+        userMapper.education(education,id);
+
+    }
+
+    @Override
+    @Log(operationType = "修改自我评价", operationName = "user")
+    public void self(String self,String id) {
+        userMapper.self(self,id);
+
     }
 
 

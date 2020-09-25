@@ -39,4 +39,17 @@ public interface UserService {
     public Params Sex(String value);
 
     public Params getExperience(String value);
+
+    public String updatesex(String name);
+
+    public String updatexperience(String name);
+
+
+    public void updateinfor(String name,String sex,String education,String tel,String address,Integer id);
+
+
+    public void jobexperience(String jobexperience,String id);
+    public void project(String project,String id);
+    public void education(String education,String id);
+    public void self(String self,String id);
 }

@@ -30,9 +30,6 @@ public class User{
     private Integer education;//最高学历
     private String educationStr;
     private Integer exprience;//工作经验
-    private String exprienceStr;
-    private Integer experience;
-    private String experienceStr;
     private String major;//专业
     private String school;//学校
     private String outlook;//社会面貌
@@ -42,11 +39,13 @@ public class User{
     private  String project;//项目经验
     private String educationbackground;//教育背景
     private String self;//自我描述
-    private Integer num;
+    private String jobexperience;//工作经验
+
 
     private String username;//人脸识别的名字
     private  String faceId;//人脸识别的id
     private Integer pm;
+    private Integer num;
     private String title;//工作标题
     private String recommend;//
     private Integer jobstation;
@@ -55,7 +54,7 @@ public class User{
     public User() {
     }
 
-    public User(Integer id, String account, String pwd, String name, Integer sex, String sexStr, Integer age, String tel, String address, String email, String state, String money, Date date, String jobstate, Date resgisdata, Date birthday, String specialty, Integer schoolId, String schoolName, Integer resume, Date brith, Integer education, String educationStr, Integer exprience, String major, String school, String outlook, String img, String project, String educationbackground, String self, Integer num, String username, String faceId, Integer pm, String title, String recommend, Integer jobstation) {
+    public User(Integer id, String account, String pwd, String name, Integer sex, String sexStr, Integer age, String tel, String address, String email, String state, String money, Date date, String jobstate, Date resgisdata, Date birthday, String specialty, Integer schoolId, String schoolName, Integer resume, Date brith, Integer education, String educationStr, Integer exprience, String major, String school, String outlook, String img, String project, String educationbackground, String self, String jobexperience, String username, String faceId, Integer pm, Integer num, String title, String recommend, Integer jobstation) {
         this.id = id;
         this.account = account;
         this.pwd = pwd;
@@ -80,7 +79,6 @@ public class User{
         this.education = education;
         this.educationStr = educationStr;
         this.exprience = exprience;
-        this.exprienceStr = exprienceStr;
         this.major = major;
         this.school = school;
         this.outlook = outlook;
@@ -88,10 +86,11 @@ public class User{
         this.project = project;
         this.educationbackground = educationbackground;
         this.self = self;
-        this.num = num;
+        this.jobexperience = jobexperience;
         this.username = username;
         this.faceId = faceId;
         this.pm = pm;
+        this.num = num;
         this.title = title;
         this.recommend = recommend;
         this.jobstation = jobstation;
@@ -289,14 +288,6 @@ public class User{
         this.exprience = exprience;
     }
 
-    public String getExprienceStr() {
-        return exprienceStr;
-    }
-
-    public void setExprienceStr(String exprienceStr) {
-        this.exprienceStr = exprienceStr;
-    }
-
     public String getMajor() {
         return major;
     }
@@ -353,12 +344,12 @@ public class User{
         this.self = self;
     }
 
-    public Integer getNum() {
-        return num;
+    public String getJobexperience() {
+        return jobexperience;
     }
 
-    public void setNum(Integer num) {
-        this.num = num;
+    public void setJobexperience(String jobexperience) {
+        this.jobexperience = jobexperience;
     }
 
     public String getUsername() {
@@ -385,6 +376,14 @@ public class User{
         this.pm = pm;
     }
 
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -407,22 +406,6 @@ public class User{
 
     public void setJobstation(Integer jobstation) {
         this.jobstation = jobstation;
-    }
-
-    public Integer getExperience() {
-        return experience;
-    }
-
-    public void setExperience(Integer experience) {
-        this.experience = experience;
-    }
-
-    public String getExperienceStr() {
-        return experienceStr;
-    }
-
-    public void setExperienceStr(String experienceStr) {
-        this.experienceStr = experienceStr;
     }
 }
 

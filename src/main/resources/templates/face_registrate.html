@@ -13,7 +13,11 @@
         <div style="margin: 0; width: 800px;height: 80px;background-color: #383939">
             <div style="margin: 0;height: 80px;text-align:center;line-height:80px;font-size: 40px;color: #E51C23">
                 人脸识别系统
+
             </div>
+<!--            <div>-->
+<!--                <a style="margin-left: 750px;font-size: 25px" th:href="@{/hello/userLogin}" target=_blank>返回登录</a>-->
+<!--            </div>-->
         </div>
         <div style="color:#FFFFFF;height: 50px;margin-top:20px;margin-left:20px;margin-right:20px;background-color: #5A5B5B;border-radius:5px">
             <label style="margin-left: 180px;height: 50px;line-height:50px;font-size: 21px;text-align: right;float: left">姓名：</label>
@@ -30,11 +34,10 @@
                 <tr>
                     <td><button title="摄像头注册" value="摄像头注册" onclick="getMedia()" style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:120px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px" >摄像头注册</button></td>
                     <td colspan="2"><button id="snap1" onclick="takePhoto()"  style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:100px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px">提交</button></td>
+                    <br>
+                    <a style="margin-left: 750px;font-size: 25px" th:href="@{/hello/userLogin}" target=_blank>返回登录</a>
                 </tr>
-<!--                    <td><button style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:120px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px" onclick="imageRecog()">照片注册</button></td>-->
-<!--                </tr>-->
-<!--                <#&#45;&#45;<td><button id="snap" onclick="commitPhoto()" style="color:#FFFFFF;height: 30px;display:block;margin:0 auto;margin-top:10px;width:100px;background-color: #3F51B5;border-radius:5px;text-align: center;line-height: 30px;font-size: 20px">照片提交</button></td>&ndash;&gt;-->
-<!--                <tr>-->
+
             </table>
         </div>
         <div style="float: right">
