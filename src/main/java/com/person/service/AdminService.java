@@ -94,4 +94,20 @@ public interface AdminService {
      * @Param jobstation 求职表中序号
      * */
     Integer inviteUserByCompany(Integer userid, String date, String address, String tel, Integer jobstation) throws Exception;
+
+    /**
+     * 邀请用户 - chongzhizhongxin
+     *@Param money
+     * */
+    Integer payMoney(String money,Integer id);
+
+    /**
+     *企业端 ==== 人才导出
+     *
+     * */
+    LayuiData<User> exportUserInfo(Integer limit,Integer page,HashMap<String, Object> condition);
+
+    Integer updateMoneyByAdmin(Integer adminid, String s);
+
+    public List<BusClick> daochuwenjian(List<User> list);
 }

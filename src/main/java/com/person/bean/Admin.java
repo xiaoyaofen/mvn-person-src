@@ -13,6 +13,7 @@ public class Admin {
     private String money;     //余额
     private String name;
     private Integer pm;
+    private String business;//主营业务
     public Admin(Integer id, String account, String pwd, String tel, String address, Integer company, Integer roleid, String state, String money,String name) {
         this.id = id;
         this.account = account;
@@ -138,5 +139,13 @@ public class Admin {
 
     public void setPm(Integer pm) {
         this.pm = pm;
+    }
+
+    public String getBusiness() {
+        return business;
+    }
+
+    public void setBusiness(String business) {
+        this.business = business;
     }
 }

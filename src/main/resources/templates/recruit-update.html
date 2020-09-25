@@ -136,7 +136,7 @@
             var worktime= $('#worktime').val();
             var description= $('#description').val();
             var id= $('#id').val();
-
+            //alert("id="+id+ "&title="+title+"&experience="+experience+"&number="+number+"&money="+money+"&welfare="+welfare+"&region="+region+"&worktime="+worktime+"&description="+description);
             $.ajax({
                 url: "/admin/recruitUpdate",
                 data:"id="+id+ "&title="+title+"&experience="+experience+"&number="+number+"&money="+money+"&welfare="+welfare+"&region="+region+"&worktime="+worktime+"&description="+description,

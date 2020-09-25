@@ -51,6 +51,8 @@
         </table>
 
     </div>
+
+    <button id="returnFrame" class="layui-btn">返回</button>
 </div>
 
 <script>
@@ -63,14 +65,32 @@
         $('#one').on('click', function () {
             var userid = $("#userid").val();
             var i = $("#jobstation").val();
-            $.ajax({
-                url: "/admin/checkResume",
-                data: 'id=one&value=已查看&i=' + i,
-                success: function (res) {
-                    if (res > 0) {
+
+            layer.open({
+                type: 2
+                , content: "/admin/showRecruit2?id=" + userid
+                , area: ['1000px', '700px']
+                , title: '查看用户简历'
+                , shade: 0.6 //遮罩透明度
+                , maxmin: true //允许全屏最小化
+                , anim: 1 //0-6的动画形式，-1不开启
+                , btn: ['确定']
+                , yes: function (index, layero) {
+                    $.ajax({
+                        url: "/admin/checkResume",
+                        data: 'id=one&value=已查看&i=' + i,
+                        success: function (res) {
+                            $("#one").text("已查看");
+                        }
+                    })
+                    layer.close(index);
+                }
+                , cancel: function (index, layero) {
+                    if (confirm('确定要关闭么')) {//只有当点击confirm框的确定时，该层才会关闭
                         $("#one").text("已查看");
-                        location.href = "/admin/showRecruit2?id=" + userid;
+                        layer.close(index)
                     }
+                    return false;
                 }
             })
         })
@@ -177,7 +197,7 @@
                         }else{
                             var i = $("#jobstation").val();
                             $.ajax({
-                                url: "/admin/  ",
+                                url: "/admin/checkResume",
                                 data: 'id=four&value='+state+'&i=' + i,
                                 success: function (res) {
                                     if (res > 0) {
@@ -208,6 +228,9 @@
 
         })
 
+        $('#returnFrame').on('click', function (){
+            location.href = "/admin/adminBioCheckFrame"
+        })
     })
 </script>
 

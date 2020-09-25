@@ -26,6 +26,7 @@ public class Station {
     private String job;//职位
     private Integer company;
     private String companyname;//公司
+    private String date1;
 
     private Integer pm;//序号
 
@@ -323,6 +324,14 @@ public class Station {
 
     public void setCompanyname(String companyname) {
         this.companyname = companyname;
+    }
+
+    public String getDate1() {
+        return date1;
+    }
+
+    public void setDate1(String date1) {
+        this.date1 = date1;
     }
 
     @Override

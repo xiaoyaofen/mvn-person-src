@@ -1,60 +1,77 @@
-<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
-<html class="x-admin-sm" xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html>
+
 <head>
-    <title>根据地址查询经纬度</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=GRhPdICtbwXPsmHbld0GpkVH6WRGiB9b"></script>
-    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
-</head>
-<body style="background:#CBE1FF">
-<!--<input id="text_" type="text" th:value="${station.address}"  style="margin-right:100px;"/>-->
-<!--<input id="company" th:value="${station.companyname}">-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>浏览器定位</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css" />
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.4&key=d139218528cef41ab14be42fa61e4a60"></script>
+    <script type="text/javascript" src="http://cache.amap.com/lbs/static/addToolbar.js"></script>
 
-<div style="width:730px;margin:auto;">
-    要查询的地址：<input id="text_" type="text" value="宁波天一广场" style="margin-right:100px;"/>
-    查询结果(经纬度)：<input id="result_" type="text" />
-    <input type="button" value="查询" onclick="searchByStationName();"/>
-    <div id="container"
-         style="position: absolute;
-                margin-top:30px;
-                width: 730px;
-                height: 590px;
-                top: 50px;
-                border: 1px solid gray;
-                overflow:hidden;">
-    </div>
-</div>
+<body>
 
-</body>
+<div id='iCenter'></div>
+
 <script type="text/javascript">
-    var map = new BMap.Map("container");
-    map.centerAndZoom("厦门", 12);
-    map.enableScrollWheelZoom();    //启用滚轮放大缩小，默认禁用
-    map.enableContinuousZoom();    //启用地图惯性拖拽，默认禁用
 
-    map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
-    map.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件
-    map.addControl(new BMap.OverviewMapControl({ isOpen: true, anchor: BMAP_ANCHOR_BOTTOM_RIGHT }));   //右下角，打开
-
-    var localSearch = new BMap.LocalSearch(map);
-    localSearch.enableAutoViewport(); //允许自动调节窗体大小
-
-    function searchByStationName() {
-        map.clearOverlays();//清空原来的标注
-        var keyword = document.getElementById("text_").value;
-        localSearch.setSearchCompleteCallback(function (searchResult) {
-            var poi = searchResult.getPoi(0);
-            document.getElementById("result_").value = poi.point.lng + "," + poi.point.lat;
-            map.centerAndZoom(poi.point, 13);
-            var marker = new BMap.Marker(new BMap.Point(poi.point.lng, poi.point.lat));  // 创建标注，为要查询的地方对应的经纬度
-            map.addOverlay(marker);
-            var content = document.getElementById("text_").value + "<br/><br/>经度：" + poi.point.lng + "<br/>纬度：" + poi.point.lat;
-            var infoWindow = new BMap.InfoWindow("<p style='font-size:14px;'>" + content + "</p>");
-            marker.addEventListener("click", function () { this.openInfoWindow(infoWindow); });
-            // marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    mapObj = new AMap.Map('iCenter');
+    mapObj.plugin('AMap.Geolocation', function () {
+        geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true,//是否使用高精度定位，默认:true
+            timeout: 10000,          //超过10秒后停止定位，默认：无穷大
+            maximumAge: 0,           //定位结果缓存0毫秒，默认：0
+            convert: true,           //自动偏移坐标，偏移后的坐标为高德坐标，默认：true
+            showButton: true,        //显示定位按钮，默认：true
+            buttonPosition: 'LB',    //定位按钮停靠位置，默认：'LB'，左下角
+            buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+            showMarker: true,        //定位成功后在定位到的位置显示点标记，默认：true
+            showCircle: true,        //定位成功后用圆圈表示定位精度范围，默认：true
+            panToLocation: true,     //定位成功后将定位到的位置作为地图中心点，默认：true
+            zoomToAccuracy:true      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
         });
-        localSearch.search(keyword);
+        mapObj.addControl(geolocation);
+        geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
+    });
+    /***************************************
+     由于Chrome、IOS10等已不再支持非安全域的浏览器定位请求，为保证定位成功率和精度，请尽快升级您的站点到HTTPS。
+     ***************************************/
+    // var map, geolocation;
+    // //加载地图，调用浏览器定位服务
+    // map = new AMap.Map('container', {
+    //     resizeEnable: true
+    // });
+    // map.plugin('AMap.Geolocation', function() {
+    //     geolocation = new AMap.Geolocation({
+    //         enableHighAccuracy: true, //是否使用高精度定位，默认:true
+    //         timeout: 10000, //超过10秒后停止定位，默认：无穷大
+    //         buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+    //         zoomToAccuracy: true, //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+    //         buttonPosition: 'RB'
+    //     });
+    //     map.addControl(geolocation);
+    //     geolocation.getCurrentPosition();
+    //     AMap.event.addListener(geolocation, 'complete', onComplete); //返回定位信息
+    //     AMap.event.addListener(geolocation, 'error', onError); //返回定位出错信息
+    // });
+    //解析定位结果
+    function onComplete(data) {
+        var str = [];
+        str.push(data.position.getLat());
+        str.push(data.position.getLng());
+        document.getElementById('tip').innerHTML = str;
+
     }
 
+    //解析定位错误信息
+    function onError(data) {
+        alert(JSON.stringify(data));
+        document.getElementById('tip').innerHTML = '定位失败';
+    }
 </script>
+</body>
+
 </html>

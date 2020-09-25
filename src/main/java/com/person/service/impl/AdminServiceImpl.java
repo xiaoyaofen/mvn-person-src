@@ -8,6 +8,9 @@ import com.aliyuncs.IAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.person.aoplog.Log;
 import com.person.bean.*;
 import com.person.mapper.AdminMapper;
@@ -19,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +64,12 @@ public class AdminServiceImpl implements AdminService {
         Integer conut = adminMapper.userRecommendNum(condition);
         Integer curPage = limit * (page - 1);
         List<Station> list = adminMapper.userRecommend(condition,limit,curPage);
-        pageBean.setData(list);
+
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+        String s = gson.toJson(list);
+        System.out.println(gson.toJson(list));
+        ArrayList<Station> cars = gson.fromJson(s,new TypeToken<ArrayList<Station>>() {}.getType());
+        pageBean.setData(cars);
         pageBean.setMsg("");
         pageBean.setCode(0);
         pageBean.setCount(conut);
@@ -284,6 +293,45 @@ public class AdminServiceImpl implements AdminService {
         Jobcontain station = adminMapper.inviteUserByCompany(jobstation);
         EailSenderUitl.sendMail(date,station.getCompany(),station.getUsername(),address,station.getEmail());
         return adminMapper.checkResume("two","已邀请",jobstation);
+    }
+
+    @Override
+    @Log(operationType = "充值", operationName = "admin")
+    public Integer payMoney(String money, Integer id) {
+        return adminMapper.payMoney(money,id);
+    }
+
+
+    /**
+     *企业端 ==== 人才导出
+     *
+     * */
+    @Override
+    @Log(operationType = "查询人才", operationName = "admin")
+    public LayuiData<User> exportUserInfo(Integer limit,Integer page,HashMap<String, Object> condition) {
+        Integer total = adminMapper.exportUserInfoNum(condition);
+        Integer curPage = limit * (page - 1);
+        List<User> userList = adminMapper.exportUserInfo(limit,curPage,condition);
+        LayuiData<User> layuiData = new LayuiData<>();
+        layuiData.setCount(total);
+        layuiData.setData(userList);
+        layuiData.setMsg("");
+        layuiData.setCode(0);
+        return layuiData;
+    }
+
+    @Override
+    @Log(operationType = "金钱交互", operationName = "admin")
+    public Integer updateMoneyByAdmin(Integer adminid, String s) {
+        return adminMapper.updateMoneyByAdmin(adminid,s);
+    }
+
+    @Override
+    @Log(operationType = "文件导出", operationName = "admin")
+    public List<BusClick> daochuwenjian(List<User> list) {
+        List<BusClick> list1 = adminMapper.daochuwenjian(list);
+
+        return list1;
     }
 
 

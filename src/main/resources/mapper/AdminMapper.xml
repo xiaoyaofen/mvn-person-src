@@ -56,7 +56,7 @@
     <!--//高校人才推荐 ==============工作信息数据获取 ==-=数据     -->
     <select id="userRecommend" resultType="com.person.bean.Station">
         select ta.*,(@i:=@i+1)pm from
-        (select s.id,s.title,s.date,p2.name trade,p1.name job,a.name adminname,c.name companyname from t_station s
+        (select s.id,s.title, DATE_FORMAT(s.date, '%Y-%m-%d') date1,p2.name trade,p1.name job,a.name adminname,c.name companyname from t_station s
         LEFT JOIN t_param p1 on s.job = p1.value and type='岗位'
         LEFT JOIN t_admin a on a.id = s.adminid
         LEFT JOIN t_company c on c.id = a.company
@@ -129,7 +129,7 @@
         values(
         #{station.title},#{station.region},#{station.experience},#{station.money},
         #{station.worktime},#{station.description},#{station.welfare},#{station.number},#{id},
-        #{station.sex},#{station.education},#{station.job},(select company from t_admin where id =#{id},#{station.request})
+        #{station.sex},#{station.education},#{station.job},(select company from t_admin where id =#{id}),#{station.request}
         )
     </insert>
     <!--//公司招聘管理=================招聘修改-->
@@ -224,7 +224,8 @@
     <select id="showRecruit" resultType="com.person.bean.User">
         select *,
         (select name from t_param p where p.value = sex and p.type = '性别') sexStr,
-        (select name from t_param p2 where p2.value = education and p2.type = '学历') educationStr
+        (select name from t_param p2 where p2.value = education and p2.type = '学历') educationStr,
+        (select name from t_param p3 where p3.value = experience and p3.type = '工作经验') exprienceStr
         from t_user where id = #{id}
     </select>
 
@@ -292,4 +293,49 @@
         LEFT JOIN t_company c on c.id = a.company
         where j.id = #{jobstation}
     </select>
+
+    <update id="payMoney" >
+        update t_admin set money = #{money} where id = #{id}
+    </update>
+
+    <select id="exportUserInfo" resultType="com.person.bean.User">
+        select tab.*,(@i:=@i+1)pm from (
+        select u.name,u.id,u.major,u.tel,u.school,
+        (select p1.name from t_param p1 where p1.value= u.sex and p1.type='性别') sexStr,
+        (select p2.name from t_param p2 where p2.value= u.education and p2.type='学历') educationStr,
+        (select p3.name from t_param p3 where p3.value= u.experience and p3.type='工作经验') experienceStr
+        from t_user u
+        <where>
+            <if test="condition.sex != null ">and u.sex = #{condition.sex}</if>
+            <if test="condition.education != null ">and u.education = #{condition.education}</if>
+            <if test="condition.experience != null ">and u.experience = #{condition.experience}</if>
+        </where>
+        limit #{limit},#{page}
+        )tab,(select @i:=0)t
+    </select>
+
+<!--    用户查询 企业-->
+    <select id="exportUserInfoNum" resultType="java.lang.Integer">
+        select count(*) from t_user u
+        <where>
+            <if test="condition.sex != null ">and u.sex = #{condition.sex}</if>
+            <if test="condition.education != null ">and u.education = #{condition.education}</if>
+            <if test="condition.experience != null ">and u.experience = #{condition.experience}</if>
+        </where>
+    </select>
+
+<!--    企业金钱更新-->
+    <update id="updateMoneyByAdmin">
+        update t_admin set money = #{money} where id = #{id}
+    </update>
+
+    <select id="daochuwenjian" parameterType="com.person.bean.User" resultType="com.person.bean.BusClick">
+        select * from t_user
+        where id in
+        <foreach collection="list" index="index" item="user" open="(" separator="," close=")">
+            #{user.id}
+        </foreach>
+    </select>
+
+
 </mapper>

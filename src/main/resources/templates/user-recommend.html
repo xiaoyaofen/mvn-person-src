@@ -73,11 +73,11 @@
                     {type: 'checkbox', fixed: 'left'}
                     ,{field: 'pm', title: '序号', width:80, sort: true, fixed: 'left'}
                     ,{field: 'id',hide: true}
-                    ,{field: 'trade', title: '行业', width: 300}
-                    ,{field: 'companyname', title: '公司', width: 300}
+                    ,{field: 'trade', title: '行业', width: 250}
+                    ,{field: 'companyname', title: '公司', width: 250}
                     ,{field: 'adminname', title: '发布者', width: 150}
-                    ,{field: 'job', title: '岗位', width: 280}
-                    ,{field: 'date', title: '发布时间', width: 200}
+                    ,{field: 'job', title: '岗位', width: 250}
+                    ,{field: 'date1', title: '发布时间', width: 200}
                     ,{fixed: 'right' , title: '操作', width: 150, align:'center', toolbar: '#barDemo'}
                 ]
             ]
@@ -115,7 +115,7 @@
             var data = obj.data //获得当前行数据
                 ,layEvent = obj.event; //获得 lay-event 对应的值
             if(layEvent === 'detail'){
-                alert(data.id);
+
                 location.href="/admin/userSelectFrame?stationid = "+data.id;
             }
         });
@@ -141,68 +141,6 @@
             var type = $(this).data('type');//自定义type属性，这里即为reload
             active[type] ? active[type].call(this) : ''; //如果存在active[type]，则调用改函数
         });
-
-        // ===================上传
-        $('#upload-btn').on('click', function () {
-            layer.open({
-                type: 2 //Page层类型
-                , area: ['600px', '500px']
-                , title: '修改用户信息'
-                , shade: 0.6 //遮罩透明度
-                , maxmin: true //允许全屏最小化
-                , anim: 1 //0-6的动画形式，-1不开启
-                , content: "/admin/uploadFrame"
-                ,btn: ['确定', '返回']
-                ,success: function (layero, index) {
-
-                    var body = layer.getChildFrame('body', index);  //巧妙的地方在这里哦
-                    //为子窗口元素赋值
-                    body.contents().find("#gradeName").val(data.gradeName);//通过class名进行获取数据
-                    body.contents().find("#gradeUp").val(data.gradeUp);
-                    body.contents().find("#gradeDown").val(data.gradeDown);
-                    body.contents().find("#gradeId").val(data.gradeId);
-                    layui.form.render();
-                }
-                ,yes: function (index, layero) {         //按了弹出层的确定按钮时，这是将在父窗口中获取子窗口form标签里的所有值，并根据name名和值形成键值对json对象
-
-                    var body = layer.getChildFrame("body", index);
-                    var data = {};
-                    body.find("#changeGradeform").serializeArray().forEach(function (item) {    //获取弹出层写下的数据，input，下拉框啊，之类的表单元素（即changefileform下的所有数据）
-                        data[item.name] = item.value;   //根据表单元素的name属性来获取数据
-                    });
-                    $.ajax({
-                        url:path+"/grade/gradeUpdate",
-                        async: false,
-                        type:"POST",
-                        // dataType: "text",
-                        data:data,
-                        success: function(res){
-                            if(res>0){
-                                alert("修改成功");
-                            }else{
-                                alert("修改失败");
-                            }
-                        }
-                    })
-                    layer.close(index);
-                }
-                //返回按键
-                ,btn2: function(index, layero){
-                    if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
-                        layer.close(index);
-                    }
-                    return false ;//开启该代码可禁止点击该按钮关闭
-                }
-                //右上角关闭按键
-                ,cancel: function(index, layero){
-                    if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
-                        layer.close(index)
-                    }
-                    return false;
-                }
-            });
-        });
-
 
     });
 </script>

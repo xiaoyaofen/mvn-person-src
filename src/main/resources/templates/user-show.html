@@ -51,11 +51,11 @@
                                     批量导入
                                 </button>
                             </div>
-                            <div class="layui-inline layui-show-xs-block">
-                                <button id="down-btn" class="layui-btn" data-type="reload" type="button">
-                                    批量导出
-                                </button>
-                            </div>
+<!--                            <div class="layui-inline layui-show-xs-block">-->
+<!--                                <button id="down-btn" class="layui-btn" data-type="reload" type="button">-->
+<!--                                    批量导出-->
+<!--                                </button>-->
+<!--                            </div>-->
                         </div>
                         <div class="layui-card-body "><table class="layui-hide" id="demo" lay-filter="test"/></div>
                     </div>
@@ -97,7 +97,6 @@
                       ,{field: 'pm', title: '序号', width:80, fixed: 'left'}
                       ,{field: 'account', title: '账号', width:250}
                       ,{field: 'name', title: '姓名', width: 200}
-                      ,{field: 'sex', title: '当前学习', width:300}
                       ,{field: 'major', title: '专业', width: 250}
                       ,{field: 'school', title: '学校', width:200}
                       ,{field: 'jobstate', title: '就业状况', width:120}
@@ -105,6 +104,7 @@
                       ,{field: 'id', title: '编号', width:80,hide :true }
                       ,{field: 'age', title: '年龄', width:80,hide :true}
                       ,{field: 'sex', title: '性别', width:80,hide: true}
+                      //,{field: 'sex', title: '当前学习', width:300}
 
                   ]
               ]
@@ -216,12 +216,13 @@
                           success: function(res){
                               if(res>0){
                                   alert("修改成功");
+                                  layer.close(index);
                               }else{
                                   alert("修改失败");
                               }
                           }
                       })
-                      layer.close(index);
+
                   }
                   //返回按键
                   ,btn2: function(index, layero){

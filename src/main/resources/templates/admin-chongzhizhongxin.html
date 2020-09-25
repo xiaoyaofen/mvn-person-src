@@ -26,34 +26,34 @@
                 <div class="tr_rechhead">
                     <img th:src="@{/X-admin/chongzhizhongxin/images/ys_head2.jpg}" />
                     <p>充值帐号：
-                        <a>王凯</a>
+                        <a th:text="${admin.name}"></a>
                     </p>
                     <div class="tr_rechheadcion">
                         <img th:src="@{/X-admin/chongzhizhongxin/images/coin.png}" alt="" />
-                        <span>当前余额：<span>1000招兵币</span></span>
+                        <span>当前余额：<span th:text="${admin.money}">1000招兵币</span></span>
                     </div>
                 </div>
                 <div class="tr_rechli am-form-group">
                     <ul class="ui-choose am-form-group" id="uc_01">
                         <li>
                             <label class="am-radio-inline">
-                                <input type="radio"  value="" name="docVlGender" required data-validation-message="请选择一项充值额度"> 10￥
+                                <input type="radio"  value="10" name="docVlGender" required data-validation-message="请选择一项充值额度"> 10￥
                             </label>
                         </li>
                         <li>
                             <label class="am-radio-inline">
-                                <input type="radio" name="docVlGender" data-validation-message="请选择一项充值额度"> 20￥
+                                <input type="radio" value="20" name="docVlGender" data-validation-message="请选择一项充值额度"> 20￥
                             </label>
                         </li>
 
                         <li>
                             <label class="am-radio-inline">
-                                <input type="radio" name="docVlGender" data-validation-message="请选择一项充值额度"> 50￥
+                                <input type="radio" value="50" name="docVlGender" data-validation-message="请选择一项充值额度"> 50￥
                             </label>
                         </li>
                         <li>
                             <label class="am-radio-inline">
-                                <input type="radio" name="docVlGender" data-validation-message="请选择一项充值额度"> 其他金额
+                                <input type="radio" value="" name="docVlGender" data-validation-message="请选择一项充值额度"> 其他金额
                             </label>
                         </li>
                     </ul>

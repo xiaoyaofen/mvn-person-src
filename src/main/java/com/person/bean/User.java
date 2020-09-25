@@ -30,6 +30,9 @@ public class User{
     private Integer education;//最高学历
     private String educationStr;
     private Integer exprience;//工作经验
+    private String exprienceStr;
+    private Integer experience;
+    private String experienceStr;
     private String major;//专业
     private String school;//学校
     private String outlook;//社会面貌
@@ -77,6 +80,7 @@ public class User{
         this.education = education;
         this.educationStr = educationStr;
         this.exprience = exprience;
+        this.exprienceStr = exprienceStr;
         this.major = major;
         this.school = school;
         this.outlook = outlook;
@@ -285,6 +289,14 @@ public class User{
         this.exprience = exprience;
     }
 
+    public String getExprienceStr() {
+        return exprienceStr;
+    }
+
+    public void setExprienceStr(String exprienceStr) {
+        this.exprienceStr = exprienceStr;
+    }
+
     public String getMajor() {
         return major;
     }
@@ -395,6 +407,22 @@ public class User{
 
     public void setJobstation(Integer jobstation) {
         this.jobstation = jobstation;
+    }
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
+
+    public String getExperienceStr() {
+        return experienceStr;
+    }
+
+    public void setExperienceStr(String experienceStr) {
+        this.experienceStr = experienceStr;
     }
 }
 

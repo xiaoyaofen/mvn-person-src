@@ -55,7 +55,7 @@ public class EailSenderUitl {
         session.setDebug(true);                                 // 设置为debug模式, 可以查看详细的发送 log
 
         // 3. 创建一封邮件
-        MimeMessage message = createMimeMessage(session, myEmailAccount, receiveMailAccount,date,company,user,address);
+        MimeMessage message = createMimeMessage(session, myEmailAccount, email,date,company,user,address);
 
         // 4. 根据 Session 获取邮件传输对象
         Transport transport = session.getTransport();

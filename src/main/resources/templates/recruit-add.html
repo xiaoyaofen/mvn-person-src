@@ -32,7 +32,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">招聘人数</label>
         <div class="layui-input-block">
-            <input type="text" id="number" name="number" lay-verify="number" autocomplete="off" placeholder="请输入招聘人数" class="layui-input">
+            <input type="text" id="number" name="number" autocomplete="off" placeholder="请输入招聘人数" class="layui-input">
         </div>
     </div>
 
@@ -127,21 +127,6 @@
         var form = layui.form;
         var layer = layui.layer;
 
-        // form.verify({
-        //     title: function(value){
-        //         if(value.length < 5){
-        //             return '标题至少得5个字符啊';
-        //         }
-        //     }
-        //     ,number: [
-        //         /^[\S]{2,12}$/
-        //         ,'密码必须2到12位，且不能出现空格'
-        //     ]
-        //     ,content: function(value){
-        //         layedit.sync(editIndex);
-        //     }
-        // });
-
 
         //监听提交
         form.on('submit(demo1)', function(data){
@@ -159,7 +144,9 @@
             var job= $('#job').val();
             var request = $('#request').val();
 
-            alert(JSON.stringify(data.field));
+            // alert("title="+title+"&experience="+experience+"&number="+number+"&money="+money+"&welfare="
+            //     +welfare+"&region="+region+"&worktime="+worktime+"&description="+description
+            //     +"&sex="+sex+"&education="+education+"&job="+job+"&request="+request);
             $.ajax({
                 url: "/admin/recruitInsert",
                 type: "post",

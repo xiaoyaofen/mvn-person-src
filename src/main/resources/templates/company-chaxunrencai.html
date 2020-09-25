@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>企业-查询所有人才</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet" th:href="@{/X-admin/css/font.css}">
+    <link rel="stylesheet" th:href="@{/X-admin/css/xadmin.css}">
+    <script th:src="@{/X-admin/js/jquery-3.5.1.js}"></script>
+    <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
+</head>
+<body>
+
+</div>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <form class="layui-form layui-col-space5">
+
+                        <div class="layui-form-item">
+
+                            <div class="layui-input-inline">
+                                <select id="education" name="education">
+                                    <option value="">选择学历</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select id="experience" name="experience">
+                                    <option value="">工作经验</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select id="sex" name="sex">
+                                    <option value="">性别</option>
+                                </select>
+                            </div>
+<!--                            <div class="layui-input-inline">-->
+<!--                                <input type="text" id="title"  name="title" lay-verify="title" autocomplete="off" placeholder="请输入岗位名称" class="layui-input">-->
+<!--                            </div>-->
+                            <button id="select-btn" class="layui-btn" data-type="reload" type="button">
+                                <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                            </button>
+                            <button id="load-btn" class="layui-btn"type="button">导出简历资料</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-card-body "><table class="layui-hide" id="demo" lay-filter="test"/></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">导出选中数据</button>
+    </div>
+</script>
+<!--<script type="text/html" id="barDemo">-->
+<!--    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">求职进度</a>-->
+<!--    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+<!--</script>-->
+<script>
+    layui.use(['laydate','table','form','layer'], function(){
+
+        var laydate = layui.laydate;
+        var form = layui.form;
+        var table = layui.table;
+        var layer = layui.layer;
+
+        //执行一个 table 实例
+        table.render({
+            elem: '#demo'
+            ,height: 420
+            ,url: '/admin/exportUserInfo' //数据接口
+            ,title: '用户信息'
+            ,page:{
+                layout: [ 'prev', 'page', 'next', 'count','limit', 'refresh', 'skip']//自定义布局顺序
+                ,limit:5	//初始  每页几条数据
+                ,limits:[5,10,15]	//可以选择的 每页几条数据
+                ,groups:10 	//最多几个跳页按钮
+                ,first: false //不显示首页
+                ,last: false //不显示尾页
+            }
+            ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
+            ,defaultToolbar: ['filter', 'exports']
+            ,totalRow: true //开启合计行
+            ,toolbar: '#toolbarDemo'
+            ,cols: [
+                [ //表头
+                    {type: 'checkbox', fixed: 'left'}
+                    ,{field: 'pm', title: '序号', width:80, sort: true, fixed: 'left'}
+                    ,{field: 'id',width:200,hide: true}
+                    ,{field: 'name', title: '用户名', width: 150}
+                    ,{field: 'sexStr', title: '性别', width: 80}
+                    ,{field: 'school', title: '高校名称', width: 200}
+                    ,{field: 'major', title: '专业', width: 300}
+                    ,{field: 'experienceStr', title: '工作经验', width: 200,templet: function (d) {
+                        if (d.experienceStr =='不限'){
+                            return '无'
+                        }else {
+                            return d.experienceStr
+                        }
+                    }}
+                    ,{field: 'educationStr', title: '学历', width: 200}
+                    ,{field: 'tel', title: '联系方式', hide:true}
+                    // ,{fixed: 'right' ,fixed: 'right' ,title: '操作', width: 200, align:'center', toolbar: '#barDemo'}
+                ]
+            ]
+        });
+
+
+        //工具栏事件
+        table.on('toolbar(test)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'getCheckData':
+                    if(confirm("确定导出数据") == true){
+                        var data = checkStatus.data;
+                        if(data.length<=0){
+                            layer.alert("请先选择导出数据");
+                        }else{
+                            $.ajax({
+                                url:"/admin/exportExcelByCompany",
+                                data:{'userList':JSON.stringify(data)},
+                                type:"post",
+                                success:function (res) {
+                                    if(res == '2'){
+                                        location.href="/admin/daochu";
+                                    }
+                                    if(res == '1'){
+                                        layer.alert("金额不足，请充值");
+                                    }
+
+                                }
+                            })
+                        }
+                    };
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：'+ data.length + ' 个');
+                    break;
+            };
+        });
+
+
+
+
+
+
+        //=================== 查询
+        $('#select-btn').click(function () {
+            var education = $("#education").val();
+            var experience = $("#experience").val();
+            var sex = $("#sex").val();
+            //执行重载
+            table.reload('demo', {
+                page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+                , where: {
+                    education: education
+                    ,experience: experience
+                    ,sex: sex
+                }
+            });
+        })
+
+        //=================== 查询
+        $('#select-btn').on('click', function () {
+            var type = $(this).data('type');//自定义type属性，这里即为reload
+            active[type] ? active[type].call(this) : ''; //如果存在active[type]，则调用改函数
+        });
+
+        //=================== 导出文件
+        // $('#load-btn').on('click', function () {
+        //     location.href = "/admin/exportExcel";
+        // });
+
+
+        //下拉框
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'学历',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#education').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                layui.form.render("select");
+            }
+        })
+
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'工作经验',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#experience').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                layui.form.render("select");
+            }
+        })
+
+        $.ajax({
+            url:"/admin/getOptionData",
+            data: "type="+'性别',
+            success: function (data) {
+                var data = JSON.parse(data);
+                $.each(data.data, function (index, item) {
+                    $('#sex').append(new Option(item.name, item.value));// 下拉菜单里添加元素
+                });
+                layui.form.render("select");
+            }
+        })
+
+    });
+</script>
+
+
+</html>

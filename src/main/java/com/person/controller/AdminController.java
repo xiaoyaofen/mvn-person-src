@@ -121,13 +121,14 @@ public class AdminController {
                 continue;
             }
 
-            for (int j = sheet.getFirstRowNum(); j <= sheet.getLastRowNum(); j++) {
+            for (int j = sheet.getFirstRowNum(); j < sheet.getLastRowNum(); j++) {
                 System.out.println("========================"+sheet.getLastRowNum());
                 row = sheet.getRow(j);
 
                 if ( row == null || row.getFirstCellNum() == j ||row.equals("")) {
                     continue;
                 }
+
 
                 User userInfo = new User();
                 System.out.println(row.getCell(0));
@@ -174,8 +175,6 @@ public class AdminController {
     @ResponseBody
     public String userRecommend(String station,String industry,Integer limit,Integer page){
         HashMap<String,Object> condition = new HashMap<>();
-        System.out.println(station);
-        System.out.println(industry);
         if(station!= null && !"".equalsIgnoreCase(station)){
             condition.put("station",station);
         }
@@ -191,6 +190,7 @@ public class AdminController {
     public String userSelectFrame(){
         return "user-select";
     }
+
 
     //高校人才推荐 ==============选择人才数据显示
     @RequestMapping(value = "userSelect", produces = "text/plain;charset=utf-8")
@@ -222,6 +222,7 @@ public class AdminController {
 
         return JSON.toJSONString(layuiData);
     }
+
 
     //高校人才推荐 ==============确定选择推荐人选
     @RequestMapping(value = "userSelectSure", produces = "text/plain;charset=utf-8")
@@ -411,6 +412,7 @@ public class AdminController {
             admin = new Admin();
             admin.setCompany(1);
         }
+        System.out.println(admin.getCompany());
         Company company = adminService.getCompanyById(admin.getCompany());
         model.addAttribute("company",company);
         return "company-update";
@@ -441,9 +443,6 @@ public class AdminController {
     //招聘进度
     @RequestMapping(value = "hiringScheduleFrame", produces = "text/plain;charset=utf-8")
     public String hiringScheduleFrame(String username,Integer id,Integer jobstation,String title,Model model){
-        System.out.println(id); // 学生id
-        System.out.println(jobstation);
-
         Jobcontain jobcontain = adminService.hiringScheduleFrame(jobstation);
         model.addAttribute("job",jobcontain);
         model.addAttribute("userid",id);
@@ -457,20 +456,10 @@ public class AdminController {
     @RequestMapping(value="checkResume", produces = "text/plain;charset=utf-8")
     @ResponseBody
     public String checkResume(String id,String value,Integer i){
-        System.out.println(id);
-        System.out.println(value);
         Integer res = adminService.checkResume(id,value,i);
         return res+"";
     }
 
-
-
-    //邮箱发送
-//    @RequestMapping("sendEmailToUser")
-//    @ResponseBody
-//    public  String sendEmailToUser(String date,String company,String user) throws Exception {
-//        return EailSenderUitl.sendMail(date,company,user);
-//    }
 
     //手机验证码发送
     @RequestMapping(value = "/sendSms", produces = "text/plain;charset=utf-8")
@@ -516,7 +505,6 @@ public class AdminController {
         ExcelUtils.writeExcel(response, resultList, BusClick.class);
         long t2 = System.currentTimeMillis();
         System.out.println(String.format("write over! cost:%sms", (t2 - t1)));
-//        return "admin-bio-check";
     }
 
 
@@ -584,7 +572,14 @@ public class AdminController {
      *
      * */
     @RequestMapping("accountRecharge" )
-    public String accountRecharge(){
+    public String accountRecharge(HttpServletRequest request,Model model){
+        Admin admin = (Admin)request.getSession().getAttribute("admin");
+        if(admin == null){
+            admin = new Admin();
+            admin.setMoney("20");
+            admin.setName("小明");
+        }
+        model.addAttribute("admin",admin);
         return "admin-chongzhizhongxin";
     }
 
@@ -594,11 +589,27 @@ public class AdminController {
      * */
     @RequestMapping("pay")
     @ResponseBody
-    public String payMoney() throws AlipayApiException {
-        String WIDTCout_trade_no = "20200914099011";
-        String WIDsubject = "菜单";
-        String WIDtotal_amount = "100";
-        String WIDbody = "测试";
+    public String payMoney(HttpServletRequest request,String docVlGender) throws AlipayApiException {
+        if(docVlGender == null){
+            docVlGender = "20";
+        }
+        Admin admin = (Admin)request.getSession().getAttribute("admin");
+        Integer id = 1;
+        String adminMoney = "20";
+        if(admin != null){
+            id = admin.getId();
+            adminMoney = admin.getMoney();
+        }
+
+        adminMoney = Double.parseDouble(adminMoney) + Double.parseDouble(docVlGender) +"";
+        admin.setMoney(adminMoney);
+        request.getSession().setAttribute("admin",admin);
+        Integer res = adminService.payMoney(adminMoney,id);
+        long l=Date.parse(new Date().toString());
+        String WIDTCout_trade_no = l+"";
+        String WIDsubject = "充值";
+        String WIDtotal_amount = docVlGender;
+        String WIDbody = "测试充值";
         AlipayConfig alipayConfig=new AlipayConfig();
         AlipayClient alipayClient=new DefaultAlipayClient(alipayConfig.gatewayUrl,alipayConfig.app_id,alipayConfig.RSA_PRIVATE_KEY,alipayConfig.FORMAT
                 ,alipayConfig.charset,alipayConfig.alipay_public_key,alipayConfig.sign_type);
@@ -614,10 +625,87 @@ public class AdminController {
         alipayTradeWapPayRequest.setBizModel(alipayTradeWapPayModel);
         alipayTradeWapPayRequest.setNotifyUrl(alipayConfig.notify_url);
         alipayTradeWapPayRequest.setReturnUrl(alipayConfig.return_url);
-
         String form = alipayClient.pageExecute(alipayTradeWapPayRequest).getBody();
-        System.out.println(form);
         return form;
+    }
+
+    /**
+     * 企业端 ====人才导出界面
+     *
+     * */
+    @RequestMapping("exportUserInfoFrame")
+    public String exportUserInfoFrame(){
+        return "company-chaxunrencai";
+    }
+
+
+    /**
+     *企业端 ==== 人才导出
+     *
+     * */
+    @RequestMapping("exportUserInfo")
+    @ResponseBody
+    public String exportUserInfo(Integer limit,Integer page,Integer sex, Integer education,Integer experience){
+        HashMap<String,Object> condition = new HashMap<>();
+        if(sex != null){
+            condition.put("sex",sex);
+        }
+        if(education != null){
+            condition.put("education",education);
+        }
+        if(experience != null){
+            condition.put("experience",experience);
+        }
+        LayuiData<User> layuiData = adminService.exportUserInfo(limit,page,condition);
+        Gson gson = new Gson();
+        return gson.toJson(layuiData);
+    }
+
+
+    //判断数据
+    @RequestMapping(value = "exportExcelByCompany", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public String exportExcelByCompany(HttpServletResponse response,HttpServletRequest request,String userList)  throws IOException {
+        Admin admin = (Admin)request.getSession().getAttribute("admin");
+        Integer adminid = 1;
+        if(admin != null){
+            adminid = admin.getId();
+        }
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+            public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                return new Date(json.getAsJsonPrimitive().getAsLong());
+            }
+        });
+        Gson gson = builder.create();
+        List<User> list = gson.fromJson(userList, new TypeToken<List<User>>() {}.getType());
+
+        String oldMoney = admin.getMoney();
+        String newMoney = (list.size() * 0.1) +"";
+        Double d = Double.parseDouble(oldMoney) - Double.parseDouble(newMoney);
+        if(d>=0){
+            admin.setMoney(d+"");
+            request.getSession().setAttribute("admin",admin);
+            adminService.updateMoneyByAdmin(adminid,d+"");
+            List<BusClick> resultList = adminService.daochuwenjian(list);
+            request.getSession().setAttribute("resultList",resultList);
+
+            return "2";
+        }else{
+            return "1";
+        }
+    }
+
+    //文件导出
+    @RequestMapping(value = "daochu", produces = "text/plain;charset=utf-8")
+    @ResponseBody
+    public void daochu(HttpServletResponse response,HttpServletRequest request){
+        List<BusClick> resultList = (List<BusClick>)request.getSession().getAttribute("reresultList");
+        long t1 = System.currentTimeMillis();
+        ExcelUtils.writeExcel(response, resultList, BusClick.class);
+        long t2 = System.currentTimeMillis();
+        System.out.println(String.format("write over! cost:%sms", (t2 - t1)));
     }
 
     /**
@@ -650,6 +738,7 @@ public class AdminController {
         Integer res = adminService.inviteUserByCompany(userid,date,address,tel,jobstation);
         return ""+res;
     }
+
 
 
 }

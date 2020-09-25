@@ -129,4 +129,28 @@ public interface AdminMapper {
      * @Param jobstation 求职表中序号
      * */
     Jobcontain inviteUserByCompany(@Param("jobstation") Integer jobstation);
+
+    //chongzhizhongxin
+    Integer payMoney(@Param("money") String money,@Param("id") Integer id);
+
+
+    /**
+     *企业端 ==== 人才导出
+     *
+     * */
+    List<User> exportUserInfo(@Param("page") Integer page,@Param("limit") Integer limit,@Param("condition") HashMap<String,Object> condition);
+
+    /**
+     *企业端 ==== 人才导出 总数
+     *
+     * */
+    Integer exportUserInfoNum(@Param("condition")HashMap<String, Object> condition);
+
+    /**
+     *企业端 ==== 金钱更新
+     *
+     * */
+    Integer updateMoneyByAdmin(@Param("id") Integer id,@Param("money") String money);
+
+    List<BusClick> daochuwenjian(@Param("list") List<User> list);
 }
