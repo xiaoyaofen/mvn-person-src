@@ -14,172 +14,187 @@
 
 </head>
 <body>
-<div>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo"><img th:src="@{/X-admin/images/biaoti.png}" style="height: 60px"></div>
 
-    <img th:src="@{/X-admin/images/biaoti.png}" style="margin-right: 600px;">
-    <span style="margin-right: 20px;color: red;font-size: 20px">请先登录</span>
-    <a style="margin-right: 20px;font-size: 20px" th:href="@{/hello/userLogin}">用户登录</a>
-    <a style="margin-right: 20px;font-size: 20px" th:href="@{/hello/userLogin}">企业登录</a>
-</div>
+        <ul class="layui-nav " style="text-align: center">
+            <li class="layui-nav-item"><a href="">首页</a></li>
+            <li class="layui-nav-item"><a href="">人才生态圈</a></li>
+            <li class="layui-nav-item"><a th:href="@{/job/findjob}" target=_blank>找工作</a></li>
+            <li class="layui-nav-item"><a th:href="@{/person/seeVideo}" target=_blank>技术成长</a></li>
+            <li class="layui-nav-item"><a lay-submit lay-filter="center">个人中心</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item"><a href="">请先登录</a></li>
+            <li class="layui-nav-item"><a th:href="@{/hello/userLogin}">用户登录</a></li>
+            <li class="layui-nav-item"><a th:href="@{/system/adminLogInView}">管理端登录</a></li>
 
-<form action="" method="post" class="layui-form">
-<ul class="layui-nav" style="text-align: center">
-    <li class="layui-nav-item"><a href="">首页</a></li>
-    <li class="layui-nav-item"><a href="">人才生态圈</a></li>
-    <li class="layui-nav-item"><a th:href="@{/job/findjob}" target=_blank>找工作</a></li>
-    <li class="layui-nav-item"><a th:href="@{/person/seeVideo}" target=_blank>技术成长</a></li>
-    <li class="layui-nav-item"><a lay-submit lay-filter="center" >个人中心</a></li>
-</ul>
-    </form>
-<div class="layui-carousel" id="test10">
-    <div carousel-item="">
-        <div><img th:src="@{/X-admin/images/beijing.png}"></div>
-        <div><img th:src="@{/X-admin/images/beijing.png}"></div>
-        <div><img th:src="@{/X-admin/images/beijing.png}"></div>
-        <div><img th:src="@{/X-admin/images/beijing.png}"></div>
-
+        </ul>
     </div>
-</div>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend>成果展示</legend>
-</fieldset>
-<div class="layui-carousel" id="test11">
-    <div carousel-item="">
+    <div>
+        <div class="layui-carousel" id="test10">
+            <div carousel-item="">
+                <div><img th:src="@{/X-admin/images/101.jpg}"></div>
+                <div><img th:src="@{/X-admin/images/2.jpg}"></div>
+                <div><img th:src="@{/X-admin/images/3.jpg}"></div>
+                <div><img th:src="@{/X-admin/images/4.jpg}"></div>
+
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>成果展示</legend>
+        </fieldset>
+        <div class="layui-carousel" id="test11">
+            <div carousel-item="" style="text-align: center">
+                <div style="text-align: center">
+
+                    <a><img th:src="@{/X-admin/images/2020-09-21/by.png}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-21/cj.png}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-21/cl.png}" width="420" height="200"></a>
+                </div>
+                <div>
+                    <a><img th:src="@{/X-admin/images/2020-09-21/gssc.png}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-21/nba.png}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-21/pdk.png}" width="420" height="200"></a>
+                </div>
+                <div>
+                    <a><img th:src="@{/X-admin/images/2020-09-21/pt.png}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-21/sl.png}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-21/xn.png}" width="420" height="200"></a>
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>技术成长专区</legend>
+        </fieldset>
+        <div class="layui-carousel" id="test12">
+            <div carousel-item="">
+
+                <div>
+                    <a th:href="@{/person/seeVideo}"><img
+                            th:src="@{/X-admin/images/2020-09-15/41a39f62-5e46-4b20-8c1c-8e74624d0378.jpg}" width="420"
+                            height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a th:href="@{/person/seeVideo}"><img
+                            th:src="@{/X-admin/images/2020-09-14/4390390e-b2b9-4389-8bf1-7fe3dd6d7817.jpg}" width="420"
+                            height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a
+                        th:href="@{/person/seeVideo}"><img
+                        th:src="@{/X-admin/images/2020-09-14/421301a1-9308-4ecc-9103-d23c8d276061.jpg}" width="420"
+                        height="200"></a>
+                </div>
+                <div>
+                    <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/feiji.jpg}" width="420"
+                                                          height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/miaosha.jpg}" width="420"
+                                                          height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/weiqi.jpg}" width="420"
+                                                          height="200"></a>
+                </div>
+                <div>
+                    <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/paopaotang.jpg}"
+                                                          width="420"
+                                                          height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/xiangqi.jpg}" width="420"
+                                                          height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/zhintcc.jpg}" width="420"
+                                                          height="200"></a>
+                </div>
 
 
-        <div>
-            <a ><img th:src="@{/X-admin/images/2020-09-21/by.png}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a ><img th:src="@{/X-admin/images/2020-09-21/cj.png}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a ><img th:src="@{/X-admin/images/2020-09-21/cl.png}" width="400" height="200"></a>
+            </div>
         </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>高校专区</legend>
+        </fieldset>
+        <div class="layui-carousel" id="test13">
+            <div carousel-item="">
+                <div>
+                    <a><img th:src="@{/X-admin/images/2020-09-15/fd.jpg}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-15/xd.jpg}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-15/xmlg.jpg}" width="420" height="200"></a>
+                </div>
+                <div>
+                    <a><img th:src="@{/X-admin/images/2020-09-15/fjgc.jpg}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-15/mj.jpg}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-15/nd.jpg}" width="420" height="200"></a>
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>名企专区</legend>
+        </fieldset>
+        <div class="layui-carousel" id="test14">
+            <div carousel-item="">
+                <div>
+                    <a><img th:src="@{/X-admin/images/2020-09-21/lq.jpg}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-21/al.jpg}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-21/hw.jpg}" width="420" height="200"></a>
+                </div>
 
-        <div>
-            <a ><img th:src="@{/X-admin/images/2020-09-21/gssc.png}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a ><img th:src="@{/X-admin/images/2020-09-21/nba.png}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a ><img th:src="@{/X-admin/images/2020-09-21/pdk.png}" width="400" height="200"></a>
+                <div>
+                    <a><img th:src="@{/X-admin/images/2020-09-21/lz.jpg}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-21/tx.jpg}" width="420" height="200"></a>
+                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a><img th:src="@{/X-admin/images/2020-09-21/zte.jpg}" width="420" height="200"></a>
+                </div>
+
+            </div>
+
+
         </div>
-        <div>
-            <a ><img th:src="@{/X-admin/images/2020-09-21/pt.png}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a ><img th:src="@{/X-admin/images/2020-09-21/sl.png}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a ><img th:src="@{/X-admin/images/2020-09-21/xn.png}" width="400" height="200"></a>
-        </div>
+    </div>
+    <div style="text-align: center">
+        <p>&copy; 2020 <a href="/">海峡人才生态圈</a> MIT license
+            <a href="https://github.com/xiaoyaofen/mvn-person-src.git" target="_blank" rel="nofollow">GitHub</a>
+        </p>
+        <p>
+            <span>联系热线:0591-8278888</span>
+            <span>|</span>
+            <span>地址:福建省厦门市思明区观海路25号</span>
+            <span>|</span>
+            <span>圆梦行动 为梦起航</span>
+        </p>
     </div>
 
 </div>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend>技术成长专区</legend>
-</fieldset>
-<div class="layui-carousel" id="test12">
-    <div carousel-item="">
-
-        <div>
-            <a th:href="@{/person/seeVideo}"><img
-                    th:src="@{/X-admin/images/2020-09-15/41a39f62-5e46-4b20-8c1c-8e74624d0378.jpg}" width="420"
-                    height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a th:href="@{/person/seeVideo}"><img
-                    th:src="@{/X-admin/images/2020-09-14/4390390e-b2b9-4389-8bf1-7fe3dd6d7817.jpg}" width="420"
-                    height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a th:href="@{/person/seeVideo}"><img
-                    th:src="@{/X-admin/images/2020-09-14/421301a1-9308-4ecc-9103-d23c8d276061.jpg}" width="400"
-                    height="200"></a>
-        </div>
-        <div>
-            <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/feiji.jpg}" width="420"
-                                                  height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/miaosha.jpg}" width="420"
-                                                  height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/weiqi.jpg}" width="400"
-                                                  height="200"></a>
-        </div>
-        <div>
-            <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/paopaotang.jpg}" width="420"
-                                                  height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/xiangqi.jpg}" width="420"
-                                                  height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a th:href="@{/person/seeVideo}"><img th:src="@{/X-admin/images/2020-09-15/zhintcc.jpg}" width="400"
-                                                  height="200"></a>
-        </div>
-
-
-    </div>
-</div>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend>高校专区</legend>
-</fieldset>
-<div class="layui-carousel" id="test13">
-    <div carousel-item="">
-        <div>
-            <a><img th:src="@{/X-admin/images/2020-09-15/fd.jpg}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a><img th:src="@{/X-admin/images/2020-09-15/xd.jpg}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a><img th:src="@{/X-admin/images/2020-09-15/xmlg.jpg}" width="400" height="200"></a>
-        </div>
-        <div>
-            <a><img th:src="@{/X-admin/images/2020-09-15/fjgc.jpg}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a><img th:src="@{/X-admin/images/2020-09-15/mj.jpg}" width="400" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a><img th:src="@{/X-admin/images/2020-09-15/nd.jpg}" width="400" height="200"></a>
-        </div>
-    </div>
-</div>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend>名企专区</legend>
-</fieldset>
-<div class="layui-carousel" id="test14">
-    <div carousel-item="">
-        <div>
-            <a><img th:src="@{/X-admin/images/2020-09-21/lq.jpg}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a><img th:src="@{/X-admin/images/2020-09-21/al.jpg}" width="400" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a><img th:src="@{/X-admin/images/2020-09-21/hw.jpg}" width="400" height="200"></a>
-        </div>
-
-        <div>
-            <a><img th:src="@{/X-admin/images/2020-09-21/lz.jpg}" width="420" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a><img th:src="@{/X-admin/images/2020-09-21/tx.jpg}" width="400" height="200"></a>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-            <a><img th:src="@{/X-admin/images/2020-09-21/zte.jpg}" width="400" height="200"></a>
-        </div>
-
-    </div>
-</div>
-
-
+</body>
 <script th:src="@{/X-admin/lib/layui/layui.js}" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-    layui.use(['carousel', 'form'], function(){
+    layui.use(['carousel', 'form'], function () {
         var carousel = layui.carousel
-            ,form = layui.form;
+            , form = layui.form;
 
         //常规轮播
         carousel.render({
             elem: '#test1'
-            ,arrow: 'always'
+            , arrow: 'always'
         });
 
         //改变下时间间隔、动画类型、高度
         carousel.render({
             elem: '#test2'
-            ,interval: 1800
-            ,anim: 'fade'
-            ,height: '120px'
+            , interval: 1800
+            , anim: 'fade'
+            , height: '120px'
         });
 
         //设定各种参数
@@ -189,21 +204,21 @@
         //图片轮播
         carousel.render({
             elem: '#test11'
-            ,width: '1430px'
-            ,height: '200px'
-            ,interval: 5000
+            , width: '1430px'
+            , height: '200px'
+            , interval: 5000
         });
 
         //事件
-        carousel.on('change(test4)', function(res){
+        carousel.on('change(test4)', function (res) {
             console.log(res)
         });
 
         var $ = layui.$, active = {
-            set: function(othis){
+            set: function (othis) {
                 var THIS = 'layui-bg-normal'
-                    ,key = othis.data('key')
-                    ,options = {};
+                    , key = othis.data('key')
+                    , options = {};
 
                 othis.css('background-color', '#5FB878').siblings().removeAttr('style');
                 options[key] = othis.data('value');
@@ -212,23 +227,23 @@
         };
 
         //监听开关
-        form.on('switch(autoplay)', function(){
+        form.on('switch(autoplay)', function () {
             ins3.reload({
                 autoplay: this.checked
             });
         });
 
-        $('.demoSet').on('keyup', function(){
+        $('.demoSet').on('keyup', function () {
             var value = this.value
-                ,options = {};
-            if(!/^\d+$/.test(value)) return;
+                , options = {};
+            if (!/^\d+$/.test(value)) return;
 
             options[this.name] = value;
             ins3.reload(options);
         });
 
         //其它示例
-        $('.demoTest .layui-btn').on('click', function(){
+        $('.demoTest .layui-btn').on('click', function () {
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
@@ -241,10 +256,10 @@
                 dataType: 'text',
                 type: 'post',
                 success: function (data) {
-                    var json=JSON.parse(data)
-                    if(json==null){
+                    var json = JSON.parse(data)
+                    if (json == null) {
                         layer.msg("请先登录");
-                    }else{
+                    } else {
                         location.href = "/hello/menu";
                     }
 
@@ -256,22 +271,22 @@
     });
 </script>
 <script>
-    layui.use(['carousel', 'form'], function(){
+    layui.use(['carousel', 'form'], function () {
         var carousel = layui.carousel
-            ,form = layui.form;
+            , form = layui.form;
 
         //常规轮播
         carousel.render({
             elem: '#test1'
-            ,arrow: 'always'
+            , arrow: 'always'
         });
 
         //改变下时间间隔、动画类型、高度
         carousel.render({
             elem: '#test2'
-            ,interval: 1800
-            ,anim: 'fade'
-            ,height: '120px'
+            , interval: 1800
+            , anim: 'fade'
+            , height: '120px'
         });
 
         //设定各种参数
@@ -281,21 +296,21 @@
         //图片轮播
         carousel.render({
             elem: '#test12'
-            ,width: '1430px'
-            ,height: '200px'
-            ,interval: 5000
+            , width: '1430px'
+            , height: '200px'
+            , interval: 5000
         });
 
         //事件
-        carousel.on('change(test4)', function(res){
+        carousel.on('change(test4)', function (res) {
             console.log(res)
         });
 
         var $ = layui.$, active = {
-            set: function(othis){
+            set: function (othis) {
                 var THIS = 'layui-bg-normal'
-                    ,key = othis.data('key')
-                    ,options = {};
+                    , key = othis.data('key')
+                    , options = {};
 
                 othis.css('background-color', '#5FB878').siblings().removeAttr('style');
                 options[key] = othis.data('value');
@@ -304,45 +319,45 @@
         };
 
         //监听开关
-        form.on('switch(autoplay)', function(){
+        form.on('switch(autoplay)', function () {
             ins3.reload({
                 autoplay: this.checked
             });
         });
 
-        $('.demoSet').on('keyup', function(){
+        $('.demoSet').on('keyup', function () {
             var value = this.value
-                ,options = {};
-            if(!/^\d+$/.test(value)) return;
+                , options = {};
+            if (!/^\d+$/.test(value)) return;
 
             options[this.name] = value;
             ins3.reload(options);
         });
 
         //其它示例
-        $('.demoTest .layui-btn').on('click', function(){
+        $('.demoTest .layui-btn').on('click', function () {
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
     });
 </script>
 <script>
-    layui.use(['carousel', 'form'], function(){
+    layui.use(['carousel', 'form'], function () {
         var carousel = layui.carousel
-            ,form = layui.form;
+            , form = layui.form;
 
         //常规轮播
         carousel.render({
             elem: '#test1'
-            ,arrow: 'always'
+            , arrow: 'always'
         });
 
         //改变下时间间隔、动画类型、高度
         carousel.render({
             elem: '#test2'
-            ,interval: 1800
-            ,anim: 'fade'
-            ,height: '120px'
+            , interval: 1800
+            , anim: 'fade'
+            , height: '120px'
         });
 
         //设定各种参数
@@ -352,21 +367,21 @@
         //图片轮播
         carousel.render({
             elem: '#test13'
-            ,width: '1430px'
-            ,height: '200px'
-            ,interval: 5000
+            , width: '1430px'
+            , height: '200px'
+            , interval: 5000
         });
 
         //事件
-        carousel.on('change(test4)', function(res){
+        carousel.on('change(test4)', function (res) {
             console.log(res)
         });
 
         var $ = layui.$, active = {
-            set: function(othis){
+            set: function (othis) {
                 var THIS = 'layui-bg-normal'
-                    ,key = othis.data('key')
-                    ,options = {};
+                    , key = othis.data('key')
+                    , options = {};
 
                 othis.css('background-color', '#5FB878').siblings().removeAttr('style');
                 options[key] = othis.data('value');
@@ -375,45 +390,45 @@
         };
 
         //监听开关
-        form.on('switch(autoplay)', function(){
+        form.on('switch(autoplay)', function () {
             ins3.reload({
                 autoplay: this.checked
             });
         });
 
-        $('.demoSet').on('keyup', function(){
+        $('.demoSet').on('keyup', function () {
             var value = this.value
-                ,options = {};
-            if(!/^\d+$/.test(value)) return;
+                , options = {};
+            if (!/^\d+$/.test(value)) return;
 
             options[this.name] = value;
             ins3.reload(options);
         });
 
         //其它示例
-        $('.demoTest .layui-btn').on('click', function(){
+        $('.demoTest .layui-btn').on('click', function () {
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
     });
 </script>
 <script>
-    layui.use(['carousel', 'form'], function(){
+    layui.use(['carousel', 'form'], function () {
         var carousel = layui.carousel
-            ,form = layui.form;
+            , form = layui.form;
 
         //常规轮播
         carousel.render({
             elem: '#test1'
-            ,arrow: 'always'
+            , arrow: 'always'
         });
 
         //改变下时间间隔、动画类型、高度
         carousel.render({
             elem: '#test2'
-            ,interval: 1800
-            ,anim: 'fade'
-            ,height: '120px'
+            , interval: 1800
+            , anim: 'fade'
+            , height: '120px'
         });
 
         //设定各种参数
@@ -423,21 +438,21 @@
         //图片轮播
         carousel.render({
             elem: '#test14'
-            ,width: '1430px'
-            ,height: '200px'
-            ,interval: 5000
+            , width: '1430px'
+            , height: '200px'
+            , interval: 5000
         });
 
         //事件
-        carousel.on('change(test4)', function(res){
+        carousel.on('change(test4)', function (res) {
             console.log(res)
         });
 
         var $ = layui.$, active = {
-            set: function(othis){
+            set: function (othis) {
                 var THIS = 'layui-bg-normal'
-                    ,key = othis.data('key')
-                    ,options = {};
+                    , key = othis.data('key')
+                    , options = {};
 
                 othis.css('background-color', '#5FB878').siblings().removeAttr('style');
                 options[key] = othis.data('value');
@@ -446,45 +461,45 @@
         };
 
         //监听开关
-        form.on('switch(autoplay)', function(){
+        form.on('switch(autoplay)', function () {
             ins3.reload({
                 autoplay: this.checked
             });
         });
 
-        $('.demoSet').on('keyup', function(){
+        $('.demoSet').on('keyup', function () {
             var value = this.value
-                ,options = {};
-            if(!/^\d+$/.test(value)) return;
+                , options = {};
+            if (!/^\d+$/.test(value)) return;
 
             options[this.name] = value;
             ins3.reload(options);
         });
 
         //其它示例
-        $('.demoTest .layui-btn').on('click', function(){
+        $('.demoTest .layui-btn').on('click', function () {
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
     });
 </script>
 <script>
-    layui.use(['carousel', 'form'], function(){
+    layui.use(['carousel', 'form'], function () {
         var carousel = layui.carousel
-            ,form = layui.form;
+            , form = layui.form;
 
         //常规轮播
         carousel.render({
             elem: '#test1'
-            ,arrow: 'always'
+            , arrow: 'always'
         });
 
         //改变下时间间隔、动画类型、高度
         carousel.render({
             elem: '#test2'
-            ,interval: 1800
-            ,anim: 'fade'
-            ,height: '120px'
+            , interval: 1800
+            , anim: 'fade'
+            , height: '120px'
         });
 
         //设定各种参数
@@ -494,20 +509,21 @@
         //图片轮播
         carousel.render({
             elem: '#test10'
-            ,width: '1520px'
-            ,height: '344px'
-            ,interval: 5000        });
+            , width: '1520px'
+            , height: '344px'
+            , interval: 5000
+        });
 
         //事件
-        carousel.on('change(test4)', function(res){
+        carousel.on('change(test4)', function (res) {
             console.log(res)
         });
 
         var $ = layui.$, active = {
-            set: function(othis){
+            set: function (othis) {
                 var THIS = 'layui-bg-normal'
-                    ,key = othis.data('key')
-                    ,options = {};
+                    , key = othis.data('key')
+                    , options = {};
 
                 othis.css('background-color', '#5FB878').siblings().removeAttr('style');
                 options[key] = othis.data('value');
@@ -516,28 +532,27 @@
         };
 
         //监听开关
-        form.on('switch(autoplay)', function(){
+        form.on('switch(autoplay)', function () {
             ins3.reload({
                 autoplay: this.checked
             });
         });
 
-        $('.demoSet').on('keyup', function(){
+        $('.demoSet').on('keyup', function () {
             var value = this.value
-                ,options = {};
-            if(!/^\d+$/.test(value)) return;
+                , options = {};
+            if (!/^\d+$/.test(value)) return;
 
             options[this.name] = value;
             ins3.reload(options);
         });
 
         //其它示例
-        $('.demoTest .layui-btn').on('click', function(){
+        $('.demoTest .layui-btn').on('click', function () {
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
         });
     });
-
 
 
 </script>
@@ -552,9 +567,4 @@
         });
     });
 </script>
-
-</body>
-</html>
-</ul>
-</body>
 </html>

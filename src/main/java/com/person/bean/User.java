@@ -35,7 +35,7 @@ public class User{
     private  String project;//项目经验
     private String educationbackground;//教育背景
     private String self;//自我描述
-
+    private Integer num;
 
     private String username;//人脸识别的名字
     private  String faceId;//人脸识别的id
@@ -335,6 +335,14 @@ public class User{
 
     public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
     }
 }
 
